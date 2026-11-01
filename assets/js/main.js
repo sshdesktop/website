@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnnouncementBar();
   initNavDropdowns();
   initCommandPalette();
+  initGitHubStars();
 
   // OS Detection & Hero Button Adaptation
   detectUserOS();
@@ -545,6 +546,32 @@ function initCommandPalette() {
       renderResults(e.target.value);
     });
   }
+}
+
+/**
+ * Fetch and update real-time GitHub Star counter
+ */
+function initGitHubStars() {
+  const starCounters = document.querySelectorAll('#navGhStars, .gh-counter');
+  if (!starCounters.length) return;
+
+  fetch('https://api.github.com/repos/sshdesktop/sshdesktop')
+    .then(res => {
+      if (!res.ok) throw new Error('Network response not ok');
+      return res.json();
+    })
+    .then(data => {
+      if (typeof data.stargazers_count === 'number') {
+        const count = data.stargazers_count;
+        const display = count >= 1000 ? (count / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(count);
+        starCounters.forEach(el => {
+          el.textContent = display;
+        });
+      }
+    })
+    .catch(() => {
+      // Graceful fallback to static value in HTML
+    });
 }
 
 /**
