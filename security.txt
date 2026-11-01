@@ -1,0 +1,6 @@
+# Security Policy for SSH Desktop
+Contact: mailto:security@sshdesktop.com
+Expires: 2028-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://sshdesktop.com/security.txt
+Policy: https://sshdesktop.com/docs.html#security

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Linux Package Manager GUI (APT, DNF, Pacman, APK) | SSH Desktop</title>
+  <meta name="title" content="Linux Package Manager GUI (APT, DNF, Pacman, APK) | SSH Desktop">
+  <meta name="description" content="Visual Linux package manager inside SSH Desktop. Universal distro detection for APT, DNF, YUM, Pacman, and APK. 1-click upgrades, repository audits, and dependency viewer.">
+  <meta name="keywords" content="linux package manager gui, apt web interface, yum gui, update linux packages gui, dnf web gui, pacman gui linux, apk package manager web, ubuntu software updater web">
+  <meta name="author" content="SSH Desktop Development Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="revisit-after" content="2 days">
+  <meta name="language" content="English">
+  <meta name="distribution" content="Global">
+  <meta name="rating" content="General">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://sshdesktop.com/linux-package-manager.html">
+
+  <link rel="dns-prefetch" href="//sshdesktop.com">
+  <link rel="preconnect" href="https://sshdesktop.com">
+
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0284c7" media="(prefers-color-scheme: light)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Linux Package Manager">
+  <meta name="application-name" content="Linux Package Manager">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="browserconfig.xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/linux-package-manager.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="Universal Linux Package Manager GUI (App 11) | SSH Desktop">
+  <meta property="og:description" content="Manage packages across Ubuntu, Debian, RHEL, Fedora, Rocky, Arch, and Alpine graphically with zero server agent.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/screenshots/screenshot-package-manager.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@SSHDesktop">
+  <meta name="twitter:title" content="Linux Package Manager GUI - SSH Desktop">
+  <meta name="twitter:description" content="Visual package management across APT, DNF, YUM, Pacman, and APK. Zero installation required.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/screenshots/screenshot-package-manager.png">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "22-App Suite",
+            "item": "https://sshdesktop.com/apps.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Package Manager",
+            "item": "https://sshdesktop.com/linux-package-manager.html"
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "SSH Desktop Package Manager",
+        "operatingSystem": "Windows 11, Windows 10, macOS, Linux",
+        "applicationCategory": "DeveloperApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "description": "Universal multi-distribution graphical package manager for Linux servers, supporting APT, DNF, YUM, Pacman, and APK over encrypted SSH."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Which Linux package managers are natively supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SSH Desktop automatically detects APT (Debian, Ubuntu, Mint), DNF/YUM (RHEL, CentOS, Fedora, Rocky, AlmaLinux), Pacman (Arch Linux, Manjaro), and APK (Alpine Linux)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I install security-only updates without upgrading all packages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. On systems with unattended-upgrades or DNF security plugins, SSH Desktop highlights pending CVE security patches so you can apply critical patches in one click without risking non-security breaking changes."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header (Apple-Style Clean) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+      </a>
+
+      <!-- Navigation Links (Clean & Focused) -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="features.html" class="active">Features</a></li>
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions CTA -->
+      <div class="header-actions">
+        <!-- Compact Search Icon Trigger -->
+        <button class="header-search-icon-btn" id="headerSearchTrigger" aria-label="Quick Search" title="Search apps and docs (Ctrl + K)">
+          <span class="search-icon">&#128269;</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+
+        <!-- GitHub Star Badge -->
+        <a href="https://github.com/sshdesktop/sshdesktop" class="header-github-btn" target="_blank" rel="noopener" aria-label="Star on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-star-label">Star</span>
+          <span class="gh-counter" id="navGhStars">2.4k</span>
+        </a>
+
+        <!-- Download CTA -->
+        <a href="download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Command Palette Modal (Ctrl + K) -->
+  <div class="command-palette-overlay" id="commandPaletteOverlay" role="dialog" aria-modal="true" aria-label="Command search" style="display: none;">
+    <div class="command-palette-card">
+      <div class="command-palette-header">
+        <span class="command-search-icon">&#128269;</span>
+        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off">
+        <kbd class="command-esc-badge" id="commandPaletteClose">ESC</kbd>
+      </div>
+      <div class="command-palette-results" id="commandPaletteResults">
+        <!-- Live dynamic search items -->
+      </div>
+      <div class="command-palette-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</span>
+        <span><kbd>&crarr;</kbd> to open</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Breadcrumbs -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="apps.html">22-App Suite</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li aria-current="page">Package Manager (App 11)</li>
+      </ol>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero text-center" style="padding-top: 20px;">
+      <div class="container">
+        <div class="hero-pill">
+          <span class="badge badge-green">&#128230; Built-in App 11 &bull; Multi-Distro Support</span>
+        </div>
+        <h1 class="hero-title">Universal <span>Linux Package Manager</span> GUI</h1>
+        <p class="hero-lead">
+          Manage, upgrade, and install Linux software without command-line headaches. Native support for APT, DNF, YUM, Pacman, and APK with pending upgrade badges, dependency graphs, and repository auditing.
+        </p>
+
+        <div class="hero-cta-group justify-center">
+          <a href="download.html" class="btn btn-primary btn-lg">Download Free</a>
+          <a href="docs.html#app-11" class="btn btn-secondary btn-lg">View Package Manager Guide &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshot Showcase Card -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="screenshot-showcase-card">
+          <!-- Screenshot Placeholder Ready For User Screenshot -->
+          <div class="screenshot-placeholder" id="packageManagerScreenshot">
+            <img src="assets/images/screenshots/screenshot-package-manager.png" alt="Linux Package Manager GUI Screenshot" class="showcase-img" loading="eager" onerror="this.parentElement.classList.add('needs-image');">
+            <div class="placeholder-overlay">
+              <div class="placeholder-content">
+                <span class="placeholder-icon">&#128247;</span>
+                <h4>App 11: Package Manager Screenshot</h4>
+                <p>Add your screenshot to <code>assets/images/screenshots/screenshot-package-manager.png</code></p>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-caption">
+            <strong>Figure 1:</strong> Multi-Distribution Package Manager — Visual software catalog, pending updates list, security vulnerability tags, and repository source toggles.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge badge-purple">Distro Compatibility</span>
+          <h2 class="section-title">One Unified GUI for Any Linux Distribution</h2>
+        </div>
+
+        <div class="grid-3 mt-8">
+          <div class="feature-card">
+            <div class="feature-icon">&#128269;</div>
+            <h3>Intelligent Backend Detection</h3>
+            <p>Automatically detects the native package engine on connect — whether it is <code>apt</code> on Ubuntu, <code>dnf/yum</code> on Rocky/Fedora, <code>pacman</code> on Arch, or <code>apk</code> on Alpine.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">&#128737;</div>
+            <h3>1-Click Security Patching</h3>
+            <p>Scans upstream repositories for security notices and pending patches. Apply critical CVE bugfixes in a single click with full transaction logs.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">&#128203;</div>
+            <h3>Repository Source Auditor</h3>
+            <p>Inspect, enable, or disable upstream mirrors and PPAs in <code>/etc/apt/sources.list</code> or <code>/etc/yum.repos.d/</code> without accidental syntax errors.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supported Distribution Matrix -->
+    <section class="section">
+      <div class="container max-w-4xl">
+        <div class="section-header text-center">
+          <span class="badge badge-cyan">Native Compatibility</span>
+          <h2 class="section-title">Supported Package Systems &amp; Distributions</h2>
+        </div>
+
+        <div class="table-responsive mt-8">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Package Manager</th>
+                <th>Target Linux Distributions</th>
+                <th>Supported Operations</th>
+                <th>Safety Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>APT</strong></td>
+                <td>Ubuntu 20.04/22.04/24.04, Debian 11/12, Raspberry Pi OS</td>
+                <td>Search, install, upgrade, purge, dist-upgrade, clean</td>
+                <td>Pre-upgrade dependency simulation</td>
+              </tr>
+              <tr>
+                <td><strong>DNF / YUM</strong></td>
+                <td>RHEL 8/9, Rocky Linux, AlmaLinux, CentOS Stream, Fedora</td>
+                <td>Search, groupinstall, security update, history rollback</td>
+                <td>Transaction checkpointing</td>
+              </tr>
+              <tr>
+                <td><strong>Pacman</strong></td>
+                <td>Arch Linux, Manjaro, EndeavourOS</td>
+                <td>Sync (-Syu), search (-Ss), orphaned cleanup (-Qtdq)</td>
+                <td>Mirror ranking verification</td>
+              </tr>
+              <tr>
+                <td><strong>APK</strong></td>
+                <td>Alpine Linux 3.16 - 3.20 (Docker containers &amp; VPS)</td>
+                <td>Add, delete, update, upgrade, cache cleanup</td>
+                <td>Ultra-low memory footprint</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border);">
+      <div class="container max-w-3xl">
+        <div class="section-header text-center">
+          <span class="badge badge-cyan">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list mt-8">
+          <details class="faq-item">
+            <summary class="faq-question">Does SSH Desktop support cleaning orphaned packages and cache?</summary>
+            <div class="faq-answer">
+              <p>Yes. A dedicated "System Cleanup" button runs <code>apt autoremove --purge</code> or <code>dnf autoremove</code>, freeing gigabytes of wasted disk space from superseded kernel images and stale package archives.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Can I see the live console output during package installation?</summary>
+            <div class="faq-answer">
+              <p>Yes. A collapsible slide-down drawer streams real-time stdout and stderr from the package manager, giving you full visibility into dpkg triggers, systemd daemon restarts, and pre/post-installation scripts.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">What happens if a package configuration triggers a debconf prompt?</summary>
+            <div class="faq-answer">
+              <p>SSH Desktop runs transactions in non-interactive mode (<code>DEBIAN_FRONTEND=noninteractive</code>) while safely preserving default existing configuration files (<code>--force-confold</code>) to prevent hung unattended upgrades.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-16 text-center">
+      <div class="container">
+        <h2 class="text-3xl font-extrabold mb-4">Upgrade Your Server Software with Confidence</h2>
+        <p class="text-xl text-muted max-w-2xl mx-auto mb-8">
+          Download SSH Desktop for Windows, macOS, or Linux. Free and open source with 22 built-in server administration tools.
+        </p>
+        <div class="btn-group justify-center">
+          <a href="download.html" class="btn btn-primary btn-lg">Download Free</a>
+          <a href="apps.html" class="btn btn-secondary btn-lg">Explore All 22 Apps</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+    <!-- Modernized Application Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Pre-Footer Call to Action Card -->
+      <div class="footer-cta-card">
+        <div class="footer-cta-content">
+          <div class="footer-cta-badge"><span class="status-pulse-dot"></span> Next-Gen Linux Administration</div>
+          <h3 class="footer-cta-title">Manage Your Entire Linux Fleet with macOS Elegance</h3>
+          <p class="footer-cta-desc">Agentless, client-side macOS Sonoma desktop shell with 22 built-in server administration tools. Connect directly over pure, encrypted SSH &mdash; zero open web ports and zero idle server RAM.</p>
+          <div class="footer-cta-tags">
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 0% Idle Server RAM</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 256-Bit AES SSH Encryption</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> Windows &bull; macOS &bull; Linux</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 100% Free &amp; Open Source</span>
+          </div>
+        </div>
+        <div class="footer-cta-actions">
+          <a href="download.html" class="footer-download-btn">
+            <span>&#128230; Download Free</span>
+            <small>v2.4.1 &bull; All Operating Systems</small>
+          </a>
+          <a href="https://github.com/sshdesktop/sshdesktop" class="footer-github-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Star on GitHub</span>
+            <span class="gh-counter">14.2k</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main 5-Column Navigation Grid -->
+      <div class="footer-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-brand-logo" aria-label="SSH Desktop Homepage">
+            <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+            <span class="footer-version-tag">v2.4.1</span>
+          </a>
+          <p class="footer-mission-text">
+            The open-source, client-side macOS Sonoma desktop shell for Linux servers. Manage 10+ remote servers with full PTY terminal, dual-pane SFTP, Monaco editor, Docker GUI, and 12+ database engines over pure SSH.
+          </p>
+
+          <div class="footer-status-badge">
+            <span class="status-pulse-dot"></span>
+            <span>Client Engine: <strong>All Systems Operational</strong></span>
+          </div>
+
+          <div class="footer-distro-chips">
+            <span class="distro-chip">Ubuntu</span>
+            <span class="distro-chip">Debian</span>
+            <span class="distro-chip">RHEL</span>
+            <span class="distro-chip">CentOS</span>
+            <span class="distro-chip">Fedora</span>
+            <span class="distro-chip">Rocky</span>
+            <span class="distro-chip">Arch</span>
+            <span class="distro-chip">Alpine</span>
+            <span class="distro-chip">macOS</span>
+            <span class="distro-chip">Windows 11</span>
+          </div>
+        </div>
+
+        <!-- Col 2: 22-App Suite (Core) -->
+        <div class="footer-col">
+          <h4>22-App Suite (Core)</h4>
+          <ul>
+            <li><a href="features.html">PTY Terminal (Xterm.js)</a></li>
+            <li><a href="sftp-client.html">Dual-Pane SFTP Manager</a></li>
+            <li><a href="monaco-code-editor.html">Monaco Code Editor</a></li>
+            <li><a href="docker-web-gui.html">Docker Container Hub</a></li>
+            <li><a href="database-gui-ssh-tunnel.html">Database Studio (12+ DBs)</a></li>
+            <li><a href="systemd-gui.html">Systemd Services &amp; Logs</a></li>
+            <li><a href="linux-firewall-gui.html">Visual Firewall (UFW)</a></li>
+            <li><a href="system-monitor.html">Hardware Telemetry &amp; CPU</a></li>
+            <li><a href="linux-process-manager.html">Process Manager (htop GUI)</a></li>
+            <li><a href="apps.html" class="footer-highlight-link">Explore All 22 Apps &rarr;</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: DevOps & Automation -->
+        <div class="footer-col">
+          <h4>DevOps &amp; Cloud</h4>
+          <ul>
+            <li><a href="linux-package-manager.html">Universal Package Manager</a></li>
+            <li><a href="linux-user-manager.html">User &amp; Sudo Administrator</a></li>
+            <li><a href="network-port-auditor.html">Network &amp; Port Auditor</a></li>
+            <li><a href="linux-disk-manager.html">Disk &amp; S.M.A.R.T. Manager</a></li>
+            <li><a href="crontab-gui.html">Visual Crontab Scheduler</a></li>
+            <li><a href="log-analysis-grep.html">Log Analysis &amp; Grep</a></li>
+            <li><a href="ssl-certificate-manager.html">SSL Cert Manager (Certbot)</a></li>
+            <li><a href="backup-disaster-recovery.html">Backup &amp; Disaster Recovery</a></li>
+            <li><a href="ssh-port-forwarding.html">SSH Port Forwarding Canvas</a></li>
+            <li><a href="webhook-server.html">Webhook CI/CD Deployments</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Comparison & Alternatives -->
+        <div class="footer-col">
+          <h4>Comparisons</h4>
+          <ul>
+            <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="filezilla-alternative.html">FileZilla Alternative</a></li>
+            <li><a href="portainer-alternative.html">Portainer Alternative</a></li>
+            <li><a href="search-queries.html">Search Topics Encyclopedia</a></li>
+            <li><a href="security.html">Zero-Knowledge Security</a></li>
+            <li><a href="pricing.html">Open-Source License</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Downloads & Resources -->
+        <div class="footer-col">
+          <h4>Downloads &amp; Docs</h4>
+          <ul>
+            <li><a href="download.html">Download Center (All OS)</a></li>
+            <li><a href="download-windows.html">Windows 11 / 10 Installer</a></li>
+            <li><a href="download-mac.html">macOS Universal DMG</a></li>
+            <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
+            <li><a href="download-linux-cli.html">Linux Headless CLI Daemon</a></li>
+            <li><a href="docs.html">Documentation &amp; Tutorials</a></li>
+            <li><a href="api-studio.html">API Studio (Postman Alt)</a></li>
+            <li><a href="env-variables-manager.html">Environment Variables</a></li>
+            <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
+            <li><a href="faq.html">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semantic SEO Keywords Cloud -->
+      <div class="footer-seo-cloud">
+        <div class="footer-seo-header">
+          <span class="seo-cloud-title">Popular Linux Server Administration &amp; SSH Searches:</span>
+          <span class="seo-cloud-badge">SEO Index</span>
+        </div>
+        <div class="footer-seo-tags">
+          <a href="search-queries.html" class="seo-tag">remote linux gui</a>
+          <a href="search-queries.html" class="seo-tag">web based ssh client</a>
+          <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
+          <a href="database-gui-ssh-tunnel.html" class="seo-tag">database gui with ssh tunnel</a>
+          <a href="webmin-alternative.html" class="seo-tag">linux server control panel</a>
+          <a href="webmin-alternative.html" class="seo-tag">gui for ubuntu server</a>
+          <a href="webmin-alternative.html" class="seo-tag">webmin alternative</a>
+          <a href="cockpit-alternative.html" class="seo-tag">cockpit alternative</a>
+          <a href="termius-alternative.html" class="seo-tag">free termius alternative</a>
+          <a href="putty-alternative.html" class="seo-tag">putty alternative windows 11</a>
+          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm alternative mac</a>
+          <a href="filezilla-alternative.html" class="seo-tag">filezilla sftp client</a>
+          <a href="portainer-alternative.html" class="seo-tag">portainer alternative</a>
+          <a href="systemd-gui.html" class="seo-tag">linux systemd gui</a>
+          <a href="sftp-client.html" class="seo-tag">sftp client with text editor</a>
+          <a href="linux-firewall-gui.html" class="seo-tag">visual ufw and iptables</a>
+          <a href="system-monitor.html" class="seo-tag">linux hardware telemetry</a>
+          <a href="linux-process-manager.html" class="seo-tag">htop web interface</a>
+          <a href="crontab-gui.html" class="seo-tag">visual crontab editor</a>
+          <a href="ssh-port-forwarding.html" class="seo-tag">ssh port forwarding visual</a>
+          <a href="monaco-code-editor.html" class="seo-tag">vs code over ssh</a>
+          <a href="ssl-certificate-manager.html" class="seo-tag">certbot ssl manager gui</a>
+          <a href="backup-disaster-recovery.html" class="seo-tag">restic sftp backup</a>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Built for DevOps, sysadmins, and Linux developers worldwide. Licensed under Apache 2.0 / MIT.</p>
+          <div class="footer-trust-pills">
+            <span class="trust-pill">&#128274; 256-Bit AES SSH Encryption</span>
+            <span class="trust-pill">&#9889; 0% Idle Server RAM</span>
+            <span class="trust-pill">&#128640; Zero Cloud Telemetry</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Legal and Meta">
+            <a href="privacy.html">Privacy</a>
+            <a href="security.html">Security</a>
+            <a href="security.txt">Security.txt</a>
+            <a href="humans.txt">Humans.txt</a>
+            <a href="robots.txt">Robots.txt</a>
+            <a href="sitemap.xml">Sitemap.xml</a>
+          </nav>
+          <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+            <span>Back to top</span>
+            <span class="back-to-top-arrow">&uarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

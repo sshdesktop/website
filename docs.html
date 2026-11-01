@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary Documentation SEO Meta Tags -->
+  <title>SSH Desktop Documentation - Getting Started, Configuration & Guides</title>
+  <meta name="title" content="SSH Desktop Documentation - Getting Started, Configuration & Guides">
+  <meta name="description" content="Comprehensive guides for SSH Desktop: How to connect with SSH keys, import ~/.ssh/config, configure port forwarding tunnels, set up Jump Hosts (ProxyJump), and troubleshooting.">
+  <meta name="keywords" content="ssh documentation, how to use ssh desktop, generate ed25519 key, ssh config guide, ssh tunneling tutorial, proxyjump tutorial, fix ssh connection refused, sftp tutorial, ssh terminal guide, openssh tutorial">
+  <meta name="author" content="SSH Desktop Documentation Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/docs.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/docs.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="SSH Desktop Documentation &amp; Step-by-Step Guides">
+  <meta property="og:description" content="Learn how to configure SSH sessions, manage Ed25519 keys, establish port forwarding tunnels, and automate server workflows.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SSH Desktop Documentation &amp; Server Administration Tutorials">
+  <meta name="twitter:description" content="Complete technical guides for SSH Desktop on Windows, macOS, and Linux.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Documentation",
+            "item": "https://sshdesktop.com/docs.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "headline": "SSH Desktop Getting Started Guide & Configuration Tutorials",
+        "description": "Step-by-step documentation on setting up SSH keys, establishing secure tunnels, and managing remote Linux servers.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header (Apple-Style Clean) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+      </a>
+
+      <!-- Navigation Links (Clean & Focused) -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="docs.html" class="active">Docs</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions CTA -->
+      <div class="header-actions">
+        <!-- Compact Search Icon Trigger -->
+        <button class="header-search-icon-btn" id="headerSearchTrigger" aria-label="Quick Search" title="Search apps and docs (Ctrl + K)">
+          <span class="search-icon">&#128269;</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+
+        <!-- GitHub Star Badge -->
+        <a href="https://github.com/sshdesktop/sshdesktop" class="header-github-btn" target="_blank" rel="noopener" aria-label="Star on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-star-label">Star</span>
+          <span class="gh-counter" id="navGhStars">2.4k</span>
+        </a>
+
+        <!-- Download CTA -->
+        <a href="download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Command Palette Modal (Ctrl + K) -->
+  <div class="command-palette-overlay" id="commandPaletteOverlay" role="dialog" aria-modal="true" aria-label="Command search" style="display: none;">
+    <div class="command-palette-card">
+      <div class="command-palette-header">
+        <span class="command-search-icon">&#128269;</span>
+        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off">
+        <kbd class="command-esc-badge" id="commandPaletteClose">ESC</kbd>
+      </div>
+      <div class="command-palette-results" id="commandPaletteResults">
+        <!-- Live dynamic search items -->
+      </div>
+      <div class="command-palette-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</span>
+        <span><kbd>&crarr;</kbd> to open</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="docs-hero-section">
+      <div class="container text-center">
+        <div class="badge badge-accent mb-4">Official Documentation &amp; Step-by-Step App Tutorials</div>
+        <h1 class="docs-hero-title">How to Use Every App in SSH Desktop</h1>
+        <p class="docs-hero-subtitle">
+          Comprehensive step-by-step user guides, screenshots, keyboard shortcuts, and configuration manuals for all 22 native server administration applications.
+        </p>
+
+        <!-- Real-Time Documentation Search -->
+        <div class="docs-search-bar-wrap">
+          <input type="text" id="docsSearchInput" class="docs-search-input" placeholder="Search guides (e.g., 'Docker exec shell', 'UFW open port', 'Extract zip', 'Postgres tunnel')..." aria-label="Search documentation guides">
+        </div>
+
+        <!-- Quick Jump Filter Pills -->
+        <div class="filter-pills-bar mt-4">
+          <a href="#cat-desktop" class="filter-pill">🖥️ Desktop &amp; Terminal</a>
+          <a href="#cat-files" class="filter-pill">📁 Files &amp; Code</a>
+          <a href="#cat-cloud" class="filter-pill">🐳 Containers &amp; DB</a>
+          <a href="#cat-system" class="filter-pill">⚙️ System &amp; Services</a>
+          <a href="#cat-security" class="filter-pill">🔥 Security &amp; Network</a>
+          <a href="#cat-automation" class="filter-pill">⚡ Automation &amp; Logs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1-Line CLI Quickstart Banner -->
+    <section class="cli-quickstart-section">
+      <div class="container">
+        <div class="cli-banner-card">
+          <div class="cli-banner-badge">Headless Linux Server Quickstart</div>
+          <h2 class="cli-banner-title">Deploy SSH Desktop Web Daemon in 30 Seconds</h2>
+          <p class="cli-banner-text">
+            For headless cloud VPS (Ubuntu, Debian, RHEL, AlmaLinux, Rocky, Alpine, Arch), execute our audited 1-line script to install the background daemon and launch the web UI:
+          </p>
+          <div class="code-block-wrapper">
+            <pre><code><span class="prompt">$</span> curl -fsSL https://get.sshdesktop.com/install.sh | sudo bash</code></pre>
+            <button class="copy-btn" data-clipboard="curl -fsSL https://get.sshdesktop.com/install.sh | sudo bash" aria-label="Copy server install command">Copy</button>
+          </div>
+          <div class="cli-banner-meta">
+            <span>&#10003; Zero external dependencies</span>
+            <span>&#10003; Passes requiretty checks</span>
+            <span>&#10003; Runs natively on Port 443 with self-signed or Let's Encrypt TLS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Tutorials Container -->
+    <div class="container py-12">
+      <div class="docs-layout-grid">
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar" aria-label="Documentation Table of Contents">
+          <div class="docs-sidebar-sticky">
+            <h3 class="docs-toc-title">22-App Tutorials</h3>
+            <ul class="docs-toc-list">
+              <li><a href="#app-1">App 1: macOS Sonoma Desktop</a></li>
+              <li><a href="#app-2">App 2: Interactive PTY Terminal</a></li>
+              <li><a href="#app-3">App 3: Dual-Pane SFTP Manager</a></li>
+              <li><a href="#app-4">App 4: Monaco Code Editor</a></li>
+              <li><a href="#app-5">App 5: Docker Container Hub</a></li>
+              <li><a href="#app-6">App 6: Multi-Engine Database Studio</a></li>
+              <li><a href="#app-7">App 7: Systemd Services Manager</a></li>
+              <li><a href="#app-8">App 8: Visual Firewall (UFW)</a></li>
+              <li><a href="#app-9">App 9: Hardware Telemetry</a></li>
+              <li><a href="#app-10">App 10: Process Manager (htop)</a></li>
+              <li><a href="#app-11">App 11: Multi-Distro Packages</a></li>
+              <li><a href="#app-12">App 12: User &amp; Sudoers Admin</a></li>
+              <li><a href="#app-13">App 13: Network &amp; Port Auditor</a></li>
+              <li><a href="#app-14">App 14: Disk &amp; S.M.A.R.T. Manager</a></li>
+              <li><a href="#app-15">App 15: Visual Crontab Jobs</a></li>
+              <li><a href="#app-16">App 16: SSL/TLS Certificates</a></li>
+              <li><a href="#app-17">App 17: SSH Port Forwarding Canvas</a></li>
+              <li><a href="#app-18">App 18: Security &amp; Lynis Auditor</a></li>
+              <li><a href="#app-19">App 19: Backup &amp; Disaster Recovery</a></li>
+              <li><a href="#app-20">App 20: Webhook &amp; REST Server</a></li>
+              <li><a href="#app-21">App 21: Multi-Server Snippets</a></li>
+              <li><a href="#app-22">App 22: Log Analysis &amp; Grep Studio</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Tutorials Content Area -->
+        <div class="docs-content-area" id="tutorialsContainer">
+
+          <!-- CATEGORY 1: DESKTOP & SHELL -->
+          <div class="doc-category-group" id="cat-desktop">
+            <h2 class="doc-category-heading">Category 1: Desktop Shell &amp; Interactive Terminal</h2>
+
+            <!-- App 1: Sonoma Cloud Desktop Shell -->
+            <article class="doc-app-article" id="app-1" data-search-terms="macos sonoma cloud desktop mission control wallpaper multi server tabs expose dock">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 1</span>
+                <h3 class="doc-app-title">macOS Sonoma Cloud Desktop Shell</h3>
+                <span class="search-intent-badge">Intent: macOS cloud desktop, remote linux desktop GUI</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-sonoma.png" alt="macOS Sonoma Cloud Desktop Shell Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 1.1: Authentic macOS Sonoma interface with frosted glassmorphism, dynamic 4K wallpapers, and horizontal multi-server switching tabs.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                The macOS Sonoma Cloud Desktop Shell transforms any headless Linux VPS or physical server into an Apple-grade visual desktop workspace. Unlike high-latency VNC or RDP protocols that stream millions of uncompressed video pixels, SSH Desktop renders the entire desktop GUI locally on your client machine using native WebGL, CSS backdrop-filter glassmorphism, and hardware-accelerated DOM transforms.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Switching Dynamic 4K Wallpapers:</strong> Right-click anywhere on the desktop surface and select <em>Change Desktop Background</em>. Choose between official Sonoma, Ventura, Monterey, Big Sur, or Dark Cyberpunk themes. Wallpapers automatically adjust between Light and Dark mode based on your server's local time.
+                </li>
+                <li>
+                  <strong>Using Mission Control (<kbd>Ctrl</kbd> + <kbd>F3</kbd> or <kbd>F3</kbd>):</strong> Press <kbd>Ctrl + F3</kbd> to trigger the Expos&eacute;-style bird's-eye overview. All active windows instantly tile across your screen. Click any window to bring it to immediate foreground focus.
+                </li>
+                <li>
+                  <strong>Keyboard App Switcher (<kbd>Ctrl</kbd> + <kbd>Tab</kbd> or <kbd>Alt</kbd> + <kbd>Tab</kbd>):</strong> Hold <kbd>Ctrl</kbd> and tap <kbd>Tab</kbd> to cycle through running applications with real-time process badges and window previews.
+                </li>
+                <li>
+                  <strong>Remote Desktop Folder Drag-and-Drop:</strong> The desktop surface directly mirrors the remote directory <code>~/Desktop</code>. You can drag files from your computer straight onto the remote desktop surface, create new folders, and select multiple icons with marquee selection.
+                </li>
+                <li>
+                  <strong>Managing Multiple Servers in Tabs:</strong> Open the horizontal top bar and click the <code>+</code> icon to establish SSH connections to secondary servers. Switch between production, staging, and development instances with zero lag.
+                </li>
+              </ol>
+            
+              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border);"><a href="cloud-desktop.html" class="btn btn-primary btn-sm"><span>Explore Dedicated macOS Desktop Shell Guide &rarr;</span></a></div>
+            </article>
+
+            <!-- App 2: Interactive PTY Terminal -->
+            <article class="doc-app-article" id="app-2" data-search-terms="interactive pty terminal xterm.js split terminal tabs catppuccin tmux htop nano">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 2</span>
+                <h3 class="doc-app-title">Interactive PTY Terminal (Xterm.js)</h3>
+                <span class="search-intent-badge">Intent: web ssh terminal, pty terminal emulator, xterm.js linux console</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-terminal.png" alt="Interactive PTY Terminal with Split Panes Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 2.1: True Pseudo-Terminal (PTY) emulator with horizontal/vertical split panes and Catppuccin Mocha theme.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                SSH Desktop's terminal is powered by the industry-standard Xterm.js engine paired with a native backend pseudo-terminal (<code>/dev/pts</code>) allocation. It passes all Linux <code>requiretty</code> checks and provides full support for complex ncurses interactive command-line software including <code>nano</code>, <code>vim</code>, <code>htop</code>, <code>tmux</code>, and <code>less</code>.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Splitting Terminal Panes:</strong> In any active terminal window, click the <em>Split Vertical</em> icon or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> to split your terminal vertically. To split horizontally, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>. Each pane runs an independent shell session.
+                </li>
+                <li>
+                  <strong>Switching Developer Themes:</strong> Click the terminal settings gear icon to select from five high-contrast color palettes: Catppuccin Mocha, Dracula, Monokai Pro, Nord, and Tokyo Night.
+                </li>
+                <li>
+                  <strong>Copy &amp; Paste Keybindings:</strong> Highlight any text with your mouse to copy it automatically to your local clipboard. Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> (or <kbd>Cmd</kbd> + <kbd>V</kbd> on macOS) to paste text cleanly into the remote prompt without escaping glitches.
+                </li>
+                <li>
+                  <strong>Adjusting Scrollback &amp; Font Size:</strong> Use <kbd>Ctrl</kbd> + <kbd>+</kbd> and <kbd>Ctrl</kbd> + <kbd>-</kbd> to dynamically resize typography. SSH Desktop retains up to 100,000 lines in the memory-optimized scrollback buffer.
+                </li>
+              </ol>
+            
+              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border);"><a href="terminal.html" class="btn btn-primary btn-sm"><span>Explore Dedicated PTY Terminal Guide &rarr;</span></a></div>
+            </article>
+          </div>
+
+          <!-- CATEGORY 2: FILES & CODE -->
+          <div class="doc-category-group" id="cat-files">
+            <h2 class="doc-category-heading">Category 2: Files, Archives &amp; Monaco Code Editor</h2>
+
+            <!-- App 3: Dual-Pane SFTP File Manager -->
+            <article class="doc-app-article" id="app-3" data-search-terms="dual-pane sftp file manager extract zip tar gz chmod chown permissions drag and drop">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 3</span>
+                <h3 class="doc-app-title">Dual-Pane SFTP File Manager &amp; In-Place Archive Engine</h3>
+                <span class="search-intent-badge">Intent: sftp client, remote file manager, linux file permissions GUI, extract zip on server</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-sftp.png" alt="Dual-Pane SFTP File Manager Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 3.1: Dual-pane SFTP file browser with visual permissions manager and in-place remote server zip extraction.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Transferring multi-gigabyte archives to your local machine just to inspect or extract them wastes precious bandwidth and hours of time. SSH Desktop's dual-pane SFTP client features an integrated <strong>In-Place Remote Archive Engine</strong> that instructs the server to extract or bundle <code>.zip</code>, <code>.tar.gz</code>, and <code>.tar.bz2</code> archives locally in milliseconds.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Extracting Archives in Place:</strong> Right-click any remote <code>.zip</code> or <code>.tar.gz</code> file and select <em>Extract Here</em> or <em>Extract to Subfolder...</em>. SSH Desktop executes a background uncompress command directly on the host with live progress indicators.
+                </li>
+                <li>
+                  <strong>Changing Permissions Visually (chmod &amp; chown):</strong> Right-click any file or folder and click <em>Properties &amp; Permissions</em>. Check or uncheck Read/Write/Execute boxes for Owner, Group, and Public, or type numeric octals (e.g., <code>755</code>, <code>644</code>, <code>600</code>). Tick <em>Apply Recursively</em> to update nested subtrees.
+                </li>
+                <li>
+                  <strong>Toggling Dotfiles (Hidden Files):</strong> Press <kbd>Ctrl</kbd> + <kbd>H</kbd> or click the <em>Show Hidden Files (.*)</em> icon to instantly reveal dotfiles like <code>.bashrc</code>, <code>.env</code>, and <code>.config</code>.
+                </li>
+                <li>
+                  <strong>Local-to-Remote Drag &amp; Drop:</strong> Simply drag files or folders from your computer desktop into any remote directory pane to trigger multi-threaded high-speed SFTP transfers with resume support.
+                </li>
+              </ol>
+            </article>
+
+            <!-- App 4: Monaco Code Editor -->
+            <article class="doc-app-article" id="app-4" data-search-terms="monaco code editor vs code engine remote code editor diff viewer syntax highlighting">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 4</span>
+                <h3 class="doc-app-title">Monaco Code Editor (VS Code Engine)</h3>
+                <span class="search-intent-badge">Intent: remote code editor, vs code for ssh, edit files over ssh, monaco editor sftp</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-monaco.png" alt="Monaco Code Editor with Diff Preview Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 4.1: Embedded VS Code Monaco engine with 50+ languages, side-by-side diff previews, and direct Ctrl+S SFTP sync.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Eliminate the friction of clunky terminal text editors. SSH Desktop integrates Microsoft's Monaco Editor—the identical editing core powering VS Code—directly into your server workspace. Edit configuration files, Python scripts, Dockerfiles, and shell automation scripts with full IntelliSense, bracket pair colorization, and syntax highlighting.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Opening Remote Files:</strong> Double-click any text or configuration file in the SFTP browser to open it immediately in Monaco.
+                </li>
+                <li>
+                  <strong>Editing with Keyboard Shortcuts:</strong> Use familiar VS Code keybindings: <kbd>Ctrl</kbd> + <kbd>F</kbd> for Find, <kbd>Ctrl</kbd> + <kbd>H</kbd> for Replace, <kbd>Alt</kbd> + <kbd>&uarr;/&darr;</kbd> to move lines, and <kbd>Ctrl</kbd> + <kbd>/</kbd> to toggle line comments.
+                </li>
+                <li>
+                  <strong>Saving Directly to Server:</strong> Press <kbd>Ctrl</kbd> + <kbd>S</kbd>. SSH Desktop atomically uploads the updated buffer over encrypted SFTP with zero latency and verifies remote checksums.
+                </li>
+                <li>
+                  <strong>Inspecting In-Place Diffs:</strong> Before committing changes to production files (e.g. <code>nginx.conf</code>), click the <em>Show Diff</em> button to view a side-by-side visual diff comparing the original file against your active buffer.
+                </li>
+              </ol>
+            </article>
+          </div>
+
+          <!-- CATEGORY 3: CONTAINERS & DATABASE -->
+          <div class="doc-category-group" id="cat-cloud">
+            <h2 class="doc-category-heading">Category 3: Docker Orchestration &amp; Database Studio</h2>
+
+            <!-- App 5: Docker Container Hub -->
+            <article class="doc-app-article" id="app-5" data-search-terms="docker container hub docker web gui portainer alternative live container logs exec shell">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 5</span>
+                <h3 class="doc-app-title">Docker &amp; Container Management Hub</h3>
+                <span class="search-intent-badge">Intent: docker web GUI, portainer alternative, docker container manager, remote docker dashboard</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-docker.png" alt="Docker Container Hub Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 5.1: Real-time Docker container management hub with lifecycle controls, log streaming, and exec interactive shell.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                A lightweight, zero-overhead alternative to Portainer. SSH Desktop communicates directly with <code>/var/run/docker.sock</code> over your secure SSH connection without requiring any heavy Docker container agent or open web ports.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Controlling Container Lifecycles:</strong> View all containers with image tags, listening port mappings, and running uptime. Click <em>Start</em>, <em>Stop</em>, <em>Restart</em>, or <em>Kill</em> with safety confirmation prompts.
+                </li>
+                <li>
+                  <strong>Streaming Real-Time Logs:</strong> Click the <em>Logs</em> icon next to any container to stream live <code>stdout</code> and <code>stderr</code> with keyword search and ANSI color rendering.
+                </li>
+                <li>
+                  <strong>Spawning an Exec Interactive Shell:</strong> Click the <em>Exec</em> icon to open an instant interactive terminal session inside the running container (running <code>/bin/bash</code> or <code>/bin/sh</code>) directly in your browser.
+                </li>
+                <li>
+                  <strong>Pruning Unused Resources:</strong> Switch to the <em>Images &amp; Volumes</em> tab to inspect dangling layers and reclaim gigabytes of disk space with the <em>Prune Unused Images</em> button.
+                </li>
+              </ol>
+            </article>
+
+            <!-- App 6: Universal Multi-Engine Database Studio -->
+            <article class="doc-app-article" id="app-6" data-search-terms="database studio ssh tunnel postgresql mysql redis mongodb data grid query editor">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 6</span>
+                <h3 class="doc-app-title">Universal Multi-Engine Database Studio</h3>
+                <span class="search-intent-badge">Intent: database client with ssh tunnel, remote postgres gui, remote mysql client, redis web viewer</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-database.png" alt="Universal Database Studio with Encrypted Tunnel Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 6.1: Multi-engine database studio querying remote PostgreSQL over an automatic encrypted SSH tunnel.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Opening database ports (5432, 3306, 6379, 27017) to the public internet is a catastrophic security vulnerability. SSH Desktop automatically establishes an ephemeral, encrypted local SSH tunnel to <code>127.0.0.1</code>, enabling you to inspect, edit, and query private databases without public attack surfaces.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Selecting Engine &amp; Credentials:</strong> Choose your database dialect: PostgreSQL, MySQL, MariaDB, Redis, SQLite, or MongoDB. SSH Desktop uses the active SSH session as the secure transport tunnel.
+                </li>
+                <li>
+                  <strong>Browsing Tables &amp; Editing Data:</strong> Click any table to load the interactive data grid. Sort columns, filter rows with visual criteria, and double-click any cell to edit values directly.
+                </li>
+                <li>
+                  <strong>Executing Custom SQL Queries:</strong> Switch to the SQL Query Editor tab. Enter multi-line queries with syntax highlighting and press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to execute and measure latency.
+                </li>
+                <li>
+                  <strong>Inspecting Redis &amp; MongoDB:</strong> For Redis, browse keys, view data types (Strings, Hashes, Sets, Lists), and inspect TTL expiration. For MongoDB, view collections as formatted JSON documents.
+                </li>
+              </ol>
+            </article>
+          </div>
+
+          <!-- CATEGORY 4: SYSTEM & SERVICES -->
+          <div class="doc-category-group" id="cat-system">
+            <h2 class="doc-category-heading">Category 4: Systemd Services, Telemetry &amp; Process Manager</h2>
+
+            <!-- App 7: Systemd Services & Daemons Manager -->
+            <article class="doc-app-article" id="app-7" data-search-terms="systemd services manager systemctl gui journalctl real time logs enable disable daemon">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 7</span>
+                <h3 class="doc-app-title">Systemd Services &amp; Daemons Manager</h3>
+                <span class="search-intent-badge">Intent: systemd GUI, linux service manager, systemctl web interface, manage background services</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-systemd.png" alt="Systemd Services Manager Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 7.1: Visual systemctl manager with real-time unit status, boot-time enablement toggles, and live journalctl log streaming.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Inspect, control, and troubleshoot all systemd services, daemons, timers, and sockets graphically. View active states, loaded paths, memory footprints, and boot-time enablement status without typing verbose <code>systemctl</code> commands.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Filtering Service Units:</strong> Filter services by status: <em>All Units</em>, <em>Active (Running)</em>, or <em>Failed Units</em> to quickly diagnose crashed services.
+                </li>
+                <li>
+                  <strong>Service Lifecycle Controls:</strong> Click <em>Start</em>, <em>Stop</em>, or <em>Restart</em> for services like <code>nginx</code>, <code>docker</code>, or <code>postgresql</code>.
+                </li>
+                <li>
+                  <strong>Toggling Boot-Time Enablement:</strong> Toggle the <em>Enable/Disable</em> switch to control whether a service automatically launches upon server restart.
+                </li>
+                <li>
+                  <strong>Streaming Real-Time Journalctl Logs:</strong> Click any service to view its live <code>journalctl -u [unit] -f</code> stream directly underneath the service table with zero buffer delay.
+                </li>
+              </ol>
+            </article>
+
+            <!-- App 9 & 10: Hardware Telemetry & Process Manager -->
+            <article class="doc-app-article" id="app-9" data-search-terms="hardware telemetry system monitor cpu ram load average process manager htop alternative kill signals">
+              <div class="doc-app-header">
+                <span class="app-number-tag">Apps 9 &amp; 10</span>
+                <h3 class="doc-app-title">Hardware Telemetry &amp; Process Manager (htop Alternative)</h3>
+                <span class="search-intent-badge">Intent: linux server monitor, real time cpu ram gauge, htop web interface, kill process linux GUI</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-monitoring.png" alt="Hardware Telemetry and Process Manager Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 9.1: Live CPU, RAM, network bandwidth telemetry gauges with interactive process tree and kill signal dispatcher.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Parse hardware metrics directly from <code>/proc/stat</code> and <code>/proc/meminfo</code> with sub-second polling frequency and zero server overhead. The integrated Process Manager lets you audit CPU hogs, send POSIX signals, and adjust scheduler priority.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Monitoring Hardware Gauges:</strong> Inspect real-time CPU utilization percentage across all cores, RAM usage, swap space, and 1m/5m/15m system load averages.
+                </li>
+                <li>
+                  <strong>Auditing Running Processes:</strong> Search processes by PID, executable name, or user. Sort columns by CPU% or Memory% to pinpoint runaway tasks.
+                </li>
+                <li>
+                  <strong>Sending POSIX Signals:</strong> Select a process and click <em>Stop (SIGTERM)</em> for graceful shutdown, or <em>Kill (SIGKILL -9)</em> to force terminate hung processes immediately.
+                </li>
+                <li>
+                  <strong>Renicing CPU Priority:</strong> Click <em>Nice</em> to adjust the process execution priority between <code>-20</code> (highest CPU priority) and <code>19</code> (lowest priority).
+                </li>
+              </ol>
+            </article>
+          </div>
+
+          <!-- CATEGORY 5: SECURITY & NETWORK -->
+          <div class="doc-category-group" id="cat-security">
+            <h2 class="doc-category-heading">Category 5: Firewall, Port Forwarding &amp; Network Auditing</h2>
+
+            <!-- App 8: Visual Firewall Manager -->
+            <article class="doc-app-article" id="app-8" data-search-terms="visual firewall manager ufw iptables nftables open port ubuntu lock out protection">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 8</span>
+                <h3 class="doc-app-title">Visual Firewall Manager (UFW, Iptables, Nftables)</h3>
+                <span class="search-intent-badge">Intent: UFW GUI, linux firewall web interface, iptables GUI, open port ubuntu</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-firewall.png" alt="Visual Firewall Manager Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 8.1: Visual UFW and Iptables firewall manager with rule builder and built-in SSH lockout protection.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Configure server packet filtering without risking locking yourself out of SSH. SSH Desktop automatically detects whether your system runs <code>ufw</code>, <code>iptables</code>, or <code>nftables</code>, and validates rules before applying them.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Opening Common Ports (HTTP, HTTPS, SSH):</strong> Click <em>+ Add Rule</em>. Select common service presets (SSH 22, HTTP 80, HTTPS 443, MySQL 3306) or specify a custom port and protocol (TCP/UDP).
+                </li>
+                <li>
+                  <strong>Restricting Traffic to Specific Subnets:</strong> Set the Source IP to an authorized CIDR block (e.g. <code>192.168.1.0/24</code> or your office IP) to ensure database or internal management ports are never exposed publicly.
+                </li>
+                <li>
+                  <strong>Applying Rate-Limiting for SSH:</strong> Select <em>Limit</em> action for Port 22 to automatically deny connections from IP addresses that attempt 6 or more connections within 30 seconds.
+                </li>
+                <li>
+                  <strong>SSH Lockout Protection:</strong> Before enabling the firewall or modifying Port 22, SSH Desktop verifies that your active management connection is explicitly permitted, preventing accidental server lockouts.
+                </li>
+              </ol>
+            </article>
+
+            <!-- App 17: Multi-Protocol Network Tunnel Canvas -->
+            <article class="doc-app-article" id="app-17" data-search-terms="multi protocol network tunnel ssh port forwarding local remote socks5 dynamic jump hosts">
+              <div class="doc-app-header">
+                <span class="app-number-tag">App 17</span>
+                <h3 class="doc-app-title">SSH Port Forwarding &amp; Multi-Protocol Tunnel Canvas</h3>
+                <span class="search-intent-badge">Intent: visual ssh tunnel builder, local remote socks5 port forwarding GUI</span>
+              </div>
+
+              <div class="doc-screenshot-frame">
+                <img src="assets/images/screenshots/screenshot-tunnels.png" alt="SSH Port Forwarding Canvas Screenshot" loading="lazy">
+                <div class="screenshot-caption">Figure 17.1: Interactive network tunnel canvas supporting Local (-L), Remote (-R), and Dynamic SOCKS5 (-D) proxy routes.</div>
+              </div>
+
+              <h4>Overview &amp; Architecture</h4>
+              <p>
+                Visualize and control complex SSH tunneling topologies. SSH Desktop renders live data-flow diagrams for Local, Remote, and SOCKS5 tunnels with automatic reconnect and throughput meters.
+              </p>
+
+              <h4>Step-by-Step How-To Tutorial:</h4>
+              <ol class="doc-steps-list">
+                <li>
+                  <strong>Local Port Forwarding (<kbd>-L</kbd>):</strong> Bind a local port (e.g. <code>127.0.0.1:5433</code>) through the SSH server to reach an internal private database (e.g. <code>10.0.4.12:5432</code>).
+                </li>
+                <li>
+                  <strong>Dynamic SOCKS5 Proxy (<kbd>-D</kbd>):</strong> Bind local port <code>1080</code> as a SOCKS5 proxy. Configure your browser to browse internal VPC web interfaces with encrypted traffic.
+                </li>
+                <li>
+                  <strong>Remote Reverse Tunneling (<kbd>-R</kbd>):</strong> Forward a port on the remote server back to your local development machine (e.g. <code>localhost:3000</code>) to receive external webhooks without deploying.
+                </li>
+                <li>
+                  <strong>Configuring Jump Hosts (ProxyJump):</strong> Route tunnels through intermediate bastion servers by selecting a Jump Host in your host profile.
+                </li>
+              </ol>
+            </article>
+          </div>
+
+          <!-- CATEGORY 6: AUTOMATION & REMAINING APPS -->
+          <div class="doc-category-group" id="cat-automation">
+            <h2 class="doc-category-heading">Category 6: Server Automation, Packages, Backups &amp; Logs</h2>
+
+            <div class="doc-apps-grid" style="display: grid; grid-template-columns: 1fr; gap: 28px;">
+
+              <!-- App 11 -->
+              <article class="doc-app-article" id="app-11" data-search-terms="package manager apt dnf yum pacman apk update upgrade repositories">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 11</span>
+                  <h3 class="doc-app-title">Multi-Distribution Package Manager</h3>
+                  <span class="search-intent-badge">Universal Package GUI for apt, dnf, yum, pacman &amp; apk</span>
+                </div>
+                <p>
+                  Manage system software packages across any Linux distribution without memorizing distro-specific package manager syntax. Automatically detects whether your server runs <code>apt</code> (Debian/Ubuntu), <code>dnf/yum</code> (RHEL/Rocky/Fedora), <code>pacman</code> (Arch), or <code>apk</code> (Alpine).
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> sudo apt update &amp;&amp; sudo apt list --upgradable</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Update Repositories:</strong> Click <em>Check Updates</em> to synchronize remote repository indexes and scan for pending security updates.</li>
+                  <li><strong>1-Click Package Upgrades:</strong> Inspect upgradable dependencies, review changelogs, and run full system upgrades with live terminal logging.</li>
+                  <li><strong>Software Repository Auditor:</strong> Inspect and toggle configured package repositories in <code>/etc/apt/sources.list</code> or <code>/etc/yum.repos.d/</code>.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="linux-package-manager.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Package Manager Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 12 -->
+              <article class="doc-app-article" id="app-12" data-search-terms="user group accounts administrator sudoers passwd adduser who last sessions">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 12</span>
+                  <h3 class="doc-app-title">User &amp; Group Accounts Administrator</h3>
+                  <span class="search-intent-badge">Linux User Manager GUI, Sudoers &amp; Active Session Auditor</span>
+                </div>
+                <p>
+                  Visually manage Linux user accounts, administrative groups, and active SSH login sessions. Eliminates syntax mistakes when granting sudo privileges or changing user passwords.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> sudo useradd -m -s /bin/bash deployer &amp;&amp; sudo usermod -aG sudo deployer</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Creating New Users:</strong> Specify username, home directory creation (<code>-m</code>), and assign custom default login shells (<code>/bin/bash</code>, <code>/bin/zsh</code>).</li>
+                  <li><strong>Non-Interactive SHA-512 Password Hashing:</strong> Update passwords safely via salted crypt-hash generation without displaying passwords in shell history.</li>
+                  <li><strong>Sudoers Group Toggling:</strong> Add or remove users from <code>sudo</code> or <code>wheel</code> administrative groups with a single toggle switch.</li>
+                  <li><strong>Active Session Kick:</strong> View all currently logged-in users (<code>who</code>, <code>last</code>) and instantly terminate unauthorized or stale SSH sessions.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="linux-user-manager.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated User Manager Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 13 -->
+              <article class="doc-app-article" id="app-13" data-search-terms="network port auditor listening ports interfaces ss netstat ping traceroute dns">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 13</span>
+                  <h3 class="doc-app-title">Network &amp; Listening Port Auditor</h3>
+                  <span class="search-intent-badge">Active Sockets Explorer, Interface IPs &amp; Network Diagnostics</span>
+                </div>
+                <p>
+                  Inspect every network socket listening for inbound connections on your server. Identify rogue processes, audit interface IP addresses, and run integrated network latency tests.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> sudo ss -tulpn | grep LISTEN</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Listening Ports Scanner:</strong> Live table showing Port, Protocol (TCP/UDP), Process Name, PID, and Bound Address (<code>0.0.0.0</code> vs <code>127.0.0.1</code>).</li>
+                  <li><strong>Network Interface Explorer:</strong> Audit all network devices (<code>eth0</code>, <code>docker0</code>, <code>wg0</code>), MAC addresses, IPv4/IPv6 CIDRs, and MTU settings.</li>
+                  <li><strong>Integrated Diagnostics:</strong> Run ICMP Ping tests, multi-hop Traceroutes, and DNS resolution lookups directly from the server.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="network-port-auditor.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Network Auditor Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 14 -->
+              <article class="doc-app-article" id="app-14" data-search-terms="disk partition smart manager fstab storage space nvme health analyzer">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 14</span>
+                  <h3 class="doc-app-title">Disk, Partition &amp; S.M.A.R.T. Manager</h3>
+                  <span class="search-intent-badge">Storage Space Breakdown, Large Directory Analyzer &amp; NVMe Health</span>
+                </div>
+                <p>
+                  Visual disk capacity auditor for Linux storage. Prevent out-of-disk production outages with interactive directory size heatmaps and S.M.A.R.T. drive health monitoring.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> df -hT --exclude-type=tmpfs &amp;&amp; sudo smartctl -H /dev/nvme0n1</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Storage Space Breakdown:</strong> Visual gauge meters for root <code>/</code>, mounted storage, and attached cloud block volumes.</li>
+                  <li><strong>Large Directory Analyzer (ncdu GUI):</strong> Scan storage to instantly pinpoint the top directories and runaway log files consuming disk space.</li>
+                  <li><strong>Mount &amp; Fstab Manager:</strong> Mount, unmount, and edit <code>/etc/fstab</code> persistent mount entries with automatic syntax validation.</li>
+                  <li><strong>S.M.A.R.T. Drive Health:</strong> Audit NVMe and SSD drive temperatures, reallocated sectors, and estimated remaining lifespan.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="linux-disk-manager.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Disk Manager Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 15 -->
+              <article class="doc-app-article" id="app-15" data-search-terms="crontab scheduled jobs manager cron expression builder dry run execution logs">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 15</span>
+                  <h3 class="doc-app-title">Visual Crontab &amp; Scheduled Jobs Manager</h3>
+                  <span class="search-intent-badge">Human-Friendly Cron Builder, Dry-Run Simulator &amp; Log Auditor</span>
+                </div>
+                <p>
+                  Create, edit, and audit scheduled Linux cron jobs without syntax errors. Features an interactive cron expression builder and execution dry-run simulator.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> crontab -l &amp;&amp; grep CRON /var/log/syslog | tail -n 10</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Visual Expression Builder:</strong> Configure schedules using intuitive dropdowns (minute, hour, day, month, weekday) with human-readable preview (e.g. <em>"Every day at 03:00 AM"</em>).</li>
+                  <li><strong>User &amp; System Crontab Toggling:</strong> Manage standard user crontabs as well as root-level system jobs in <code>/etc/crontab</code> and <code>/etc/cron.d/</code>.</li>
+                  <li><strong>Dry-Run Command Simulator:</strong> Test job commands in a temporary subshell to verify exit codes before adding them to the schedule.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="crontab-gui.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Crontab Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 16 -->
+              <article class="doc-app-article" id="app-16" data-search-terms="ssl tls certificate manager lets encrypt certbot auto renewal nginx apache">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 16</span>
+                  <h3 class="doc-app-title">SSL/TLS Certificate Manager (Let's Encrypt)</h3>
+                  <span class="search-intent-badge">Free Let's Encrypt Issuance, Certbot Auto-Renewals &amp; Nginx Configs</span>
+                </div>
+                <p>
+                  Automate free SSL certificate issuance and renewal via integrated Certbot management. Monitor certificate expiration dates across all domain names.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> sudo certbot certonly --nginx -d example.com -d www.example.com</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>1-Click Certificate Issuance:</strong> Enter your domain names and let SSH Desktop run Certbot HTTP-01 or DNS-01 verification automatically.</li>
+                  <li><strong>Auto-Renewal Daemon:</strong> Schedule automated background renewals to eliminate expired SSL certificate downtime.</li>
+                  <li><strong>Web Server Integration:</strong> Automatically inject SSL certificates and private keys into Nginx or Apache configuration files and trigger graceful reloads.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="ssl-certificate-manager.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated SSL Manager Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 18 -->
+              <article class="doc-app-article" id="app-18" data-search-terms="security audit hardening inspector lynis ssh config hardening fail2ban">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 18</span>
+                  <h3 class="doc-app-title">Security Audit &amp; Hardening Inspector</h3>
+                  <span class="search-intent-badge">Lynis Security Benchmark, CIS Hardening &amp; Fail2ban Monitor</span>
+                </div>
+                <p>
+                  Run comprehensive Linux server security audits and CIS benchmark verifications. Identify vulnerabilities, weak SSH configurations, and active brute-force attacks.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> sudo lynis audit system --quick</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>1-Click Lynis Auditing:</strong> Execute automated system scans and receive a comprehensive 0-100 Hardening Index score.</li>
+                  <li><strong>SSH Daemon Hardening:</strong> Inspect <code>/etc/ssh/sshd_config</code> to verify root login disabling, password authentication removal, and port configuration.</li>
+                  <li><strong>Fail2ban Jail Monitor:</strong> View active jail statuses, inspect banned IP addresses, and unban legitimate IP addresses with 1 click.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="linux-security-auditor.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Security Auditor Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 19 -->
+              <article class="doc-app-article" id="app-19" data-search-terms="backup disaster recovery orchestrator rsync restic s3 snapshots restore">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 19</span>
+                  <h3 class="doc-app-title">Backup &amp; Disaster Recovery Orchestrator</h3>
+                  <span class="search-intent-badge">Deduplicated Restic Snapshots, Rsync Sync &amp; S3 Offsite Backups</span>
+                </div>
+                <p>
+                  Schedule encrypted, deduplicated file and database backups using Restic snapshots or Rsync. Support for local disks, remote SFTP servers, and AWS S3/Wasabi buckets.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> restic -r s3:s3.amazonaws.com/company-backups backup /var/www /etc</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Connecting Storage Targets:</strong> Configure encrypted backup destinations on secondary NVMe disks, remote backup servers, or AWS S3 buckets.</li>
+                  <li><strong>Automated Snapshot Schedules:</strong> Define backup frequency with custom retention policies (e.g. keep 7 daily, 4 weekly, 12 monthly snapshots).</li>
+                  <li><strong>1-Click Disaster Recovery:</strong> Browse snapshot file trees and restore files or database dumps to their original or alternate directory.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="backup-disaster-recovery.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Backup Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 20 -->
+              <article class="doc-app-article" id="app-20" data-search-terms="webhook rest api server automated tasks http endpoints github gitlab deploy">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 20</span>
+                  <h3 class="doc-app-title">Webhook &amp; CI/CD Deployment Server</h3>
+                  <span class="search-intent-badge">Git Push Deployments, HMAC Authentication &amp; Live Terminal Logs</span>
+                </div>
+                <p>
+                  Trigger automated deployment scripts and server tasks via authenticated HTTP webhooks from GitHub, GitLab, Bitbucket, or CI/CD pipelines.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> curl -X POST https://server:8443/webhook/deploy -H "X-Hub-Signature-256: sha256=..."</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Creating Webhook Endpoints:</strong> Create custom routes (e.g. <code>POST /webhook/deploy-production</code>) secured with HMAC SHA-256 secret verification.</li>
+                  <li><strong>Binding Shell Scripts:</strong> Assign shell commands (e.g. <code>git pull &amp;&amp; docker compose up -d --build</code>) to execute on successful webhook receipt.</li>
+                  <li><strong>Live Execution Logs:</strong> Audit incoming webhook request payloads, HTTP headers, execution output logs, and latency timers.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="webhook-server.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Webhook Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 21 -->
+              <article class="doc-app-article" id="app-21" data-search-terms="multi server snippets command automator batch execute bash scripts">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 21</span>
+                  <h3 class="doc-app-title">Multi-Server Automation &amp; Snippets</h3>
+                  <span class="search-intent-badge">Batch Command Broadcast, Reusable Snippets &amp; Cluster Management</span>
+                </div>
+                <p>
+                  Save reusable shell snippets in a personal library and broadcast commands simultaneously across 10+ server clusters concurrently with unified output aggregation.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> for srv in $SERVERS; do ssh $srv "sudo systemctl restart nginx"; done</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Reusable Snippet Library:</strong> Store parameterized bash commands with variables (e.g. <code>{{SERVER_IP}}</code>, <code>{{DOMAIN}}</code>) for instant recall.</li>
+                  <li><strong>Cluster Broadcast:</strong> Select target servers (Production, Staging, QA) and execute commands concurrently across all machines.</li>
+                  <li><strong>Aggregated Output Stream:</strong> Monitor output from each server side-by-side with exit code indicators and error highlights.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="multi-server-automation.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Automation Guide &rarr;</a></div>
+              </article>
+
+              <!-- App 22 -->
+              <article class="doc-app-article" id="app-22" data-search-terms="log analysis grep studio regex multi file syslog nginx logs ansi color">
+                <div class="doc-app-header">
+                  <span class="app-number-tag">App 22</span>
+                  <h3 class="doc-app-title">Log Analysis &amp; Grep Studio</h3>
+                  <span class="search-intent-badge">Real-Time Log Streaming (tail -f), Regex Filters &amp; ANSI Highlighting</span>
+                </div>
+                <p>
+                  High-speed multi-file log viewer and real-time regex search engine. Search across <code>/var/log/syslog</code>, Nginx access logs, and Docker container streams simultaneously.
+                </p>
+                <div class="code-block-wrapper" style="margin: 14px 0;">
+                  <pre><code><span class="prompt">$</span> sudo journalctl -xeu nginx --since "1 hour ago" | grep -iE "error|warn"</code></pre>
+                </div>
+                <ol class="doc-steps-list">
+                  <li><strong>Multi-File Log Streaming:</strong> Stream output from multiple log files in unified or tabbed views with automatic timestamp synchronization.</li>
+                  <li><strong>Live Regular Expression Filter:</strong> Search through gigabytes of logs with instant regex filtering and error level color tags (ERROR, WARN, INFO).</li>
+                  <li><strong>Exporting Incident Reports:</strong> Export matched log lines directly to Markdown or text files for post-mortem incident documentation.</li>
+                </ol>
+                <div style="margin-top: 14px;"><a href="log-analysis-grep.html" style="color: var(--cyan); font-weight: 600; font-size: 0.88rem;">View Dedicated Log Analysis Guide &rarr;</a></div>
+              </article>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Long-Tail SEO FAQ Section -->
+    <section class="faq-section bg-secondary py-16">
+      <div class="container">
+        <h2 class="text-center section-title">Frequently Asked Questions</h2>
+        <p class="text-center section-subtitle mb-12">Clear answers to common questions about SSH Desktop, security, and setup.</p>
+        
+        <div class="faq-accordion-wrap">
+          <details class="faq-item">
+            <summary class="faq-question">How does SSH Desktop compare to Webmin and Cockpit?</summary>
+            <div class="faq-answer">
+              <p>Webmin and Cockpit require open web server ports (10000 or 9090) and install heavy server dependencies with potential attack vectors. SSH Desktop connects over the standard SSH2 protocol (port 22) or runs an ultra-lightweight 12MB Go/Rust binary. It includes 22 native apps, a full macOS-grade desktop experience, an integrated database studio, and visual tunnels that Webmin and Cockpit lack entirely.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Can I use SSH Desktop on headless Linux servers without a desktop environment?</summary>
+            <div class="faq-answer">
+              <p>Yes, absolutely. The target Linux server does not need X11, Wayland, GNOME, or any desktop packages installed. SSH Desktop renders the entire macOS Sonoma desktop shell locally on your client or in your browser using WebGL and DOM acceleration while sending standard SSH/PTY commands to the headless server.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Is my server login data or private keys sent to any cloud server?</summary>
+            <div class="faq-answer">
+              <p>No. SSH Desktop has zero cloud telemetry and zero third-party relays. Your SSH private keys, passwords, and sessions remain strictly on your local device. Connections travel directly from your machine to your server over end-to-end encrypted SSH2 tunnels.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">How do I connect to a private database without exposing public ports?</summary>
+            <div class="faq-answer">
+              <p>Open App 6 (Universal Database Studio). When entering your PostgreSQL, MySQL, or Redis host, specify <code>127.0.0.1</code>. SSH Desktop automatically routes the database connection through an encrypted SSH tunnel over port 22, so you never need to open database ports in your server firewall.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">What operating systems can run SSH Desktop?</summary>
+            <div class="faq-answer">
+              <p>SSH Desktop is available natively for Windows 11/10 (64-bit x64, Portable), macOS Sonoma/Ventura/Monterey (64-bit Universal), Linux Desktop (Ubuntu/Debian .deb, Fedora .rpm, AppImage, Flatpak), and headless Linux servers via standalone binary and 1-line installation script.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Bar -->
+    <section class="cta-section py-16 text-center">
+      <div class="container">
+        <h2 class="text-3xl font-extrabold mb-4">Start Managing Your Linux Servers Visually</h2>
+        <p class="text-xl text-muted max-w-2xl mx-auto mb-8">
+          Download the free desktop application or deploy the 1-line server daemon today. No credit card required.
+        </p>
+        <div class="btn-group justify-center">
+          <a href="download.html" class="btn btn-primary btn-lg">Download SSH Desktop Free</a>
+          <a href="apps.html" class="btn btn-secondary btn-lg">Explore 22-App Encyclopedia</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+    <!-- Modernized Application Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Pre-Footer Call to Action Card -->
+      <div class="footer-cta-card">
+        <div class="footer-cta-content">
+          <div class="footer-cta-badge"><span class="status-pulse-dot"></span> Next-Gen Linux Administration</div>
+          <h3 class="footer-cta-title">Manage Your Entire Linux Fleet with macOS Elegance</h3>
+          <p class="footer-cta-desc">Agentless, client-side macOS Sonoma desktop shell with 22 built-in server administration tools. Connect directly over pure, encrypted SSH &mdash; zero open web ports and zero idle server RAM.</p>
+          <div class="footer-cta-tags">
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 0% Idle Server RAM</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 256-Bit AES SSH Encryption</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> Windows &bull; macOS &bull; Linux</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 100% Free &amp; Open Source</span>
+          </div>
+        </div>
+        <div class="footer-cta-actions">
+          <a href="download.html" class="footer-download-btn">
+            <span>&#128230; Download Free</span>
+            <small>v2.4.1 &bull; All Operating Systems</small>
+          </a>
+          <a href="https://github.com/sshdesktop/sshdesktop" class="footer-github-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Star on GitHub</span>
+            <span class="gh-counter">14.2k</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main 5-Column Navigation Grid -->
+      <div class="footer-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-brand-logo" aria-label="SSH Desktop Homepage">
+            <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+            <span class="footer-version-tag">v2.4.1</span>
+          </a>
+          <p class="footer-mission-text">
+            The open-source, client-side macOS Sonoma desktop shell for Linux servers. Manage 10+ remote servers with full PTY terminal, dual-pane SFTP, Monaco editor, Docker GUI, and 12+ database engines over pure SSH.
+          </p>
+
+          <div class="footer-status-badge">
+            <span class="status-pulse-dot"></span>
+            <span>Client Engine: <strong>All Systems Operational</strong></span>
+          </div>
+
+          <div class="footer-distro-chips">
+            <span class="distro-chip">Ubuntu</span>
+            <span class="distro-chip">Debian</span>
+            <span class="distro-chip">RHEL</span>
+            <span class="distro-chip">CentOS</span>
+            <span class="distro-chip">Fedora</span>
+            <span class="distro-chip">Rocky</span>
+            <span class="distro-chip">Arch</span>
+            <span class="distro-chip">Alpine</span>
+            <span class="distro-chip">macOS</span>
+            <span class="distro-chip">Windows 11</span>
+          </div>
+        </div>
+
+        <!-- Col 2: 22-App Suite (Core) -->
+        <div class="footer-col">
+          <h4>22-App Suite (Core)</h4>
+          <ul>
+            <li><a href="features.html">PTY Terminal (Xterm.js)</a></li>
+            <li><a href="sftp-client.html">Dual-Pane SFTP Manager</a></li>
+            <li><a href="monaco-code-editor.html">Monaco Code Editor</a></li>
+            <li><a href="docker-web-gui.html">Docker Container Hub</a></li>
+            <li><a href="database-gui-ssh-tunnel.html">Database Studio (12+ DBs)</a></li>
+            <li><a href="systemd-gui.html">Systemd Services &amp; Logs</a></li>
+            <li><a href="linux-firewall-gui.html">Visual Firewall (UFW)</a></li>
+            <li><a href="system-monitor.html">Hardware Telemetry &amp; CPU</a></li>
+            <li><a href="linux-process-manager.html">Process Manager (htop GUI)</a></li>
+            <li><a href="apps.html" class="footer-highlight-link">Explore All 22 Apps &rarr;</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: DevOps & Automation -->
+        <div class="footer-col">
+          <h4>DevOps &amp; Cloud</h4>
+          <ul>
+            <li><a href="linux-package-manager.html">Universal Package Manager</a></li>
+            <li><a href="linux-user-manager.html">User &amp; Sudo Administrator</a></li>
+            <li><a href="network-port-auditor.html">Network &amp; Port Auditor</a></li>
+            <li><a href="linux-disk-manager.html">Disk &amp; S.M.A.R.T. Manager</a></li>
+            <li><a href="crontab-gui.html">Visual Crontab Scheduler</a></li>
+            <li><a href="log-analysis-grep.html">Log Analysis &amp; Grep</a></li>
+            <li><a href="ssl-certificate-manager.html">SSL Cert Manager (Certbot)</a></li>
+            <li><a href="backup-disaster-recovery.html">Backup &amp; Disaster Recovery</a></li>
+            <li><a href="ssh-port-forwarding.html">SSH Port Forwarding Canvas</a></li>
+            <li><a href="webhook-server.html">Webhook CI/CD Deployments</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Comparison & Alternatives -->
+        <div class="footer-col">
+          <h4>Comparisons</h4>
+          <ul>
+            <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="filezilla-alternative.html">FileZilla Alternative</a></li>
+            <li><a href="portainer-alternative.html">Portainer Alternative</a></li>
+            <li><a href="search-queries.html">Search Topics Encyclopedia</a></li>
+            <li><a href="security.html">Zero-Knowledge Security</a></li>
+            <li><a href="pricing.html">Open-Source License</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Downloads & Resources -->
+        <div class="footer-col">
+          <h4>Downloads &amp; Docs</h4>
+          <ul>
+            <li><a href="download.html">Download Center (All OS)</a></li>
+            <li><a href="download-windows.html">Windows 11 / 10 Installer</a></li>
+            <li><a href="download-mac.html">macOS Universal DMG</a></li>
+            <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
+            <li><a href="download-linux-cli.html">Linux Headless CLI Daemon</a></li>
+            <li><a href="docs.html">Documentation &amp; Tutorials</a></li>
+            <li><a href="api-studio.html">API Studio (Postman Alt)</a></li>
+            <li><a href="env-variables-manager.html">Environment Variables</a></li>
+            <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
+            <li><a href="faq.html">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semantic SEO Keywords Cloud -->
+      <div class="footer-seo-cloud">
+        <div class="footer-seo-header">
+          <span class="seo-cloud-title">Popular Linux Server Administration &amp; SSH Searches:</span>
+          <span class="seo-cloud-badge">SEO Index</span>
+        </div>
+        <div class="footer-seo-tags">
+          <a href="search-queries.html" class="seo-tag">remote linux gui</a>
+          <a href="search-queries.html" class="seo-tag">web based ssh client</a>
+          <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
+          <a href="database-gui-ssh-tunnel.html" class="seo-tag">database gui with ssh tunnel</a>
+          <a href="webmin-alternative.html" class="seo-tag">linux server control panel</a>
+          <a href="webmin-alternative.html" class="seo-tag">gui for ubuntu server</a>
+          <a href="webmin-alternative.html" class="seo-tag">webmin alternative</a>
+          <a href="cockpit-alternative.html" class="seo-tag">cockpit alternative</a>
+          <a href="termius-alternative.html" class="seo-tag">free termius alternative</a>
+          <a href="putty-alternative.html" class="seo-tag">putty alternative windows 11</a>
+          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm alternative mac</a>
+          <a href="filezilla-alternative.html" class="seo-tag">filezilla sftp client</a>
+          <a href="portainer-alternative.html" class="seo-tag">portainer alternative</a>
+          <a href="systemd-gui.html" class="seo-tag">linux systemd gui</a>
+          <a href="sftp-client.html" class="seo-tag">sftp client with text editor</a>
+          <a href="linux-firewall-gui.html" class="seo-tag">visual ufw and iptables</a>
+          <a href="system-monitor.html" class="seo-tag">linux hardware telemetry</a>
+          <a href="linux-process-manager.html" class="seo-tag">htop web interface</a>
+          <a href="crontab-gui.html" class="seo-tag">visual crontab editor</a>
+          <a href="ssh-port-forwarding.html" class="seo-tag">ssh port forwarding visual</a>
+          <a href="monaco-code-editor.html" class="seo-tag">vs code over ssh</a>
+          <a href="ssl-certificate-manager.html" class="seo-tag">certbot ssl manager gui</a>
+          <a href="backup-disaster-recovery.html" class="seo-tag">restic sftp backup</a>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Built for DevOps, sysadmins, and Linux developers worldwide. Licensed under Apache 2.0 / MIT.</p>
+          <div class="footer-trust-pills">
+            <span class="trust-pill">&#128274; 256-Bit AES SSH Encryption</span>
+            <span class="trust-pill">&#9889; 0% Idle Server RAM</span>
+            <span class="trust-pill">&#128640; Zero Cloud Telemetry</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Legal and Meta">
+            <a href="privacy.html">Privacy</a>
+            <a href="security.html">Security</a>
+            <a href="security.txt">Security.txt</a>
+            <a href="humans.txt">Humans.txt</a>
+            <a href="robots.txt">Robots.txt</a>
+            <a href="sitemap.xml">Sitemap.xml</a>
+          </nav>
+          <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+            <span>Back to top</span>
+            <span class="back-to-top-arrow">&uarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

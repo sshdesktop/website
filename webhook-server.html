@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Webhook &amp; CI/CD Automated Deployment Server | SSH Desktop</title>
+  <meta name="title" content="Webhook &amp; CI/CD Automated Deployment Server | SSH Desktop">
+  <meta name="description" content="Lightweight client-side Webhook & CI/CD deployment server. Trigger GitHub, GitLab, and Bitbucket auto-deployments over encrypted SSH with HMAC-SHA256 signature verification.">
+  <meta name="keywords" content="webhook server linux, github webhook deploy, gitlab webhook cicd, automated ssh deployment, webhook runner linux, deploy script over ssh">
+  <meta name="author" content="SSH Desktop Development Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/webhook-server.html">
+
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SSH Webhooks">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/webhook-server.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="Webhook &amp; CI/CD Automated Deployment Server">
+  <meta property="og:description" content="Automate Git deployments on remote Linux servers over secure SSH with HMAC verification and real-time execution logs.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@SSHDesktop">
+  <meta name="twitter:url" content="https://sshdesktop.com/webhook-server.html">
+  <meta name="twitter:title" content="Webhook &amp; CI/CD Automated Deployment Server - SSH Desktop">
+  <meta name="twitter:description" content="Automate GitHub and GitLab webhook deployments over pure SSH with zero heavy daemon dependencies.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sshdesktop.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Apps", "item": "https://sshdesktop.com/apps.html" },
+          { "@type": "ListItem", "position": 3, "name": "Webhook CI/CD Server", "item": "https://sshdesktop.com/webhook-server.html" }
+        ]
+      },
+      {
+        "@type": "Product",
+        "name": "SSH Desktop Webhook CI/CD Deployment Server",
+        "description": "Secure webhook receiver and deployment automation runner executing git pull and container rebuilds over SSH.",
+        "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.94", "reviewCount": "1620" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the webhook deployment runner authenticate GitHub or GitLab requests?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SSH Desktop validates the X-Hub-Signature-256 header using your shared secret and HMAC-SHA256 cryptography, rejecting unauthorized or forged webhook payloads before executing any deployment commands."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can it trigger Docker Compose restarts and database migrations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can define sequential post-receive pipeline hooks (e.g., git pull, npm install, docker compose build, docker compose up -d) with real-time log streaming and rollback on non-zero exit codes."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+      </a>
+
+      <!-- Navigation Links (Clean & Focused) -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions CTA -->
+      <div class="header-actions">
+        <!-- Compact Search Icon Trigger -->
+        <button class="header-search-icon-btn" id="headerSearchTrigger" aria-label="Quick Search" title="Search apps and docs (Ctrl + K)">
+          <span class="search-icon">&#128269;</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+
+        <!-- GitHub Star Badge -->
+        <a href="https://github.com/sshdesktop/sshdesktop" class="header-github-btn" target="_blank" rel="noopener" aria-label="Star on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-star-label">Star</span>
+          <span class="gh-counter" id="navGhStars">2.4k</span>
+        </a>
+
+        <!-- Download CTA -->
+        <a href="download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Global Command Palette Modal (Ctrl + K) -->
+  <div class="command-palette-overlay" id="commandPaletteOverlay" role="dialog" aria-modal="true" aria-label="Command search" style="display: none;">
+    <div class="command-palette-card">
+      <div class="command-palette-header">
+        <span class="command-search-icon">&#128269;</span>
+        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off">
+        <kbd class="command-esc-badge" id="commandPaletteClose">ESC</kbd>
+      </div>
+      <div class="command-palette-results" id="commandPaletteResults">
+        <!-- Live dynamic search items -->
+      </div>
+      <div class="command-palette-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</span>
+        <span><kbd>&crarr;</kbd> to open</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="apps.html">Apps</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li aria-current="page">Webhook CI/CD Server</li>
+      </ol>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding-top: 24px; position: relative;">
+      <div class="hero-wallpaper-aura" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-pill">
+          <span class="badge badge-purple">&#128640; CI/CD &bull; Automated Deployment Engine</span>
+        </div>
+
+        <h1 class="hero-title">
+          Webhook &amp; CI/CD <span>Deployment Server</span>
+        </h1>
+
+        <p class="hero-lead">
+          Automate remote Linux deployments straight from GitHub, GitLab, or Bitbucket. Receive webhooks, verify HMAC-SHA256 signatures, stream live build logs, and trigger zero-downtime rollouts &mdash; without installing bloated CI agents.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="download.html" class="btn btn-primary btn-lg">
+            <span>&#128230; Download SSH Desktop Free</span>
+          </a>
+          <a href="apps.html" class="btn btn-secondary btn-lg">
+            <span>Explore All 22 Apps</span>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>&#10003; HMAC-SHA256 Signature Security</span>
+          <span>&#10003; Zero CI Runner Memory Overhead</span>
+          <span>&#10003; Live Build Log Streaming</span>
+          <span>&#10003; Auto-Rollback on Failure</span>
+        </div>
+
+        <!-- Interactive Webhook Canvas Mockup -->
+        <div class="mac-window-canvas" role="region" aria-label="Webhook Deployment Dashboard">
+          <div class="mac-titlebar">
+            <div class="mac-traffic-lights">
+              <span class="mac-dot mac-dot-close"></span>
+              <span class="mac-dot mac-dot-minimize"></span>
+              <span class="mac-dot mac-dot-expand"></span>
+            </div>
+            <div class="mac-titlebar-center">
+              <span class="mac-conn-indicator"></span>
+              <span>deploy.production &mdash; Webhook Receiver (Port 22 SSH Tunnel)</span>
+            </div>
+            <div class="mac-titlebar-right">
+              <span class="badge badge-emerald" style="font-size: 0.72rem;">Listening ● 200 OK</span>
+            </div>
+          </div>
+
+          <div class="mac-app-viewport" style="min-height: 340px; padding: 22px; background: #ffffff;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="mac-icon-squircle mac-icon-blue" style="width: 36px; height: 36px; font-size: 1.1rem;">&#128640;</span>
+                  <div>
+                    <h4 style="margin: 0; font-size: 0.95rem; font-weight: 700;">api-service &bull; push event (main branch)</h4>
+                    <span style="font-size: 0.78rem; color: #64748b;">Commit: <code>7c4a10e</code> &bull; author: sarah-dev &bull; 2 minutes ago</span>
+                  </div>
+                </div>
+                <span class="badge badge-emerald">Deployment Succeeded (2.4s)</span>
+              </div>
+
+              <div style="background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 10px; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.55; text-align: left;">
+                <p style="margin: 0 0 4px; color: #38bdf8;">[14:22:01] POST /webhooks/api-service -> 200 OK (HMAC-SHA256 verified)</p>
+                <p style="margin: 0 0 4px; color: #a7f3d0;">[14:22:02] $ git pull origin main && docker compose up -d --build</p>
+                <p style="margin: 0 0 4px; color: #94a3b8;">[14:22:03] Container api-service-v3: recreated and healthy</p>
+                <p style="margin: 0; color: #10b981;">[14:22:04] Deployment complete: 0 errors, zero downtime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Technical Feature Grid -->
+    <section class="section" style="background: #ffffff; padding: 70px 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-blue" style="margin-bottom: 12px; display: inline-block;">Automated DevOps</span>
+          <h2 class="section-title">Zero-Downtime Deployments Made Simple</h2>
+          <p class="section-desc">Trigger instant server rollouts from GitHub, GitLab, and Bitbucket with secure signature validation and automatic failure rollback.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <span class="mac-icon-squircle mac-icon-blue" style="margin-bottom: 14px;">&#128274;</span>
+            <h3 class="card-title">HMAC-SHA256 Cryptography</h3>
+            <p class="card-desc">Every incoming webhook payload is verified using your shared secret and SHA-256 HMAC digests, guarding your server against spoofed or unauthorized triggers.</p>
+          </div>
+
+          <div class="card">
+            <span class="mac-icon-squircle mac-icon-mint" style="margin-bottom: 14px;">&#128640;</span>
+            <h3 class="card-title">Pipeline Post-Hooks</h3>
+            <p class="card-desc">Chain sequential deployment commands: <code>git pull</code>, <code>composer install</code>, <code>npm run build</code>, and <code>systemctl restart</code> with custom exit-code error traps.</p>
+          </div>
+
+          <div class="card">
+            <span class="mac-icon-squircle mac-icon-purple" style="margin-bottom: 14px;">&#128260;</span>
+            <h3 class="card-title">Auto-Rollback Protection</h3>
+            <p class="card-desc">If a build fails or tests crash, SSH Desktop automatically rolls back the commit or restarts the previous container image, preventing production outages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: #f8fafc; padding: 70px 0;">
+      <div class="container" style="max-width: 820px;">
+        <div class="section-header">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">Common questions regarding webhook automated deployment.</p>
+        </div>
+
+        <div class="faq-accordion-wrap">
+          <details class="faq-item">
+            <summary class="faq-question">Do I need to keep my client app open to receive webhooks?</summary>
+            <div class="faq-answer">
+              <p>In client desktop mode, the webhook receiver operates through an encrypted reverse tunnel while your app is running. In CLI server mode, the lightweight standalone daemon runs continuously in the background on your server host.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Can I restrict webhooks by Git branch?</summary>
+            <div class="faq-answer">
+              <p>Yes. You can configure branch filters (e.g. only trigger on pushes to <code>main</code> or <code>production</code>, while ignoring feature branches).</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Pre-Footer Call to Action Card -->
+      <div class="footer-cta-card">
+        <div class="footer-cta-content">
+          <div class="footer-cta-badge"><span class="status-pulse-dot"></span> Next-Gen Linux Administration</div>
+          <h3 class="footer-cta-title">Manage Your Entire Linux Fleet with macOS Elegance</h3>
+          <p class="footer-cta-desc">Agentless, client-side macOS Sonoma desktop shell with 22 built-in server administration tools. Connect directly over pure, encrypted SSH &mdash; zero open web ports and zero idle server RAM.</p>
+          <div class="footer-cta-tags">
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 0% Idle Server RAM</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 256-Bit AES SSH Encryption</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> Windows &bull; macOS &bull; Linux</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 100% Free &amp; Open Source</span>
+          </div>
+        </div>
+        <div class="footer-cta-actions">
+          <a href="download.html" class="footer-download-btn">
+            <span>&#128230; Download Free</span>
+            <small>v2.4.1 &bull; All Operating Systems</small>
+          </a>
+          <a href="https://github.com/sshdesktop/sshdesktop" class="footer-github-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Star on GitHub</span>
+            <span class="gh-counter">14.2k</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main 5-Column Navigation Grid -->
+      <div class="footer-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-brand-logo" aria-label="SSH Desktop Homepage">
+            <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+            <span class="footer-version-tag">v2.4.1</span>
+          </a>
+          <p class="footer-mission-text">
+            The open-source, client-side macOS Sonoma desktop shell for Linux servers. Manage 10+ remote servers with full PTY terminal, dual-pane SFTP, Monaco editor, Docker GUI, and 12+ database engines over pure SSH.
+          </p>
+
+          <div class="footer-status-badge">
+            <span class="status-pulse-dot"></span>
+            <span>Client Engine: <strong>All Systems Operational</strong></span>
+          </div>
+
+          <div class="footer-distro-chips">
+            <span class="distro-chip">Ubuntu</span>
+            <span class="distro-chip">Debian</span>
+            <span class="distro-chip">RHEL</span>
+            <span class="distro-chip">CentOS</span>
+            <span class="distro-chip">Fedora</span>
+            <span class="distro-chip">Rocky</span>
+            <span class="distro-chip">Arch</span>
+            <span class="distro-chip">Alpine</span>
+            <span class="distro-chip">macOS</span>
+            <span class="distro-chip">Windows 11</span>
+          </div>
+        </div>
+
+        <!-- Col 2: 22-App Suite (Core) -->
+        <div class="footer-col">
+          <h4>22-App Suite (Core)</h4>
+          <ul>
+            <li><a href="features.html">PTY Terminal (Xterm.js)</a></li>
+            <li><a href="sftp-client.html">Dual-Pane SFTP Manager</a></li>
+            <li><a href="monaco-code-editor.html">Monaco Code Editor</a></li>
+            <li><a href="docker-web-gui.html">Docker Container Hub</a></li>
+            <li><a href="database-gui-ssh-tunnel.html">Database Studio (12+ DBs)</a></li>
+            <li><a href="systemd-gui.html">Systemd Services &amp; Logs</a></li>
+            <li><a href="linux-firewall-gui.html">Visual Firewall (UFW)</a></li>
+            <li><a href="system-monitor.html">Hardware Telemetry &amp; CPU</a></li>
+            <li><a href="linux-process-manager.html">Process Manager (htop GUI)</a></li>
+            <li><a href="apps.html" class="footer-highlight-link">Explore All 22 Apps &rarr;</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: DevOps & Automation -->
+        <div class="footer-col">
+          <h4>DevOps &amp; Cloud</h4>
+          <ul>
+            <li><a href="linux-package-manager.html">Universal Package Manager</a></li>
+            <li><a href="linux-user-manager.html">User &amp; Sudo Administrator</a></li>
+            <li><a href="network-port-auditor.html">Network &amp; Port Auditor</a></li>
+            <li><a href="linux-disk-manager.html">Disk &amp; S.M.A.R.T. Manager</a></li>
+            <li><a href="crontab-gui.html">Visual Crontab Scheduler</a></li>
+            <li><a href="log-analysis-grep.html">Log Analysis &amp; Grep</a></li>
+            <li><a href="ssl-certificate-manager.html">SSL Cert Manager (Certbot)</a></li>
+            <li><a href="backup-disaster-recovery.html">Backup &amp; Disaster Recovery</a></li>
+            <li><a href="ssh-port-forwarding.html">SSH Port Forwarding Canvas</a></li>
+            <li><a href="webhook-server.html">Webhook CI/CD Deployments</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Comparison & Alternatives -->
+        <div class="footer-col">
+          <h4>Comparisons</h4>
+          <ul>
+            <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="filezilla-alternative.html">FileZilla Alternative</a></li>
+            <li><a href="portainer-alternative.html">Portainer Alternative</a></li>
+            <li><a href="search-queries.html">Search Topics Encyclopedia</a></li>
+            <li><a href="security.html">Zero-Knowledge Security</a></li>
+            <li><a href="pricing.html">Open-Source License</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Downloads & Resources -->
+        <div class="footer-col">
+          <h4>Downloads &amp; Docs</h4>
+          <ul>
+            <li><a href="download.html">Download Center (All OS)</a></li>
+            <li><a href="download-windows.html">Windows 11 / 10 Installer</a></li>
+            <li><a href="download-mac.html">macOS Universal DMG</a></li>
+            <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
+            <li><a href="download-linux-cli.html">Linux Headless CLI Daemon</a></li>
+            <li><a href="docs.html">Documentation &amp; Tutorials</a></li>
+            <li><a href="api-studio.html">API Studio (Postman Alt)</a></li>
+            <li><a href="env-variables-manager.html">Environment Variables</a></li>
+            <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
+            <li><a href="faq.html">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semantic SEO Keywords Cloud -->
+      <div class="footer-seo-cloud">
+        <div class="footer-seo-header">
+          <span class="seo-cloud-title">Popular Linux Server Administration &amp; SSH Searches:</span>
+          <span class="seo-cloud-badge">SEO Index</span>
+        </div>
+        <div class="footer-seo-tags">
+          <a href="search-queries.html" class="seo-tag">remote linux gui</a>
+          <a href="search-queries.html" class="seo-tag">web based ssh client</a>
+          <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
+          <a href="database-gui-ssh-tunnel.html" class="seo-tag">database gui with ssh tunnel</a>
+          <a href="webmin-alternative.html" class="seo-tag">linux server control panel</a>
+          <a href="webmin-alternative.html" class="seo-tag">gui for ubuntu server</a>
+          <a href="webmin-alternative.html" class="seo-tag">webmin alternative</a>
+          <a href="cockpit-alternative.html" class="seo-tag">cockpit alternative</a>
+          <a href="termius-alternative.html" class="seo-tag">free termius alternative</a>
+          <a href="putty-alternative.html" class="seo-tag">putty alternative windows 11</a>
+          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm alternative mac</a>
+          <a href="filezilla-alternative.html" class="seo-tag">filezilla sftp client</a>
+          <a href="portainer-alternative.html" class="seo-tag">portainer alternative</a>
+          <a href="systemd-gui.html" class="seo-tag">linux systemd gui</a>
+          <a href="sftp-client.html" class="seo-tag">sftp client with text editor</a>
+          <a href="linux-firewall-gui.html" class="seo-tag">visual ufw and iptables</a>
+          <a href="system-monitor.html" class="seo-tag">linux hardware telemetry</a>
+          <a href="linux-process-manager.html" class="seo-tag">htop web interface</a>
+          <a href="crontab-gui.html" class="seo-tag">visual crontab editor</a>
+          <a href="ssh-port-forwarding.html" class="seo-tag">ssh port forwarding visual</a>
+          <a href="monaco-code-editor.html" class="seo-tag">vs code over ssh</a>
+          <a href="ssl-certificate-manager.html" class="seo-tag">certbot ssl manager gui</a>
+          <a href="backup-disaster-recovery.html" class="seo-tag">restic sftp backup</a>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Built for DevOps, sysadmins, and Linux developers worldwide. Licensed under Apache 2.0 / MIT.</p>
+          <div class="footer-trust-pills">
+            <span class="trust-pill">&#128274; 256-Bit AES SSH Encryption</span>
+            <span class="trust-pill">&#9889; 0% Idle Server RAM</span>
+            <span class="trust-pill">&#128640; Zero Cloud Telemetry</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Legal and Meta">
+            <a href="privacy.html">Privacy</a>
+            <a href="security.html">Security</a>
+            <a href="security.txt">Security.txt</a>
+            <a href="humans.txt">Humans.txt</a>
+            <a href="robots.txt">Robots.txt</a>
+            <a href="sitemap.xml">Sitemap.xml</a>
+          </nav>
+          <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+            <span>Back to top</span>
+            <span class="back-to-top-arrow">&uarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

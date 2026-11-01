@@ -1,0 +1,67 @@
+# Robots.txt for SSH Desktop (https://sshdesktop.com)
+# Optimized for Googlebot, Bingbot, Applebot, DuckDuckBot, Yandex, Baidu
+
+User-agent: *
+Allow: /
+Allow: /assets/
+
+# Core Hubs
+Allow: /apps.html
+Allow: /search-queries.html
+Allow: /docs.html
+Allow: /download.html
+Allow: /pricing.html
+Allow: /faq.html
+Allow: /about.html
+Allow: /privacy.html
+Allow: /security.html
+
+# 22 Built-in Apps & Tools
+Allow: /features.html
+Allow: /sftp-client.html
+Allow: /monaco-code-editor.html
+Allow: /docker-web-gui.html
+Allow: /database-gui-ssh-tunnel.html
+Allow: /systemd-gui.html
+Allow: /linux-firewall-gui.html
+Allow: /system-monitor.html
+Allow: /linux-process-manager.html
+Allow: /linux-package-manager.html
+Allow: /linux-user-manager.html
+Allow: /network-port-auditor.html
+Allow: /linux-disk-manager.html
+Allow: /crontab-gui.html
+Allow: /log-analysis-grep.html
+Allow: /env-variables-manager.html
+Allow: /api-studio.html
+Allow: /linux-security-auditor.html
+Allow: /ssh-port-forwarding.html
+Allow: /reverse-proxy-browser.html
+Allow: /sticky-notes.html
+Allow: /ssl-certificate-manager.html
+Allow: /backup-disaster-recovery.html
+Allow: /webhook-server.html
+Allow: /multi-server-automation.html
+
+# Competitor Intercept Pages
+Allow: /mobaxterm-alternative.html
+Allow: /filezilla-alternative.html
+Allow: /portainer-alternative.html
+Allow: /webmin-alternative.html
+Allow: /cockpit-alternative.html
+Allow: /putty-alternative.html
+Allow: /termius-alternative.html
+
+# Download Platforms
+Allow: /download-windows.html
+Allow: /download-mac.html
+Allow: /download-linux-desktop.html
+Allow: /download-linux-cli.html
+
+# Standards
+Allow: /security.txt
+Allow: /.well-known/security.txt
+Allow: /humans.txt
+
+# Sitemaps
+Sitemap: https://sshdesktop.com/sitemap.xml

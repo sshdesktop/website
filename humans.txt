@@ -1,0 +1,10 @@
+/* TEAM */
+  Creator: SSH Desktop Engineering Team
+  Contact: team@sshdesktop.com
+  Twitter: @SSHDesktop
+  From: San Francisco, CA & Global Open Source Community
+
+/* SITE */
+  Standards: HTML5, CSS3, ES2024, Schema.org JSON-LD
+  Components: DirectWrite, Apple Metal, Wayland, OpenSSH 9.8+
+  Software: Zero bloated frameworks, Pure Vanilla Performance

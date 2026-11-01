@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a12" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="600" cy="200" r="450" fill="url(#glow)"/>
+
+  <!-- Logo Mark -->
+  <g transform="translate(100, 100)">
+    <rect width="70" height="70" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <path d="M20 25L32 35L20 45" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="36" y1="45" x2="50" y2="45" stroke="#34d399" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Heading -->
+  <text x="100" y="240" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="58" font-weight="800" fill="#ffffff" letter-spacing="-1px">SSH Desktop Client</text>
+  <text x="100" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="600" fill="url(#accent)">The Next-Gen SSH GUI &amp; CLI for Windows, macOS &amp; Linux</text>
+  
+  <text x="100" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" fill="#94a3b8">
+    Multi-Tab Terminal • Integrated SFTP • Port Forwarding • Hardware Key Security
+  </text>
+
+  <!-- Platforms Bar -->
+  <g transform="translate(100, 440)">
+    <rect width="1000" height="90" rx="12" fill="#0b1120" stroke="#1e293b" stroke-width="1.5"/>
+    <text x="50" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#38bdf8">Windows 11 / 10</text>
+    <circle cx="230" cy="46" r="4" fill="#334155"/>
+    <text x="260" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#ffffff">macOS (Apple Silicon &amp; Intel)</text>
+    <circle cx="580" cy="46" r="4" fill="#334155"/>
+    <text x="610" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#34d399">Linux Desktop (Deb/RPM/AppImage)</text>
+    <circle cx="940" cy="46" r="4" fill="#334155"/>
+    <text x="960" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#f59e0b">Linux CLI</text>
+  </g>
+</svg>
