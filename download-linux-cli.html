@@ -283,38 +283,38 @@
               </div>
             </div>
 
-            <!-- Terminal Commands Showcase -->
+            <!-- Linux Systemd Service Management -->
             <div class="card" style="margin-bottom: 30px;">
-              <h2 style="font-size: 1.4rem; margin-bottom: 12px;">Essential SSH Desktop CLI Commands</h2>
+              <h2 style="font-size: 1.4rem; margin-bottom: 12px;">Linux Systemd Service Commands</h2>
               <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-                Use these powerful shell shortcuts to speed up day-to-day server maintenance:
+                Control and monitor the SSH Desktop daemon background service on your Linux server:
               </p>
 
               <div style="margin-bottom: 18px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">Launch Interactive Fuzzy Terminal Host Selector:</h4>
+                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">Start the SSH Desktop Daemon:</h4>
                 <div class="code-box">
-                  <code>sshdesktop</code>
-                  <button class="copy-btn" data-copy="sshdesktop">Copy</button>
+                  <code>systemctl start sshdesktop</code>
+                  <button class="copy-btn" data-copy="systemctl start sshdesktop">Copy</button>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.85rem;">Opens a fast ncurses/TUI menu to search, select, and connect to servers in milliseconds.</p>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Instantly starts the server-side engine.</p>
               </div>
 
               <div style="margin-bottom: 18px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">Run Batch Commands on Multiple Servers in Parallel:</h4>
+                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">Enable Auto-Start on System Boot:</h4>
                 <div class="code-box">
-                  <code>sshdesktop exec --tag "production-web" "sudo systemctl restart nginx"</code>
-                  <button class="copy-btn" data-copy='sshdesktop exec --tag "production-web" "sudo systemctl restart nginx"'>Copy</button>
+                  <code>systemctl enable sshdesktop</code>
+                  <button class="copy-btn" data-copy="systemctl enable sshdesktop">Copy</button>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.85rem;">Executes shell commands across 50+ nodes concurrently with unified streaming log output.</p>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Registers the service with systemd to launch automatically upon server reboot.</p>
               </div>
 
               <div style="margin-bottom: 18px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">Start Background Persistent SSH Tunnel via Systemd:</h4>
+                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">Verify Active Service Status:</h4>
                 <div class="code-box">
-                  <code>sshdesktop tunnel start prod-postgres --daemon</code>
-                  <button class="copy-btn" data-copy="sshdesktop tunnel start prod-postgres --daemon">Copy</button>
+                  <code>systemctl status sshdesktop</code>
+                  <button class="copy-btn" data-copy="systemctl status sshdesktop">Copy</button>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.85rem;">Spawns an auto-reconnecting encrypted SSH tunnel daemon managed by systemd or runit.</p>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Check operational health, memory footprint, and recent journal log entries.</p>
               </div>
             </div>
 
@@ -337,10 +337,10 @@
                   </div>
                 </li>
                 <li>
-                  <h4>Enable Shell Autocompletion</h4>
+                  <h4>Enable &amp; Start Systemd Service</h4>
                   <div class="code-box">
-                    <code>sshdesktop --completion bash | sudo tee /etc/bash_completion.d/sshdesktop</code>
-                    <button class="copy-btn" data-copy="sshdesktop --completion bash | sudo tee /etc/bash_completion.d/sshdesktop">Copy</button>
+                    <code>sudo systemctl enable sshdesktop &amp;&amp; sudo systemctl start sshdesktop</code>
+                    <button class="copy-btn" data-copy="sudo systemctl enable sshdesktop && sudo systemctl start sshdesktop">Copy</button>
                   </div>
                 </li>
               </ol>
