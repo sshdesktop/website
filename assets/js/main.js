@@ -646,7 +646,7 @@ function initSonomaAppSlider() {
       icon: "🖥️",
       color: "#0071e3",
       url: "cloud-desktop.html",
-      img: "assets/images/screenshots/screenshot-sonoma.png",
+      img: "assets/images/screenshots/screenshot-sonoma.webp",
       desc: "Turn any headless Linux server into a fluid, visual macOS Sonoma workspace with Mission Control, Dock, and 0% extra server RAM."
     },
     {
@@ -656,7 +656,7 @@ function initSonomaAppSlider() {
       icon: "💻",
       color: "#30d158",
       url: "terminal.html",
-      img: "assets/images/screenshots/screenshot-terminal.png",
+      img: "assets/images/screenshots/screenshot-terminal.webp",
       desc: "Hardware-accelerated pseudo-terminal with 24-bit TrueColor, horizontal/vertical split panes, command chips, and low latency."
     },
     {
@@ -666,7 +666,7 @@ function initSonomaAppSlider() {
       icon: "📁",
       color: "#0284c7",
       url: "sftp-client.html",
-      img: "assets/images/screenshots/screenshot-sftp.png",
+      img: "assets/images/screenshots/screenshot-sftp.webp",
       desc: "Parallel multi-stream SFTP file manager with drag-and-drop transfers, remote chmod permissions, and inline code editing."
     },
     {
@@ -676,7 +676,7 @@ function initSonomaAppSlider() {
       icon: "📝",
       color: "#ff9500",
       url: "monaco-code-editor.html",
-      img: "assets/images/screenshots/screenshot-monaco.png",
+      img: "assets/images/screenshots/screenshot-monaco.webp",
       desc: "Full VS Code Monaco editor engine supporting 50+ programming languages with syntax highlighting, tabs, and direct SFTP save."
     },
     {
@@ -686,7 +686,7 @@ function initSonomaAppSlider() {
       icon: "🐳",
       color: "#00c7be",
       url: "docker-web-gui.html",
-      img: "assets/images/screenshots/screenshot-docker.png",
+      img: "assets/images/screenshots/screenshot-docker.webp",
       desc: "Manage container lifecycles, stream live ANSI logs, inspect bridge networks, and spawn exec shells with zero daemon ports."
     },
     {
@@ -696,7 +696,7 @@ function initSonomaAppSlider() {
       icon: "🗄️",
       color: "#af52de",
       url: "database-gui-ssh-tunnel.html",
-      img: "assets/images/screenshots/screenshot-database.png",
+      img: "assets/images/screenshots/screenshot-database.webp",
       desc: "Connect to PostgreSQL, MySQL, Redis, SQLite, and MongoDB over automatic zero-config encrypted SSH tunnels."
     },
     {
@@ -706,7 +706,7 @@ function initSonomaAppSlider() {
       icon: "⚙️",
       color: "#64748b",
       url: "systemd-gui.html",
-      img: "assets/images/screenshots/screenshot-systemd.png",
+      img: "assets/images/screenshots/screenshot-systemd.webp",
       desc: "Start, stop, restart, inspect, and journal tail systemd unit files and background daemons with live status pills."
     },
     {
@@ -716,7 +716,7 @@ function initSonomaAppSlider() {
       icon: "🛡️",
       color: "#ff3b30",
       url: "linux-firewall-gui.html",
-      img: "assets/images/screenshots/screenshot-firewall.png",
+      img: "assets/images/screenshots/screenshot-firewall.webp",
       desc: "Point-and-click firewall rules management with built-in Port 22 anti-lockout safety engine and instant rate-limiting."
     },
     {
@@ -726,7 +726,7 @@ function initSonomaAppSlider() {
       icon: "📊",
       color: "#34c759",
       url: "system-monitor.html",
-      img: "assets/images/screenshots/screenshot-system-monitor.png",
+      img: "assets/images/screenshots/screenshot-system-monitor.webp",
       desc: "Real-time CPU core meters, RAM breakdown, disk I/O throughput, load averages, and live network bandwidth gauges."
     },
     {
@@ -736,7 +736,7 @@ function initSonomaAppSlider() {
       icon: "⚡",
       color: "#ffcc00",
       url: "linux-process-manager.html",
-      img: "assets/images/screenshots/screenshot-process-manager.png",
+      img: "assets/images/screenshots/screenshot-process-manager.webp",
       desc: "Interactive process tree explorer: sort by CPU/RAM, search daemons, renice priority, and terminate rogue tasks."
     },
     {
@@ -746,7 +746,7 @@ function initSonomaAppSlider() {
       icon: "📦",
       color: "#5856d6",
       url: "linux-package-manager.html",
-      img: "assets/images/screenshots/screenshot-package-manager.png",
+      img: "assets/images/screenshots/screenshot-package-manager.webp",
       desc: "Unified GUI package manager across APT (Ubuntu/Debian), DNF (Fedora/RHEL), Pacman (Arch), Snap, and Flatpak."
     },
     {
@@ -756,7 +756,7 @@ function initSonomaAppSlider() {
       icon: "👥",
       color: "#bf5af2",
       url: "linux-user-manager.html",
-      img: "assets/images/screenshots/screenshot-user-manager.png",
+      img: "assets/images/screenshots/screenshot-user-manager.webp",
       desc: "Linux user accounts management, sudoer privilege delegation, group membership audits, and authorized SSH key provisioning."
     },
     {
@@ -766,7 +766,7 @@ function initSonomaAppSlider() {
       icon: "🔍",
       color: "#5ac8fa",
       url: "network-port-auditor.html",
-      img: "assets/images/screenshots/screenshot-network-auditor.png",
+      img: "assets/images/screenshots/screenshot-network-auditor.webp",
       desc: "Live socket listener auditing: inspect all listening TCP/UDP ports, identifying bound addresses, processes, and PIDs."
     },
     {
@@ -776,7 +776,7 @@ function initSonomaAppSlider() {
       icon: "💾",
       color: "#475569",
       url: "linux-disk-manager.html",
-      img: "assets/images/screenshots/screenshot-disk-manager.png",
+      img: "assets/images/screenshots/screenshot-disk-manager.webp",
       desc: "Storage visualizer: filesystem mount points, df -h breakdown, inode usage health, and drive health indicators."
     },
     {
@@ -786,7 +786,7 @@ function initSonomaAppSlider() {
       icon: "⏱️",
       color: "#ff9500",
       url: "crontab-gui.html",
-      img: "assets/images/screenshots/screenshot-crontab.png",
+      img: "assets/images/screenshots/screenshot-crontab.webp",
       desc: "Visual cron schedule builder: human-readable interval generator, syntax validation, and automated execution logging."
     },
     {
@@ -796,7 +796,7 @@ function initSonomaAppSlider() {
       icon: "📜",
       color: "#0071e3",
       url: "log-analysis-grep.html",
-      img: "assets/images/screenshots/screenshot-log-analysis.png",
+      img: "assets/images/screenshots/screenshot-log-analysis.webp",
       desc: "Multi-stream log tailing and regex filtering across /var/log/syslog, auth.log, Nginx access logs, and systemd journalctl."
     },
     {
@@ -806,7 +806,7 @@ function initSonomaAppSlider() {
       icon: "🔑",
       color: "#10b981",
       url: "env-variables-manager.html",
-      img: "assets/images/screenshots/screenshot-env-manager.png",
+      img: "assets/images/screenshots/screenshot-env-manager.webp",
       desc: "Manage /etc/environment, systemd global env, and app .env files with masked secret protection and automatic backups."
     },
     {
@@ -816,7 +816,7 @@ function initSonomaAppSlider() {
       icon: "🌐",
       color: "#06b6d4",
       url: "api-studio.html",
-      img: "assets/images/screenshots/screenshot-api-studio.png",
+      img: "assets/images/screenshots/screenshot-api-studio.webp",
       desc: "Tunneled Postman alternative: test internal microservices and localhost:3000 APIs securely over encrypted SSH tunnels."
     },
     {
@@ -826,7 +826,7 @@ function initSonomaAppSlider() {
       icon: "🔒",
       color: "#ef4444",
       url: "linux-security-auditor.html",
-      img: "assets/images/screenshots/screenshot-security-auditor.png",
+      img: "assets/images/screenshots/screenshot-security-auditor.webp",
       desc: "Automated security posture scan: CIS Linux benchmarks, SSH root lockdown audits, and CVE vulnerability identification."
     },
     {
@@ -836,7 +836,7 @@ function initSonomaAppSlider() {
       icon: "🔀",
       color: "#8b5cf6",
       url: "ssh-port-forwarding.html",
-      img: "assets/images/screenshots/screenshot-tunnels.png",
+      img: "assets/images/screenshots/screenshot-tunnels.webp",
       desc: "Visual tunnel manager: configure Local (-L), Remote Reverse (-R), and Dynamic SOCKS5 (-D) proxies with automatic health checks."
     },
     {
@@ -846,7 +846,7 @@ function initSonomaAppSlider() {
       icon: "🧭",
       color: "#0284c7",
       url: "reverse-proxy-browser.html",
-      img: "assets/images/screenshots/screenshot-reverse-proxy.png",
+      img: "assets/images/screenshots/screenshot-reverse-proxy.webp",
       desc: "Embedded client browser for previewing local development servers, Nginx virtual hosts, and tunneled web dashboards."
     },
     {
@@ -856,7 +856,7 @@ function initSonomaAppSlider() {
       icon: "📌",
       color: "#f59e0b",
       url: "sticky-notes.html",
-      img: "assets/images/screenshots/screenshot-sticky-notes.png",
+      img: "assets/images/screenshots/screenshot-sticky-notes.webp",
       desc: "Persistent scratchpad notes and bash snippet boards pinned directly to your virtual macOS cloud desktop."
     },
     {
@@ -866,7 +866,7 @@ function initSonomaAppSlider() {
       icon: "🔐",
       color: "#10b981",
       url: "ssl-certificate-manager.html",
-      img: "assets/images/screenshots/screenshot-ssl-manager.png",
+      img: "assets/images/screenshots/screenshot-ssl-manager.webp",
       desc: "Automated Let's Encrypt HTTPS provisioning, certificate expiration countdowns, and automated web server renewal hooks."
     },
     {
@@ -876,7 +876,7 @@ function initSonomaAppSlider() {
       icon: "💿",
       color: "#06b6d4",
       url: "backup-disaster-recovery.html",
-      img: "assets/images/screenshots/screenshot-backup.png",
+      img: "assets/images/screenshots/screenshot-backup.webp",
       desc: "Automated server snapshot engine: scheduled tar/rsync backups, remote S3 replication, and point-in-time restoration."
     },
     {
@@ -886,7 +886,7 @@ function initSonomaAppSlider() {
       icon: "🚀",
       color: "#f97316",
       url: "multi-server-automation.html",
-      img: "assets/images/screenshots/screenshot-multi-server.png",
+      img: "assets/images/screenshots/screenshot-multi-server.webp",
       desc: "Broadcast bash tasks, playbook executions, and security updates across 100+ Linux servers simultaneously."
     }
   ];
@@ -921,12 +921,14 @@ function initSonomaAppSlider() {
     // Smooth image transition
     if (mainImg) {
       mainImg.classList.add('anim-fade');
+      const webpSource = document.getElementById('sliderMainWebp');
+      if (webpSource) webpSource.srcset = app.img;
       setTimeout(() => {
         mainImg.src = app.img;
         mainImg.alt = `${app.title} Screenshot`;
         mainImg.onload = () => mainImg.classList.remove('anim-fade');
         setTimeout(() => mainImg.classList.remove('anim-fade'), 200);
-      }, 120);
+      }, 100);
     }
 
     if (badgeEl) badgeEl.textContent = `App ${String(currentIndex + 1).padStart(2, '0')} / 25`;
@@ -941,15 +943,18 @@ function initSonomaAppSlider() {
       dockItems.forEach((item, idx) => {
         const isActive = (idx === currentIndex);
         item.classList.toggle('active', isActive);
-        if (isActive) {
-          item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        }
       });
+      const activeItem = dockContainer.querySelector('.dock-item-25.active');
+      if (activeItem) {
+        requestAnimationFrame(() => {
+          activeItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        });
+      }
     }
 
     // Reset progress track
     progress = 0;
-    if (progressEl) progressEl.style.width = '0%';
+    if (progressEl) progressEl.style.transform = 'scaleX(0)';
   }
 
   // Timer loop
@@ -962,7 +967,7 @@ function initSonomaAppSlider() {
       currentIndex = (currentIndex + 1) % apps.length;
       renderApp(currentIndex);
     } else {
-      if (progressEl) progressEl.style.width = `${progress}%`;
+      if (progressEl) progressEl.style.transform = `scaleX(${progress / 100})`;
     }
   }, INTERVAL_MS);
 
@@ -1252,14 +1257,7 @@ function initScrollAnimations() {
       }
     }
 
-    // Immediately reveal elements already inside initial viewport
-    const vh = window.innerHeight || document.documentElement.clientHeight || 800;
-    targets.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < vh - 20) {
-        setTimeout(() => revealElement(el), 40);
-      }
-    });
+    // IntersectionObserver natively checks initial viewport elements without forced reflow
 
     // Native IntersectionObserver with generous margin and low threshold
     if ('IntersectionObserver' in window) {
@@ -1291,8 +1289,8 @@ function initScrollAnimations() {
 
     // A. Update Top Sonoma Sunset Progress Bar
     if (progressBar && scrollHeight > 0) {
-      const pct = Math.min((scrollY / scrollHeight) * 100, 100);
-      progressBar.style.width = `${pct}%`;
+      const ratio = Math.min(scrollY / scrollHeight, 1);
+      progressBar.style.transform = `scaleX(${ratio})`;
     }
 
     // B. Navbar Frosted Blur & Elevation
@@ -1316,21 +1314,7 @@ function initScrollAnimations() {
       }
     }
 
-    // E. Guaranteed fallback reveal check for fast scrolling
-    if (targets.length) {
-      const currentVh = window.innerHeight || document.documentElement.clientHeight || 800;
-      targets.forEach(el => {
-        if (!el.classList.contains('mac-revealed')) {
-          const r = el.getBoundingClientRect();
-          if (r.top <= currentVh - 15) {
-            el.classList.add('mac-revealed');
-            if (el.classList.contains('benchmark-container')) {
-              animateBenchmarkBars(el);
-            }
-          }
-        }
-      });
-    }
+    // E. IntersectionObserver handles viewport intersection smoothly without forced reflow
 
     ticking = false;
   }

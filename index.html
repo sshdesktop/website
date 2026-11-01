@@ -550,6 +550,10 @@
         </div>
 
         <!-- macOS Sonoma 25-App Interactive Screenshot Slider & Floating Dock -->
+        <div style="text-align: center; margin-top: 56px; margin-bottom: 24px;">
+          <h2 class="section-title" id="showcase-title">Interactive macOS Sonoma 25-App Showcase</h2>
+          <p class="section-subtitle">Experience all 25 native Linux management apps with live 10-second rotations</p>
+        </div>
         <div class="sonoma-slider-wrapper" id="sonomaSliderWrap" role="region" aria-label="macOS Sonoma 25-App Interactive Showcase">
           <!-- Top Sonoma Glass HUD Toolbar -->
           <div class="slider-hud-header">
@@ -587,7 +591,10 @@
 
           <!-- Interactive Screenshot Display Frame -->
           <div class="slider-screen-frame" id="sliderScreenFrame" title="Click and hold to pause 10s rotation">
-            <img src="assets/images/screenshots/screenshot-sonoma.png" alt="macOS Sonoma Cloud Desktop Shell Screenshot" id="sliderMainImg" class="slider-main-image" loading="eager">
+            <picture id="sliderMainPicture">
+              <source id="sliderMainWebp" srcset="assets/images/screenshots/screenshot-sonoma.webp" type="image/webp">
+              <img src="assets/images/screenshots/screenshot-sonoma.png" alt="macOS Sonoma Cloud Desktop Shell Screenshot" id="sliderMainImg" class="slider-main-image" width="1366" height="767" loading="eager" fetchpriority="high" decoding="async">
+            </picture>
             
             <!-- Hold-to-Pause Visual Watermark Badge -->
             <div class="slider-hold-hint" id="sliderHoldHint">
@@ -1215,7 +1222,7 @@
               "SSH Desktop replaced both PuTTY and WinSCP on our Windows 11 machines. The DirectWrite GPU rendering makes scrolling thousands of log lines instantaneous with zero lag."
             </p>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 38px; height: 38px; border-radius: 50%; background: #0284c7; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">AW</div>
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: #0369a1; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">AW</div>
               <div>
                 <strong style="display: block; font-size: 0.95rem;">Alexander Wright</strong>
                 <span style="font-size: 0.8rem; color: var(--text-dim);">Principal Cloud Architect</span>
@@ -1229,7 +1236,7 @@
               "The best SSH client on Apple Silicon. Native Metal acceleration keeps my M3 Max cool, and unlocking passwordless keys with Touch ID is super smooth."
             </p>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 38px; height: 38px; border-radius: 50%; background: #10b981; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">SM</div>
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: #047857; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">SM</div>
               <div>
                 <strong style="display: block; font-size: 0.95rem;">Sophie Martin</strong>
                 <span style="font-size: 0.8rem; color: var(--text-dim);">DevOps Lead @ FinTech Labs</span>
@@ -1243,7 +1250,7 @@
               "Saved our entire company over $1,500/year switching off Termius. We get visual SOCKS5 port forwarding, tabs, and dual-pane SFTP without recurring subscription paywalls."
             </p>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 38px; height: 38px; border-radius: 50%; background: #a855f7; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">JH</div>
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: #7e22ce; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">JH</div>
               <div>
                 <strong style="display: block; font-size: 0.95rem;">Julian Hayes</strong>
                 <span style="font-size: 0.8rem; color: var(--text-dim);">Site Reliability Engineer</span>

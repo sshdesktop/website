@@ -223,7 +223,10 @@
         <div class="screenshot-showcase-card">
           <!-- Screenshot Placeholder Ready For User Screenshot -->
           <div class="screenshot-placeholder" id="networkAuditorScreenshot">
-            <img src="assets/images/screenshots/screenshot-network-auditor.png" alt="Linux Network and Listening Port Auditor Screenshot" class="showcase-img" loading="eager" onerror="this.parentElement.classList.add('needs-image');">
+            <picture>
+            <source srcset="assets/images/screenshots/screenshot-network-auditor.webp" type="image/webp">
+            <img src="assets/images/screenshots/screenshot-network-auditor.png" alt="Linux Network and Listening Port Auditor Screenshot" class="showcase-img" width="1366" height="767" loading="eager" fetchpriority="high" decoding="async" onerror="this.parentElement.classList.add('needs-image');">
+          </picture>
             <div class="placeholder-overlay">
               <div class="placeholder-content">
                 <span class="placeholder-icon">&#128247;</span>
