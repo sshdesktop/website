@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Documentation Live Search Filter
   initDocsSearch();
 
-  // 22-App Category Filter
+  // 25-App Category Filter
   initAppFilters();
 
   // Back to Top Smooth Scroll & Floating Trigger
@@ -279,7 +279,7 @@ function initDocsSearch() {
 }
 
 /**
- * 22-App Encyclopedia Category & Search Filtering
+ * 25-App Encyclopedia Category & Search Filtering
  */
 function initAppFilters() {
   const filterBtns = document.querySelectorAll('.app-filter-btn');
