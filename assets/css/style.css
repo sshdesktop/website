@@ -2244,7 +2244,9 @@ img, svg, video, canvas {
   .problem-solution-grid,
   .query-encyclopedia-grid,
   .bento-grid,
-  .workflow-steps-grid {
+  .workflow-steps-grid,
+  .apps-grid,
+  .doc-apps-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
@@ -2275,6 +2277,16 @@ img, svg, video, canvas {
   .comp-table td {
     padding: 12px 14px;
     font-size: 0.85rem;
+  }
+
+  /* CLI Command Row Mobile */
+  .cli-command-row {
+    justify-content: flex-start;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Benchmark Section Mobile */
@@ -2447,7 +2459,7 @@ img, svg, video, canvas {
 /* Problem - Solution Section */
 .problem-solution-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
   gap: 24px;
   margin: 40px 0;
 }
@@ -2547,7 +2559,7 @@ img, svg, video, canvas {
 
 .apps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
   gap: 24px;
 }
 
@@ -2957,7 +2969,7 @@ img, svg, video, canvas {
 /* Apps Grid for Apps 11-16, 18-22 */
 .doc-apps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 20px;
 }
 
@@ -4893,22 +4905,134 @@ img, svg, video, canvas {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 10px 14px;
+  }
+  .slider-hud-left {
+    gap: 8px;
+    width: 100%;
+  }
+  .slider-app-title {
+    font-size: 1rem;
+    flex-wrap: wrap;
   }
   .slider-hud-right {
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .slider-nav-btns {
+    gap: 6px;
+  }
+  .slider-control-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
   }
   .slider-screen-frame {
-    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    max-height: none;
+    height: auto;
+    overflow: hidden;
+  }
+  .slider-screen-frame picture {
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+  .slider-main-image {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    display: block;
   }
   .slider-caption-overlay {
     position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    padding: 12px 14px;
     background: #0f172a;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .slider-caption-overlay p {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: #e2e8f0;
+  }
+  .slider-hold-instruction {
+    font-size: 0.72rem;
+    color: #94a3b8;
+  }
+  .sonoma-dock-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 6px 4px 14px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .sonoma-dock-25 {
+    width: max-content;
+    max-width: none;
+    margin: 0 auto;
+    padding: 6px 10px;
+    gap: 6px;
   }
   .dock-item-25 {
     width: 36px;
     height: 36px;
     min-width: 36px;
     font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-hud-header {
+    padding: 8px 10px;
+  }
+  .slider-app-title {
+    font-size: 0.92rem;
+  }
+  .slider-app-badge {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+  .slider-app-tag {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
+  .slider-timer-pill {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+  }
+  .slider-control-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  .slider-open-link {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+  .dock-item-25 {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    font-size: 1.05rem;
+  }
+  .slider-caption-overlay {
+    padding: 10px 12px;
+  }
+  .slider-caption-overlay p {
+    font-size: 0.78rem;
   }
 }

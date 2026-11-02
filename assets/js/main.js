@@ -989,9 +989,71 @@ function initSonomaAppSlider() {
     }
   }
 
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+  let touchHoldTimer = null;
+
   if (frameEl) {
     frameEl.addEventListener('mousedown', onHoldStart);
-    frameEl.addEventListener('touchstart', onHoldStart, { passive: true });
+
+    frameEl.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+        // Delay hold hint slightly so quick swipe does not flash hold overlay
+        touchHoldTimer = setTimeout(() => {
+          onHoldStart();
+        }, 220);
+      }
+    }, { passive: true });
+
+    frameEl.addEventListener('touchmove', (e) => {
+      if (touchHoldTimer && e.touches && e.touches.length === 1) {
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > 10 || dy > 10) {
+          clearTimeout(touchHoldTimer);
+          touchHoldTimer = null;
+        }
+      }
+    }, { passive: true });
+
+    frameEl.addEventListener('touchend', (e) => {
+      if (touchHoldTimer) {
+        clearTimeout(touchHoldTimer);
+        touchHoldTimer = null;
+      }
+      onHoldEnd();
+
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+        const duration = Date.now() - touchStartTime;
+
+        // Swipe gesture: horizontal movement > 40px, larger than vertical movement, within 600ms
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2 && duration < 600) {
+          if (deltaX < 0) {
+            // Swipe Left -> Next App
+            currentIndex = (currentIndex + 1) % apps.length;
+            renderApp(currentIndex);
+          } else {
+            // Swipe Right -> Prev App
+            currentIndex = (currentIndex - 1 + apps.length) % apps.length;
+            renderApp(currentIndex);
+          }
+        }
+      }
+    }, { passive: true });
+
+    frameEl.addEventListener('touchcancel', () => {
+      if (touchHoldTimer) {
+        clearTimeout(touchHoldTimer);
+        touchHoldTimer = null;
+      }
+      onHoldEnd();
+    }, { passive: true });
   }
 
   window.addEventListener('mouseup', onHoldEnd);
@@ -1047,9 +1109,7 @@ function initSonomaAppSlider() {
       }
     });
 
-    // Also support holding down on dock to pause
-    dockContainer.addEventListener('mousedown', onHoldStart);
-    dockContainer.addEventListener('touchstart', onHoldStart, { passive: true });
+    // Smooth dock tap & horizontal scroll without hold freeze
   }
 
   // Keyboard navigation
