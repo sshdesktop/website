@@ -233,10 +233,13 @@
   <!-- Global Command Palette Modal (Ctrl + K) -->
   <div class="command-palette-overlay" id="commandPaletteOverlay" role="dialog" aria-modal="true" aria-label="Command search" style="display: none;">
     <div class="command-palette-card">
-      <div class="command-palette-header">
+            <div class="command-palette-header">
         <span class="command-search-icon">&#128269;</span>
-        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off">
-        <kbd class="command-esc-badge" id="commandPaletteClose">ESC</kbd>
+        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off" spellcheck="false">
+        <div class="command-palette-header-actions">
+          <kbd class="command-esc-badge" id="commandEscBadge" title="Press Escape to close">ESC</kbd>
+          <button type="button" class="command-palette-close-btn" id="commandPaletteClose" aria-label="Close search (ESC)">&times;</button>
+        </div>
       </div>
       <div class="command-palette-results" id="commandPaletteResults">
         <!-- Live dynamic search items -->

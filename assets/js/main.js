@@ -402,7 +402,59 @@ function initNavDropdowns() {
  */
 function initCommandPalette() {
   const triggerBtn = document.getElementById('headerSearchTrigger');
-  let overlay, input, resultsContainer;
+
+  const searchIndex = [
+    // 25 Native Apps
+    { title: "macOS Sonoma Cloud Desktop Shell", desc: "Native Linux cloud desktop with dock, windows, and mission control", tag: "App 01", icon: "🖥️", url: "cloud-desktop.html" },
+    { title: "Interactive PTY Terminal (Xterm.js)", desc: "Hardware-accelerated terminal with TrueColor and command chips", tag: "App 02", icon: "💻", url: "terminal.html" },
+    { title: "Dual-Pane SFTP File Manager", desc: "Multi-stream file transfers, permissions, and remote editor", tag: "App 03", icon: "📁", url: "sftp-client.html" },
+    { title: "Monaco Code Editor & Cloud IDE", desc: "VS Code Monaco engine supporting 50+ languages with direct SFTP save", tag: "App 04", icon: "📝", url: "monaco-code-editor.html" },
+    { title: "Docker Container & Compose Hub", desc: "Manage containers, inspect networks, live logs, and spawn exec shells", tag: "App 05", icon: "🐳", url: "docker-web-gui.html" },
+    { title: "Universal Database Studio", desc: "PostgreSQL, MySQL, Redis, MongoDB over automatic SSH tunnels", tag: "App 06", icon: "🗄️", url: "database-gui-ssh-tunnel.html" },
+    { title: "Systemd Services & Daemons Manager", desc: "Start, stop, restart, inspect, and journal tail systemd unit files", tag: "App 07", icon: "⚙️", url: "systemd-gui.html" },
+    { title: "Visual Firewall (UFW & Iptables)", desc: "Rule management with Port 22 anti-lockout safety engine", tag: "App 08", icon: "🛡️", url: "linux-firewall-gui.html" },
+    { title: "System Monitor & Hardware Telemetry", desc: "Real-time CPU meters, RAM breakdown, disk I/O, and network gauges", tag: "App 09", icon: "📊", url: "system-monitor.html" },
+    { title: "Interactive Process Manager (htop)", desc: "Interactive process tree: sort by CPU/RAM, search daemons, kill tasks", tag: "App 10", icon: "⚡", url: "linux-process-manager.html" },
+    { title: "Universal Linux Package Manager", desc: "Unified GUI across APT, DNF, Pacman, Snap, and Flatpak", tag: "App 11", icon: "📦", url: "linux-package-manager.html" },
+    { title: "User & Sudo Accounts Administrator", desc: "Manage Linux users, groups, SSH authorized_keys, and sudoers", tag: "App 12", icon: "👥", url: "linux-user-manager.html" },
+    { title: "Visual Crontab Task Scheduler", desc: "Point-and-click cron schedule builder with syntax validation", tag: "App 13", icon: "⏰", url: "crontab-gui.html" },
+    { title: "Disk & Storage Analyzer", desc: "Interactive treemap of disk utilization, mount points, and inodes", tag: "App 14", icon: "💾", url: "linux-disk-manager.html" },
+    { title: "Network Port & Socket Auditor", desc: "Inspect listening ports, established sockets, and firewall bindings", tag: "App 15", icon: "🔌", url: "network-port-auditor.html" },
+    { title: "Security Audit & Lynis Scanner", desc: "Automated Lynis hardening checks and CIS benchmark auditing", tag: "App 16", icon: "🔒", url: "linux-security-auditor.html" },
+    { title: "Automated Backup & Disaster Recovery", desc: "Rsync snapshots, tar archives, and automated remote cloud backup", tag: "App 17", icon: "🔄", url: "backup-disaster-recovery.html" },
+    { title: "Environment Variables Manager", desc: "Safely edit /etc/environment, systemd environments, and user profiles", tag: "App 18", icon: "🌲", url: "env-variables-manager.html" },
+    { title: "SSL / TLS Certificate Manager", desc: "Let's Encrypt automated renewals, certbot hooks, and cert warnings", tag: "App 19", icon: "📜", url: "ssl-certificate-manager.html" },
+    { title: "Fast Log Analysis & Grep Studio", desc: "Regex grep search across /var/log with live color highlighting", tag: "App 20", icon: "🔍", url: "log-analysis-grep.html" },
+    { title: "Webhook & CI/CD Runner", desc: "Deploy upon git push with verified HMAC signatures and bash hooks", tag: "App 21", icon: "🪝", url: "webhook-server.html" },
+    { title: "REST API & Curl Studio", desc: "Construct HTTP/REST requests directly from the server network loopback", tag: "App 22", icon: "🚀", url: "api-studio.html" },
+    { title: "Reverse Proxy & Nginx Manager", desc: "Configure Nginx server blocks, virtual hosts, and upstream proxies", tag: "App 23", icon: "🔀", url: "reverse-proxy-browser.html" },
+    { title: "Multi-Server Automation Matrix", desc: "Execute commands across dozens of SSH hosts in parallel with broadcast", tag: "App 24", icon: "🌐", url: "multi-server-automation.html" },
+    { title: "Desktop Sticky Notes & Snippet Board", desc: "Persistent scratchpad notes and bash snippet boards on cloud desktop", tag: "App 25", icon: "📌", url: "sticky-notes.html" },
+    // Downloads
+    { title: "Download for Windows 11 / 10", desc: "Installer (.exe / MSI) with native OpenSSH integration and PuTTY migration", tag: "Download", icon: "🪟", url: "download-windows.html" },
+    { title: "Download for macOS (Universal)", desc: "Native macOS app (.dmg) for Apple Silicon (M1/M2/M3/M4) and Intel", tag: "Download", icon: "🍏", url: "download-mac.html" },
+    { title: "Download for Linux Desktop GUI", desc: "Packages for Ubuntu/Debian (.deb), Fedora/RHEL (.rpm), and AppImage", tag: "Download", icon: "🐧", url: "download-linux-desktop.html" },
+    { title: "Download Linux Server CLI / Headless", desc: "Single-binary daemon: curl -fsSL https://sshdesktop.com/install.sh", tag: "Download", icon: "⚡", url: "download-linux-cli.html" },
+    { title: "Download Center", desc: "All platforms, checksums, GPG signatures, and release notes", tag: "Download", icon: "📥", url: "download.html" },
+    // Core Pages & Guides
+    { title: "25 Built-in Apps & Feature Suite", desc: "Complete encyclopedia of all 25 SSH Desktop server management apps", tag: "Suite", icon: "🧭", url: "apps.html" },
+    { title: "Features & Architecture", desc: "Zero-latency pipeline, client-side rendering, and security overview", tag: "Guide", icon: "✨", url: "features.html" },
+    { title: "Documentation Hub", desc: "Getting started, SSH keys, ProxyJump, tunneling, and troubleshooting", tag: "Docs", icon: "📚", url: "docs.html" },
+    { title: "Pricing & Community Edition", desc: "100% Free Apache 2.0 Core vs SSH Desktop Pro & Team features", tag: "Pricing", icon: "🏷️", url: "pricing.html" },
+    { title: "PuTTY Alternative", desc: "Why modern engineers are replacing legacy PuTTY with SSH Desktop", tag: "Comparison", icon: "🔄", url: "putty-alternative.html" },
+    { title: "Termius Alternative", desc: "Self-hosted, zero subscription, privacy-first alternative to Termius", tag: "Comparison", icon: "🔄", url: "termius-alternative.html" },
+    { title: "MobaXterm Alternative", desc: "Cross-platform Mac, Windows, Linux alternative to MobaXterm", tag: "Comparison", icon: "🔄", url: "mobaxterm-alternative.html" },
+    { title: "FileZilla Alternative", desc: "Integrated dual-pane SFTP + Monaco IDE + terminal vs standalone FileZilla", tag: "Comparison", icon: "🔄", url: "filezilla-alternative.html" },
+    { title: "Portainer Alternative", desc: "Zero open daemon ports Docker manager vs heavy web panels", tag: "Comparison", icon: "🔄", url: "portainer-alternative.html" },
+    { title: "Cockpit Alternative", desc: "Pure client-side SSH UI vs Cockpit web server", tag: "Comparison", icon: "🔄", url: "cockpit-alternative.html" },
+    { title: "Webmin Alternative", desc: "Zero Perl / Apache overhead server management vs legacy Webmin", tag: "Comparison", icon: "🔄", url: "webmin-alternative.html" }
+  ];
+
+  let overlay = document.getElementById('commandPaletteOverlay');
+  let input = document.getElementById('commandPaletteInput');
+  let resultsContainer = document.getElementById('commandPaletteResults');
+  let selectedIndex = 0;
+  let currentResults = [];
 
   function ensurePaletteModal() {
     overlay = document.getElementById('commandPaletteOverlay');
@@ -419,7 +471,10 @@ function initCommandPalette() {
           <div class="command-palette-header">
             <span class="command-search-icon">&#128269;</span>
             <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, Postgres, UFW)" autocomplete="off" spellcheck="false">
-            <kbd class="command-esc-badge" id="commandPaletteClose">ESC</kbd>
+            <div class="command-palette-header-actions">
+              <kbd class="command-esc-badge" id="commandEscBadge" title="Press Escape to close">ESC</kbd>
+              <button type="button" class="command-palette-close-btn" id="commandPaletteClose" aria-label="Close search">&times;</button>
+            </div>
           </div>
           <div class="command-palette-results" id="commandPaletteResults"></div>
           <div class="command-palette-footer">
@@ -430,39 +485,61 @@ function initCommandPalette() {
         </div>
       `;
       document.body.appendChild(overlay);
-
-      const closeBtn = document.getElementById('commandPaletteClose');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closePalette);
-      }
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closePalette();
-      });
     }
 
     input = document.getElementById('commandPaletteInput');
     resultsContainer = document.getElementById('commandPaletteResults');
+
+    // Attach close button listeners
+    const closeBtns = overlay.querySelectorAll('#commandPaletteClose, .command-esc-badge');
+    closeBtns.forEach(btn => {
+      if (!btn.dataset.closeBound) {
+        btn.dataset.closeBound = 'true';
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closePalette();
+        });
+      }
+    });
+
+    if (!overlay.dataset.overlayBound) {
+      overlay.dataset.overlayBound = 'true';
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closePalette();
+        }
+      });
+    }
+
+    if (input && !input.dataset.inputBound) {
+      input.dataset.inputBound = 'true';
+      input.addEventListener('input', (e) => {
+        renderResults(e.target.value);
+      });
+    }
   }
 
-  // Ensure modal DOM elements exist
+  // Ensure modal DOM elements exist and listeners are attached
   ensurePaletteModal();
-
-  let selectedIndex = 0;
-  let currentResults = [];
 
   function openPalette() {
     ensurePaletteModal();
     if (!overlay) return;
     overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
     if (input) {
       input.value = '';
-      setTimeout(() => input.focus(), 50);
+      setTimeout(() => input.focus(), 60);
     }
     renderResults('');
   }
 
   function closePalette() {
-    if (overlay) overlay.style.display = 'none';
+    if (overlay) {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
   }
 
   function renderResults(query) {
@@ -481,7 +558,7 @@ function initCommandPalette() {
 
     selectedIndex = 0;
     if (currentResults.length === 0) {
-      resultsContainer.innerHTML = `<div style="padding: 24px; text-align: center; color: #64748b; font-size: 0.9rem;">No results found for "<strong>${query}</strong>". Try searching for <em>Docker</em>, <em>SFTP</em>, <em>Database</em>, or <em>Windows</em>.</div>`;
+      resultsContainer.innerHTML = `<div style="padding: 28px 20px; text-align: center; color: #64748b; font-size: 0.92rem;">No results found for "<strong>${query}</strong>".<br><span style="font-size: 0.82rem; color: #94a3b8; margin-top: 6px; display: inline-block;">Try searching for <em>Docker</em>, <em>SFTP</em>, <em>Database</em>, <em>Terminal</em>, or <em>Windows</em>.</span></div>`;
       return;
     }
 
@@ -499,29 +576,52 @@ function initCommandPalette() {
     `).join('');
   }
 
-  if (triggerBtn) {
-    triggerBtn.addEventListener('click', openPalette);
+  function updateSelection() {
+    if (!resultsContainer) return;
+    const items = resultsContainer.querySelectorAll('.command-item');
+    items.forEach((item, idx) => {
+      item.classList.toggle('selected', idx === selectedIndex);
+      if (idx === selectedIndex) {
+        // Horizontally/vertically scroll inside the results container without scrolling the window
+        item.scrollIntoView({ block: 'nearest' });
+      }
+    });
   }
 
+  // Trigger from header search button
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openPalette();
+    });
+  }
+
+  // Global Keyboard Navigation
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      if (overlay.style.display === 'flex') {
+      if (overlay && overlay.style.display === 'flex') {
         closePalette();
       } else {
         openPalette();
       }
-    } else if (e.key === 'Escape' && overlay.style.display === 'flex') {
+    } else if (e.key === 'Escape' && overlay && overlay.style.display === 'flex') {
+      e.preventDefault();
       closePalette();
-    } else if (overlay.style.display === 'flex') {
+    } else if (overlay && overlay.style.display === 'flex') {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        selectedIndex = (selectedIndex + 1) % currentResults.length;
-        updateSelection();
+        if (currentResults.length > 0) {
+          selectedIndex = (selectedIndex + 1) % currentResults.length;
+          updateSelection();
+        }
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        selectedIndex = (selectedIndex - 1 + currentResults.length) % currentResults.length;
-        updateSelection();
+        if (currentResults.length > 0) {
+          selectedIndex = (selectedIndex - 1 + currentResults.length) % currentResults.length;
+          updateSelection();
+        }
       } else if (e.key === 'Enter') {
         e.preventDefault();
         if (currentResults[selectedIndex]) {
@@ -530,22 +630,6 @@ function initCommandPalette() {
       }
     }
   });
-
-  function updateSelection() {
-    const items = resultsContainer.querySelectorAll('.command-item');
-    items.forEach((item, idx) => {
-      item.classList.toggle('selected', idx === selectedIndex);
-      if (idx === selectedIndex) {
-        item.scrollIntoView({ block: 'nearest' });
-      }
-    });
-  }
-
-  if (input) {
-    input.addEventListener('input', (e) => {
-      renderResults(e.target.value);
-    });
-  }
 }
 
 /**
