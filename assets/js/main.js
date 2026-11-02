@@ -4,30 +4,20 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Navigation Toggle, Backdrop & Outside Click
+  // Mobile Navigation Toggle & Outside Click (Zero Page Blur)
   const mobileToggle = document.getElementById('mobileToggle');
   const navLinks = document.getElementById('navLinks');
   if (mobileToggle && navLinks) {
-    let navBackdrop = document.getElementById('mobileNavBackdrop');
-    if (!navBackdrop) {
-      navBackdrop = document.createElement('div');
-      navBackdrop.id = 'mobileNavBackdrop';
-      navBackdrop.className = 'mobile-nav-backdrop';
-      document.body.appendChild(navBackdrop);
-    }
-
     function closeMobileMenu() {
       navLinks.classList.remove('open');
       mobileToggle.classList.remove('active');
       mobileToggle.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('mobile-menu-open');
     }
 
     function openMobileMenu() {
       navLinks.classList.add('open');
       mobileToggle.classList.add('active');
       mobileToggle.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('mobile-menu-open');
     }
 
     mobileToggle.addEventListener('click', (e) => {
@@ -46,14 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', closeMobileMenu);
     });
 
-    // Close on backdrop click
-    if (navBackdrop) {
-      navBackdrop.addEventListener('click', closeMobileMenu);
-    }
-
     // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.site-header') && !e.target.closest('#mobileNavBackdrop')) {
+      if (!e.target.closest('.site-header')) {
         closeMobileMenu();
       }
     });
