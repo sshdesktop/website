@@ -4,25 +4,40 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Navigation Toggle & Outside Click
+  // Mobile Navigation Toggle, Backdrop & Outside Click
   const mobileToggle = document.getElementById('mobileToggle');
   const navLinks = document.getElementById('navLinks');
   if (mobileToggle && navLinks) {
+    let navBackdrop = document.getElementById('mobileNavBackdrop');
+    if (!navBackdrop) {
+      navBackdrop = document.createElement('div');
+      navBackdrop.id = 'mobileNavBackdrop';
+      navBackdrop.className = 'mobile-nav-backdrop';
+      document.body.appendChild(navBackdrop);
+    }
+
     function closeMobileMenu() {
       navLinks.classList.remove('open');
       mobileToggle.classList.remove('active');
       mobileToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    function openMobileMenu() {
+      navLinks.classList.add('open');
+      mobileToggle.classList.add('active');
+      mobileToggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('mobile-menu-open');
     }
 
     mobileToggle.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       const isOpen = navLinks.classList.contains('open');
       if (isOpen) {
         closeMobileMenu();
       } else {
-        navLinks.classList.add('open');
-        mobileToggle.classList.add('active');
-        mobileToggle.setAttribute('aria-expanded', 'true');
+        openMobileMenu();
       }
     });
 
@@ -31,9 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', closeMobileMenu);
     });
 
+    // Close on backdrop click
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', closeMobileMenu);
+    }
+
     // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.site-header')) {
+      if (!e.target.closest('.site-header') && !e.target.closest('#mobileNavBackdrop')) {
         closeMobileMenu();
       }
     });
@@ -41,6 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close on window resize if larger than tablet breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1080 && navLinks.classList.contains('open')) {
         closeMobileMenu();
       }
     });

@@ -153,7 +153,7 @@ img, svg {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -2022,13 +2022,13 @@ img, svg, video, canvas {
 /* 1. Tablet Landscape & Small Desktop (max-width: 1080px) */
 @media (max-width: 1080px) {
   .mobile-toggle {
-    display: flex;
+    display: flex !important;
   }
   .header-search-icon-btn .search-kbd {
     display: none;
   }
   .nav-links {
-    display: none;
+    display: none !important;
     position: absolute;
     top: 100%;
     left: 0;
@@ -2038,15 +2038,15 @@ img, svg, video, canvas {
     -webkit-backdrop-filter: blur(28px) saturate(190%);
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     flex-direction: column;
-    padding: 18px 20px 24px;
-    gap: 10px;
+    padding: 16px 20px 22px;
+    gap: 8px;
     z-index: 1000;
     max-height: calc(100vh - 75px);
     overflow-y: auto;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
   }
   .nav-links.open {
-    display: flex;
+    display: flex !important;
   }
   .nav-links > li {
     width: 100%;
@@ -4176,11 +4176,13 @@ img, svg, video, canvas {
   gap: 24px;
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  list-style: none;
+@media (min-width: 1081px) {
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
 }
 
 .nav-links > li > a {
@@ -5067,4 +5069,20 @@ img, svg, video, canvas {
   .slider-caption-overlay p {
     font-size: 0.78rem;
   }
+}
+
+/* Mobile Navigation Dimmed Backdrop */
+.mobile-nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 56px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 999;
+}
+
+body.mobile-menu-open .mobile-nav-backdrop {
+  display: block;
 }
