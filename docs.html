@@ -188,7 +188,14 @@
           </p>
           <div class="code-block-wrapper">
             <pre><code><span class="prompt">$</span> curl -fsSL https://sshdesktop.com/install.sh | sudo bash</code></pre>
-            <button class="copy-btn" data-clipboard="curl -fsSL https://sshdesktop.com/install.sh | sudo bash" aria-label="Copy server install command">Copy</button>
+            <button class="copy-btn" data-copy="curl -fsSL https://sshdesktop.com/install.sh | sudo bash" data-clipboard="curl -fsSL https://sshdesktop.com/install.sh | sudo bash" aria-label="Copy server install command">Copy</button>
+          </div>
+          <p class="cli-banner-text" style="margin-top: 14px; margin-bottom: 8px;">
+            After installation, retrieve your generated initial admin credentials and login token:
+          </p>
+          <div class="code-block-wrapper">
+            <pre><code><span class="prompt">$</span> sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code></pre>
+            <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt" data-clipboard="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt" aria-label="Copy admin credentials command">Copy</button>
           </div>
           <div class="cli-banner-meta">
             <span>&#10003; Zero external dependencies</span>

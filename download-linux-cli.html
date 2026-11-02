@@ -231,6 +231,15 @@
             <code style="font-size: 0.95rem;">curl -fsSL https://sshdesktop.com/install.sh | bash</code>
             <button class="copy-btn" data-copy="curl -fsSL https://sshdesktop.com/install.sh | bash" style="padding: 6px 14px;">Copy Command</button>
           </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; margin-top: 14px;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.5px;">Step 2: View Initial Admin Credentials</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">&#128274; Password &amp; Login Token</span>
+          </div>
+          <div class="code-box" style="margin: 0; background: #f8fafc; border-color: var(--border); padding: 14px 18px;">
+            <code style="font-size: 0.95rem;">sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
+            <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt" style="padding: 6px 14px;">Copy Command</button>
+          </div>
         </div>
 
         <div class="hero-meta">
@@ -328,6 +337,15 @@
                 </div>
                 <p style="color: var(--text-dim); font-size: 0.85rem;">Check operational health, memory footprint, and recent journal log entries.</p>
               </div>
+
+              <div style="margin-bottom: 18px;">
+                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 4px;">View Initial Admin Credentials &amp; Access Token:</h4>
+                <div class="code-box">
+                  <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
+                  <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt">Copy</button>
+                </div>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Display generated administrative credentials, one-time authentication token, and web console URL.</p>
+              </div>
             </div>
 
             <!-- Manual Installation Steps -->
@@ -354,6 +372,14 @@
                     <code>sudo systemctl enable sshdesktop &amp;&amp; sudo systemctl start sshdesktop</code>
                     <button class="copy-btn" data-copy="sudo systemctl enable sshdesktop && sudo systemctl start sshdesktop">Copy</button>
                   </div>
+                </li>
+                <li>
+                  <h4>View Initial Admin Credentials</h4>
+                  <div class="code-box">
+                    <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
+                    <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt">Copy</button>
+                  </div>
+                  <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 4px;">Print generated administrator username, secure password, and local access URL.</p>
                 </li>
               </ol>
             </div>
