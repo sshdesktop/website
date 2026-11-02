@@ -909,9 +909,20 @@ function initSonomaAppSlider() {
   let currentIndex = 0;
   let isPaused = false;
   let isHolding = false;
+  let isIntersecting = true;
   let progress = 0;
   const DURATION_MS = 10000; // 10 seconds per image
   const INTERVAL_MS = 50;
+
+  // Pause auto-rotation when slider is scrolled out of viewport
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isIntersecting = entry.isIntersecting;
+      });
+    }, { threshold: 0.1 });
+    observer.observe(sliderWrap);
+  }
 
   function renderApp(index) {
     if (index < 0 || index >= apps.length) return;
@@ -937,7 +948,7 @@ function initSonomaAppSlider() {
     if (descEl) descEl.textContent = app.desc;
     if (linkEl) linkEl.href = app.url;
 
-    // Update active state across dock items
+    // Update active state across dock items without scrolling window
     if (dockContainer) {
       const dockItems = dockContainer.querySelectorAll('.dock-item-25');
       dockItems.forEach((item, idx) => {
@@ -946,8 +957,13 @@ function initSonomaAppSlider() {
       });
       const activeItem = dockContainer.querySelector('.dock-item-25.active');
       if (activeItem) {
-        requestAnimationFrame(() => {
-          activeItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        // Horizontally scroll ONLY the dock container without ever affecting window scroll position
+        const containerRect = dockContainer.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        const targetScrollLeft = dockContainer.scrollLeft + (itemRect.left - containerRect.left) - (dockContainer.clientWidth / 2) + (itemRect.width / 2);
+        dockContainer.scrollTo({
+          left: targetScrollLeft,
+          behavior: 'smooth'
         });
       }
     }
@@ -959,7 +975,7 @@ function initSonomaAppSlider() {
 
   // Timer loop
   const timerInterval = setInterval(() => {
-    if (isPaused || isHolding) return;
+    if (isPaused || isHolding || !isIntersecting) return;
 
     progress += (INTERVAL_MS / DURATION_MS) * 100;
     if (progress >= 100) {
