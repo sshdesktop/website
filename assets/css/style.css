@@ -4573,6 +4573,16 @@ img, svg, video, canvas {
   will-change: opacity, transform;
 }
 
+@media (max-width: 768px) {
+  .scroll-reveal,
+  .scroll-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}
+
 .scroll-reveal.mac-revealed {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -4793,6 +4803,7 @@ img, svg, video, canvas {
 .slider-main-image {
   width: 100%;
   height: auto;
+  aspect-ratio: 1366 / 767;
   max-height: 620px;
   display: block;
   object-fit: contain;

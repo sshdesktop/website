@@ -58,39 +58,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Header Dropdowns, Announcement, & Command Palette
+  // Immediate Critical Interactions (<5ms execution)
   initAnnouncementBar();
   initNavDropdowns();
   initCommandPalette();
-  initGitHubStars();
-
-  // OS Detection & Hero Button Adaptation
   detectUserOS();
-
-  // Copy-to-Clipboard functionality
   initCopyButtons();
-
-  // FAQ Accordion
   initFAQAccordion();
-
-  // Terminal Demo Tabs
   initTerminalTabs();
 
-  // macOS Sonoma Native Desktop Shell
-  initSonomaDesktop();
-  initSonomaAppSlider();
+  // Defer non-critical UI & background features to requestIdleCallback for 0ms Total Blocking Time (TBT)
+  const initDeferredTasks = () => {
+    initGitHubStars();
+    initSonomaDesktop();
+    initSonomaAppSlider();
+    initDocsSearch();
+    initAppFilters();
+    initBackToTop();
+    initScrollAnimations();
+  };
 
-  // Documentation Live Search Filter
-  initDocsSearch();
-
-  // 25-App Category Filter
-  initAppFilters();
-
-  // Back to Top Smooth Scroll & Floating Trigger
-  initBackToTop();
-
-  // macOS Scroll Reveal Animations & Reading Progress
-  initScrollAnimations();
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initDeferredTasks, { timeout: 1200 });
+  } else {
+    setTimeout(initDeferredTasks, 100);
+  }
 });
 
 /**

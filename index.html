@@ -200,7 +200,7 @@ img,svg{max-width:100%;display:block}
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="brand" aria-label="SSH Desktop Homepage">
-        <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38">
+        <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38" decoding="async" fetchpriority="high">
       </a>
 
       <!-- Navigation Links (Clean & Focused) -->
@@ -354,7 +354,7 @@ img,svg{max-width:100%;display:block}
           <div class="slider-screen-frame" id="sliderScreenFrame" title="Click and hold to pause 10s rotation">
             <picture id="sliderMainPicture">
               <source id="sliderMainWebp" srcset="assets/images/screenshots/screenshot-sonoma.webp" type="image/webp">
-              <img src="assets/images/screenshots/screenshot-sonoma.webp" alt="macOS Sonoma Cloud Desktop Shell Screenshot" id="sliderMainImg" class="slider-main-image" width="1366" height="767" loading="eager" fetchpriority="high" decoding="async">
+              <img src="assets/images/screenshots/screenshot-sonoma.webp" alt="macOS Sonoma Cloud Desktop Shell Screenshot" id="sliderMainImg" class="slider-main-image" width="1366" height="767" loading="lazy" decoding="async">
             </picture>
             
             <!-- Hold-to-Pause Visual Watermark Badge -->
@@ -716,7 +716,7 @@ img,svg{max-width:100%;display:block}
           <article class="os-card" data-os="windows">
             <div>
               <div class="os-icon">
-                <img src="assets/images/icons/windows.svg" alt="Windows OS SSH Client" width="48" height="48">
+                <img src="assets/images/icons/windows.svg" alt="Windows OS SSH Client" width="48" height="48" loading="lazy" decoding="async">
               </div>
               <h3 class="os-name">Windows</h3>
               <p class="os-version">Windows 11, 10, Server (64-bit x64)</p>
@@ -735,7 +735,7 @@ img,svg{max-width:100%;display:block}
           <article class="os-card" data-os="mac">
             <div>
               <div class="os-icon">
-                <img src="assets/images/icons/apple.svg" alt="Apple macOS SSH Client" width="48" height="48">
+                <img src="assets/images/icons/apple.svg" alt="Apple macOS SSH Client" width="48" height="48" loading="lazy" decoding="async">
               </div>
               <h3 class="os-name">macOS</h3>
               <p class="os-version">macOS Sequoia, Sonoma &amp; Intel (64-bit)</p>
@@ -754,7 +754,7 @@ img,svg{max-width:100%;display:block}
           <article class="os-card" data-os="linux-desktop">
             <div>
               <div class="os-icon">
-                <img src="assets/images/icons/linux.svg" alt="Linux Desktop SSH Client GUI" width="48" height="48">
+                <img src="assets/images/icons/linux.svg" alt="Linux Desktop SSH Client GUI" width="48" height="48" loading="lazy" decoding="async">
               </div>
               <h3 class="os-name">Linux Desktop</h3>
               <p class="os-version">Ubuntu, Debian, Fedora, Arch, OpenSUSE</p>
@@ -773,7 +773,7 @@ img,svg{max-width:100%;display:block}
           <article class="os-card" data-os="linux-cli">
             <div>
               <div class="os-icon">
-                <img src="assets/images/icons/cli.svg" alt="Linux CLI SSH Terminal Client" width="48" height="48">
+                <img src="assets/images/icons/cli.svg" alt="Linux CLI SSH Terminal Client" width="48" height="48" loading="lazy" decoding="async">
               </div>
               <h3 class="os-name">Linux CLI &amp; Server</h3>
               <p class="os-version">Headless Servers, Docker, MicroVMs</p>
