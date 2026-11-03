@@ -855,6 +855,9 @@ img, svg {
   max-width: 760px;
   margin: 0 auto 32px;
   line-height: 1.6;
+  contain: layout inline-size;
+  text-rendering: optimizeSpeed;
+  content-visibility: visible;
 }
 
 .hero-ctas {
@@ -961,6 +964,8 @@ img, svg {
 /* Grid Sections */
 .section {
   padding: 80px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 .section-header {
@@ -3510,7 +3515,7 @@ img, svg, video, canvas {
   position: absolute;
   top: 22%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   width: 92%;
   max-width: 1100px;
   height: 540px;
@@ -3520,27 +3525,34 @@ img, svg, video, canvas {
     rgba(0, 113, 227, 0.18) 55%, 
     rgba(168, 85, 247, 0.08) 75%, 
     transparent 85%);
-  filter: blur(60px);
+  filter: blur(48px);
   pointer-events: none;
   z-index: 0;
+  will-change: transform, opacity;
+  contain: layout paint;
   animation: sonomaAuraPulse 7s ease-in-out infinite alternate;
 }
 
 @keyframes sonomaAuraPulse {
   0% {
-    transform: translateX(-50%) scale(0.95);
+    transform: translate3d(-50%, 0, 0) scale(0.96);
     opacity: 0.72;
-    filter: blur(55px);
   }
   50% {
-    transform: translateX(-50%) scale(1.05);
-    opacity: 1;
-    filter: blur(68px);
+    transform: translate3d(-50%, 0, 0) scale(1.04);
+    opacity: 0.95;
   }
   100% {
-    transform: translateX(-50%) scale(0.97);
-    opacity: 0.85;
-    filter: blur(60px);
+    transform: translate3d(-50%, 0, 0) scale(0.98);
+    opacity: 0.82;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-wallpaper-aura {
+    animation: none !important;
+    filter: blur(24px);
+    height: 340px;
   }
 }
 
