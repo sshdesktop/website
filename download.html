@@ -282,13 +282,13 @@
             <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
               <img src="assets/images/icons/cli.svg" alt="Command Line Interface logo" width="56" height="56">
               <div>
-                <h2 style="font-size: 1.6rem; font-weight: 700;">Linux CLI &amp; Headless Server</h2>
-                <p style="color: var(--text-dim); font-size: 0.85rem;">Servers, Bastions, Docker, MicroVMs, Alpine, RHEL</p>
+                <h2 style="font-size: 1.6rem; font-weight: 700;">Linux Server &amp; Web Mode (CLI &amp; Daemon)</h2>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Browser Access on Port 3000 &bull; Ubuntu, Debian, RHEL, Alpine &bull; 0 MB Client Overhead</p>
               </div>
             </div>
 
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-              Ultra-lightweight standalone Linux binary (~14 MB). Direct executable without tar archive extraction required. Run SSH Desktop straight from the command line.
+              Deploy the ultra-lightweight standalone server binary (~14 MB). Run in <strong>Web Mode</strong> to access the complete macOS Sonoma Desktop GUI in your web browser on port 3000, or manage servers via headless CLI.
             </p>
 
                         <div class="code-box" style="margin-top: 10px; margin-bottom: 6px;">
@@ -299,9 +299,13 @@
               <code>systemctl start sshdesktop &amp;&amp; systemctl enable sshdesktop</code>
               <button class="copy-btn" data-copy="systemctl start sshdesktop && systemctl enable sshdesktop">Copy</button>
             </div>
-            <div class="code-box" style="margin-bottom: 14px;">
+            <div class="code-box" style="margin-bottom: 8px;">
               <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
               <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt">Copy</button>
+            </div>
+            <div class="code-box" style="margin-bottom: 14px; border-left: 3px solid var(--accent-cyan);">
+              <code>http://&lt;your-server-ip&gt;:3000 (Open in Web Browser)</code>
+              <button class="copy-btn" data-copy="http://localhost:3000">Copy URL</button>
             </div>
 
                         <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">

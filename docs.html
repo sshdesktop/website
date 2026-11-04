@@ -212,6 +212,12 @@
         <!-- Sidebar Navigation -->
         <aside class="docs-sidebar" aria-label="Documentation Table of Contents">
           <div class="docs-sidebar-sticky">
+            <h3 class="docs-toc-title">Deployment &amp; Web Mode</h3>
+            <ul class="docs-toc-list" style="margin-bottom: 20px;">
+              <li><a href="#web-mode" style="color: var(--accent-cyan); font-weight: 700;">&#127760; Run in Web Mode (Browser)</a></li>
+              <li><a href="download-linux-cli.html">&#9889; Linux Server &amp; Daemon</a></li>
+            </ul>
+
             <h3 class="docs-toc-title">25-App Tutorials</h3>
             <ul class="docs-toc-list">
               <li><a href="#app-1">App 1: macOS Sonoma Desktop</a></li>
@@ -242,6 +248,82 @@
 
         <!-- Tutorials Content Area -->
         <div class="docs-content-area" id="tutorialsContainer">
+
+          <!-- DEPLOYMENT GUIDE: WEB MODE -->
+          <article class="doc-app-article" id="web-mode" data-search-terms="web mode browser cloud desktop headless server daemon port 3000 nginx caddy initial-admin-credentials" style="border: 2px solid var(--accent-cyan); margin-bottom: 40px; background: #ffffff;">
+            <div class="doc-app-header">
+              <span class="app-number-tag" style="background: var(--accent-cyan);">Web Mode</span>
+              <h3 class="doc-app-title">How to Run SSH Desktop in Web Mode (Browser Access)</h3>
+              <span class="search-intent-badge">Intent: Run SSH Desktop in web browser, server web mode, port 3000</span>
+            </div>
+
+            <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-main);">
+              <strong>Web Mode</strong> allows you to host SSH Desktop on any remote Linux server (or local machine) as an HTTP/WebSocket daemon and access the complete macOS Sonoma Cloud Desktop GUI directly inside <strong>Google Chrome, Safari, Firefox, or Microsoft Edge</strong>. This enables zero-install access from Chromebooks, iPads, tablets, locked-down enterprise workstations, or smartphones.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 24px 0;">
+              <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-weight: 700; color: var(--accent-green); margin-bottom: 6px;">&#10003; 100% Client-Free</div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">No native app installation required on the client device. Works in any modern web browser with HTML5 Canvas &amp; WebGL.</p>
+              </div>
+              <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-weight: 700; color: var(--accent-cyan); margin-bottom: 6px;">&#10003; Full 25-App Desktop</div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">Hardware PTY terminal, dual-pane SFTP, Monaco editor, Docker GUI, and database studio running smoothly in browser tabs.</p>
+              </div>
+              <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 6px;">&#10003; End-to-End Encrypted</div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">Supports native TLS/HTTPS, reverse proxies (Nginx/Caddy), and token-based cryptographic session authentication.</p>
+              </div>
+            </div>
+
+            <h4 style="font-size: 1.15rem; margin-top: 24px; margin-bottom: 12px;">Step-by-Step Web Mode Setup Guide</h4>
+
+            <div class="doc-step-box" style="margin-bottom: 18px;">
+              <h5 style="font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 6px;">Step 1: Install the Server Daemon</h5>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Run the official automated installer on your server (Ubuntu, Debian, RHEL, CentOS, Fedora, Arch, Alpine):</p>
+              <div class="code-box">
+                <code>curl -fsSL https://sshdesktop.com/install.sh | bash</code>
+                <button class="copy-btn" data-copy="curl -fsSL https://sshdesktop.com/install.sh | bash">Copy</button>
+              </div>
+            </div>
+
+            <div class="doc-step-box" style="margin-bottom: 18px;">
+              <h5 style="font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 6px;">Step 2: Start the Systemd Background Service</h5>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Enable and launch the background daemon (or run manually via CLI with <code>sshdesktop --web --port 3000</code>):</p>
+              <div class="code-box">
+                <code>sudo systemctl enable --now sshdesktop</code>
+                <button class="copy-btn" data-copy="sudo systemctl enable --now sshdesktop">Copy</button>
+              </div>
+            </div>
+
+            <div class="doc-step-box" style="margin-bottom: 18px;">
+              <h5 style="font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 6px;">Step 3: Retrieve Generated Admin Credentials</h5>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">During initialization, SSH Desktop creates a secure one-time token and administrator password:</p>
+              <div class="code-box">
+                <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
+                <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt">Copy</button>
+              </div>
+            </div>
+
+            <div class="doc-step-box" style="margin-bottom: 18px;">
+              <h5 style="font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 6px;">Step 4: Open in Web Browser</h5>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Open your favorite browser and visit your server's IP address on port 3000:</p>
+              <div class="code-box">
+                <code>http://&lt;your-server-ip&gt;:3000</code>
+                <button class="copy-btn" data-copy="http://localhost:3000">Copy URL</button>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 6px;">Log in using the admin username and password from Step 3. You can change your password immediately in Settings.</p>
+            </div>
+
+            <div class="doc-step-box" style="margin-bottom: 18px;">
+              <h5 style="font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 6px;">Step 5 (Optional): CLI Flags &amp; Custom Port</h5>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">If running directly from the command line without systemd:</p>
+              <div class="code-box">
+                <code>sshdesktop --web --port 8080 --bind 0.0.0.0</code>
+                <button class="copy-btn" data-copy="sshdesktop --web --port 8080 --bind 0.0.0.0">Copy</button>
+              </div>
+            </div>
+          </article>
 
           <!-- CATEGORY 1: DESKTOP & SHELL -->
           <div class="doc-category-group" id="cat-desktop">
