@@ -451,7 +451,11 @@ function initCommandPalette() {
     { title: "FileZilla Alternative", desc: "Integrated dual-pane SFTP + Monaco IDE + terminal vs standalone FileZilla", tag: "Comparison", icon: "🔄", url: "filezilla-alternative.html" },
     { title: "Portainer Alternative", desc: "Zero open daemon ports Docker manager vs heavy web panels", tag: "Comparison", icon: "🔄", url: "portainer-alternative.html" },
     { title: "Cockpit Alternative", desc: "Pure client-side SSH UI vs Cockpit web server", tag: "Comparison", icon: "🔄", url: "cockpit-alternative.html" },
-    { title: "Webmin Alternative", desc: "Zero Perl / Apache overhead server management vs legacy Webmin", tag: "Comparison", icon: "🔄", url: "webmin-alternative.html" }
+    { title: "Webmin Alternative", desc: "Zero Perl / Apache overhead server management vs legacy Webmin", tag: "Comparison", icon: "🔄", url: "webmin-alternative.html" },
+    // Enterprise, DevOps & Cloud Solutions
+    { title: "Enterprise & Production Infrastructure", desc: "Air-gapped security, zero cloud telemetry, FIDO2/YubiKey, Intune GPO MSI, and SOC 2 compliance", tag: "Enterprise", icon: "🏢", url: "enterprise.html" },
+    { title: "DevOps & SRE Server Suite", desc: "Multi-server parallel broadcast, Docker hub, database SSH tunnels, and live journald triage", tag: "DevOps", icon: "🛠️", url: "devops.html" },
+    { title: "Multi-Cloud VPS Control Center", desc: "Unified Linux GUI for AWS EC2, Hetzner, GCP Compute, Azure VMs, and bare-metal servers", tag: "Cloud", icon: "☁️", url: "cloud.html" }
   ];
 
   let overlay = document.getElementById('commandPaletteOverlay');
