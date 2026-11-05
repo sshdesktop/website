@@ -287,10 +287,10 @@
             <div class="query-badge" style="background: rgba(6, 182, 212, 0.15); color: #0891b2; font-weight: 700;">Featured Intent: Run SSH Desktop in Web Mode (Browser Cloud Desktop)</div>
             <h2 class="query-title">"How to run SSH Desktop in Web Mode &amp; access from Google Chrome, Safari, or Firefox"</h2>
             <div class="query-solution">
-              <p><strong>Direct Solution:</strong> Run the SSH Desktop server daemon on your Linux server using <code>curl -fsSL https://sshdesktop.com/install.sh | bash</code> or launch with <code>sshdesktop --web --port 3000</code>. View your initial admin credentials via <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code> and navigate to <strong><code>http://&lt;your-server-ip&gt;:3000</code></strong> in any web browser. You get the complete macOS Sonoma Cloud Desktop GUI, terminal, dual-pane SFTP, Docker Hub, and database studio running natively in your browser tabs with zero client installation.</p>
+              <p><strong>Direct Solution:</strong> Run the SSH Desktop server daemon on your Linux server using <code>curl -fsSL https://sshdesktop.com/install.sh | bash</code> or launch with <code>sshdesktop --server --frontend-port 2222 --backend-port 2020</code>. View your initial admin credentials via <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code> and navigate to <strong><code>http://&lt;your-server-ip&gt;:2222</code></strong> in any web browser. You get the complete macOS Sonoma Cloud Desktop GUI, terminal, dual-pane SFTP, Docker Hub, and database studio running natively in your browser tabs with zero client installation.</p>
               <div class="query-meta-bar">
                 <span>&#10003; 100% Client-Free Browser Access</span>
-                <span>&#10003; Default Port: 3000 (Customizable)</span>
+                <span>&#10003; 1 Service File: Frontend 2222 &bull; Backend 2020</span>
                 <span>&#10003; Compatible with Chromebooks, iPads &amp; Workstations</span>
                 <a href="docs.html#web-mode" class="query-link">Read Web Mode Setup Guide &rarr;</a>
               </div>

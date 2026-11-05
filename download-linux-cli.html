@@ -217,7 +217,7 @@
 
         <h1 class="hero-title">Download <span>SSH Desktop CLI</span> for Linux</h1>
         <p class="hero-lead">
-          Run SSH Desktop on headless servers, cloud VMs, and bastions. Access the full macOS Sonoma Desktop GUI directly from any web browser in <strong>Web Mode</strong> (port 3000), or manage systems directly through the ultra-fast CLI terminal daemon.
+          Run SSH Desktop on headless servers, cloud VMs, and bastions. Access the full macOS Sonoma Desktop GUI directly from any web browser in <strong>Web Mode</strong> (frontend port 2222, backend port 2020), or manage systems directly through the ultra-fast CLI terminal daemon.
         </p>
 
         <!-- One Line Quick Install Box -->
@@ -243,11 +243,11 @@
 
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; margin-top: 14px;">
             <span style="font-size: 0.85rem; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.5px;">Step 3: Access Web Mode in Your Browser</span>
-            <span style="font-size: 0.8rem; color: var(--text-dim);">&#127760; Port 3000 Web Console</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">&#127760; Frontend: 2222 &bull; Backend: 2020</span>
           </div>
           <div class="code-box" style="margin: 0; background: #f8fafc; border-color: var(--border); padding: 14px 18px;">
-            <code style="font-size: 0.95rem;">http://&lt;your-server-ip&gt;:3000</code>
-            <button class="copy-btn" data-copy="http://localhost:3000" style="padding: 6px 14px;">Copy localhost:3000</button>
+            <code style="font-size: 0.95rem;">http://&lt;your-server-ip&gt;:2222</code>
+            <button class="copy-btn" data-copy="http://localhost:2222" style="padding: 6px 14px;">Copy localhost:2222</button>
           </div>
         </div>
 
@@ -279,12 +279,39 @@
               </p>
 
               <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); margin-bottom: 20px;">
-                <h4 style="font-size: 1rem; color: var(--text-main); font-weight: 700; margin-bottom: 8px;">Run Web Mode from Command Line:</h4>
+                <h4 style="font-size: 1rem; color: var(--text-main); font-weight: 700; margin-bottom: 8px;">Run Web Mode from Command Line (Frontend: 2222, Backend: 2020):</h4>
                 <div class="code-box" style="margin-bottom: 10px;">
-                  <code>sshdesktop --web --port 3000</code>
-                  <button class="copy-btn" data-copy="sshdesktop --web --port 3000">Copy</button>
+                  <code>sshdesktop --server --frontend-port 2222 --backend-port 2020</code>
+                  <button class="copy-btn" data-copy="sshdesktop --server --frontend-port 2222 --backend-port 2020">Copy</button>
                 </div>
-                <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;">Starts the interactive web server daemon on port 3000.</p>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;">Starts the frontend Web UI on port <strong>2222</strong> and backend API daemon on port <strong>2020</strong>.</p>
+              </div>
+
+              <!-- One Service File Configuration -->
+              <div style="background: #ffffff; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <h4 style="font-size: 1rem; color: var(--accent-cyan); font-weight: 700; margin: 0;">Systemd Service File: /etc/systemd/system/sshdesktop.service</h4>
+                  <span class="badge badge-purple" style="font-size: 0.75rem;">1 Service File</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                  SSH Desktop runs as a single unified systemd service managing both the frontend web console (port 2222) and backend engine (port 2020):
+                </p>
+                <div class="code-box" style="white-space: pre; font-family: var(--font-mono); font-size: 0.85rem; padding: 14px 18px; margin: 0;">[Unit]
+Description=SSH Desktop Server Daemon (Frontend: 2222, Backend: 2020)
+After=network.target ssh.service sshd.service
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/sshdesktop --server --frontend-port 2222 --backend-port 2020
+Restart=always
+RestartSec=5s
+LimitNOFILE=65535
+Environment="FRONTEND_PORT=2222"
+Environment="BACKEND_PORT=2020"
+
+[Install]
+WantedBy=multi-user.target</div>
               </div>
 
               <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Web Mode CLI Options &amp; Flags:</h4>
@@ -305,7 +332,7 @@
                     </tr>
                     <tr>
                       <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>--port &lt;number&gt;</code></td>
-                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>3000</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Frontend: <code>2222</code> | Backend: <code>2020</code></td>
                       <td style="padding: 10px 14px; border: 1px solid var(--border);">Custom HTTP/WebSocket listening port (e.g. 8080, 8443)</td>
                     </tr>
                     <tr>
@@ -329,8 +356,8 @@
 
               <div style="background: rgba(14, 165, 233, 0.08); padding: 14px 18px; border-radius: var(--radius-sm); border-left: 4px solid var(--accent-cyan);">
                 <p style="font-size: 0.9rem; color: var(--text-main); margin: 0;">
-                  <strong>&#128274; Firewall Tip:</strong> If your server runs UFW, allow incoming traffic on port 3000:
-                  <code style="background: #ffffff; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); margin-left: 6px;">sudo ufw allow 3000/tcp</code>
+                  <strong>&#128274; Firewall Tip:</strong> If your server runs UFW, allow incoming traffic on frontend port 2222 and backend port 2020:
+                  <code style="background: #ffffff; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); margin-left: 6px;">sudo ufw allow 2222/tcp &amp;&amp; sudo ufw allow 2020/tcp</code>
                 </p>
               </div>
             </div>
@@ -461,8 +488,8 @@
                 <li>
                   <h4>Launch &amp; Access Web Mode in Browser</h4>
                   <div class="code-box">
-                    <code>http://&lt;your-server-ip&gt;:3000</code>
-                    <button class="copy-btn" data-copy="http://localhost:3000">Copy URL</button>
+                    <code>http://&lt;your-server-ip&gt;:2222</code>
+                    <button class="copy-btn" data-copy="http://localhost:2222">Copy URL</button>
                   </div>
                   <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 4px;">Open in any browser (Chrome, Safari, Firefox, Edge). Log in with admin credentials to access the macOS Sonoma cloud desktop.</p>
                 </li>

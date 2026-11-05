@@ -438,8 +438,8 @@ function initCommandPalette() {
     { title: "Download for Windows 11 / 10", desc: "Installer (.exe / MSI) with native OpenSSH integration and PuTTY migration", tag: "Download", icon: "🪟", url: "download-windows.html" },
     { title: "Download for macOS (Universal)", desc: "Native macOS app (.dmg) for Apple Silicon (M1/M2/M3/M4) and Intel", tag: "Download", icon: "🍏", url: "download-mac.html" },
     { title: "Download for Linux Desktop GUI", desc: "Packages for Ubuntu/Debian (.deb), Fedora/RHEL (.rpm), and AppImage", tag: "Download", icon: "🐧", url: "download-linux-desktop.html" },
-    { title: "Download Linux Server & Web Mode Daemon", desc: "Single-binary daemon with Web Mode browser interface on port 3000: curl -fsSL https://sshdesktop.com/install.sh", tag: "Download", icon: "⚡", url: "download-linux-cli.html" },
-    { title: "Run in Web Mode (Browser Cloud Desktop)", desc: "Host on Linux server and access full macOS Sonoma desktop GUI via web browser on port 3000", tag: "Guide", icon: "🌐", url: "docs.html#web-mode" },
+    { title: "Download Linux Server & Web Mode Daemon", desc: "Single-binary daemon with Web Mode (Frontend: 2222, Backend: 2020): curl -fsSL https://sshdesktop.com/install.sh", tag: "Download", icon: "⚡", url: "download-linux-cli.html" },
+    { title: "Run in Web Mode (Browser Cloud Desktop)", desc: "Host on Linux server and access full macOS Sonoma desktop GUI via web browser on frontend port 2222 (backend port 2020)", tag: "Guide", icon: "🌐", url: "docs.html#web-mode" },
     { title: "Download Center", desc: "All platforms, checksums, GPG signatures, and release notes", tag: "Download", icon: "📥", url: "download.html" },
     // Core Pages & Guides
     { title: "25 Built-in Apps & Feature Suite", desc: "Complete encyclopedia of all 25 SSH Desktop server management apps", tag: "Suite", icon: "🧭", url: "apps.html" },
