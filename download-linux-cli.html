@@ -217,7 +217,7 @@
 
         <h1 class="hero-title">Download <span>SSH Desktop CLI</span> for Linux</h1>
         <p class="hero-lead">
-          The ultimate command-line SSH tool for headless servers, bastion gateways, jump hosts, and Docker containers. Interactive fuzzy-search terminal UI, batch execution across server clusters, and persistent tunnel daemon.
+          Run SSH Desktop on headless servers, cloud VMs, and bastions. Access the full macOS Sonoma Desktop GUI directly from any web browser in <strong>Web Mode</strong> (frontend port 2222, backend port 2020), or manage systems directly through the ultra-fast CLI terminal daemon.
         </p>
 
         <!-- One Line Quick Install Box -->
@@ -240,6 +240,15 @@
             <code style="font-size: 0.95rem;">sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
             <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt" style="padding: 6px 14px;">Copy Command</button>
           </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; margin-top: 14px;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.5px;">Step 3: Access Web Mode in Your Browser</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">&#127760; Frontend: 2222 &bull; Backend: 2020</span>
+          </div>
+          <div class="code-box" style="margin: 0; background: #f8fafc; border-color: var(--border); padding: 14px 18px;">
+            <code style="font-size: 0.95rem;">http://&lt;your-server-ip&gt;:2222</code>
+            <button class="copy-btn" data-copy="http://localhost:2222" style="padding: 6px 14px;">Copy localhost:2222</button>
+          </div>
         </div>
 
         <div class="hero-meta">
@@ -258,6 +267,101 @@
           <!-- Left Column Content -->
           <div>
             <!-- Direct Tarball Release Binaries -->
+            <!-- Dedicated Web Mode Guide Card -->
+            <div class="card" id="web-mode-guide" style="margin-bottom: 30px; border: 2px solid var(--accent-cyan); background: #ffffff;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <span class="badge badge-cyan" style="font-size: 0.85rem;">&#127760; Web Mode (Browser Cloud Desktop)</span>
+                <span style="font-size: 0.85rem; color: var(--text-dim);">No Client Installation Required</span>
+              </div>
+              <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 12px;">How to Run SSH Desktop in Web Mode</h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+                SSH Desktop Server features a built-in <strong>Web Mode</strong> HTTP/WebSocket engine. Once launched on your Linux server, you can access the complete macOS Sonoma Desktop interface, dual-pane SFTP, Monaco editor, and all 25 administration tools straight from <strong>Google Chrome, Safari, Firefox, or Microsoft Edge</strong> on any device (including Chromebooks, tablets, or phones).
+              </p>
+
+              <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); margin-bottom: 20px;">
+                <h4 style="font-size: 1rem; color: var(--text-main); font-weight: 700; margin-bottom: 8px;">Run Web Mode from Command Line (Frontend: 2222, Backend: 2020):</h4>
+                <div class="code-box" style="margin-bottom: 10px;">
+                  <code>sshdesktop --server --frontend-port 2222 --backend-port 2020</code>
+                  <button class="copy-btn" data-copy="sshdesktop --server --frontend-port 2222 --backend-port 2020">Copy</button>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;">Starts the frontend Web UI on port <strong>2222</strong> and backend API daemon on port <strong>2020</strong>.</p>
+              </div>
+
+              <!-- One Service File Configuration -->
+              <div style="background: #ffffff; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <h4 style="font-size: 1rem; color: var(--accent-cyan); font-weight: 700; margin: 0;">Systemd Service File: /etc/systemd/system/sshdesktop.service</h4>
+                  <span class="badge badge-purple" style="font-size: 0.75rem;">1 Service File</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                  SSH Desktop runs as a single unified systemd service managing both the frontend web console (port 2222) and backend engine (port 2020):
+                </p>
+                <div class="code-box" style="white-space: pre; font-family: var(--font-mono); font-size: 0.85rem; padding: 14px 18px; margin: 0;">[Unit]
+Description=SSH Desktop Server Daemon (Frontend: 2222, Backend: 2020)
+After=network.target ssh.service sshd.service
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/sshdesktop --server --frontend-port 2222 --backend-port 2020
+Restart=always
+RestartSec=5s
+LimitNOFILE=65535
+Environment="FRONTEND_PORT=2222"
+Environment="BACKEND_PORT=2020"
+
+[Install]
+WantedBy=multi-user.target</div>
+              </div>
+
+              <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Web Mode CLI Options &amp; Flags:</h4>
+              <div style="overflow-x: auto; margin-bottom: 20px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                  <thead>
+                    <tr style="background: #f1f5f9; text-align: left;">
+                      <th style="padding: 10px 14px; border: 1px solid var(--border);">Flag</th>
+                      <th style="padding: 10px 14px; border: 1px solid var(--border);">Default</th>
+                      <th style="padding: 10px 14px; border: 1px solid var(--border);">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>--web</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">false</td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Enables self-hosted Web Mode browser interface</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>--port &lt;number&gt;</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Frontend: <code>2222</code> | Backend: <code>2020</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Custom HTTP/WebSocket listening port (e.g. 8080, 8443)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>--bind &lt;ip&gt;</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>0.0.0.0</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Bind address (use <code>127.0.0.1</code> when behind Nginx/Caddy)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>--ssl-cert &lt;path&gt;</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">none</td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Path to SSL/TLS certificate for native HTTPS</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);"><code>--ssl-key &lt;path&gt;</code></td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">none</td>
+                      <td style="padding: 10px 14px; border: 1px solid var(--border);">Path to private SSL/TLS key</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="background: rgba(14, 165, 233, 0.08); padding: 14px 18px; border-radius: var(--radius-sm); border-left: 4px solid var(--accent-cyan);">
+                <p style="font-size: 0.9rem; color: var(--text-main); margin: 0;">
+                  <strong>&#128274; Firewall Tip:</strong> If your server runs UFW, allow incoming traffic on frontend port 2222 and backend port 2020:
+                  <code style="background: #ffffff; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); margin-left: 6px;">sudo ufw allow 2222/tcp &amp;&amp; sudo ufw allow 2020/tcp</code>
+                </p>
+              </div>
+            </div>
+
             <div class="card" style="margin-bottom: 30px;">
               <h2 style="font-size: 1.5rem; margin-bottom: 16px;">Direct Standalone Binary Downloads</h2>
 
@@ -380,6 +484,14 @@
                     <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt">Copy</button>
                   </div>
                   <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 4px;">Print generated administrator username, secure password, and local access URL.</p>
+                </li>
+                <li>
+                  <h4>Launch &amp; Access Web Mode in Browser</h4>
+                  <div class="code-box">
+                    <code>http://&lt;your-server-ip&gt;:2222</code>
+                    <button class="copy-btn" data-copy="http://localhost:2222">Copy URL</button>
+                  </div>
+                  <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 4px;">Open in any browser (Chrome, Safari, Firefox, Edge). Log in with admin credentials to access the macOS Sonoma cloud desktop.</p>
                 </li>
               </ol>
             </div>
@@ -509,8 +621,11 @@
 
         <!-- Col 4: Comparison & Alternatives -->
         <div class="footer-col">
-          <h4>Comparisons</h4>
+          <h4>Enterprise &amp; Solutions</h4>
           <ul>
+            <li><a href="enterprise.html">Enterprise Infrastructure</a></li>
+            <li><a href="devops.html">DevOps &amp; SRE Suite</a></li>
+            <li><a href="cloud.html">Multi-Cloud VPS Control</a></li>
             <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
             <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
             <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
@@ -549,6 +664,13 @@
           <span class="seo-cloud-badge">SEO Index</span>
         </div>
         <div class="footer-seo-tags">
+          <a href="enterprise.html" class="seo-tag">enterprise ssh client</a>
+          <a href="enterprise.html" class="seo-tag">production server management</a>
+          <a href="devops.html" class="seo-tag">devops server automation</a>
+          <a href="devops.html" class="seo-tag">sre incident response terminal</a>
+          <a href="cloud.html" class="seo-tag">aws ec2 ssh gui</a>
+          <a href="cloud.html" class="seo-tag">multi-cloud linux management</a>
+          <a href="cloud.html" class="seo-tag">hetzner cloud server desktop</a>
           <a href="search-queries.html" class="seo-tag">remote linux gui</a>
           <a href="search-queries.html" class="seo-tag">web based ssh client</a>
           <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>

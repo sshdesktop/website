@@ -466,4 +466,34 @@
       <image:title>Privacy Policy &amp; Zero-Telemetry Commitment</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://sshdesktop.com/enterprise.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Enterprise Linux Server Management &amp; Zero-Trust GUI</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/devops.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>DevOps &amp; SRE Server Management Suite</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/cloud.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Multi-Cloud Linux VPS Management GUI</image:title>
+    </image:image>
+  </url>
 </urlset>

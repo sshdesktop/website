@@ -3,12 +3,12 @@
 # SSH Desktop - Official Linux CLI & Server Installer
 # Repository: https://github.com/sshdesktop/sshdesktop
 # Website:    https://sshdesktop.com
-# Version:    2.4.1
+# Version:    2.4.2
 # ==============================================================================
 
 set -e
 
-VERSION="2.4.1"
+VERSION="2.4.2"
 BASE_URL="https://github.com/sshdesktop/sshdesktop/releases/download/v${VERSION}"
 
 # Color codes
@@ -142,34 +142,12 @@ else
     fi
 fi
 
-# Configure Systemd Service
-echo -e "${CYAN}[*] Configuring and starting sshdesktop systemd service...${NC}"
+# Enable and start sshdesktop service
+echo -e "${CYAN}[*] Starting sshdesktop service...${NC}"
 if command -v systemctl >/dev/null 2>&1; then
-    # Ensure systemd service file exists if not already installed by deb/rpm
-    if [ ! -f /etc/systemd/system/sshdesktop.service ] && [ ! -f /lib/systemd/system/sshdesktop.service ] && [ ! -f /usr/lib/systemd/system/sshdesktop.service ]; then
-        cat << 'EOF' > /etc/systemd/system/sshdesktop.service
-[Unit]
-Description=SSH Desktop Server Daemon
-After=network.target ssh.service sshd.service
-Wants=network.target
-
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/sshdesktop --server
-Restart=always
-RestartSec=5s
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-        systemctl daemon-reload
-    fi
-
-    # Enable and start service
     systemctl daemon-reload
-    systemctl enable sshdesktop
-    systemctl start sshdesktop
+    systemctl enable sshdesktop 2>/dev/null || true
+    systemctl start sshdesktop 2>/dev/null || true
     echo -e "${GREEN}[✓] systemctl enable sshdesktop${NC}"
     echo -e "${GREEN}[✓] systemctl start sshdesktop${NC}"
     systemctl status sshdesktop --no-pager || true
@@ -179,10 +157,13 @@ else
 fi
 
 echo ""
+echo ""
 echo "--------------------------------------------------------"
 echo -e "${GREEN}${BOLD}✓ SSH Desktop Server successfully installed and active!${NC}"
-echo -e "Version:     ${BOLD}v${VERSION}${NC}"
-echo -e "Service:     ${BOLD}systemctl status sshdesktop${NC}"
-echo -e "Web Console: ${CYAN}https://sshdesktop.com/cloud-desktop.html${NC}"
+echo -e "Version:       ${BOLD}v${VERSION}${NC}"
+echo -e "Service:       ${BOLD}systemctl status sshdesktop${NC}"
+echo -e "Frontend Web:  ${CYAN}http://<your-server-ip>:2222${NC} (Port: 2222)"
+echo -e "Backend Port:  ${BOLD}2020${NC}"
+echo -e "Credentials:   ${YELLOW}sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt${NC}"
 echo "--------------------------------------------------------"
 exit 0

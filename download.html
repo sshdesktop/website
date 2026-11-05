@@ -282,13 +282,13 @@
             <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
               <img src="assets/images/icons/cli.svg" alt="Command Line Interface logo" width="56" height="56">
               <div>
-                <h2 style="font-size: 1.6rem; font-weight: 700;">Linux CLI &amp; Headless Server</h2>
-                <p style="color: var(--text-dim); font-size: 0.85rem;">Servers, Bastions, Docker, MicroVMs, Alpine, RHEL</p>
+                <h2 style="font-size: 1.6rem; font-weight: 700;">Linux Server &amp; Web Mode (CLI &amp; Daemon)</h2>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Browser Access on Port 2222 (Backend: 2020) &bull; Ubuntu, Debian, RHEL, Alpine &bull; 0 MB Client Overhead</p>
               </div>
             </div>
 
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-              Ultra-lightweight standalone Linux binary (~14 MB). Direct executable without tar archive extraction required. Run SSH Desktop straight from the command line.
+              Deploy the ultra-lightweight standalone server binary (~14 MB). Run in <strong>Web Mode</strong> to access the complete macOS Sonoma Desktop GUI in your web browser on frontend port 2222 (backend port 2020), or manage servers via headless CLI.
             </p>
 
                         <div class="code-box" style="margin-top: 10px; margin-bottom: 6px;">
@@ -299,9 +299,13 @@
               <code>systemctl start sshdesktop &amp;&amp; systemctl enable sshdesktop</code>
               <button class="copy-btn" data-copy="systemctl start sshdesktop && systemctl enable sshdesktop">Copy</button>
             </div>
-            <div class="code-box" style="margin-bottom: 14px;">
+            <div class="code-box" style="margin-bottom: 8px;">
               <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code>
               <button class="copy-btn" data-copy="sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt">Copy</button>
+            </div>
+            <div class="code-box" style="margin-bottom: 14px; border-left: 3px solid var(--accent-cyan);">
+              <code>http://&lt;your-server-ip&gt;:2222 (Web Mode &bull; Port 2222)</code>
+              <button class="copy-btn" data-copy="http://localhost:2222">Copy URL</button>
             </div>
 
                         <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
@@ -649,8 +653,11 @@
 
         <!-- Col 4: Comparison & Alternatives -->
         <div class="footer-col">
-          <h4>Comparisons</h4>
+          <h4>Enterprise &amp; Solutions</h4>
           <ul>
+            <li><a href="enterprise.html">Enterprise Infrastructure</a></li>
+            <li><a href="devops.html">DevOps &amp; SRE Suite</a></li>
+            <li><a href="cloud.html">Multi-Cloud VPS Control</a></li>
             <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
             <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
             <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
@@ -689,6 +696,13 @@
           <span class="seo-cloud-badge">SEO Index</span>
         </div>
         <div class="footer-seo-tags">
+          <a href="enterprise.html" class="seo-tag">enterprise ssh client</a>
+          <a href="enterprise.html" class="seo-tag">production server management</a>
+          <a href="devops.html" class="seo-tag">devops server automation</a>
+          <a href="devops.html" class="seo-tag">sre incident response terminal</a>
+          <a href="cloud.html" class="seo-tag">aws ec2 ssh gui</a>
+          <a href="cloud.html" class="seo-tag">multi-cloud linux management</a>
+          <a href="cloud.html" class="seo-tag">hetzner cloud server desktop</a>
           <a href="search-queries.html" class="seo-tag">remote linux gui</a>
           <a href="search-queries.html" class="seo-tag">web based ssh client</a>
           <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
