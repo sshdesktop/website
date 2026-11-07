@@ -456,7 +456,12 @@ function initCommandPalette() {
     // Enterprise, DevOps & Cloud Solutions
     { title: "Enterprise & Production Infrastructure", desc: "Air-gapped security, zero cloud telemetry, FIDO2/YubiKey, Intune GPO MSI, and SOC 2 compliance", tag: "Enterprise", icon: "🏢", url: "enterprise.html" },
     { title: "DevOps & SRE Server Suite", desc: "Multi-server parallel broadcast, Docker hub, database SSH tunnels, and live journald triage", tag: "DevOps", icon: "🛠️", url: "devops.html" },
-    { title: "Multi-Cloud VPS Control Center", desc: "Unified Linux GUI for AWS EC2, Hetzner, GCP Compute, Azure VMs, and bare-metal servers", tag: "Cloud", icon: "☁️", url: "cloud.html" }
+    { title: "Multi-Cloud VPS Control Center", desc: "Unified Linux GUI for AWS EC2, Hetzner, GCP Compute, Azure VMs, and bare-metal servers", tag: "Cloud", icon: "☁️", url: "cloud.html" },
+    // Additional Solutions & Competitor Alternatives
+    { title: "Web SSH Client & In-Browser Terminal", desc: "Self-hosted web terminal and cloud desktop on frontend port 2222 and backend port 2020", tag: "Web Mode", icon: "🌐", url: "web-ssh-client.html" },
+    { title: "SecureCRT Free Alternative", desc: "VanDyke SecureCRT alternative: tabbed hardware PTY, multi-broadcast, and local DPAPI vaults without $149 license", tag: "Comparison", icon: "🔄", url: "securecrt-alternative.html" },
+    { title: "Best SSH Client for Windows 11", desc: "Native OpenSSH, Windows DPAPI encryption, PuTTY session import, and MSI silent deployment", tag: "Windows", icon: "🪟", url: "ssh-client-windows-11.html" },
+    { title: "AWS EC2 SSH Client & GUI", desc: "Manage Amazon EC2 and Lightsail instances with native .pem keys and VPC Bastion ProxyJump", tag: "AWS", icon: "☁️", url: "aws-ec2-ssh-client.html" }
   ];
 
   let overlay = document.getElementById('commandPaletteOverlay');

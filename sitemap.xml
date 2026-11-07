@@ -496,4 +496,44 @@
       <image:title>Multi-Cloud Linux VPS Management GUI</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://sshdesktop.com/web-ssh-client.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Web SSH Client &amp; In-Browser Linux Terminal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/securecrt-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Free SecureCRT Alternative for Windows, macOS &amp; Linux</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/ssh-client-windows-11.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Best SSH Client for Windows 11 &amp; 10</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/aws-ec2-ssh-client.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>AWS EC2 SSH Client &amp; Linux VPS GUI</image:title>
+    </image:image>
+  </url>
 </urlset>
