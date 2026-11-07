@@ -99,6 +99,9 @@ Allow: /security.txt
 Allow: /.well-known/security.txt
 Allow: /humans.txt
 Allow: /sitemap.xml
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /ai.txt
 
 # AI & LLM Discovery Crawlers (Explicitly Allowed)
 User-agent: GPTBot

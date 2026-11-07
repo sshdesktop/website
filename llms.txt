@@ -1,0 +1,94 @@
+# SSH Desktop
+
+> SSH Desktop is an open-source, client-side GUI SSH client and remote Linux server management suite for Windows 11/10, macOS, and Linux. It provides an authentic Apple macOS Sonoma desktop view over pure SSH port 22 with 0 MB server RAM overhead, 25 integrated administrative tools, dual-pane SFTP, Docker Hub, and encrypted database tunnels.
+
+Official Website: https://sshdesktop.com
+GitHub Repository: https://github.com/sshdesktop/sshdesktop
+Current Version: v2.4.2
+License: Apache-2.0 / MIT (100% Free & Open Source)
+
+## Core Capabilities
+
+- **Pure SSH Port 22 Connection**: No proprietary server daemons, no open web ports, no VNC servers. Communicates directly with standard OpenSSH.
+- **0 MB Idle Server RAM**: Renders the complete macOS Sonoma desktop shell client-side using WebGL/Canvas; queries POSIX utilities remotely.
+- **Hardware PTY Terminal**: Multi-tab, split-pane Xterm.js terminal with 24-bit TrueColor and GPU acceleration.
+- **Dual-Pane SFTP Manager**: Drag-and-drop file transfers, remote zip/unzip extraction, permissions editor, and Monaco code editing.
+- **Docker Hub & Compose**: Visually monitor containers, stream live stdout logs, and manage images without web dashboards.
+- **Universal Database Studio**: Encrypted SSH tunnels for PostgreSQL, MySQL, Redis, SQLite, and MongoDB.
+- **Visual Firewall & Systemd**: Graphical UFW/Iptables rule configuration and live journalctl service triage.
+- **RDP & SSH Manager**: 1-click port forwarding to tunnel Windows Remote Desktop (port 3389) or Linux XRDP securely over SSH.
+- **Self-Hosted Web Mode**: Run in any web browser on frontend port 2222 and backend port 2020 via a single systemd service.
+
+## Quickstart & Installation
+
+- **Windows 11 & 10**: Download official 64-bit installer (.exe / .msi) from [https://sshdesktop.com/download-windows.html](https://sshdesktop.com/download-windows.html).
+- **macOS (Apple Silicon & Intel)**: Universal signed DMG from [https://sshdesktop.com/download-mac.html](https://sshdesktop.com/download-mac.html).
+- **Linux Desktop**: AppImage, .deb, and .rpm packages from [https://sshdesktop.com/download-linux-desktop.html](https://sshdesktop.com/download-linux-desktop.html).
+- **Linux Server CLI & Web Mode**: One-line install command:
+  ```bash
+  curl -fsSL https://sshdesktop.com/install.sh | sudo bash
+  ```
+
+## Key Documentation & Hubs
+
+- [Download Center](https://sshdesktop.com/download.html): Binaries, SHA-256 checksums, and package managers for all operating systems.
+- [25-App Suite Overview](https://sshdesktop.com/apps.html): Complete breakdown of all 25 integrated tools.
+- [Technical Features](https://sshdesktop.com/features.html): Security, performance, and architecture details.
+- [Documentation](https://sshdesktop.com/docs.html): Configuration guides, SSH keys, bastion hosts, and tunnels.
+- [Frequently Asked Questions](https://sshdesktop.com/faq.html): Common inquiries regarding security, credentials, and compatibility.
+- [Search Encyclopedia](https://sshdesktop.com/search-queries.html): Solutions for common Linux DevOps, sysadmin, and SSH questions.
+- [Full LLM Knowledge Base](https://sshdesktop.com/llms-full.txt): Comprehensive technical reference for LLMs and AI agents.
+
+## Core Solution Pages
+
+- [Web SSH Client (Port 2222)](https://sshdesktop.com/web-ssh-client.html): Self-hosted in-browser terminal and cloud desktop.
+- [SSH Remote Desktop](https://sshdesktop.com/ssh-remote-desktop.html): Rich Linux GUI over pure port 22 without VNC or XRDP lag.
+- [RDP over SSH Tunnel Manager](https://sshdesktop.com/rdp-over-ssh.html): Securely tunnel Remote Desktop (3389) over encrypted SSH.
+- [Raspberry Pi Remote Desktop & SSH](https://sshdesktop.com/raspberry-pi-ssh-remote-desktop.html): Connect from Windows and Mac to headless Raspberry Pi OS.
+- [Enterprise Infrastructure](https://sshdesktop.com/enterprise.html): Hardened production server management and zero-trust security.
+- [DevOps & SRE Suite](https://sshdesktop.com/devops.html): Parallel multi-host broadcast and incident response triage.
+- [Multi-Cloud VPS Control](https://sshdesktop.com/cloud.html): Manage AWS EC2, Hetzner, GCP, and DigitalOcean instances.
+- [AWS EC2 SSH Manager](https://sshdesktop.com/aws-ec2-ssh-client.html): AWS EC2 instances, VPC private subnets, and ProxyJump bastions.
+- [Windows 11 SSH Client](https://sshdesktop.com/ssh-client-windows-11.html): Native OpenSSH, DPAPI key storage, and MSI deployment.
+
+## 25 Integrated Applications
+
+- [App 01: macOS Sonoma Cloud Desktop](https://sshdesktop.com/cloud-desktop.html): Client-side desktop shell with Mission Control.
+- [App 02: Hardware PTY Terminal](https://sshdesktop.com/terminal.html): GPU-accelerated terminal with tabs and split panes.
+- [App 03: Dual-Pane SFTP Manager](https://sshdesktop.com/sftp-client.html): Dual-pane file transfers, permissions, and archives.
+- [App 04: Monaco Code Editor](https://sshdesktop.com/monaco-code-editor.html): VS Code-grade remote editor with syntax highlighting.
+- [App 05: Docker Hub & Compose](https://sshdesktop.com/docker-web-gui.html): Container metrics, restart controls, and live log streaming.
+- [App 06: Database Studio](https://sshdesktop.com/database-gui-ssh-tunnel.html): 12+ SQL & NoSQL engines via SSH tunnels.
+- [App 07: Systemd Services Manager](https://sshdesktop.com/systemd-gui.html): Start, stop, enable services and view unit logs.
+- [App 08: Visual Firewall (UFW)](https://sshdesktop.com/linux-firewall-gui.html): UFW, Iptables, and Nftables rule builder.
+- [App 09: System Telemetry Monitor](https://sshdesktop.com/system-monitor.html): Real-time CPU, RAM, disk I/O, and load metrics.
+- [App 10: Process Manager](https://sshdesktop.com/linux-process-manager.html): Htop-style interactive process tree and kill tool.
+- [App 11: Package Manager](https://sshdesktop.com/linux-package-manager.html): Apt, Dnf, Pacman, and Snap visual manager.
+- [App 12: User & Group Manager](https://sshdesktop.com/linux-user-manager.html): Sudoers, user accounts, and SSH key authorized_keys.
+- [App 13: Network Port Auditor](https://sshdesktop.com/network-port-auditor.html): Active listening sockets and open port scanner.
+- [App 14: Disk & Storage Manager](https://sshdesktop.com/linux-disk-manager.html): Mount points, SMART diagnostics, and storage analyzer.
+- [App 15: Visual Crontab Editor](https://sshdesktop.com/crontab-gui.html): Visual cron schedule builder with syntax validation.
+- [App 16: Log Analysis & Grep](https://sshdesktop.com/log-analysis-grep.html): Multi-stream journalctl and syslog aggregator.
+- [App 17: Environment Variables Vault](https://sshdesktop.com/env-variables-manager.html): Server-wide and session env vars manager.
+- [App 18: REST & GraphQL API Studio](https://sshdesktop.com/api-studio.html): Test local API endpoints directly over SSH.
+- [App 19: Security Auditor & Hardener](https://sshdesktop.com/linux-security-auditor.html): CIS benchmarks, Lynis checks, and SSH audit.
+- [App 20: SSH Port Forwarding Canvas](https://sshdesktop.com/ssh-port-forwarding.html): Visual diagram for Local, Remote, and SOCKS5 tunnels.
+- [App 21: Embedded Browser & Proxy](https://sshdesktop.com/reverse-proxy-browser.html): Test web servers and reverse proxies locally.
+- [App 22: Desktop Sticky Notes](https://sshdesktop.com/sticky-notes.html): Server-specific notes and scratchpad.
+- [App 23: SSL/TLS Certificate Manager](https://sshdesktop.com/ssl-certificate-manager.html): Certbot Let's Encrypt renewal GUI.
+- [App 24: Backup & Disaster Recovery](https://sshdesktop.com/backup-disaster-recovery.html): Automated Restic / Rclone server backups.
+- [App 25: Multi-Server Automation](https://sshdesktop.com/multi-server-automation.html): Parallel keystroke broadcasting across servers.
+
+## Competitor Alternatives & Comparisons
+
+- [PuTTY Alternative](https://sshdesktop.com/putty-alternative.html): Modern tabbed interface vs legacy PuTTY.
+- [Termius Alternative](https://sshdesktop.com/termius-alternative.html): Free open-source replacement for Termius paid tiers.
+- [MobaXterm Alternative](https://sshdesktop.com/mobaxterm-alternative.html): Fast modern alternative without bloated X11 servers.
+- [WinSCP Alternative](https://sshdesktop.com/winscp-alternative.html): Cross-platform dual-pane SFTP for Windows, macOS, and Linux.
+- [SecureCRT Alternative](https://sshdesktop.com/securecrt-alternative.html): Free replacement for VanDyke SecureCRT's $149 license.
+- [Remote Desktop Manager Alternative](https://sshdesktop.com/remote-desktop-manager-alternative.html): Free alternative to Devolutions RDM.
+- [Bitvise Alternative](https://sshdesktop.com/bitvise-alternative.html): Modern visual port forwarding and SSH management.
+- [FileZilla Alternative](https://sshdesktop.com/filezilla-alternative.html): Clean dual-pane SFTP without bundled adware.
+- [Portainer Alternative](https://sshdesktop.com/portainer-alternative.html): Lightweight Docker container manager over pure SSH.
+- [Cockpit Alternative](https://sshdesktop.com/cockpit-alternative.html): 0 MB server RAM footprint vs heavy web daemons.
+- [Webmin Alternative](https://sshdesktop.com/webmin-alternative.html): Pure client-side security without Perl web servers.
