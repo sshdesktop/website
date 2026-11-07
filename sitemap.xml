@@ -496,4 +496,204 @@
       <image:title>Multi-Cloud Linux VPS Management GUI</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://sshdesktop.com/web-ssh-client.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Web SSH Client &amp; In-Browser Linux Terminal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/securecrt-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Free SecureCRT Alternative for Windows, macOS &amp; Linux</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/ssh-client-windows-11.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Best SSH Client for Windows 11 &amp; 10</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/aws-ec2-ssh-client.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>AWS EC2 SSH Client &amp; Linux VPS GUI</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/winscp-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>WinSCP Alternative for Mac &amp; Linux</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/warp-terminal-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Warp Terminal Alternative - Privacy-First &amp; Offline</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/cyberduck-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Cyberduck Alternative - Dual-Pane SFTP with Terminal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/royal-tsx-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Royal TSX Alternative for Mac &amp; Windows</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/tabby-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Tabby Alternative - Lightweight Terminal &amp; Server GUI</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/iterm2-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>iTerm2 Alternative for Windows 11 &amp; Linux</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/remote-desktop-manager-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Devolutions Remote Desktop Manager Alternative</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/bitvise-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Bitvise SSH Alternative for Mac &amp; Linux</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/xshell-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Free NetSarang Xshell Alternative</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/guacamole-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Apache Guacamole Alternative - Web SSH Client</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/dbeaver-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Lightweight DBeaver Alternative with SSH Tunnel</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/cpanel-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Free cPanel Alternative - 0 MB Server RAM</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/aapanel-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Secure aaPanel Alternative - Linux Server GUI</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/superputty-alternative.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>SuperPuTTY &amp; KiTTY Alternative for Windows 11</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/rdp-over-ssh.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>RDP over SSH Tunnel &amp; Connection Manager</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/ssh-remote-desktop.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>SSH Remote Desktop &amp; Cloud Desktop View</image:title>
+    </image:image>
+  </url>
 </urlset>
