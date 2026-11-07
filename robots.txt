@@ -1,23 +1,43 @@
 # Robots.txt for SSH Desktop (https://sshdesktop.com)
-# Optimized for Googlebot, Bingbot, Applebot, DuckDuckBot, Yandex, Baidu
+# Canonical URL: https://sshdesktop.com/robots.txt
+# Sitemap: https://sshdesktop.com/sitemap.xml
+# Updated: 2026-11-07
 
 User-agent: *
 Allow: /
 Allow: /assets/
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/images/
+Allow: /site.webmanifest
+Allow: /favicon.svg
 
-# Core Hubs
+# Core Navigation & Hubs
+Allow: /
 Allow: /apps.html
-Allow: /search-queries.html
+Allow: /features.html
 Allow: /docs.html
 Allow: /download.html
 Allow: /pricing.html
+Allow: /search-queries.html
 Allow: /faq.html
 Allow: /about.html
 Allow: /privacy.html
 Allow: /security.html
 
-# 22 Built-in Apps & Tools
-Allow: /features.html
+# Enterprise, DevOps & Multi-Cloud Solutions
+Allow: /web-ssh-client.html
+Allow: /enterprise.html
+Allow: /devops.html
+Allow: /cloud.html
+Allow: /aws-ec2-ssh-client.html
+Allow: /ssh-client-windows-11.html
+Allow: /rdp-over-ssh.html
+Allow: /ssh-remote-desktop.html
+
+# 25 Built-in Apps & Linux Administration Suite
+Allow: /cloud-desktop.html
+Allow: /terminal.html
 Allow: /sftp-client.html
 Allow: /monaco-code-editor.html
 Allow: /docker-web-gui.html
@@ -43,25 +63,58 @@ Allow: /backup-disaster-recovery.html
 Allow: /webhook-server.html
 Allow: /multi-server-automation.html
 
-# Competitor Intercept Pages
-Allow: /mobaxterm-alternative.html
-Allow: /filezilla-alternative.html
-Allow: /portainer-alternative.html
-Allow: /webmin-alternative.html
-Allow: /cockpit-alternative.html
+# Competitor Alternative & Comparison Guides
 Allow: /putty-alternative.html
 Allow: /termius-alternative.html
+Allow: /mobaxterm-alternative.html
+Allow: /winscp-alternative.html
+Allow: /securecrt-alternative.html
+Allow: /bitvise-alternative.html
+Allow: /remote-desktop-manager-alternative.html
+Allow: /filezilla-alternative.html
+Allow: /portainer-alternative.html
+Allow: /cockpit-alternative.html
+Allow: /webmin-alternative.html
+Allow: /superputty-alternative.html
+Allow: /warp-terminal-alternative.html
+Allow: /cyberduck-alternative.html
+Allow: /royal-tsx-alternative.html
+Allow: /tabby-alternative.html
+Allow: /iterm2-alternative.html
+Allow: /xshell-alternative.html
+Allow: /guacamole-alternative.html
+Allow: /dbeaver-alternative.html
+Allow: /cpanel-alternative.html
+Allow: /aapanel-alternative.html
 
-# Download Platforms
+# Platform Downloads
 Allow: /download-windows.html
 Allow: /download-mac.html
 Allow: /download-linux-desktop.html
 Allow: /download-linux-cli.html
 
-# Standards
+# Security & Metadata Standards
 Allow: /security.txt
 Allow: /.well-known/security.txt
 Allow: /humans.txt
+Allow: /sitemap.xml
 
-# Sitemaps
+# AI & LLM Discovery Crawlers (Explicitly Allowed)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Host & Sitemap Declarations
+Host: https://sshdesktop.com
 Sitemap: https://sshdesktop.com/sitemap.xml
