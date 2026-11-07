@@ -475,7 +475,9 @@ function initCommandPalette() {
     { title: "DBeaver Alternative", desc: "Lightweight SQL & NoSQL studio with automatic point-to-point SSH tunnels", tag: "Comparison", icon: "🔄", url: "dbeaver-alternative.html" },
     { title: "cPanel Free Alternative", desc: "0 MB server RAM overhead and $0 licensing to manage Linux VPS servers", tag: "Comparison", icon: "🔄", url: "cpanel-alternative.html" },
     { title: "aaPanel Alternative", desc: "Secure server management over standard SSH port 22 with zero open web attack surfaces", tag: "Comparison", icon: "🔄", url: "aapanel-alternative.html" },
-    { title: "SuperPuTTY Alternative", desc: "Rock-solid tabbed terminal with modern fonts and 1-click PuTTY session import on Windows 11", tag: "Comparison", icon: "🔄", url: "superputty-alternative.html" }
+    { title: "SuperPuTTY Alternative", desc: "Rock-solid tabbed terminal with modern fonts and 1-click PuTTY session import on Windows 11", tag: "Comparison", icon: "🔄", url: "superputty-alternative.html" },
+    { title: "RDP over SSH Tunnel Manager", desc: "Tunnel Windows Remote Desktop (port 3389) over encrypted SSH (port 22) with 1-click port forwarding and unified RDP/SSH manager", tag: "Tunneling", icon: "🔒", url: "rdp-over-ssh.html" },
+    { title: "SSH Remote Desktop (Desktop View)", desc: "Linux GUI and authentic macOS desktop view over pure SSH port 22 with 0 MB server RAM and zero VNC lag", tag: "Remote Desktop", icon: "🖥️", url: "ssh-remote-desktop.html" }
   ];
 
   let overlay = document.getElementById('commandPaletteOverlay');

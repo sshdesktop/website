@@ -676,4 +676,24 @@
       <image:title>SuperPuTTY &amp; KiTTY Alternative for Windows 11</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://sshdesktop.com/rdp-over-ssh.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>RDP over SSH Tunnel &amp; Connection Manager</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/ssh-remote-desktop.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>SSH Remote Desktop &amp; Cloud Desktop View</image:title>
+    </image:image>
+  </url>
 </urlset>

@@ -18,7 +18,7 @@
   <title>Top Linux Server &amp; SSH Search Queries - Solutions Encyclopedia | SSH Desktop</title>
   <meta name="title" content="Top Linux Server &amp; SSH Search Queries - Solutions Encyclopedia | SSH Desktop">
   <meta name="description" content="Authoritative solutions for the top searched Linux server queries: how to manage Linux with macOS UI, connect to Postgres over SSH tunnel, visual UFW firewall, extract zip on server, Docker web GUI, and systemd logs.">
-  <meta name="keywords" content="remote linux gui, web based ssh client, linux server control panel, gui for ubuntu server, webmin alternative, cockpit alternative, linux systemd gui, docker remote management gui, sftp client with text editor, database gui with ssh tunnel, putty alternative, termius alternative, how to manage linux server with macos style interface, best self-hosted server dashboard with terminal and file manager, connect to remote postgresql database through ssh tunnel without exposing port, visual ufw and iptables firewall manager for ubuntu, lightweight remote desktop for headless linux vps, how to view linux systemd logs in real time with gui, web-based postman alternative with ssh port forwarding, linux user and group permissions manager gui, extract zip on remote server, monaco editor sftp, free termius alternative">
+  <meta name="keywords" content="rdp over ssh, ssh remote desktop, rdp and ssh manager, linux remote desktop over ssh, rdp via ssh, remote desktop over ssh, remote desktop using ssh, windows rdp ssh, remote linux gui, web based ssh client, linux server control panel, gui for ubuntu server, webmin alternative, cockpit alternative, linux systemd gui, docker remote management gui, sftp client with text editor, database gui with ssh tunnel, putty alternative, termius alternative, how to manage linux server with macos style interface, best self-hosted server dashboard with terminal and file manager, connect to remote postgresql database through ssh tunnel without exposing port, visual ufw and iptables firewall manager for ubuntu, lightweight remote desktop for headless linux vps, how to view linux systemd logs in real time with gui, web-based postman alternative with ssh port forwarding, linux user and group permissions manager gui, extract zip on remote server, monaco editor sftp, free termius alternative">
   <meta name="author" content="SSH Desktop Research Team">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="revisit-after" content="2 days">
@@ -281,6 +281,51 @@
     <section class="section">
       <div class="container">
         <div class="query-encyclopedia-grid">
+          <!-- Query - RDP over SSH -->
+          <article class="query-card" style="border: 2px solid #2563eb; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(37, 99, 235, 0.15); color: #2563eb; font-weight: 700;">Featured Intent: RDP over SSH Tunnel &amp; Port 3389 Encryption</div>
+            <h2 class="query-title">"How to run RDP over SSH tunnel on Windows 10, Windows 11, and Ubuntu Linux"</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Keep port 3389 closed to public scanner botnets by tunneling Windows Remote Desktop (RDP) through an encrypted SSH tunnel (port 22). With SSH Desktop, utilize App 20 (SSH Port Forwarding &amp; Tunnels) or run <code>ssh -L 33890:127.0.0.1:3389 user@host</code> and connect your RDP client to <code>localhost:33890</code>. Learn more on our dedicated <a href="rdp-over-ssh.html">RDP over SSH Tunnel Guide</a>.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Keep Port 3389 Closed to Internet</span>
+                <span>&#10003; 1-Click Automated Port Forwarding</span>
+                <span>&#10003; Supports Windows 10/11 &amp; Linux XRDP</span>
+                <a href="rdp-over-ssh.html" class="query-link">Explore RDP over SSH &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - SSH Remote Desktop (Desktop View) -->
+          <article class="query-card" style="border: 2px solid #059669; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(5, 150, 105, 0.15); color: #059669; font-weight: 700;">Featured Intent: SSH Remote Desktop &amp; Linux GUI over Pure Port 22</div>
+            <h2 class="query-title">"How to get a remote desktop view using SSH without installing VNC or XRDP"</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="ssh-remote-desktop.html">SSH Remote Desktop</a>. Unlike VNC or XRDP which consume 1GB+ RAM on your remote Linux host and stream heavy pixel buffers, SSH Desktop renders an authentic Apple macOS Sonoma shell locally on your client machine with 25 native server apps (Process Explorer, Dual-Pane SFTP, Docker Hub, Service Inspector) over pure SSH port 22 with 0 MB server RAM overhead.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 0 MB Idle Server RAM Overhead</span>
+                <span>&#10003; Pure SSH Port 22 (Zero VNC Ports)</span>
+                <span>&#10003; 60 FPS Client-Side WebGL Rendering</span>
+                <a href="ssh-remote-desktop.html" class="query-link">Explore SSH Remote Desktop &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - RDP and SSH Manager -->
+          <article class="query-card" style="border: 2px solid #7c3aed; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(124, 58, 237, 0.15); color: #7c3aed; font-weight: 700;">Featured Intent: Free RDP &amp; SSH Connection Manager</div>
+            <h2 class="query-title">"Best free alternative to Devolutions Remote Desktop Manager for managing RDP and SSH connections"</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Switch to SSH Desktop's unified <a href="rdp-over-ssh.html">RDP and SSH Connection Manager</a>. Organize your cloud fleet (AWS, Hetzner, GCP), bare-metal servers, Windows workstations, and Linux containers in one clean client-side interface with credential vaulting, native terminal hardware acceleration, and zero licensing fees.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Unified RDP, SSH &amp; SFTP Manager</span>
+                <span>&#10003; 100% Free &amp; Open Source</span>
+                <span>&#10003; No $249/yr Devolutions Subscription</span>
+                <a href="remote-desktop-manager-alternative.html" class="query-link">Compare vs Devolutions RDM &rarr;</a>
+              </div>
+            </div>
+          </article>
+
 
           <!-- Query - Web Mode: Run in Browser -->
           <article class="query-card" style="border: 2px solid #06b6d4; background: #ffffff;">
@@ -804,6 +849,18 @@
           <span class="seo-cloud-badge">SEO Index</span>
         </div>
         <div class="footer-seo-tags">
+          <a href="rdp-over-ssh.html" class="seo-tag">rdp over ssh</a>
+          <a href="rdp-over-ssh.html" class="seo-tag">rdp ssh manager</a>
+          <a href="rdp-over-ssh.html" class="seo-tag">windows rdp ssh</a>
+          <a href="rdp-over-ssh.html" class="seo-tag">rdp over ssh windows 10</a>
+          <a href="rdp-over-ssh.html" class="seo-tag">rdp and ssh manager</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">ssh remote desktop</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">linux remote desktop over ssh</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">linux remote desktop ssh</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">remote desktop over ssh ubuntu</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">ssh with desktop view</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">remote desktop using ssh</a>
+          <a href="ssh-remote-desktop.html" class="seo-tag">ssh connection remote desktop</a>
           <a href="winscp-alternative.html" class="seo-tag">winscp for mac</a>
           <a href="warp-terminal-alternative.html" class="seo-tag">warp terminal alternative</a>
           <a href="cyberduck-alternative.html" class="seo-tag">cyberduck alternative</a>
