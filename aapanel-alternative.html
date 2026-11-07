@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Secure aaPanel Alternative | Client-Side & Web Linux Server GUI | SSH Desktop</title>
+  <meta name="title" content="Secure aaPanel Alternative | Client-Side & Web Linux Server GUI | SSH Desktop">
+  <meta name="description" content="Looking for an aaPanel alternative without security vulnerabilities or heavy server daemons? SSH Desktop manages Linux servers over standard SSH port 22 or clean Web Mode.">
+  <meta name="keywords" content="aapanel alternative, lightweight linux server control panel, secure control panel, open source aapanel alternative, replace aapanel">
+  <meta name="author" content="SSH Desktop Core Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/aapanel-alternative.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/aapanel-alternative.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="Secure aaPanel Alternative | Client-Side & Web Linux Server GUI">
+  <meta property="og:description" content="Looking for an aaPanel alternative without security vulnerabilities or heavy server daemons? SSH Desktop manages Linux servers over standard SSH port 22 or clean Web Mode.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/aapanel-alternative.html">
+  <meta name="twitter:title" content="Secure aaPanel Alternative | Client-Side & Web Linux Server GUI">
+  <meta name="twitter:description" content="Looking for an aaPanel alternative without security vulnerabilities or heavy server daemons? SSH Desktop manages Linux servers over standard SSH port 22 or clean Web Mode.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Preload & Stylesheet -->
+  <link rel="preload" href="assets/css/style.css" as="style">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Structured Data: SoftwareApplication & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://sshdesktop.com/aapanel-alternative.html#software",
+        "name": "SSH Desktop - aaPanel Alternative",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows 11, Windows 10, macOS (Apple Silicon M1-M4 & Intel), Linux (Ubuntu, Debian, Fedora, Arch)",
+        "softwareVersion": "2.4.2",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "description": "Looking for an aaPanel alternative without security vulnerabilities or heavy server daemons? SSH Desktop manages Linux servers over standard SSH port 22 or clean Web Mode."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sshdesktop.com/" },
+          { "@type": "ListItem", "position": 2, "name": "aaPanel Alternative", "item": "https://sshdesktop.com/aapanel-alternative.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is SSH Desktop more secure than aaPanel?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Web control panels like aaPanel run as root with internet-facing HTTP ports, creating a massive attack vector. SSH Desktop operates over standard SSH2 cryptography with hardware YubiKey support."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Site Header (Apple-Style Clean) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38" decoding="async" fetchpriority="high">
+      </a>
+
+      <!-- Navigation Links (Clean & Focused) -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions CTA -->
+      <div class="header-actions">
+        <!-- Compact Search Icon Trigger -->
+        <button class="header-search-icon-btn" id="headerSearchTrigger" aria-label="Quick Search" title="Search apps and docs (Ctrl + K)">
+          <span class="search-icon">&#128269;</span>
+          <kbd class="search-kbd">&#8984;K</kbd>
+        </button>
+
+        <!-- GitHub Star Badge -->
+        <a href="https://github.com/sshdesktop/sshdesktop" class="header-github-btn" target="_blank" rel="noopener" aria-label="Star on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-star-label">Star</span>
+          <span class="gh-counter" id="navGhStars">14.2k</span>
+        </a>
+
+        <!-- Download CTA -->
+        <a href="download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Command Palette Modal (Ctrl + K) -->
+  <div class="command-palette-overlay" id="commandPaletteOverlay" role="dialog" aria-modal="true" aria-label="Command search" style="display: none;">
+    <div class="command-palette-card">
+      <div class="command-palette-header">
+        <span class="command-search-icon">&#128269;</span>
+        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off" spellcheck="false">
+        <div class="command-palette-header-actions">
+          <kbd class="command-esc-badge" id="commandEscBadge" title="Press Escape to close">ESC</kbd>
+          <button type="button" class="command-palette-close-btn" id="commandPaletteClose" aria-label="Close search (ESC)">&times;</button>
+        </div>
+      </div>
+      <div class="command-palette-results" id="commandPaletteResults">
+        <!-- Live dynamic search items -->
+      </div>
+      <div class="command-palette-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</span>
+        <span><kbd>&crarr;</kbd> to open</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Breadcrumbs -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li aria-current="page">aaPanel Alternative</li>
+      </ol>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero text-center" style="padding-top: 20px;">
+      <div class="container">
+        <div class="hero-pill">
+          <span class="badge badge-purple">🔒 Audited SSH Security • Zero Open Insecure Ports • 0 MB Server RAM</span>
+        </div>
+        <h1 class="hero-title">The Secure, Modern <span>aaPanel Alternative</span></h1>
+        <p class="hero-lead">
+          aaPanel installs heavy web stacks that open high-risk ports and have suffered documented security vulnerabilities. SSH Desktop operates over audited OpenSSH (port 22) or clean Web Mode on ports 2222/2020 with zero server attack surface.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="download.html" class="btn btn-emerald btn-lg">
+            <span>Download Free (v2.4.2)</span>
+          </a>
+          <a href="features.html" class="btn btn-secondary btn-lg">Explore All 25 Apps &rarr;</a>
+        </div>
+
+        <div class="hero-meta">
+          <span>&#10003; 100% Free Core (Apache 2.0 / MIT)</span>
+          <span>&#10003; Windows, macOS &amp; Linux</span>
+          <span>&#10003; Zero Cloud Telemetry</span>
+          <span>&#10003; 0 MB Server RAM Overhead</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="section" style="padding-top: 10px;">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge badge-cyan">Side-by-Side Breakdown</span>
+          <h2 class="section-title">SSH Desktop vs. aaPanel</h2>
+          <p class="section-desc">Compare architecture, security, cross-platform support, and integrated tooling.</p>
+        </div>
+
+        <div style="overflow-x: auto; margin-top: 32px;">
+          <table class="comp-table" style="width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md);">
+            <thead>
+              <tr style="background: #f1f5f9; text-align: left;">
+                <th style="padding: 16px 20px; font-weight: 700; border-bottom: 1px solid var(--border);">Capability</th>
+                <th style="padding: 16px 20px; font-weight: 700; border-bottom: 1px solid var(--border); color: var(--accent-cyan);">SSH Desktop</th>
+                <th style="padding: 16px 20px; font-weight: 700; border-bottom: 1px solid var(--border);">aaPanel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); font-weight: 600;">Security & Attack Surface</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); color: #059669; font-weight: 700;">✓ Standard audited OpenSSH (Port 22)</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border);">✗ Exposed web panel ports (8888) with known exploits</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); font-weight: 600;">Server Bloat & Daemons</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); color: #059669; font-weight: 700;">✓ 0 MB idle RAM (Client-rendered)</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border);">✗ Installs heavy Python/PHP/Nginx control daemons</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); font-weight: 600;">Telemetry & Data Privacy</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); color: #059669; font-weight: 700;">✓ Zero telemetry or tracking</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border);">✗ Unverified telemetry and third-party phone-home pings</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); font-weight: 600;">Docker & Container Hub</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); color: #059669; font-weight: 700;">✓ Native Docker Hub & Compose controls</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border);">✓ Docker plugin</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); font-weight: 600;">Pricing & Open Source</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border); color: #059669; font-weight: 700;">100% Free / Apache 2.0 & MIT</td>
+                <td style="padding: 14px 20px; border-bottom: 1px solid var(--border);">Freemium with paid feature plugins</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Feature Highlights Grid -->
+    <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge badge-emerald">Key Advantages</span>
+          <h2 class="section-title">Why Developers Choose SSH Desktop</h2>
+          <p class="section-desc">Experience an all-in-one Linux management environment without bloat or subscription walls.</p>
+        </div>
+
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 36px;">
+          <div class="card" style="padding: 28px; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md);">
+            <div style="font-size: 2rem; margin-bottom: 12px;">🛡️</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 10px;">Zero Exposed Web Panel Ports</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+              Never expose port 8888 or custom control panels to automated port scanners and brute-force botnets. SSH Desktop works strictly over your existing SSH connection.
+            </p>
+          </div>
+          <div class="card" style="padding: 28px; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md);">
+            <div style="font-size: 2rem; margin-bottom: 12px;">⚡</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 10px;">Pure Client-Side Speed</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+              Instead of waiting for a slow PHP/Python server daemon to respond, SSH Desktop executes locally on your workstation GPU with instant feedback.
+            </p>
+          </div>
+          <div class="card" style="padding: 28px; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md);">
+            <div style="font-size: 2rem; margin-bottom: 12px;">📦</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 10px;">Standard Linux Cleanliness</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+              aaPanel modifies core OS packages and compiles custom software trees. SSH Desktop respects your native package manager (APT, DNF, Pacman).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="container max-w-3xl">
+        <div class="section-header text-center">
+          <span class="badge badge-purple">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list" style="margin-top: 24px;">
+          <details class="faq-item" open>
+            <summary class="faq-question">Why is SSH Desktop more secure than aaPanel?</summary>
+            <div class="faq-answer">
+              <p>Web control panels like aaPanel run as root with internet-facing HTTP ports, creating a massive attack vector. SSH Desktop operates over standard SSH2 cryptography with hardware YubiKey support.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="text-center mt-12" style="text-align: center; margin-top: 36px;">
+          <a href="download.html" class="btn btn-primary btn-lg">Switch to SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Pre-Footer Call to Action Card -->
+      <div class="footer-cta-card">
+        <div class="footer-cta-content">
+          <div class="footer-cta-badge"><span class="status-pulse-dot"></span> Next-Gen Linux Administration</div>
+          <h3 class="footer-cta-title">Manage Your Entire Linux Fleet with macOS Elegance</h3>
+          <p class="footer-cta-desc">Agentless, client-side macOS Sonoma desktop shell with 25 built-in server administration tools. Connect directly over pure, encrypted SSH &mdash; zero open web ports and zero idle server RAM.</p>
+          <div class="footer-cta-tags">
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 0% Idle Server RAM</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 256-Bit AES SSH Encryption</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> Windows &bull; macOS &bull; Linux</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 100% Free &amp; Open Source</span>
+          </div>
+        </div>
+        <div class="footer-cta-actions">
+          <a href="download.html" class="footer-download-btn">
+            <span>&#128230; Download Free</span>
+            <small>v2.4.2 &bull; All Operating Systems</small>
+          </a>
+          <a href="https://github.com/sshdesktop/sshdesktop" class="footer-github-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Star on GitHub</span>
+            <span class="gh-counter">14.2k</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main 5-Column Navigation Grid -->
+      <div class="footer-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-brand-col">
+          <a href="/" class="footer-brand-logo" aria-label="SSH Desktop Homepage">
+            <img src="assets/images/logo.svg" alt="SSH Desktop Logo" width="180" height="38" loading="lazy" decoding="async">
+            <span class="footer-version-tag">v2.4.2</span>
+          </a>
+          <p class="footer-mission-text">
+            The open-source, client-side macOS Sonoma desktop shell for Linux servers. Manage 10+ remote servers with full PTY terminal, dual-pane SFTP, Monaco editor, Docker GUI, and 12+ database engines over pure SSH.
+          </p>
+
+          <div class="footer-status-badge">
+            <span class="status-pulse-dot"></span>
+            <span>Client Engine: <strong>All Systems Operational</strong></span>
+          </div>
+
+          <div class="footer-distro-chips">
+            <span class="distro-chip">Ubuntu</span>
+            <span class="distro-chip">Debian</span>
+            <span class="distro-chip">RHEL</span>
+            <span class="distro-chip">CentOS</span>
+            <span class="distro-chip">Fedora</span>
+            <span class="distro-chip">Rocky</span>
+            <span class="distro-chip">Arch</span>
+            <span class="distro-chip">Alpine</span>
+            <span class="distro-chip">macOS</span>
+            <span class="distro-chip">Windows 11</span>
+          </div>
+        </div>
+
+        <!-- Col 2: 25-App Suite (Core) -->
+        <div class="footer-col">
+          <h4>25-App Suite (Core)</h4>
+          <ul>
+            <li><a href="cloud-desktop.html">App 01: macOS Sonoma Shell</a></li>
+            <li><a href="terminal.html">App 02: Hardware PTY Terminal</a></li>
+            <li><a href="sftp-client.html">App 03: Dual-Pane SFTP Manager</a></li>
+            <li><a href="monaco-code-editor.html">App 04: Monaco Code Editor</a></li>
+            <li><a href="docker-web-gui.html">App 05: Docker Hub &amp; Compose</a></li>
+            <li><a href="database-gui-ssh-tunnel.html">App 06: Database Studio (12+ DBs)</a></li>
+            <li><a href="systemd-gui.html">App 07: Systemd Services Manager</a></li>
+            <li><a href="linux-firewall-gui.html">App 08: Visual UFW &amp; Iptables</a></li>
+            <li><a href="system-monitor.html">App 09: System Telemetry Monitor</a></li>
+            <li><a href="linux-process-manager.html">App 10: Task &amp; Process Manager</a></li>
+            <li><a href="linux-package-manager.html">App 11: Package Manager GUI</a></li>
+            <li><a href="linux-user-manager.html">App 12: User &amp; Sudo Administrator</a></li>
+            <li><a href="apps.html">View All 25 Apps &rarr;</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Advanced App Suite -->
+        <div class="footer-col">
+          <h4>Advanced Apps</h4>
+          <ul>
+            <li><a href="network-port-auditor.html">App 13: Port &amp; Socket Auditor</a></li>
+            <li><a href="linux-disk-manager.html">App 14: Disk &amp; S.M.A.R.T. Health</a></li>
+            <li><a href="crontab-gui.html">App 15: Visual Crontab Manager</a></li>
+            <li><a href="log-analysis-grep.html">App 16: System Log Aggregator</a></li>
+            <li><a href="env-variables-manager.html">App 17: Environment Secrets Vault</a></li>
+            <li><a href="api-studio.html">App 18: REST API Studio (SSH)</a></li>
+            <li><a href="linux-security-auditor.html">App 19: Security &amp; Lynis Auditor</a></li>
+            <li><a href="ssh-port-forwarding.html">App 20: Visual Tunnel Canvas</a></li>
+            <li><a href="reverse-proxy-browser.html">App 21: Nginx &amp; Caddy Browser</a></li>
+            <li><a href="sticky-notes.html">App 22: Server Scratchpad Notes</a></li>
+            <li><a href="ssl-certificate-manager.html">App 23: Let's Encrypt SSL Manager</a></li>
+            <li><a href="backup-disaster-recovery.html">App 24: Backup &amp; Disaster Recovery</a></li>
+            <li><a href="multi-server-automation.html">App 25: Multi-Server Broadcast</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Solutions & Comparisons -->
+        <div class="footer-col">
+          <h4>Enterprise &amp; Solutions</h4>
+          <ul>
+            <li><a href="web-ssh-client.html">Web SSH Client (Port 2222)</a></li>
+            <li><a href="enterprise.html">Enterprise Infrastructure</a></li>
+            <li><a href="devops.html">DevOps &amp; SRE Suite</a></li>
+            <li><a href="cloud.html">Multi-Cloud VPS Control</a></li>
+            <li><a href="aws-ec2-ssh-client.html">AWS EC2 SSH Manager</a></li>
+            <li><a href="ssh-client-windows-11.html">Windows 11 SSH Client</a></li>
+            <li><a href="winscp-alternative.html">WinSCP Alternative (Mac &amp; Linux)</a></li>
+            <li><a href="warp-terminal-alternative.html">Warp Terminal Alternative</a></li>
+            <li><a href="cyberduck-alternative.html">Cyberduck Alternative</a></li>
+            <li><a href="royal-tsx-alternative.html">Royal TSX Alternative</a></li>
+            <li><a href="tabby-alternative.html">Tabby Alternative</a></li>
+            <li><a href="iterm2-alternative.html">iTerm2 Alternative (Windows)</a></li>
+            <li><a href="securecrt-alternative.html">SecureCRT Alternative</a></li>
+            <li><a href="termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="search-queries.html">Search Topics Encyclopedia</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Downloads & Resources -->
+        <div class="footer-col">
+          <h4>Downloads &amp; Docs</h4>
+          <ul>
+            <li><a href="download.html">Download Center (All OS)</a></li>
+            <li><a href="download-windows.html">Windows 11 / 10 Installer</a></li>
+            <li><a href="download-mac.html">macOS Universal DMG</a></li>
+            <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
+            <li><a href="download-linux-cli.html">Linux Server Daemon (CLI)</a></li>
+            <li><a href="docs.html">Documentation &amp; Tutorials</a></li>
+            <li><a href="security.html">Zero-Knowledge Security</a></li>
+            <li><a href="pricing.html">Open-Source License</a></li>
+            <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
+            <li><a href="faq.html">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semantic SEO Keywords Cloud -->
+      <div class="footer-seo-cloud">
+        <div class="footer-seo-header">
+          <span class="seo-cloud-title">Popular Linux Server Administration, Enterprise &amp; DevOps Searches:</span>
+          <span class="seo-cloud-badge">SEO Index</span>
+        </div>
+        <div class="footer-seo-tags">
+          <a href="winscp-alternative.html" class="seo-tag">winscp for mac</a>
+          <a href="warp-terminal-alternative.html" class="seo-tag">warp terminal alternative</a>
+          <a href="cyberduck-alternative.html" class="seo-tag">cyberduck alternative</a>
+          <a href="royal-tsx-alternative.html" class="seo-tag">royal tsx alternative</a>
+          <a href="tabby-alternative.html" class="seo-tag">tabby alternative</a>
+          <a href="iterm2-alternative.html" class="seo-tag">iterm2 alternative windows</a>
+          <a href="web-ssh-client.html" class="seo-tag">web ssh client</a>
+          <a href="securecrt-alternative.html" class="seo-tag">securecrt alternative</a>
+          <a href="ssh-client-windows-11.html" class="seo-tag">best ssh client for windows 11</a>
+          <a href="aws-ec2-ssh-client.html" class="seo-tag">aws ec2 ssh client</a>
+          <a href="enterprise.html" class="seo-tag">enterprise ssh client</a>
+          <a href="devops.html" class="seo-tag">devops server automation</a>
+          <a href="cloud.html" class="seo-tag">multi-cloud linux management</a>
+          <a href="search-queries.html" class="seo-tag">remote linux gui</a>
+          <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
+          <a href="database-gui-ssh-tunnel.html" class="seo-tag">database gui with ssh tunnel</a>
+          <a href="webmin-alternative.html" class="seo-tag">linux server control panel</a>
+          <a href="cockpit-alternative.html" class="seo-tag">cockpit alternative</a>
+          <a href="termius-alternative.html" class="seo-tag">free termius alternative</a>
+          <a href="putty-alternative.html" class="seo-tag">putty alternative windows 11</a>
+          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm alternative mac</a>
+          <a href="filezilla-alternative.html" class="seo-tag">filezilla sftp client</a>
+          <a href="portainer-alternative.html" class="seo-tag">portainer alternative</a>
+          <a href="systemd-gui.html" class="seo-tag">linux systemd gui</a>
+          <a href="sftp-client.html" class="seo-tag">sftp client with text editor</a>
+          <a href="linux-firewall-gui.html" class="seo-tag">visual ufw and iptables</a>
+          <a href="system-monitor.html" class="seo-tag">linux hardware telemetry</a>
+          <a href="linux-process-manager.html" class="seo-tag">htop web interface</a>
+          <a href="crontab-gui.html" class="seo-tag">visual crontab editor</a>
+          <a href="ssh-port-forwarding.html" class="seo-tag">ssh port forwarding visual</a>
+          <a href="monaco-code-editor.html" class="seo-tag">vs code over ssh</a>
+          <a href="ssl-certificate-manager.html" class="seo-tag">certbot ssl manager gui</a>
+          <a href="backup-disaster-recovery.html" class="seo-tag">restic sftp backup</a>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Built for DevOps, sysadmins, and Linux developers worldwide. Licensed under Apache 2.0 / MIT.</p>
+          <div class="footer-trust-pills">
+            <span class="trust-pill">&#128274; 256-Bit AES SSH Encryption</span>
+            <span class="trust-pill">&#9889; 0% Idle Server RAM</span>
+            <span class="trust-pill">&#128640; Zero Cloud Telemetry</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Legal and Meta">
+            <a href="privacy.html">Privacy</a>
+            <a href="security.html">Security</a>
+            <a href="security.txt">Security.txt</a>
+            <a href="humans.txt">Humans.txt</a>
+            <a href="robots.txt">Robots.txt</a>
+            <a href="sitemap.xml">Sitemap.xml</a>
+          </nav>
+          <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+            <span>Back to top</span>
+            <span class="back-to-top-arrow">&uarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

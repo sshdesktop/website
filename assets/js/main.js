@@ -461,7 +461,21 @@ function initCommandPalette() {
     { title: "Web SSH Client & In-Browser Terminal", desc: "Self-hosted web terminal and cloud desktop on frontend port 2222 and backend port 2020", tag: "Web Mode", icon: "🌐", url: "web-ssh-client.html" },
     { title: "SecureCRT Free Alternative", desc: "VanDyke SecureCRT alternative: tabbed hardware PTY, multi-broadcast, and local DPAPI vaults without $149 license", tag: "Comparison", icon: "🔄", url: "securecrt-alternative.html" },
     { title: "Best SSH Client for Windows 11", desc: "Native OpenSSH, Windows DPAPI encryption, PuTTY session import, and MSI silent deployment", tag: "Windows", icon: "🪟", url: "ssh-client-windows-11.html" },
-    { title: "AWS EC2 SSH Client & GUI", desc: "Manage Amazon EC2 and Lightsail instances with native .pem keys and VPC Bastion ProxyJump", tag: "AWS", icon: "☁️", url: "aws-ec2-ssh-client.html" }
+    { title: "AWS EC2 SSH Client & GUI", desc: "Manage Amazon EC2 and Lightsail instances with native .pem keys and VPC Bastion ProxyJump", tag: "AWS", icon: "☁️", url: "aws-ec2-ssh-client.html" },
+    { title: "WinSCP Alternative (Mac & Linux)", desc: "Dual-pane SFTP file manager with Monaco editor and PTY terminal for macOS and Linux", tag: "Comparison", icon: "🔄", url: "winscp-alternative.html" },
+    { title: "Warp Terminal Alternative", desc: "Privacy-first, zero telemetry, offline SSH terminal with no mandatory login", tag: "Comparison", icon: "🔄", url: "warp-terminal-alternative.html" },
+    { title: "Cyberduck Alternative", desc: "Integrated dual-pane SFTP + Monaco editor + hardware PTY terminal in one window", tag: "Comparison", icon: "🔄", url: "cyberduck-alternative.html" },
+    { title: "Royal TSX Alternative", desc: "100% free server connection manager with unlimited connections and macOS design", tag: "Comparison", icon: "🔄", url: "royal-tsx-alternative.html" },
+    { title: "Tabby Terminal Alternative", desc: "Lightweight, instant-launch terminal and 25-app server suite without Electron RAM bloat", tag: "Comparison", icon: "🔄", url: "tabby-alternative.html" },
+    { title: "iTerm2 Alternative for Windows", desc: "Apple-grade split panes, custom themes, and hardware PTY for Windows 11 and Linux", tag: "Comparison", icon: "🔄", url: "iterm2-alternative.html" },
+    { title: "Devolutions RDM Alternative", desc: "Free, client-side SSH/SFTP connection vault without $249/year enterprise fees", tag: "Comparison", icon: "🔄", url: "remote-desktop-manager-alternative.html" },
+    { title: "Bitvise SSH Alternative", desc: "Visual port forwarding canvas and dual-pane SFTP natively on Mac, Linux, and Windows", tag: "Comparison", icon: "🔄", url: "bitvise-alternative.html" },
+    { title: "NetSarang Xshell Alternative", desc: "Free tabbed terminal sessions, multi-server broadcast, and SFTP across Mac and Windows", tag: "Comparison", icon: "🔄", url: "xshell-alternative.html" },
+    { title: "Apache Guacamole Alternative", desc: "Single 1-line binary Web Mode on ports 2222/2020 without Tomcat/guacd complexity", tag: "Comparison", icon: "🔄", url: "guacamole-alternative.html" },
+    { title: "DBeaver Alternative", desc: "Lightweight SQL & NoSQL studio with automatic point-to-point SSH tunnels", tag: "Comparison", icon: "🔄", url: "dbeaver-alternative.html" },
+    { title: "cPanel Free Alternative", desc: "0 MB server RAM overhead and $0 licensing to manage Linux VPS servers", tag: "Comparison", icon: "🔄", url: "cpanel-alternative.html" },
+    { title: "aaPanel Alternative", desc: "Secure server management over standard SSH port 22 with zero open web attack surfaces", tag: "Comparison", icon: "🔄", url: "aapanel-alternative.html" },
+    { title: "SuperPuTTY Alternative", desc: "Rock-solid tabbed terminal with modern fonts and 1-click PuTTY session import on Windows 11", tag: "Comparison", icon: "🔄", url: "superputty-alternative.html" }
   ];
 
   let overlay = document.getElementById('commandPaletteOverlay');
