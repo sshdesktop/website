@@ -34,6 +34,7 @@ Allow: /aws-ec2-ssh-client.html
 Allow: /ssh-client-windows-11.html
 Allow: /rdp-over-ssh.html
 Allow: /ssh-remote-desktop.html
+Allow: /raspberry-pi-ssh-remote-desktop.html
 
 # 25 Built-in Apps & Linux Administration Suite
 Allow: /cloud-desktop.html
