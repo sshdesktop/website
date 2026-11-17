@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up Logrotate on Linux: Rotation, Compression & Retention (2026)</title>
+  <meta name="description" content="Master logrotate on Ubuntu, Debian, and RHEL. Prevent full disks with automatic log rotation, gzip compression, date stamping, and visual log analytics.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Set Up Logrotate on Linux: Rotation, Compression & Retention (2026)">
+  <meta property="og:description" content="Master logrotate on Ubuntu, Debian, and RHEL. Prevent full disks with automatic log rotation, gzip compression, date stamping, and visual log analytics.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Set Up Logrotate on Linux: Rotation, Compression & Retention (2026)">
+  <meta name="twitter:description" content="Master logrotate on Ubuntu, Debian, and RHEL. Prevent full disks with automatic log rotation, gzip compression, date stamping, and visual log analytics.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html",
+        "name": "How to Set Up Logrotate on Linux: Rotation, Compression & Retention (2026)",
+        "description": "Master logrotate on Ubuntu, Debian, and RHEL. Prevent full disks with automatic log rotation, gzip compression, date stamping, and visual log analytics."
+      },
+      "headline": "How to Set Up Logrotate on Linux: Complete 2026 Guide",
+      "description": "Master logrotate on Ubuntu, Debian, and RHEL. Prevent full disks with automatic log rotation, gzip compression, date stamping, and visual log analytics.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Set Up Logrotate on Linux: Rotation, Compression & Retention (2026)",
+          "item": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why does logrotate fail to release disk space after rotating a log file?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If a running daemon (like Nginx, Apache, or a Node.js process) holds an open file descriptor, deleting or moving the file will not release disk space. You must use copytruncate or send a USR1 reload signal in a postrotate script so the daemon reopens the new log file."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I force logrotate to run immediately for testing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run sudo logrotate -vf /etc/logrotate.d/your-config. The -v flag enables verbose output so you can see each step, and -f forces log rotation even if the scheduled frequency or size criteria have not yet been met."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where are logrotate status and execution logs stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Logrotate records the timestamp of the last rotation in /var/lib/logrotate/status (or /var/lib/logrotate.status). Systemd timer logs can be inspected via journalctl -u logrotate.service."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Set Up Logrotate on Linux: Rotation, Compression & Retention (2026)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">DevOps & Maintenance</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>10 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Set Up Logrotate on Linux: Complete 2026 Guide</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Uncontrolled log file growth is one of the leading causes of production server outages. When <code>/var/log</code> fills to 100%, database transactions fail, systemd cannot spawn new processes, and SSH logins become impossible. <code>logrotate</code> automates log rotation, gzip compression, scheduled pruning, and daemon reloads. Learn how to configure robust log rotation for custom apps and web servers in 2026.
+      </p>
+
+      <h2>How Logrotate Operates Under Systemd</h2>
+      <p>
+        Modern Linux distributions run <code>logrotate</code> via a daily systemd timer (<code>logrotate.timer</code>) rather than a traditional cron job. When triggered, it parses the main configuration file at <code>/etc/logrotate.conf</code> along with all modular configuration files located in <code>/etc/logrotate.d/</code>.
+      </p>
+
+      <h2>Step 1: Anatomy of a Production Logrotate File</h2>
+      <p>
+        Create a new logrotate configuration for a custom application or microservice:
+      </p>
+      <pre><code>sudo nano /etc/logrotate.d/myapp</code></pre>
+      <p>Paste the following production-grade configuration:</p>
+      <pre><code>/var/log/myapp/*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0640 myapp adm
+    sharedscripts
+    dateext
+    postrotate
+        /bin/systemctl reload myapp.service > /dev/null 2>&1 || true
+    endscript
+}</code></pre>
+
+      <h2>Directives Explained</h2>
+      <ul>
+        <li><code>daily</code>: Rotates logs once every 24 hours. (Can also be <code>weekly</code>, <code>monthly</code>, or size-based like <code>size 100M</code>).</li>
+        <li><code>rotate 14</code>: Retains 14 rotated archives before deleting the oldest file.</li>
+        <li><code>compress</code>: Compresses rotated files using gzip, reducing log footprint by up to 90%.</li>
+        <li><code>delaycompress</code>: Delays compression until the next rotation cycle, ensuring active processes are not locked.</li>
+        <li><code>missingok</code>: Prevents errors if the log file is absent.</li>
+        <li><code>notifempty</code>: Skips rotation if the log file is 0 bytes.</li>
+        <li><code>copytruncate</code>: Truncates the original file in place instead of moving it (ideal for daemons that cannot be reloaded).</li>
+        <li><code>dateext</code>: Appends date stamps (YYYYMMDD) instead of sequential numbers (.1, .2).</li>
+      </ul>
+
+      <h2>Step 2: Testing and Debugging Logrotate</h2>
+      <p>Before leaving your new rule to the daily timer, test it in dry-run mode:</p>
+      <pre><code># Dry run: Test syntax and actions without modifying files
+sudo logrotate -d /etc/logrotate.d/myapp
+
+# Force execution: Rotate files immediately with verbose output
+sudo logrotate -vf /etc/logrotate.d/myapp</code></pre>
+
+      <h2>Step 3: Inspecting Rotation Status</h2>
+      <p>View when each managed log file was last rotated:</p>
+      <pre><code>sudo cat /var/lib/logrotate/status | grep myapp</code></pre>
+      <p>Check the systemd timer schedule:</p>
+      <pre><code>systemctl list-timers | grep logrotate</code></pre>
+
+      <h2>Analyze Logs and Disk Usage Visually with SSH Desktop</h2>
+      <p>
+        Hunting down bloated log directories across multiple servers can be tedious in a raw terminal. <strong>SSH Desktop</strong> makes server maintenance effortless:
+      </p>
+      <ul>
+        <li><strong>Remote Log Explorer:</strong> Search and stream active and compressed <code>.gz</code> log files with multi-server grep.</li>
+        <li><strong>Disk Space Analyzer:</strong> Visualize storage consumption across <code>/var/log</code> and pinpoint runaway files instantly.</li>
+        <li><strong>Systemd Manager:</strong> Inspect logrotate timers and reload background services with one click.</li>
+      </ul>
+      <p>
+        Check out our <a href="../log-analysis-grep.html">Remote Log Analyzer</a> and <a href="../linux-disk-manager.html">Linux Disk Manager</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Why does logrotate fail to release disk space after rotating a log file?</h3>
+          <p class="faq-answer">If a running daemon (like Nginx, Apache, or a Node.js process) holds an open file descriptor, deleting or moving the file will not release disk space. You must use copytruncate or send a USR1 reload signal in a postrotate script so the daemon reopens the new log file.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I force logrotate to run immediately for testing?</h3>
+          <p class="faq-answer">Run sudo logrotate -vf /etc/logrotate.d/your-config. The -v flag enables verbose output so you can see each step, and -f forces log rotation even if the scheduled frequency or size criteria have not yet been met.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Where are logrotate status and execution logs stored?</h3>
+          <p class="faq-answer">Logrotate records the timestamp of the last rotation in /var/lib/logrotate/status (or /var/lib/logrotate.status). Systemd timer logs can be inspected via journalctl -u logrotate.service.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

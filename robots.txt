@@ -14,12 +14,24 @@ Allow: /favicon.svg
 
 # Core Navigation & Hubs
 Allow: /
+Allow: /docs/
+Allow: /tutorials.html
+Allow: /installation.html
+Allow: /quickstart.html
+Allow: /cheat-sheet.html
+Allow: /terms.html
+Allow: /contact.html
+Allow: /blog/
+Allow: /alternatives/
+Allow: /alternatives.html
 Allow: /apps.html
 Allow: /features.html
 Allow: /docs.html
 Allow: /download.html
 Allow: /pricing.html
-Allow: /search-queries.html
+Allow: /changelog.html
+Allow: /knowledge-base.html
+Disallow: /search-queries.html
 Allow: /faq.html
 Allow: /about.html
 Allow: /privacy.html

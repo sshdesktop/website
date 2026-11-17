@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -32,7 +32,7 @@
   <meta property="og:site_name" content="SSH Desktop">
   <meta property="og:title" content="SSH Desktop – Official Site | Free GUI SSH Client &amp; Linux Remote Desktop">
   <meta property="og:description" content="Official website of SSH Desktop: the free, open-source GUI SSH client for Windows, macOS and Linux. Manage remote Linux servers with a desktop view, hardware terminal, SFTP, Docker, and tunnels.">
-  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter Card -->
@@ -40,57 +40,24 @@
   <meta name="twitter:url" content="https://sshdesktop.com/">
   <meta name="twitter:title" content="SSH Desktop – Official Site | Free GUI SSH Client &amp; Linux Remote Desktop">
   <meta name="twitter:description" content="Official website of SSH Desktop: the free, open-source GUI SSH client for Windows, macOS and Linux. Manage remote Linux servers with a desktop view, hardware terminal, SFTP, Docker, and tunnels.">
-  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
   <link rel="help" type="text/markdown" href="llms.txt">
   <link rel="alternate" type="text/markdown" href="llms.txt" title="LLM Context">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- Critical CSS for Instant LCP -->
-  <style id="critical-css">
-:root{--bg-dark:#ffffff;--bg-card:#f8fafc;--bg-card-hover:#f1f5f9;--bg-card-alt:#f0f4f8;--border:#e2e8f0;--border-focus:#0071e3;--text-main:#0f172a;--text-muted:#475569;--text-dim:#475569;--accent-cyan:#0071e3;--accent-blue:#0071e3;--accent-apple:#0071e3;--accent-sunset:#ff9500;--accent-sunset-coral:#ff5e3a;--accent-emerald:#059669;--accent-green:#28cd41;--accent-purple:#7c3aed;--accent-amber:#ff9500;--accent-red:#ff3b30;--code-bg:#f1f5f9;--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;--font-mono:"JetBrains Mono","Fira Code",Consolas,Monaco,"Courier New",monospace;--radius-sm:6px;--radius-md:10px;--radius-lg:16px;--shadow-sm:0 2px 8px rgba(0,0,0,0.06);--shadow-md:0 4px 14px rgba(0,0,0,0.08);--shadow-lg:0 10px 30px rgba(0,0,0,0.1);--max-w:1200px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-family:var(--font-sans);background-color:var(--bg-dark);color:var(--text-main);line-height:1.6;scroll-behavior:smooth;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100%;width:100%}
-body{min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;max-width:100%;width:100%;position:relative;background-color:#ffffff}
-a{color:var(--accent-cyan);text-decoration:none}
-img,svg{max-width:100%;display:block}
-.container{width:100%;max-width:var(--max-w);margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
-.announcement-bar{background:linear-gradient(90deg,#f0f9ff 0%,#e0f2fe 50%,#f0f9ff 100%);border-bottom:1px solid rgba(2,132,199,0.2);color:#334155;font-size:0.82rem;padding:8px 16px;text-align:center;position:relative;z-index:101;display:flex;align-items:center;justify-content:center;gap:10px}
-.announcement-pill{background:rgba(2,132,199,0.1);color:#0284c7;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:9999px;text-transform:uppercase}
-.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:64px}
-.header-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
-.brand{display:flex;align-items:center;gap:10px}
-.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{color:var(--text-muted);font-weight:500;font-size:0.95rem}
-.header-actions{display:flex;align-items:center;gap:12px}
-.mobile-toggle{display:none}
-@media (max-width:1080px){.nav-links{display:none !important}.mobile-toggle{display:flex}}
-.hero{padding:48px 0 30px;text-align:center;position:relative;overflow:hidden;width:100%;max-width:100%}
-.hero-wallpaper-aura{position:absolute;top:22%;left:50%;transform:translate3d(-50%,0,0);width:92%;max-width:1100px;height:540px;background:radial-gradient(ellipse at 50% 45%,rgba(255,149,0,0.22) 0%,rgba(255,94,58,0.16) 28%,rgba(0,113,227,0.18) 55%,rgba(168,85,247,0.08) 75%,transparent 85%);filter:blur(48px);pointer-events:none;z-index:0;will-change:transform,opacity;contain:layout paint}
-.hero-pill{margin-bottom:20px}
-.badge-sunset-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(255,149,0,0.08);border:1px solid rgba(255,149,0,0.28);border-radius:9999px;font-size:0.82rem;font-weight:600;color:#c2410c;max-width:100%;word-break:break-word}
-.hero-title{font-size:3rem;font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:20px;max-width:900px;margin-left:auto;margin-right:auto;color:var(--text-main);contain:layout}
-.hero-title span{background:linear-gradient(135deg,#0071e3 0%,#ff5e3a 50%,#ff9500 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-lead{font-size:1.25rem;color:var(--text-muted);max-width:760px;margin:0 auto 32px;line-height:1.6;contain:layout inline-size;text-rendering:optimizeSpeed;content-visibility:visible}
-.hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;margin-bottom:24px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;font-weight:600;font-size:0.95rem;border-radius:var(--radius-sm);cursor:pointer;border:1px solid transparent}
-.btn-primary{background:var(--accent-cyan);color:#ffffff}
-.btn-secondary{background:#ffffff;color:var(--text-main);border-color:var(--border)}
-.btn-lg{padding:14px 28px;font-size:1.05rem;border-radius:var(--radius-md)}
-.cli-command-row{display:flex;align-items:center;justify-content:space-between;background:#f8fafc;border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 16px;gap:12px}
-.copy-btn{background:#ffffff;border:1px solid var(--border);color:var(--text-main);padding:4px 10px;border-radius:4px;font-size:0.78rem;cursor:pointer}
-.hero-meta{font-size:0.875rem;color:var(--text-dim);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-@media (max-width:768px){.hero{padding:36px 0 20px}.hero-title{font-size:2.1rem;line-height:1.18;margin-bottom:14px}.hero-lead{font-size:1.05rem;padding:0 8px;margin-bottom:24px}.hero-ctas{flex-direction:column;width:100%;max-width:320px;margin-left:auto;margin-right:auto;gap:12px}.hero-ctas .btn{width:100%}.hero-wallpaper-aura{animation:none !important;filter:blur(24px);height:340px}}
-@media (max-width:480px){.hero-title{font-size:1.75rem}.hero-lead{font-size:0.96rem}}
-</style>
+  <!-- Google Search Console Verification (Replace with your token if verifying via meta tag) -->
+  <!-- <meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE"> -->
 
   <!-- Preload & Stylesheet -->
-  <link rel="preload" href="assets/css/style.css" as="style">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" href="assets/css/style.min.css" as="style">
+  <link rel="stylesheet" href="assets/css/style.min.css">
 
   <!-- Structured Data: SoftwareApplication, WebSite, FAQPage -->
   <script type="application/ld+json">
@@ -330,7 +297,7 @@ img,svg{max-width:100%;display:block}
         <ul class="nav-links" id="navLinks">
           <li><a href="apps.html">Apps</a></li>
           <li><a href="features.html">Features</a></li>
-          <li><a href="docs.html">Docs</a></li>
+          <li><a href="docs/">Docs</a></li>`r`n          <li><a href="blog/">Blog</a></li>
           <li><a href="pricing.html">Pricing</a></li>
         </ul>
       </nav>
@@ -395,7 +362,7 @@ img,svg{max-width:100%;display:block}
       <!-- Ambient Sonoma Wallpaper Aura Glow -->
       <div class="hero-wallpaper-aura" aria-hidden="true"></div>
 
-      <div class="container" style="position: relative; z-index: 1;">
+      <div class="container hero-container-relative">
         <div class="hero-pill">
           <span class="badge badge-sunset-pill">&#9733; Official Site &bull; Free Open-Source SSH Desktop Client &bull; v2.4.2</span>
         </div>
@@ -404,14 +371,14 @@ img,svg{max-width:100%;display:block}
           <span>SSH Desktop</span> &ndash; Official Free GUI SSH Client &amp; <span>Linux Remote Desktop</span>
         </h1>
 
-        <div class="hero-lead" style="font-size: 1.15rem; color: var(--text-muted); max-width: 820px; margin: 0 auto 28px; line-height: 1.65; text-align: left; background: #ffffff; padding: 1.75rem 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
-          <p style="margin-bottom: 1rem; font-size: 1.15rem; color: #0f172a; font-weight: 600;">
+        <div class="hero-lead hero-lead-card">
+          <p class="hero-lead-title">
             <strong>SSH Desktop</strong> is a free, open-source <strong>GUI SSH client</strong> for Windows, macOS, and Linux. Connect to remote Linux servers using secure SSH connections and manage your infrastructure through an intuitive graphical desktop interface.
           </p>
-          <p style="margin-bottom: 0.75rem; color: #475569; font-size: 0.98rem;">
+          <p class="hero-lead-subtitle">
             Unlike traditional command-line SSH terminals, SSH Desktop brings essential server administration tools into one unified application:
           </p>
-          <ul style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.5rem 1rem; margin-bottom: 1rem; font-size: 0.92rem; color: #334155;">
+          <ul class="hero-features-grid">
             <li>&#10003; <strong>SSH Terminal</strong> with multiple tabs &amp; split panes</li>
             <li>&#10003; <strong>Dual-Pane SFTP</strong> file transfer &amp; sync</li>
             <li>&#10003; <strong>Remote Code Editor</strong> with syntax highlighting</li>
@@ -420,13 +387,13 @@ img,svg{max-width:100%;display:block}
             <li>&#10003; <strong>SSH Tunnel Manager</strong> (Local, Remote, SOCKS5)</li>
             <li>&#10003; <strong>Linux Administration</strong> (Systemd, UFW, Processes)</li>
           </ul>
-          <p style="margin: 0; color: #64748b; font-size: 0.92rem;">
+          <p class="hero-lead-footer">
             Whether you are a developer, DevOps engineer, system administrator, or Linux enthusiast, SSH Desktop simplifies remote server management with 0 MB extra server RAM.
           </p>
         </div>
 
         <div class="hero-ctas">
-          <a href="download.html" class="btn btn-primary btn-lg" id="heroDynamicDownload" style="box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);">
+          <a href="download.html" class="btn btn-primary btn-lg hero-cta-primary-glow" id="heroDynamicDownload">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
             </svg>
@@ -436,11 +403,11 @@ img,svg{max-width:100%;display:block}
         </div>
 
         <!-- 1-Line CLI Quickstart Bar -->
-        <div class="cli-command-row" style="max-width: 720px; margin: 18px auto 26px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-          <span style="font-size: 0.8rem; font-weight: 700; color: #475569; text-transform: uppercase;">Server &amp; Web Mode:</span>
+        <div class="cli-command-row cli-quickstart-bar">
+          <span class="cli-quickstart-label">Server &amp; Web Mode:</span>
           <code>curl -fsSL https://sshdesktop.com/install.sh | sudo bash</code>
           <button class="copy-btn" data-copy="curl -fsSL https://sshdesktop.com/install.sh | sudo bash">Copy</button>
-          <a href="docs.html#web-mode" style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; text-decoration: none; padding: 4px 8px; background: rgba(14, 165, 233, 0.1); border-radius: 4px; white-space: nowrap;">Web Mode (Port 2222) &rarr;</a>
+          <a href="docs.html#web-mode" class="cli-web-mode-link">Web Mode (Port 2222) &rarr;</a>
         </div>
 
         <div class="hero-meta">
@@ -451,7 +418,7 @@ img,svg{max-width:100%;display:block}
         </div>
 
         <!-- macOS Sonoma 25-App Interactive Screenshot Slider & Floating Dock -->
-        <div style="text-align: center; margin-top: 36px; margin-bottom: 24px;">
+        <div class="showcase-section-header">
           <h2 class="section-title" id="showcase-title">Interactive macOS Sonoma 25-App Showcase</h2>
           <p class="section-subtitle">Experience all 25 native Linux management apps with live 10-second rotations</p>
         </div>
@@ -494,7 +461,8 @@ img,svg{max-width:100%;display:block}
           <div class="slider-screen-frame" id="sliderScreenFrame" title="Click and hold to pause 10s rotation">
             <picture id="sliderMainPicture">
               <source id="sliderMainWebp" srcset="assets/images/screenshots/screenshot-sonoma.webp" type="image/webp">
-              <img src="assets/images/screenshots/screenshot-sonoma.webp" alt="macOS Sonoma Cloud Desktop Shell Screenshot" id="sliderMainImg" class="slider-main-image" width="1366" height="767" loading="lazy" decoding="async">
+              <source id="sliderMainJpg" srcset="assets/images/screenshots/screenshot-sonoma.jpg" type="image/jpeg">
+              <img src="assets/images/screenshots/screenshot-sonoma.jpg" alt="macOS Sonoma Cloud Desktop Shell Screenshot" id="sliderMainImg" class="slider-main-image" width="1366" height="767" loading="lazy" decoding="async">
             </picture>
             
             <!-- Hold-to-Pause Visual Watermark Badge -->
@@ -636,73 +604,73 @@ img,svg{max-width:100%;display:block}
           <!-- Feature 1: SSH Terminal Client -->
           <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
             <div>
-              <div style="font-size: 2rem; margin-bottom: 0.75rem;">💻</div>
+              <div class="feature-col-icon">💻</div>
               <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">SSH Terminal Client</h3>
               <p style="font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
                 Manage remote Linux servers with a multi-tab terminal, split panes, and instant command execution. Powered by hardware-accelerated Xterm.js with 24-bit TrueColor and native UTF-8.
               </p>
             </div>
-            <a href="terminal.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Explore Hardware Terminal &rarr;</a>
+            <a href="terminal.html" class="feature-col-link">Explore Hardware Terminal &rarr;</a>
           </div>
 
           <!-- Feature 2: SFTP File Transfer -->
           <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
             <div>
-              <div style="font-size: 2rem; margin-bottom: 0.75rem;">📁</div>
+              <div class="feature-col-icon">📁</div>
               <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">SFTP File Transfer</h3>
               <p style="font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
                 Upload, download, browse, and manage remote server files through a visual dual-pane file manager with drag-and-drop, remote zip extraction, and Monaco code editing.
               </p>
             </div>
-            <a href="sftp-client.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Explore Dual-Pane SFTP &rarr;</a>
+            <a href="sftp-client.html" class="feature-col-link">Explore Dual-Pane SFTP &rarr;</a>
           </div>
 
           <!-- Feature 3: Docker Management -->
           <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
             <div>
-              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🐳</div>
+              <div class="feature-col-icon">🐳</div>
               <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Docker Management</h3>
               <p style="font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
                 Manage remote containers, inspect real-time stdout logs, monitor memory usage, and execute commands inside containers without opening heavy web control panels.
               </p>
             </div>
-            <a href="docker-web-gui.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Explore Docker Hub &rarr;</a>
+            <a href="docker-web-gui.html" class="feature-col-link">Explore Docker Hub &rarr;</a>
           </div>
 
           <!-- Feature 4: Database Management -->
           <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
             <div>
-              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🗄️</div>
+              <div class="feature-col-icon">🗄️</div>
               <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Database Management</h3>
               <p style="font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
                 Connect to PostgreSQL, MySQL, Redis, SQLite, and MongoDB over secure local SSH tunnels. Keep production database ports closed to the public internet.
               </p>
             </div>
-            <a href="database-gui-ssh-tunnel.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Explore Database Studio &rarr;</a>
+            <a href="database-gui-ssh-tunnel.html" class="feature-col-link">Explore Database Studio &rarr;</a>
           </div>
 
           <!-- Feature 5: SSH Tunnel Manager -->
           <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
             <div>
-              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔀</div>
+              <div class="feature-col-icon">🔀</div>
               <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">SSH Tunnel Manager</h3>
               <p style="font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
                 Configure local, remote, dynamic SOCKS5 port forwarding, and RDP over SSH tunnels with 1 click. Includes auto-reconnect, tunnel health monitoring, and zero CLI hassle.
               </p>
             </div>
-            <a href="ssh-port-forwarding.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Explore SSH Tunnels &rarr;</a>
+            <a href="ssh-port-forwarding.html" class="feature-col-link">Explore SSH Tunnels &rarr;</a>
           </div>
 
           <!-- Feature 6: Linux Server Administration -->
           <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
             <div>
-              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🛡️</div>
+              <div class="feature-col-icon">🛡️</div>
               <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Linux Server Administration</h3>
               <p style="font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
                 Inspect systemd services, journald logs, active processes, and visual UFW firewall rules directly through encrypted SSH commands without installing server agents.
               </p>
             </div>
-            <a href="apps.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Explore All 25 Apps &rarr;</a>
+            <a href="apps.html" class="feature-col-link">Explore All 25 Apps &rarr;</a>
           </div>
         </div>
       </div>
@@ -1176,7 +1144,7 @@ img,svg{max-width:100%;display:block}
           <span class="badge badge-purple">Comprehensive Benchmark</span>
           <h2 class="section-title" id="comparison-title">SSH Desktop vs Cockpit vs Webmin vs Termius vs Portainer vs FileZilla</h2>
           <p class="section-desc">
-            Looking for a <a href="putty-alternative.html" style="color: var(--accent-cyan); font-weight: 600;">PuTTY alternative</a>, <a href="termius-alternative.html" style="color: var(--accent-cyan); font-weight: 600;">Termius alternative</a>, or <a href="winscp-alternative.html" style="color: var(--accent-cyan); font-weight: 600;">WinSCP alternative</a>? SSH Desktop combines SSH terminal access, SFTP file management, remote code editing, Docker control, and Linux administration into one seamless, free application.
+            Looking for a <a href="alternatives/putty-alternative.html" style="color: var(--accent-cyan); font-weight: 600;">PuTTY alternative</a>, <a href="alternatives/termius-alternative.html" style="color: var(--accent-cyan); font-weight: 600;">Termius alternative</a>, or <a href="alternatives/winscp-alternative.html" style="color: var(--accent-cyan); font-weight: 600;">WinSCP alternative</a>? SSH Desktop combines SSH terminal access, SFTP file management, remote code editing, Docker control, and Linux administration into one seamless, free application.
           </p>
         </div>
 
@@ -1311,7 +1279,7 @@ img,svg{max-width:100%;display:block}
             <p style="font-size: 0.92rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
               Inspect the source code, verify cryptographic handling, and contribute. We maintain public issue tracking, audited dependencies, and transparent release tags.
             </p>
-            <a href="https://github.com/sshdesktop/sshdesktop" target="_blank" rel="noopener noreferrer" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">View on GitHub (14.2k Stars) &rarr;</a>
+            <a href="https://github.com/sshdesktop/sshdesktop" target="_blank" rel="noopener noreferrer" class="feature-col-link">View on GitHub (14.2k Stars) &rarr;</a>
           </div>
 
           <div class="card" style="border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
@@ -1325,7 +1293,7 @@ img,svg{max-width:100%;display:block}
             <p style="font-size: 0.92rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
               Negotiates industry-standard cryptographic algorithms including Ed25519, ECDSA, RSA-4096, and FIDO2 hardware keys. Fully compliant with RFC 4253 OpenSSH standards.
             </p>
-            <a href="security.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Read Security Architecture &rarr;</a>
+            <a href="security.html" class="feature-col-link">Read Security Architecture &rarr;</a>
           </div>
 
           <div class="card" style="border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; background: #ffffff;">
@@ -1339,97 +1307,20 @@ img,svg{max-width:100%;display:block}
             <p style="font-size: 0.92rem; color: #475569; line-height: 1.55; margin-bottom: 1rem;">
               Your SSH keys and server passwords never touch third-party cloud servers. Credentials are encrypted locally using native OS hardware-backed cryptographic vaults.
             </p>
-            <a href="privacy.html" style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">Review Privacy Policy &rarr;</a>
+            <a href="privacy.html" class="feature-col-link">Review Privacy Policy &rarr;</a>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Top SEO Search Queries & Solution Finder -->
-    <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);" aria-labelledby="queries-title">
-      <div class="container">
-        <div class="section-header">
-          <span class="badge badge-purple">&#128269; Top SEO Search Topics &bull; High Intent Solutions</span>
-          <h2 class="section-title" id="queries-title">Common Linux Server &amp; SSH Search Queries</h2>
-          <p class="section-desc">Instant visual solutions to the most frequent DevOps, sysadmin, and server management questions.</p>
-        </div>
-
-        <div class="query-encyclopedia-grid">
-          <article class="query-card">
-            <div class="query-badge">Search Intent: Remote Linux GUI</div>
-            <h3 class="query-title">"How to manage Linux server with macOS style interface"</h3>
-            <div class="query-solution">
-              <p>SSH Desktop runs an Apple Sonoma cloud desktop shell with dynamic 4K wallpapers, Mission Control (<kbd>Ctrl+F3</kbd>), and an auto-hiding dock directly over standard SSH2 without requiring X11 or VNC.</p>
-              <div class="query-meta-bar">
-                <span>&#10003; 0% idle server RAM</span>
-                <a href="search-queries.html" class="query-link">View Full Solution &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="query-card">
-            <div class="query-badge">Search Intent: Database SSH Tunnel</div>
-            <h3 class="query-title">"Connect to remote PostgreSQL database through SSH tunnel without exposing port"</h3>
-            <div class="query-solution">
-              <p>Query PostgreSQL, MySQL, Redis, and MongoDB safely on <code>127.0.0.1</code> through an automatic encrypted SSH tunnel over port 22 with zero public port exposure.</p>
-              <div class="query-meta-bar">
-                <span>&#10003; Zero firewall changes</span>
-                <a href="search-queries.html" class="query-link">View Full Solution &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="query-card">
-            <div class="query-badge">Search Intent: Visual UFW Firewall</div>
-            <h3 class="query-title">"Visual UFW and iptables firewall manager for Ubuntu"</h3>
-            <div class="query-solution">
-              <p>Open ports (SSH, HTTP, HTTPS), restrict access to authorized CIDR subnets (e.g. <code>192.168.1.0/24</code>), and enable SSH lockout protection with our visual rule builder.</p>
-              <div class="query-meta-bar">
-                <span>&#10003; UFW / Iptables / Nftables</span>
-                <a href="search-queries.html" class="query-link">View Full Solution &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="query-card">
-            <div class="query-badge">Search Intent: Headless VPS Desktop</div>
-            <h3 class="query-title">"Lightweight remote desktop for headless Linux VPS without VNC"</h3>
-            <div class="query-solution">
-              <p>Traditional VNC/RDP requires heavy desktop packages consuming 1-2GB RAM. SSH Desktop executes over SSH2 and SFTP with 0% extra server RAM overhead.</p>
-              <div class="query-meta-bar">
-                <span>&#10003; 12MB native client</span>
-                <a href="search-queries.html" class="query-link">View Full Solution &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="query-card">
-            <div class="query-badge">Search Intent: Real-Time Systemd Logs</div>
-            <h3 class="query-title">"How to view Linux systemd logs in real time with GUI"</h3>
-            <div class="query-solution">
-              <p>Inspect services graphically, toggle boot-time startup, and click any service unit to stream live <code>journalctl -f</code> logs with ANSI color syntax and keyword search.</p>
-              <div class="query-meta-bar">
-                <span>&#10003; Zero buffer delay</span>
-                <a href="search-queries.html" class="query-link">View Full Solution &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="query-card">
-            <div class="query-badge">Search Intent: In-Place Archive Extraction</div>
-            <h3 class="query-title">"Extract zip and tar.gz on remote Linux server without downloading"</h3>
-            <div class="query-solution">
-              <p>Dual-pane SFTP file manager lets you right-click any <code>.zip</code>, <code>.tar.gz</code>, or <code>.tar.bz2</code> file and extract in-place directly on the remote server in milliseconds.</p>
-              <div class="query-meta-bar">
-                <span>&#10003; Visual chmod / chown</span>
-                <a href="search-queries.html" class="query-link">View Full Solution &rarr;</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="text-center mt-8" style="text-align: center; margin-top: 32px;">
-          <a href="search-queries.html" class="btn btn-secondary">Explore All 20+ Search Query Solutions &rarr;</a>
+    <!-- Linux Server Solutions & Knowledge Base Hub -->
+    <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);" aria-labelledby="kb-hub-title">
+      <div class="container text-center" style="max-width: 860px; margin: 0 auto; padding: 24px 20px;">
+        <span class="badge badge-purple" style="margin-bottom: 12px; display: inline-block;">&#128218; Solutions Knowledge Base</span>
+        <h2 class="section-title" id="kb-hub-title" style="margin-bottom: 12px;">Linux Server Administration &amp; SSH Knowledge Base</h2>
+        <p class="section-desc" style="margin-bottom: 24px;">Instant step-by-step solutions for database SSH tunnels, visual firewall rules, remote desktop over SSH, and real-time systemd log triage.</p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+          <a href="knowledge-base.html" class="btn btn-primary">Browse Solutions Knowledge Base &rarr;</a>
+          <a href="blog/" class="btn btn-secondary">Read Engineering Tutorials &rarr;</a>
         </div>
       </div>
     </section>
@@ -1443,7 +1334,7 @@ img,svg{max-width:100%;display:block}
           <p class="section-desc">Everything you need to know about installing, configuring, and securing SSH Desktop.</p>
         </div>
 
-        <div class="faq-accordion-wrap" style="max-width: 820px; margin: 0 auto;">
+        <div class="faq-accordion-wrap" class="container-narrow-820">
           <details class="faq-item" open>
             <summary class="faq-question">Is SSH Desktop free to use?</summary>
             <div class="faq-answer">
@@ -1561,7 +1452,7 @@ img,svg{max-width:100%;display:block}
         </p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
           <a href="download.html" class="btn btn-emerald btn-lg">Download SSH Desktop Free</a>
-          <a href="docs.html" class="btn btn-secondary btn-lg">Read Documentation</a>
+          <a href="docs/" class="btn btn-secondary btn-lg">Read Documentation</a>
         </div>
       </div>
     </section>
@@ -1670,26 +1561,26 @@ img,svg{max-width:100%;display:block}
             <li><a href="devops.html">DevOps &amp; SRE Suite</a></li>
             <li><a href="cloud.html">Multi-Cloud VPS Control</a></li>
             <li><a href="web-ssh-client.html">Web SSH Client (Port 2222)</a></li>
-            <li><a href="securecrt-alternative.html">SecureCRT Alternative</a></li>
+            <li><a href="alternatives/securecrt-alternative.html">SecureCRT Alternative</a></li>
             <li><a href="ssh-client-windows-11.html">Windows 11 SSH Client</a></li>
             <li><a href="aws-ec2-ssh-client.html">AWS EC2 SSH Client</a></li>
-            <li><a href="winscp-alternative.html">WinSCP Alternative</a></li>
-            <li><a href="warp-terminal-alternative.html">Warp Alternative</a></li>
-            <li><a href="cyberduck-alternative.html">Cyberduck Alternative</a></li>
-            <li><a href="royal-tsx-alternative.html">Royal TSX Alternative</a></li>
-            <li><a href="tabby-alternative.html">Tabby Alternative</a></li>
-            <li><a href="iterm2-alternative.html">iTerm2 Alternative</a></li>
-            <li><a href="dbeaver-alternative.html">DBeaver Alternative</a></li>
-            <li><a href="guacamole-alternative.html">Guacamole Alternative</a></li>
-            <li><a href="cpanel-alternative.html">cPanel Alternative</a></li>
-            <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
-            <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
-            <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
-            <li><a href="termius-alternative.html">Termius Alternative</a></li>
-            <li><a href="mobaxterm-alternative.html">MobaXterm Alternative</a></li>
-            <li><a href="filezilla-alternative.html">FileZilla Alternative</a></li>
-            <li><a href="portainer-alternative.html">Portainer Alternative</a></li>
-            <li><a href="search-queries.html">Search Topics Encyclopedia</a></li>
+            <li><a href="alternatives/winscp-alternative.html">WinSCP Alternative</a></li>
+            <li><a href="alternatives/warp-terminal-alternative.html">Warp Alternative</a></li>
+            <li><a href="alternatives/cyberduck-alternative.html">Cyberduck Alternative</a></li>
+            <li><a href="alternatives/royal-tsx-alternative.html">Royal TSX Alternative</a></li>
+            <li><a href="alternatives/tabby-alternative.html">Tabby Alternative</a></li>
+            <li><a href="alternatives/iterm2-alternative.html">iTerm2 Alternative</a></li>
+            <li><a href="alternatives/dbeaver-alternative.html">DBeaver Alternative</a></li>
+            <li><a href="alternatives/guacamole-alternative.html">Guacamole Alternative</a></li>
+            <li><a href="alternatives/cpanel-alternative.html">cPanel Alternative</a></li>
+            <li><a href="alternatives/webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="alternatives/cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="alternatives/putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="alternatives/termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="alternatives/mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="alternatives/filezilla-alternative.html">FileZilla Alternative</a></li>
+            <li><a href="alternatives/portainer-alternative.html">Portainer Alternative</a></li>
+            <li><a href="knowledge-base.html">Knowledge Base</a></li>
             <li><a href="security.html">Zero-Knowledge Security</a></li>
             <li><a href="pricing.html">Open-Source License</a></li>
           </ul>
@@ -1704,7 +1595,11 @@ img,svg{max-width:100%;display:block}
             <li><a href="download-mac.html">macOS Universal DMG</a></li>
             <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
             <li><a href="download-linux-cli.html">Linux Headless CLI Daemon</a></li>
-            <li><a href="docs.html">Documentation &amp; Tutorials</a></li>
+            <li><a href="installation.html">Installation &amp; Setup Guide</a></li>
+            <li><a href="quickstart.html">3-Minute Quickstart Guide</a></li>
+            <li><a href="tutorials.html">Server Management Tutorials</a></li>
+            <li><a href="cheat-sheet.html">Linux &amp; SSH Cheat Sheet</a></li>
+            <li><a href="docs/">Documentation Hub (43+ Guides)</a></li>
             <li><a href="api-studio.html">API Studio (Postman Alt)</a></li>
             <li><a href="env-variables-manager.html">Environment Variables</a></li>
             <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
@@ -1712,102 +1607,9 @@ img,svg{max-width:100%;display:block}
           </ul>
         </div>
       </div>
-
-      <!-- Semantic SEO Keywords Cloud -->
-      <div class="footer-seo-cloud">
-        <div class="footer-seo-header">
-          <span class="seo-cloud-title">Popular Linux Server Administration &amp; SSH Searches:</span>
-          <span class="seo-cloud-badge">SEO Index</span>
-        </div>
-        <div class="footer-seo-tags">
-          <a href="raspberry-pi-ssh-remote-desktop.html" class="seo-tag">raspberry pi remote desktop ssh</a>
-          <a href="raspberry-pi-ssh-remote-desktop.html" class="seo-tag">login to raspberry pi remotely</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">xrdp over ssh</a>
-          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm remote desktop</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">rdp over ssh</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">rdp and ssh manager</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">windows rdp ssh</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">ssh remote desktop</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">linux remote desktop over ssh</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">ssh with desktop view</a>
-
-          <a href="winscp-alternative.html" class="seo-tag">winscp for mac</a>
-          <a href="warp-terminal-alternative.html" class="seo-tag">warp terminal alternative</a>
-          <a href="cyberduck-alternative.html" class="seo-tag">cyberduck alternative</a>
-          <a href="royal-tsx-alternative.html" class="seo-tag">royal tsx alternative</a>
-          <a href="tabby-alternative.html" class="seo-tag">tabby alternative</a>
-          <a href="iterm2-alternative.html" class="seo-tag">iterm2 alternative windows</a>
-          <a href="dbeaver-alternative.html" class="seo-tag">dbeaver alternative</a>
-          <a href="web-ssh-client.html" class="seo-tag">web ssh client</a>
-          <a href="web-ssh-client.html" class="seo-tag">browser based ssh client</a>
-          <a href="securecrt-alternative.html" class="seo-tag">securecrt alternative</a>
-          <a href="ssh-client-windows-11.html" class="seo-tag">best ssh client for windows 11</a>
-          <a href="aws-ec2-ssh-client.html" class="seo-tag">aws ec2 ssh client</a>
-          <a href="enterprise.html" class="seo-tag">enterprise ssh client</a>
-          <a href="enterprise.html" class="seo-tag">production server management</a>
-          <a href="devops.html" class="seo-tag">devops server automation</a>
-          <a href="devops.html" class="seo-tag">sre incident response terminal</a>
-          <a href="cloud.html" class="seo-tag">aws ec2 ssh gui</a>
-          <a href="cloud.html" class="seo-tag">multi-cloud linux management</a>
-          <a href="cloud.html" class="seo-tag">hetzner cloud server desktop</a>
-          <a href="search-queries.html" class="seo-tag">remote linux gui</a>
-          <a href="search-queries.html" class="seo-tag">web based ssh client</a>
-          <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
-          <a href="database-gui-ssh-tunnel.html" class="seo-tag">database gui with ssh tunnel</a>
-          <a href="webmin-alternative.html" class="seo-tag">linux server control panel</a>
-          <a href="webmin-alternative.html" class="seo-tag">gui for ubuntu server</a>
-          <a href="webmin-alternative.html" class="seo-tag">webmin alternative</a>
-          <a href="cockpit-alternative.html" class="seo-tag">cockpit alternative</a>
-          <a href="termius-alternative.html" class="seo-tag">free termius alternative</a>
-          <a href="putty-alternative.html" class="seo-tag">putty alternative windows 11</a>
-          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm alternative mac</a>
-          <a href="filezilla-alternative.html" class="seo-tag">filezilla sftp client</a>
-          <a href="portainer-alternative.html" class="seo-tag">portainer alternative</a>
-          <a href="systemd-gui.html" class="seo-tag">linux systemd gui</a>
-          <a href="sftp-client.html" class="seo-tag">sftp client with text editor</a>
-          <a href="linux-firewall-gui.html" class="seo-tag">visual ufw and iptables</a>
-          <a href="system-monitor.html" class="seo-tag">linux hardware telemetry</a>
-          <a href="linux-process-manager.html" class="seo-tag">htop web interface</a>
-          <a href="crontab-gui.html" class="seo-tag">visual crontab editor</a>
-          <a href="ssh-port-forwarding.html" class="seo-tag">ssh port forwarding visual</a>
-          <a href="monaco-code-editor.html" class="seo-tag">vs code over ssh</a>
-          <a href="ssl-certificate-manager.html" class="seo-tag">certbot ssl manager gui</a>
-          <a href="backup-disaster-recovery.html" class="seo-tag">restic sftp backup</a>
-        </div>
-      </div>
-
-      <!-- Footer Bottom Bar -->
-      <div class="footer-bottom-bar">
-        <div class="footer-bottom-left">
-          <p>&copy; 2026 SSH Desktop Inc. Built for DevOps, sysadmins, and Linux developers worldwide. Licensed under Apache 2.0 / MIT.</p>
-          <div class="footer-trust-pills">
-            <span class="trust-pill">&#128274; 256-Bit AES SSH Encryption</span>
-            <span class="trust-pill">&#9889; 0% Idle Server RAM</span>
-            <span class="trust-pill">&#128640; Zero Cloud Telemetry</span>
-          </div>
-        </div>
-
-        <div class="footer-bottom-right">
-          <nav class="footer-legal-nav" aria-label="Footer Legal and Meta">
-            <a href="privacy.html">Privacy</a>
-            <a href="security.html">Security</a>
-            <a href="security.txt">Security.txt</a>
-            <a href="humans.txt">Humans.txt</a>
-            <a href="robots.txt">Robots.txt</a>
-            <a href="sitemap.xml">Sitemap.xml</a>
-            <a href="llms.txt">llms.txt</a>
-            <a href="ai.txt">ai.txt</a>
-          </nav>
-          <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
-            <span>Back to top</span>
-            <span class="back-to-top-arrow">&uarr;</span>
-          </button>
-        </div>
-      </div>
-    </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/core.min.js" defer></script>`r`n  <script src="assets/js/homepage.min.js" defer></script>
 </body>
 </html>

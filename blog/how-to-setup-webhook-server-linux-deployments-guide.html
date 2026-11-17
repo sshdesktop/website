@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up a Webhook Server for Linux Deployments (2026 Guide)</title>
+  <meta name="description" content="Automate GitHub and GitLab deployments on Linux using a lightweight Go webhook daemon. Master HMAC SHA-256 secrets, systemd, and zero-downtime updates.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Set Up a Webhook Server for Linux Deployments (2026 Guide)">
+  <meta property="og:description" content="Automate GitHub and GitLab deployments on Linux using a lightweight Go webhook daemon. Master HMAC SHA-256 secrets, systemd, and zero-downtime updates.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Set Up a Webhook Server for Linux Deployments (2026 Guide)">
+  <meta name="twitter:description" content="Automate GitHub and GitLab deployments on Linux using a lightweight Go webhook daemon. Master HMAC SHA-256 secrets, systemd, and zero-downtime updates.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html",
+        "name": "How to Set Up a Webhook Server for Linux Deployments (2026 Guide)",
+        "description": "Automate GitHub and GitLab deployments on Linux using a lightweight Go webhook daemon. Master HMAC SHA-256 secrets, systemd, and zero-downtime updates."
+      },
+      "headline": "How to Set Up a Webhook Server for Linux Deployments (2026 Guide)",
+      "description": "Automate GitHub and GitLab deployments on Linux using a lightweight Go webhook daemon. Master HMAC SHA-256 secrets, systemd, and zero-downtime updates.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Set Up a Webhook Server for Linux Deployments (2026 Guide)",
+          "item": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why should I use a lightweight webhook daemon instead of heavy CI runners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For small projects, staging servers, and independent VPS instances, running GitLab Runner or Jenkins consumes 500MB–2GB of precious RAM. A standalone Go webhook listener uses less than 15MB of RAM, starts instantly, and executes shell scripts directly on git push events."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does HMAC SHA-256 secret verification prevent unauthorized deployment triggers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GitHub and GitLab hash the webhook payload using a shared secret key and send it in the X-Hub-Signature-256 header. The webhook listener computes the identical hash locally; if the signatures mismatch, the request is rejected with HTTP 403, preventing attackers from triggering arbitrary builds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should the webhook listener run as the root user?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Never. Always create a dedicated unprivileged user (e.g., deployer) for the webhook daemon. Grant specific sudo privileges only for commands that require it (e.g., sudo systemctl reload nginx) in /etc/sudoers.d/deployer."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Set Up a Webhook Server for Linux Deployments (2026 Guide)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">CI/CD & Automation</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>11 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Set Up a Webhook Server for Linux Deployments (2026 Guide)</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Setting up full-blown continuous deployment pipelines with Jenkins, GitHub Actions Self-Hosted Runners, or GitLab CI can consume gigabytes of memory and introduce unnecessary maintenance overhead on small-to-medium VPS servers. A lightweight webhook daemon listens for push events, validates cryptographic signatures, and pulls new code in seconds. Learn how to set up an enterprise-grade deployment webhook server on Linux in 2026.
+      </p>
+
+      <h2>How Webhook Deployments Work</h2>
+      <p>
+        When you push code to GitHub or GitLab, the repository provider sends an HTTP POST request containing event metadata and an <code>X-Hub-Signature-256</code> header to your server. Your server verifies the cryptographic signature, matches the branch (e.g., <code>refs/heads/main</code>), and executes a deployment shell script.
+      </p>
+
+      <h2>Step 1: Install the Standalone Webhook Daemon</h2>
+      <p>Install the fast, open-source <code>webhook</code> utility (written in Go):</p>
+      <pre><code># Ubuntu / Debian
+sudo apt update
+sudo apt install -y webhook
+
+# Verify installation
+webhook -version</code></pre>
+
+      <h2>Step 2: Create the Webhook Definition (hooks.json)</h2>
+      <p>Create a secure directory and configuration file:</p>
+      <pre><code>sudo mkdir -p /etc/webhook
+sudo nano /etc/webhook/hooks.json</code></pre>
+      <p>Paste the following production configuration with HMAC signature validation:</p>
+      <pre><code>[
+  {
+    "id": "deploy-api",
+    "execute-command": "/usr/local/bin/deploy-api.sh",
+    "command-working-directory": "/var/www/api",
+    "response-message": "Deployment triggered successfully",
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "payload-hmac-sha256",
+            "secret": "YourSuperSecretRandomWebhookToken123",
+            "parameter": {
+              "source": "header",
+              "name": "X-Hub-Signature-256"
+            }
+          }
+        },
+        {
+          "match": {
+            "type": "value",
+            "value": "refs/heads/main",
+            "parameter": {
+              "source": "payload",
+              "name": "ref"
+            }
+          }
+        }
+      ]
+    }
+  }
+]</code></pre>
+
+      <h2>Step 3: Create the Deployment Shell Script</h2>
+      <p>Create <code>/usr/local/bin/deploy-api.sh</code> with error handling:</p>
+      <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="/var/www/api"
+echo "=== Deployment started at $(date) ===" >> /var/log/webhook_deploy.log
+
+cd "$APP_DIR"
+git pull origin main >> /var/log/webhook_deploy.log 2>&1
+npm ci --production >> /var/log/webhook_deploy.log 2>&1
+sudo systemctl restart api.service >> /var/log/webhook_deploy.log 2>&1
+
+echo "=== Deployment finished successfully ===" >> /var/log/webhook_deploy.log</code></pre>
+      <pre><code>sudo chmod +x /usr/local/bin/deploy-api.sh</code></pre>
+
+      <h2>Step 4: Configure Systemd Service and Nginx Reverse Proxy</h2>
+      <p>Create a systemd service file at <code>/etc/systemd/system/webhook.service</code>:</p>
+      <pre><code>[Unit]
+Description=Lightweight Webhook Deployment Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=deployer
+Group=deployer
+ExecStart=/usr/bin/webhook -nopanic -hooks /etc/webhook/hooks.json -ip 127.0.0.1 -port 9000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+      <p>Enable and start the service:</p>
+      <pre><code>sudo systemctl daemon-reload
+sudo systemctl enable --now webhook</code></pre>
+      <p>Proxy webhook traffic through Nginx with SSL:</p>
+      <pre><code>location /hooks/ {
+    proxy_pass http://127.0.0.1:9000/hooks/;
+    include proxy_params;
+}</code></pre>
+
+      <h2>Step 5: Add Webhook to GitHub/GitLab</h2>
+      <p>
+        In your GitHub repository settings, navigate to <strong>Webhooks &gt; Add webhook</strong>:
+      </p>
+      <ul>
+        <li><strong>Payload URL:</strong> <code>https://api.example.com/hooks/deploy-api</code></li>
+        <li><strong>Content type:</strong> <code>application/json</code></li>
+        <li><strong>Secret:</strong> <code>YourSuperSecretRandomWebhookToken123</code></li>
+        <li><strong>Events:</strong> Just the <code>push</code> event.</li>
+      </ul>
+
+      <h2>Manage Webhooks &amp; Automation Visually with SSH Desktop</h2>
+      <p>
+        Debugging webhook trigger failures and inspecting live git pull logs across multiple instances is effortless with <strong>SSH Desktop</strong>:
+      </p>
+      <ul>
+        <li><strong>Built-in Webhook Server:</strong> Configure, test, and trigger automated webhook deployments directly within the application.</li>
+        <li><strong>Live Deployment Logger:</strong> Stream git pull, build outputs, and restart logs in real time.</li>
+        <li><strong>Systemd &amp; Process Manager:</strong> Verify the health of your webhook listener and backend services with one click.</li>
+      </ul>
+      <p>
+        Explore our visual <a href="../webhook-server.html">Webhook Server</a> and <a href="../multi-server-automation.html">Multi-Server Automation</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Why should I use a lightweight webhook daemon instead of heavy CI runners?</h3>
+          <p class="faq-answer">For small projects, staging servers, and independent VPS instances, running GitLab Runner or Jenkins consumes 500MB–2GB of precious RAM. A standalone Go webhook listener uses less than 15MB of RAM, starts instantly, and executes shell scripts directly on git push events.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How does HMAC SHA-256 secret verification prevent unauthorized deployment triggers?</h3>
+          <p class="faq-answer">GitHub and GitLab hash the webhook payload using a shared secret key and send it in the X-Hub-Signature-256 header. The webhook listener computes the identical hash locally; if the signatures mismatch, the request is rejected with HTTP 403, preventing attackers from triggering arbitrary builds.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Should the webhook listener run as the root user?</h3>
+          <p class="faq-answer">Never. Always create a dedicated unprivileged user (e.g., deployer) for the webhook daemon. Grant specific sudo privileges only for commands that require it (e.g., sudo systemctl reload nginx) in /etc/sudoers.d/deployer.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

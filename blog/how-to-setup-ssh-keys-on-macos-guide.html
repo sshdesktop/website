@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Set Up SSH Keys on macOS: Complete 2026 Guide (Ed25519 &amp; Keychain)</title>
+  <meta name="title" content="How to Set Up SSH Keys on macOS: Complete 2026 Guide (Ed25519 &amp; Keychain)">
+  <meta name="description" content="Step-by-step tutorial: generate secure Ed25519 SSH keys on macOS, save passphrases in Apple Keychain with UseKeychain, copy keys to remote Linux servers, and manage keys visually.">
+  <meta name="keywords" content="how to setup ssh keys on mac, generate ssh key macos, ssh-add --apple-use-keychain, mac ssh config usekeychain, ed25519 ssh key mac, copy ssh key to server mac, macos ssh client gui">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-ssh-keys-on-macos-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-ssh-keys-on-macos-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Set Up SSH Keys on macOS: Complete Guide (2026)">
+  <meta property="og:description" content="Complete macOS SSH setup guide: generate modern Ed25519 keys, integrate with Apple Keychain, copy keys to servers, and automate config.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="macOS &amp; Developer Guides">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-setup-ssh-keys-on-macos-guide.html">
+  <meta name="twitter:title" content="How to Set Up SSH Keys on macOS (2026 Guide)">
+  <meta name="twitter:description" content="Step-by-step tutorial for generating Ed25519 SSH keys on Mac, integrating Apple Keychain, and connecting to Linux servers.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "How to Set Up SSH Keys on macOS",
+            "item": "https://sshdesktop.com/blog/how-to-setup-ssh-keys-on-macos-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-ssh-keys-on-macos-guide.html#article",
+        "headline": "How to Set Up SSH Keys on macOS: Complete 2026 Guide (Ed25519 & Keychain)",
+        "description": "Step-by-step tutorial on generating secure Ed25519 SSH keys on macOS, saving passphrases in Apple Keychain with UseKeychain, and deploying keys to remote servers.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-ssh-keys-on-macos-guide.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why does macOS ask for my SSH key passphrase after every reboot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "By default, Apple's OpenSSH implementation does not persist private key passphrases across restarts. To store your passphrase permanently in macOS Keychain, add 'UseKeychain yes' and 'AddKeysToAgent yes' to your '~/.ssh/config' file, then load the key with 'ssh-add --apple-use-keychain ~/.ssh/id_ed25519'."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What type of SSH key should I generate on Mac?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Generate an Ed25519 key using 'ssh-keygen -t ed25519 -C "your_email@example.com"'. Ed25519 keys are faster, shorter, and cryptographically superior to legacy RSA keys (which are deprecated in modern OpenSSH)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does macOS include ssh-copy-id by default?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, modern macOS versions include 'ssh-copy-id' pre-installed. You can copy your public key to any remote Linux server by running 'ssh-copy-id -i ~/.ssh/id_ed25519.pub user@server-ip'."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are SSH keys stored on Mac?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All SSH keys and configuration files on macOS are stored in the hidden directory '~/.ssh' (full path: '/Users/<username>/.ssh'). You can view them in Finder by pressing 'Cmd+Shift+Period'."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Set Up SSH Keys on macOS</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">macOS &amp; Security Tutorial</span>
+        <h1 class="article-title">How to Set Up SSH Keys on macOS: Complete 2026 Guide (Ed25519 &amp; Keychain)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>9 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          Whether you are a developer pushing code to GitHub, a DevOps engineer deploying to AWS EC2, or managing a home Linux lab from your MacBook, using cryptographic SSH keys is dramatically faster and safer than typing passwords.
+        </p>
+        <p>
+          However, macOS has a few unique quirks: Apple's custom OpenSSH fork handles passphrases differently, and without the proper configuration, your Mac will constantly prompt you for passphrases every time you restart your machine.
+        </p>
+        <p>
+          In this complete step-by-step tutorial, you will generate an elliptic-curve <strong>Ed25519</strong> key pair, configure seamless Apple Keychain integration, copy your public key to remote Linux servers, and manage keys visually.
+        </p>
+
+        <h2>Step 1: Check for Existing SSH Keys</h2>
+        <p>
+          Open <strong>Terminal</strong> (press <code>Cmd+Space</code>, type "Terminal", and press Enter) and list the contents of your hidden SSH directory:
+        </p>
+        <div class="code-block">
+          <code>ls -la ~/.ssh</code>
+        </div>
+        <p>
+          Look for existing keys like <code>id_ed25519</code> or <code>id_rsa</code>. If they already exist and you want to keep them, skip to Step 3. Otherwise, create a clean modern key.
+        </p>
+
+        <h2>Step 2: Generate a Modern Ed25519 Key Pair</h2>
+        <p>
+          Do not generate legacy RSA keys. Modern OpenSSH servers deprecate RSA with SHA-1 signatures. Instead, generate an <strong>Ed25519</strong> key:
+        </p>
+        <div class="code-block">
+          <code>ssh-keygen -t ed25519 -C "your_email@example.com"</code>
+        </div>
+
+        <h3>Interactive Prompts:</h3>
+        <ol>
+          <li><code>Enter file in which to save the key (/Users/you/.ssh/id_ed25519):</code> &rarr; Press <strong>Enter</strong> to accept default.</li>
+          <li><code>Enter passphrase (empty for no passphrase):</code> &rarr; Type a strong passphrase (recommended).</li>
+          <li><code>Enter same passphrase again:</code> &rarr; Re-type your passphrase and press Enter.</li>
+        </ol>
+
+        <p>
+          Two files are created in <code>~/.ssh/</code>:
+        </p>
+        <ul>
+          <li><strong><code>id_ed25519</code> (Private Key):</strong> Your secret cryptographic identity. Never share, copy, or upload this file.</li>
+          <li><strong><code>id_ed25519.pub</code> (Public Key):</strong> The public counterpart that you freely upload to servers, GitHub, GitLab, and cloud providers.</li>
+        </ul>
+
+        <h2>Step 3: Save Passphrase Permanently in Apple Keychain</h2>
+        <p>
+          By default, macOS wipes loaded keys from memory on every restart. To instruct macOS to store your passphrase securely in Apple Keychain (protected by your Mac login and Touch ID):
+        </p>
+
+        <p>
+          Edit (or create) your local <code>~/.ssh/config</code> file:
+        </p>
+        <div class="code-block">
+          <code>nano ~/.ssh/config</code>
+        </div>
+
+        <p>
+          Paste the following configuration:
+        </p>
+        <div class="code-block">
+          <code>Host *<br>
+    AddKeysToAgent yes<br>
+    UseKeychain yes<br>
+    IdentityFile ~/.ssh/id_ed25519</code>
+        </div>
+
+        <p>
+          Press <code>Ctrl+O</code> then Enter to save, and <code>Ctrl+X</code> to exit nano.
+        </p>
+
+        <p>
+          Now, load the key into the agent and save it to the Apple Keychain:
+        </p>
+        <div class="code-block">
+          <code>ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code>
+        </div>
+        <p>
+          Enter your passphrase once. You will <strong>never</strong> be prompted for it again, even across system restarts!
+        </p>
+
+        <h2>Step 4: Copy Your Public Key to a Remote Linux Server</h2>
+        <p>
+          To log into your remote Ubuntu, Debian, or CentOS server without a password:
+        </p>
+        <div class="code-block">
+          <code>ssh-copy-id -i ~/.ssh/id_ed25519.pub user@your-server-ip</code>
+        </div>
+        <p>
+          Enter your remote Linux user password one last time. <code>ssh-copy-id</code> appends your public key to the remote server's <code>~/.ssh/authorized_keys</code> with proper permissions.
+        </p>
+
+        <p>
+          Now test connecting:
+        </p>
+        <div class="code-block">
+          <code>ssh user@your-server-ip</code>
+        </div>
+        <p>
+          You are instantly logged into your server prompt with zero password prompts!
+        </p>
+
+        <h2>Step 5: Add Your SSH Key to GitHub / GitLab</h2>
+        <p>
+          Copy your public key directly to your macOS clipboard with <code>pbcopy</code>:
+        </p>
+        <div class="code-block">
+          <code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code>
+        </div>
+        <ol>
+          <li>Open <strong>GitHub.com</strong> &rarr; Click profile icon &rarr; <strong>Settings</strong> &rarr; <strong>SSH and GPG keys</strong>.</li>
+          <li>Click <strong>New SSH key</strong> &rarr; Title: "MacBook Pro".</li>
+          <li>Paste the key into the box &rarr; Click <strong>Add SSH key</strong>.</li>
+        </ol>
+
+        <h2>The Native Mac Experience: SSH Desktop for macOS</h2>
+        <p>
+          Managing dozens of identity files across multiple servers, checking permissions, and configuring jump hosts via terminal files can be tedious.
+        </p>
+        <p>
+          <a href="../download-mac.html">SSH Desktop for macOS</a> is built natively for Apple Silicon (M1/M2/M3/M4) and Intel Macs:
+        </p>
+        <ul>
+          <li><strong>Touch ID &amp; Keychain Integration:</strong> Secure your keys with hardware-backed Touch ID biometric authentication.</li>
+          <li><strong>Visual Key Manager:</strong> Generate Ed25519 keys, inspect cryptographic fingerprints, and deploy to servers with 1 click.</li>
+          <li><strong>Native Multi-Tab Terminal &amp; SFTP:</strong> Blazing-fast GPU-accelerated terminal with dual-pane drag-and-drop file transfers.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Upgrade Your Mac SSH Experience</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            Download SSH Desktop for macOS — the 100% free, native GUI client optimized for Apple Silicon and macOS Sonoma &amp; Sequoia.
+          </p>
+          <a href="../download-mac.html" class="btn btn-primary btn-lg">
+            Download for macOS Free &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>

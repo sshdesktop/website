@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Check &amp; Manage Linux Disk Space: df, du, ncdu &amp; LVM (2026 Guide)</title>
+  <meta name="title" content="How to Check &amp; Manage Linux Disk Space: df, du, ncdu &amp; LVM (2026 Guide)">
+  <meta name="description" content="Complete guide to managing Linux storage. Find large files with du and ncdu, resolve deleted file space locks with lsof, extend LVM volumes, and manage disks visually.">
+  <meta name="keywords" content="linux check disk space, df -h du ncdu tutorial, extend lvm disk linux, find large files linux, lsof deleted file disk space, visual disk manager linux">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-manage-linux-disk-space-lvm-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-manage-linux-disk-space-lvm-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Check &amp; Manage Linux Disk Space: Complete Guide">
+  <meta property="og:description" content="Step-by-step tutorial: diagnose full disks with df, find massive directories with ncdu, free up unlinked file locks, and manage LVM volumes.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Storage &amp; Sysadmin">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-manage-linux-disk-space-lvm-guide.html">
+  <meta name="twitter:title" content="How to Manage Linux Disk Space &amp; LVM (2026)">
+  <meta name="twitter:description" content="Master Linux storage management: df, du, ncdu, LVM resizing, and visual disk inspection.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Manage Linux Disk Space & LVM",
+            "item": "https://sshdesktop.com/blog/how-to-manage-linux-disk-space-lvm-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-manage-linux-disk-space-lvm-guide.html#article",
+        "headline": "How to Check & Manage Linux Disk Space: df, du, ncdu & LVM (2026 Guide)",
+        "description": "Comprehensive tutorial on Linux disk storage management. Learn how to locate massive files with du/ncdu, recover space locked by running processes, extend LVM volumes, and monitor disks visually.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-manage-linux-disk-space-lvm-guide.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why does df -h show 100% full even after I deleted large log files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When a file is deleted while an active process (like Nginx, Docker, or MySQL) still holds an open file descriptor to it, the Linux kernel unlinks the filename but does not release the disk blocks until the process closes the file. Run 'sudo lsof +L1' to identify processes holding open deleted files, then restart the offending service to reclaim the disk space."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the fastest command to find the largest files on Linux?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run 'sudo find / -xdev -type f -size +100M -exec ls -lh {} \; | awk '{ print $5 ": " $9 }' | sort -rh'. This finds all files larger than 100 MB on the current filesystem without traversing mounted virtual filesystems."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is ncdu and why is it better than du?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "'ncdu' (NCurses Disk Usage) scans a directory tree and presents an interactive visual terminal navigator. You can browse directories sorted by size, inspect subfolders, and delete bloated directories directly with the 'd' key."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I extend an LVM volume after resizing a virtual disk in cloud hosting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After increasing the disk size in your cloud console, run: (1) 'sudo growpart /dev/sda 1' to expand the partition, (2) 'sudo pvresize /dev/sda1' to resize the physical volume, (3) 'sudo lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv' to extend the logical volume and resize the filesystem in a single step."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Manage Linux Disk Space &amp; LVM</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">Storage &amp; System Administration</span>
+        <h1 class="article-title">How to Check &amp; Manage Linux Disk Space: df, du, ncdu &amp; LVM (2026 Guide)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>10 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          "No space left on device." When this error appears in production, consequences are immediate: databases reject write queries, Docker containers crash, SSH authentication fails because temporary session files cannot be created, and cron jobs terminate.
+        </p>
+        <p>
+          Diagnosing disk exhaustion quickly, understanding why deleted files sometimes fail to free up storage, and safely expanding disk partitions using <strong>LVM (Logical Volume Manager)</strong> are essential skills.
+        </p>
+        <p>
+          In this guide, you will learn the command-line workflow to analyze disk usage, find runaway log files, resolve unlinked process locks, expand LVM partitions, and inspect storage visually.
+        </p>
+
+        <h2>1. High-Level Disk Space Check: df -h</h2>
+        <p>
+          The <code>df</code> command reports filesystem disk space usage across all mounted storage devices:
+        </p>
+        <div class="code-block">
+          <code>$ df -h<br>
+Filesystem                         Size  Used Avail Use% Mounted on<br>
+/dev/mapper/ubuntu--vg-ubuntu--lv   48G   45G  1.2G  98% /<br>
+/dev/sda2                          1.9G  210M  1.6G  12% /boot</code>
+        </div>
+        <p>
+          Also check <strong>Inodes</strong> (file count limits) with <code>df -i</code>. If a server has millions of tiny session files, disk space might show 50% free while Inodes are at 100%, causing the exact same "No space left on device" error!
+        </p>
+
+        <h2>2. Pinpoint Large Directories with du and ncdu</h2>
+        <p>
+          Once you know which mount point is full (usually <code>/</code> or <code>/var</code>), track down the offending directories:
+        </p>
+
+        <div class="code-block">
+          <code># Show the 10 largest folders inside /var:<br>
+sudo du -h --max-depth=1 /var | sort -hr | head -n 10</code>
+        </div>
+
+        <h3>Interactive Navigation with ncdu:</h3>
+        <p>
+          <code>ncdu</code> (NCurses Disk Usage) is an indispensable visual terminal tool:
+        </p>
+        <div class="code-block">
+          <code>sudo apt install -y ncdu  # Ubuntu/Debian<br>
+sudo dnf install -y ncdu  # RHEL/CentOS<br><br>
+sudo ncdu /var</code>
+        </div>
+        <p>
+          Use arrow keys to navigate down into nested folders. Press <code>d</code> to immediately delete useless log archives or temporary build files.
+        </p>
+
+        <h2>3. The Deleted File Trap: Recovering Space with lsof</h2>
+        <p>
+          A common frustration: you run <code>rm access.log</code> on a 20 GB log file, but <code>df -h</code> still shows 98% full!
+        </p>
+        <p>
+          In Linux, if a running service (like Nginx, Apache, or MySQL) still has an open file descriptor pointing to that file, the kernel keeps the disk blocks allocated.
+        </p>
+
+        <div class="code-block">
+          <code># Find processes holding open unlinked/deleted files:<br>
+sudo lsof +L1</code>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="code-block">
+          <code>COMMAND   PID USER   FD   TYPE DEVICE   SIZE/OFF NLINK NAME<br>
+nginx   14282 root    4w   REG  253,0 21474836480     0 /var/log/nginx/access.log (deleted)</code>
+        </div>
+        <p>
+          Restart the offending process to instantly release the 20 GB:
+        </p>
+        <div class="code-block">
+          <code>sudo systemctl restart nginx</code>
+        </div>
+
+        <h2>4. Expanding LVM Disks (Cloud VPS Resizing)</h2>
+        <p>
+          If your disk is genuinely out of physical space, modern cloud platforms (AWS EBS, DigitalOcean, Hetzner) allow you to increase disk size in the web console with zero downtime.
+        </p>
+        <p>
+          To expand the filesystem in Linux without rebooting:
+        </p>
+
+        <div class="code-block">
+          <code># 1. Expand partition 1 on /dev/sda:<br>
+sudo growpart /dev/sda 1<br><br>
+# 2. Resize LVM Physical Volume:<br>
+sudo pvresize /dev/sda1<br><br>
+# 3. Extend Logical Volume and filesystem in 1 command:<br>
+sudo lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv</code>
+        </div>
+        <p>
+          The <code>-r</code> flag automatically resizes ext4 or XFS filesystems on the fly. Verify with <code>df -h</code>!
+        </p>
+
+        <h2>Visual Storage Management with SSH Desktop</h2>
+        <p>
+          Typing complex <code>du</code> sort pipelines and hunting down unlinked file descriptors via terminal can be stressful during disk full emergencies.
+        </p>
+        <p>
+          <a href="../linux-disk-manager.html">SSH Desktop Disk &amp; Storage Manager</a> provides real-time visual control:
+        </p>
+        <ul>
+          <li><strong>Interactive Storage Pie Chart:</strong> Visualize storage consumption across partitions, mount points, and directories.</li>
+          <li><strong>1-Click Space Hog Finder:</strong> Instantly displays the top 20 largest files and folders across your filesystem.</li>
+          <li><strong>Safe Cleanup Wizard:</strong> Safely clear rotated logs, apt/yum package caches, and Docker prune layers with a single button.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Manage Storage Visually</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            Never get trapped by full disks again. Download SSH Desktop — the 100% free GUI client with visual Disk &amp; Storage Manager.
+          </p>
+          <a href="../linux-disk-manager.html" class="btn btn-primary btn-lg">
+            Explore Disk Manager Features &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>

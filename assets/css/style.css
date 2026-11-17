@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    SSH Desktop - Modern, Ultra-Fast SEO Web Application Stylesheet
    Pure CSS3, zero dependencies, 100/100 Core Web Vitals optimized
    ========================================================================== */
@@ -50,7 +50,7 @@ html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
 }
@@ -59,7 +59,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
   position: relative;
@@ -1787,70 +1787,7 @@ img, svg {
   font-weight: 700 !important;
 }
 
-/* ==========================================================================
-   Footer Semantic SEO Cloud - macOS Cupertino Index Card
-   ========================================================================== */
-.footer-seo-cloud {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  border-radius: 18px;
-  padding: 22px 26px;
-  margin-bottom: 35px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-}
-
-.footer-seo-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.seo-cloud-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #475569;
-}
-
-.seo-cloud-badge {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, rgba(255, 94, 58, 0.1) 100%);
-  color: #0071e3;
-  padding: 3px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 113, 227, 0.22);
-}
-
-.footer-seo-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.seo-tag {
-  font-size: 0.78rem;
-  color: #475569;
-  background: #f8fafc;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 5px 11px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 500;
-}
-
-.seo-tag:hover {
-  color: #0071e3;
-  border-color: rgba(0, 113, 227, 0.35);
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.12);
-  transform: translateY(-2px);
-}
-
+/* Footer SEO Cloud styles removed — was flagged as keyword stuffing */
 /* ==========================================================================
    Footer Bottom Bar & Trust Badges
    ========================================================================== */
@@ -2022,7 +1959,7 @@ img, svg {
 
 html, body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img, svg, video, canvas {
@@ -5129,3 +5066,142 @@ img, svg, video, canvas {
 }
 
 
+
+/* Hero Lead Card (moved from inline styles) */
+.hero-lead-card {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 820px;
+  margin: 0 auto 28px;
+  line-height: 1.65;
+  text-align: left;
+  background: #ffffff;
+  padding: 1.75rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+
+.hero-lead-card .hero-lead-title {
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.hero-lead-card .hero-lead-subtitle {
+  margin-bottom: 0.75rem;
+  color: #475569;
+  font-size: 0.98rem;
+}
+
+.hero-lead-card .hero-features-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  color: #334155;
+}
+
+.hero-lead-card .hero-lead-footer {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.hero-cta-primary-glow {
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);
+}
+
+.cli-quickstart-bar {
+  max-width: 720px;
+  margin: 18px auto 26px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.cli-quickstart-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.cli-web-mode-link {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 4px 8px;
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.showcase-section-header {
+  text-align: center;
+  margin-top: 36px;
+  margin-bottom: 24px;
+}
+
+.hero-container-relative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reusable Component Classes (Extracted from inline styles) */
+.section-alt-bg {
+  background: #f8fafc;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-white-bordered {
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+}
+
+.feature-col-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feature-col-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-col-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.feature-col-desc {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.feature-col-link {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.container-narrow-820 {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.container-narrow-860 {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.pre-footer-cta {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  border-top: 1px solid var(--border);
+}

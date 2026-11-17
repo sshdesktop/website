@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Fix 'SSH Connection Timed Out' (Port 22): 6 Proven Fixes (2026 Guide)</title>
+  <meta name="title" content="How to Fix 'SSH Connection Timed Out' (Port 22): 6 Proven Fixes (2026 Guide)">
+  <meta name="description" content="Step-by-step troubleshooting: fix 'ssh: connect to host port 22: Connection timed out'. Diagnose firewall drops, AWS EC2 security groups, ISP port 22 blocks, and routing failures.">
+  <meta name="keywords" content="ssh connection timed out, ssh connect to host port 22 connection timed out, fix ssh timeout ubuntu, aws ec2 ssh connection timed out, port 22 blocked by isp, traceroute ssh port 22">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-fix-ssh-connection-timed-out.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-fix-ssh-connection-timed-out.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Fix 'SSH Connection Timed Out' (Port 22): 6 Proven Fixes">
+  <meta property="og:description" content="Step-by-step diagnostic guide to resolving SSH connection timed out errors across AWS EC2, Ubuntu, and cloud servers.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Troubleshooting &amp; Networking">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-fix-ssh-connection-timed-out.html">
+  <meta name="twitter:title" content="How to Fix 'SSH Connection Timed Out' (Port 22)">
+  <meta name="twitter:description" content="Diagnose and resolve SSH connection timed out errors across Windows, Mac, Linux, and AWS EC2.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Fix SSH Connection Timed Out",
+            "item": "https://sshdesktop.com/blog/how-to-fix-ssh-connection-timed-out.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-fix-ssh-connection-timed-out.html#article",
+        "headline": "How to Fix 'SSH Connection Timed Out' (Port 22): 6 Proven Fixes (2026 Guide)",
+        "description": "Comprehensive diagnostic guide for fixing 'ssh: connect to host port 22: Connection timed out'. Diagnose packet drops, AWS security groups, and routing issues.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-fix-ssh-connection-timed-out.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between 'Connection refused' and 'Connection timed out'?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "'Connection refused' means your packets reached the destination server, but the OS explicitly replied with a TCP RST packet because no program was listening on port 22 or a firewall rejected it. 'Connection timed out' means your client sent TCP SYN packets, but received absolutely no response before timing out — indicating packets are being silently dropped by an upstream firewall, cloud security group, or network routing fault."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does AWS EC2 return 'Connection timed out' on port 22?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On AWS EC2, the most common reason is that your security group's Inbound Rules do not allow TCP port 22 from your current public IP address (which frequently changes with home internet providers), or the instance is in a private subnet lacking an Internet Gateway or NAT gateway."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I test if my ISP is blocking port 22?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run 'nc -zv portquiz.net 22' or 'curl http://portquiz.net:22'. Portquiz.net listens on all TCP ports. If port 22 fails while other ports (like 80 or 443) succeed, your local ISP or office network is actively blocking outbound port 22."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I bypass ISP port 22 blocks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Configure your remote SSH server to listen on port 443 (standard HTTPS) or port 2222 in '/etc/ssh/sshd_config'. Outbound traffic on port 443 is almost never blocked by firewalls or internet service providers."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Fix SSH Connection Timed Out</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">Networking &amp; Troubleshooting</span>
+        <h1 class="article-title">How to Fix 'SSH Connection Timed Out' (Port 22): 6 Proven Fixes (2026 Guide)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>10 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          You enter <code>ssh user@your-server-ip</code> into your terminal, press Enter, and wait. Ten seconds pass. Thirty seconds pass. Finally, the terminal gives up:
+        </p>
+
+        <div class="code-block">
+          <code>ssh: connect to host 198.51.100.42 port 22: Connection timed out</code>
+        </div>
+
+        <p>
+          Unlike <a href="how-to-fix-ssh-connection-refused-port-22.html">Connection refused</a> (where the server is reachable but rejects the port), a <strong>Connection timed out</strong> error means your packets simply vanished into a digital void. Your client sent TCP SYN packets, but never received an acknowledgment (SYN-ACK) or a rejection (RST).
+        </p>
+        <p>
+          In this guide, we walk through the step-by-step diagnostic hierarchy to find where packets are getting dropped and fix the problem fast.
+        </p>
+
+        <h2>Step 0: Ping vs Traceroute Diagnostics</h2>
+        <p>
+          Is the host completely unreachable, or is only port 22 blocked?
+        </p>
+        <div class="code-block">
+          <code># 1. Test basic ICMP reachability:<br>
+ping -c 4 198.51.100.42<br><br>
+# 2. Trace route on Windows PowerShell:<br>
+tracert 198.51.100.42<br><br>
+# 3. Trace route on Linux/macOS:<br>
+traceroute 198.51.100.42</code>
+        </div>
+        <p>
+          If ping works but SSH times out, the server is alive, but a firewall is silently dropping port 22 traffic.
+        </p>
+
+        <h2>Cause 1: AWS EC2 / Cloud Security Group Changed</h2>
+        <p>
+          On Amazon Web Services (AWS EC2), Google Cloud, and DigitalOcean, servers sit behind cloud-level security groups.
+        </p>
+        <p>
+          Most developers restrict port 22 access to <code>My IP</code> in AWS. However, residential internet service providers frequently change your home public IP address!
+        </p>
+
+        <h3>The Fix:</h3>
+        <ol>
+          <li>Check your current public IP at <code>curl ifconfig.me</code>.</li>
+          <li>Log into the <strong>AWS EC2 Console</strong> &rarr; Select <strong>Security Groups</strong>.</li>
+          <li>Click <strong>Edit inbound rules</strong>.</li>
+          <li>Update the SSH rule source to your new IP (e.g. <code>203.0.113.85/32</code>) or temporarily set it to <code>0.0.0.0/0</code> while testing.</li>
+          <li>Click <strong>Save rules</strong>. Connection will succeed within 5 seconds!</li>
+        </ol>
+
+        <h2>Cause 2: Local ISP or Corporate Wi-Fi Blocks Outbound Port 22</h2>
+        <p>
+          Many hotel Wi-Fi networks, airports, universities, and mobile carriers block outbound connections on port 22 to prevent infected laptops from participating in SSH botnets.
+        </p>
+
+        <h3>How to Test for ISP Port Blocking:</h3>
+        <p>
+          Connect to <strong>portquiz.net</strong>, an open diagnostic server that listens on every port:
+        </p>
+        <div class="code-block">
+          <code># Test Port 22:<br>
+curl http://portquiz.net:22<br><br>
+# Test Port 80 (standard web):<br>
+curl http://portquiz.net:80</code>
+        </div>
+        <p>
+          If port 80 connects but port 22 hangs and times out, <strong>your local network or ISP is actively blocking port 22</strong>.
+        </p>
+
+        <h3>How to Bypass:</h3>
+        <p>
+          Configure your server's SSH daemon to listen on port <strong>443</strong> (HTTPS) or port <strong>2222</strong>. Firewalls never block port 443. Check out our step-by-step tutorial: <a href="how-to-change-default-ssh-port-linux.html">How to Change Default SSH Port on Linux</a>.
+        </p>
+
+        <h2>Cause 3: The Remote Server Has Crashed or Has No Network</h2>
+        <p>
+          If ICMP ping also fails and times out, the virtual machine itself may have panicked, ran out of memory (OOM kernel crash), or lost its network interface.
+        </p>
+        <p>
+          Access your cloud provider's out-of-band console:
+        </p>
+        <ul>
+          <li><strong>AWS EC2:</strong> Right click instance &rarr; <strong>Monitor and troubleshoot</strong> &rarr; <strong>Get system log</strong> or <strong>EC2 Serial Console</strong>.</li>
+          <li><strong>DigitalOcean:</strong> Click <strong>Access</strong> &rarr; <strong>Launch Droplet Console</strong>.</li>
+          <li><strong>Hetzner:</strong> Cloud Console &rarr; <strong>VNC Console</strong>.</li>
+        </ul>
+        <p>
+          Look for kernel panic messages or run <code>ip a</code> to ensure the network interface has an assigned IPv4 address.
+        </p>
+
+        <h2>Cause 4: Server-Side Firewall Dropping Packets (UFW / iptables)</h2>
+        <p>
+          In Linux firewalls, a rule can either <code>REJECT</code> or <code>DROP</code> traffic.
+        </p>
+        <ul>
+          <li><strong>REJECT:</strong> Sends a TCP RST packet back &rarr; Result: <em>Connection refused</em>.</li>
+          <li><strong>DROP:</strong> Silently discards packets with zero response &rarr; Result: <em>Connection timed out</em>.</li>
+        </ul>
+        <p>
+          If an admin configured UFW with a default drop policy and forgot to open port 22, it results in an infinite timeout. Log in via your cloud web console and execute:
+        </p>
+        <div class="code-block">
+          <code>sudo ufw allow 22/tcp<br>
+sudo ufw reload</code>
+        </div>
+
+        <h2>Cause 5: IP Address Changed After Cloud Server Reboot</h2>
+        <p>
+          Unless you assigned an <strong>Elastic IP (AWS)</strong> or <strong>Reserved Floating IP (DigitalOcean)</strong>, stopping and starting a cloud VPS releases the old public IP and assigns a completely new IP address!
+        </p>
+        <p>
+          Check your cloud provider dashboard to verify you are connecting to the server's current IP address rather than its historical released IP.
+        </p>
+
+        <h2>Troubleshooting Decision Tree: Timed Out vs Refused</h2>
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Error Output</th>
+                <th>Diagnostic Meaning</th>
+                <th>Most Probable Root Cause</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Connection timed out</strong> (30s delay)</td>
+                <td>Packets dropped in transit; zero response</td>
+                <td>Cloud Security Group / ISP block / Firewall DROP</td>
+              </tr>
+              <tr>
+                <td><strong>Connection refused</strong> (Instant)</td>
+                <td>Packets reached host; port rejected</td>
+                <td><code>sshd</code> service stopped / listening on custom port</td>
+              </tr>
+              <tr>
+                <td><strong>No route to host</strong> (Instant)</td>
+                <td>Routing table has no path to destination</td>
+                <td>Subnet routing table fault / VPN disconnected</td>
+              </tr>
+              <tr>
+                <td><strong>Permission denied (publickey)</strong></td>
+                <td>TCP handshake succeeded; auth failed</td>
+                <td><a href="how-to-fix-ssh-permission-denied-publickey-error.html">Key permissions or sshd_config error</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Never Lose Track of Server Health</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            SSH Desktop includes real-time ping monitors, automated port reachability indicators, and dynamic cloud instance syncing.
+          </p>
+          <a href="../download.html" class="btn btn-primary btn-lg">
+            Download SSH Desktop Free &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>

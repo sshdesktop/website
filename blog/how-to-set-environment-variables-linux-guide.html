@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Set Environment Variables in Linux (PATH, .bashrc, export) 2026 Guide</title>
+  <meta name="title" content="How to Set Environment Variables in Linux (PATH, .bashrc, export) 2026 Guide">
+  <meta name="description" content="Learn how to set, export, and persist environment variables in Linux. Master PATH additions, .bashrc vs /etc/environment, systemd envs, and manage vars visually.">
+  <meta name="keywords" content="how to set environment variables linux, add to PATH linux, export PATH permanently, .bashrc vs /etc/environment, printenv env commands, visual env manager linux">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Set Environment Variables in Linux (2026 Guide)">
+  <meta property="og:description" content="Comprehensive sysadmin guide: export variables, configure PATH permanently, differentiate .bashrc from /etc/environment, and manage variables visually.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Shell &amp; Environment Configuration">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html">
+  <meta name="twitter:title" content="How to Set Environment Variables in Linux (2026 Guide)">
+  <meta name="twitter:description" content="Learn how to export environment variables, customize $PATH, configure .bashrc and /etc/environment, and prevent common configuration pitfalls.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#0a0c10">
+
+  <!-- Modular Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- Structured Data: TechArticle & BreadcrumbList & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html#article",
+        "headline": "How to Set Environment Variables in Linux (PATH, .bashrc, export) 2026 Guide",
+        "description": "Learn how to set, export, and persist environment variables in Linux. Master PATH additions, .bashrc vs /etc/environment, systemd envs, and manage vars visually.",
+        "url": "https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html",
+        "inLanguage": "en-US",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html",
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sshdesktop.com/assets/images/favicon-512x512.png"
+          }
+        },
+        "image": "https://sshdesktop.com/assets/images/og-image.png",
+        "articleSection": "Shell & Environment Configuration",
+        "keywords": "how to set environment variables linux, add directory to path, export env var, .bashrc vs /etc/environment, systemd environment variables"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Linux Environment Variables Guide",
+            "item": "https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sshdesktop.com/blog/how-to-set-environment-variables-linux-guide.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between a shell variable and an environment variable?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A shell variable (created with VAR=value) only exists within the current shell instance and is not inherited by child processes or background commands. An environment variable (created with export VAR=value) is exported into the process environment table and inherited by all subprocesses spawned by that shell."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do my environment variables disappear when I close SSH or reboot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Using 'export VAR=value' directly in the terminal only modifies the active shell session's memory. To make the variable permanent, you must append it to a startup configuration file such as ~/.bashrc (for your specific user) or /etc/environment (for all system users)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I add a new directory to my PATH without breaking existing commands?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Always include the existing $PATH in your assignment: 'export PATH="$PATH:/opt/custom/bin"'. Never run 'export PATH="/opt/custom/bin"' alone, as this will overwrite system directories and break basic commands like ls, sudo, and clear."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .blog-article-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .blog-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted, #8b949e);
+      margin-bottom: 24px;
+    }
+    .blog-breadcrumb a {
+      color: var(--accent, #58a6ff);
+      text-decoration: none;
+    }
+    .blog-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .blog-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color, #30363d);
+      padding-bottom: 28px;
+    }
+    .blog-post-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #f0f6fc;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: #8b949e;
+      flex-wrap: wrap;
+    }
+    .blog-meta-tag {
+      background: rgba(56, 139, 253, 0.15);
+      color: #58a6ff;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 139, 253, 0.3);
+    }
+    .blog-content {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #c9d1d9;
+    }
+    .blog-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin: 44px 0 18px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+    }
+    .blog-content h3 {
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin: 30px 0 14px;
+    }
+    .blog-content p {
+      margin-bottom: 20px;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-bottom: 22px;
+      padding-left: 28px;
+    }
+    .blog-content li {
+      margin-bottom: 8px;
+    }
+    .blog-content pre {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      color: #e6edf3;
+      margin: 22px 0 24px;
+      line-height: 1.55;
+    }
+    .blog-content code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(110, 118, 129, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #58a6ff;
+    }
+    .blog-content pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .callout-box {
+      background: rgba(56, 139, 253, 0.08);
+      border-left: 4px solid #58a6ff;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 26px 0;
+      color: #c9d1d9;
+    }
+    .callout-box.warning {
+      background: rgba(210, 153, 34, 0.1);
+      border-left-color: #d29922;
+    }
+    .callout-box.tip {
+      background: rgba(46, 160, 67, 0.1);
+      border-left-color: #2ea043;
+    }
+    .callout-box h4 {
+      margin: 0 0 8px;
+      color: #f0f6fc;
+      font-size: 1.05rem;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 26px 0;
+      font-size: 0.94rem;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #30363d;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background: #161b22;
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: #0d1117;
+    }
+    .gui-banner {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.12) 0%, rgba(137, 87, 229, 0.12) 100%);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 36px 0;
+      text-align: center;
+    }
+    .gui-banner h3 {
+      font-size: 1.35rem;
+      color: #f0f6fc;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .gui-banner p {
+      color: #8b949e;
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+    }
+    .gui-banner a.cta-btn {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .gui-banner a.cta-btn:hover {
+      background: #2ea043;
+    }
+    .faq-item {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .faq-item h4 {
+      margin: 0 0 10px;
+      color: #f0f6fc;
+      font-size: 1.08rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body class="bg-dark text-light">
+  <!-- Top Global Navigation Bar -->
+  <header>
+    <nav class="nav-container" aria-label="Main Navigation">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo" aria-label="SSH Desktop Home">
+          <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="nav-logo-img">
+          <span class="nav-logo-text">SSH Desktop</span>
+        </a>
+        <div class="nav-links">
+          <a href="../features.html" class="nav-link">Features</a>
+          <a href="../alternatives/index.html" class="nav-link">Alternatives</a>
+          <a href="../docs/" class="nav-link">Documentation</a>
+          <a href="index.html" class="nav-link active">Blog</a>
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="../download.html" class="btn-primary nav-download-btn">Download</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb Navigation -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumbs">
+      <a href="../index.html">Home</a>
+      <span>&rsaquo;</span>
+      <a href="index.html">Blog</a>
+      <span>&rsaquo;</span>
+      <span>Linux Environment Variables Guide</span>
+    </nav>
+
+    <header class="blog-header">
+      <h1 class="blog-post-title">How to Set Environment Variables in Linux (PATH, .bashrc, export) 2026 Guide</h1>
+      <div class="blog-meta">
+        <span class="blog-meta-tag">Shell &amp; Environment</span>
+        <span>By SSH Desktop Engineering Team</span>
+        <span>&bull;</span>
+        <span>Updated November 2026</span>
+        <span>&bull;</span>
+        <span>10 min read</span>
+      </div>
+    </header>
+
+    <article class="blog-content">
+      <p>
+        Environment variables govern how Linux shells, services, and applications behave. From pointing your shell to custom binaries via <code>$PATH</code> to configuring database connection strings in cloud environments, understanding how variables are created, exported, and persisted across reboots is fundamental to server administration.
+      </p>
+
+      <div class="callout-box">
+        <h4>Executive Summary</h4>
+        <p>
+          Shell variables created with <code>NAME=value</code> are private to the active shell. Adding <code>export NAME=value</code> makes them accessible to child processes. To persist variables permanently, they must be saved to files like <code>~/.bashrc</code> (user scope) or <code>/etc/environment</code> (system-wide scope). In this guide, we review variable lifecycles, PATH management, systemd configurations, and visual management via <a href="../env-variables-manager.html">SSH Desktop Environment Manager</a>.
+        </p>
+      </div>
+
+      <h2>1. Shell Variables vs Environment Variables</h2>
+      <p>
+        In bash and zsh, there is a crucial difference between local shell variables and exported environment variables:
+      </p>
+
+      <pre><code># 1. Local Shell Variable (NOT visible to subprocesses or scripts)
+MY_APP="ProductionApp"
+python3 -c "import os; print(os.environ.get('MY_APP'))"
+# Output: None
+
+# 2. Exported Environment Variable (Inherited by subprocesses)
+export MY_APP="ProductionApp"
+python3 -c "import os; print(os.environ.get('MY_APP'))"
+# Output: ProductionApp</code></pre>
+
+      <h3>Inspecting Active Environment Variables</h3>
+      <pre><code># Print all active environment variables
+printenv
+
+# View specific variable
+printenv PATH
+# or
+echo "$PATH"
+
+# Search for specific variable key
+env | grep NODE_ENV</code></pre>
+
+      <h2>2. Making Environment Variables Permanent</h2>
+      <p>
+        Running <code>export VAR=value</code> in the terminal only updates the current shell's transient memory. When you disconnect your SSH session, the variable vanishes. To persist variables, choose the correct configuration file:
+      </p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Target Configuration File</th>
+            <th>Scope</th>
+            <th>When Loaded</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>~/.bashrc</code></td>
+            <td>Current User</td>
+            <td>Every interactive non-login shell (standard SSH terminal sessions)</td>
+          </tr>
+          <tr>
+            <td><code>~/.profile</code> or <code>~/.bash_profile</code></td>
+            <td>Current User</td>
+            <td>Initial login shell</td>
+          </tr>
+          <tr>
+            <td><code>/etc/environment</code></td>
+            <td>System-Wide (All Users)</td>
+            <td>Loaded by PAM during login (Key=Value syntax only, no bash code)</td>
+          </tr>
+          <tr>
+            <td><code>/etc/profile.d/*.sh</code></td>
+            <td>System-Wide (All Users)</td>
+            <td>Executed for all users during login shells</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Example: Persisting Variables for Your User</h3>
+      <pre><code># Append export command to ~/.bashrc
+echo 'export DATABASE_URL="postgres://user:pass@localhost:5432/db"' &gt;&gt; ~/.bashrc
+
+# Reload the configuration in the current session
+source ~/.bashrc</code></pre>
+
+      <h2>3. Safely Adding Directories to $PATH</h2>
+      <p>
+        The <code>$PATH</code> variable is a colon-separated list of directories searched when you execute a command. Modifying it incorrectly is one of the most common causes of broken terminal sessions.
+      </p>
+
+      <div class="callout-box tip">
+        <h4>The Right Way to Append to PATH</h4>
+        <pre><code># Append directory to existing PATH:
+export PATH="$PATH:/opt/custom/bin"
+
+# Prepend directory (prioritizes your custom binary over system defaults):
+export PATH="/opt/custom/bin:$PATH"</code></pre>
+      </div>
+
+      <div class="callout-box warning">
+        <h4>Critical Warning: Never Overwrite PATH</h4>
+        <p>
+          If you accidentally run <code>export PATH="/opt/custom/bin"</code> without including <code>$PATH</code>, standard commands like <code>ls</code>, <code>sudo</code>, and <code>clear</code> will immediately fail with <em>"command not found"</em>. If this happens, restore it with:
+        </p>
+        <pre><code>export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</code></pre>
+      </div>
+
+      <h2>4. Environment Variables in systemd Services &amp; Cron</h2>
+      <p>
+        A frequent source of bugs in production is finding that an app runs fine manually in SSH, but fails when launched as a systemd service or cron job. This happens because system services do <strong>not</strong> read <code>~/.bashrc</code> or login profiles.
+      </p>
+
+      <h3>Configuring Environment in systemd Service Files</h3>
+      <p>
+        In your service unit file (e.g. <code>/etc/systemd/system/myapp.service</code>):
+      </p>
+      <pre><code>[Service]
+Type=simple
+User=www-data
+# Option 1: Direct key-value declarations
+Environment="NODE_ENV=production" "PORT=3000"
+
+# Option 2: Load from a secure .env file
+EnvironmentFile=/etc/myapp/production.env
+ExecStart=/usr/bin/node /opt/myapp/server.js</code></pre>
+
+      <!-- Visual GUI Banner Callout -->
+      <div class="gui-banner">
+        <h3>Manage Server Environment Variables Visually</h3>
+        <p>
+          Avoid typos and catastrophic PATH overwrites. SSH Desktop features a built-in <a href="../env-variables-manager.html" style="color: #58a6ff; font-weight: 600;">Environment Variables Manager</a>. Inspect system-wide and user environments, safely edit production <code>.env</code> files, and validate configurations without touching the command line.
+        </p>
+        <a href="../env-variables-manager.html" class="cta-btn">Explore Environment Manager &rarr;</a>
+      </div>
+
+      <h2>5. Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>What is the difference between a shell variable and an environment variable?</h4>
+        <p>
+          A shell variable (created with <code>VAR=value</code>) only exists within the current shell instance and is not inherited by child processes or background commands. An environment variable (created with <code>export VAR=value</code>) is exported into the process environment table and inherited by all subprocesses spawned by that shell.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>Why do my environment variables disappear when I close SSH or reboot?</h4>
+        <p>
+          Using <code>export VAR=value</code> directly in the terminal only modifies the active shell session's memory. To make the variable permanent, you must append it to a startup configuration file such as <code>~/.bashrc</code> (for your specific user) or <code>/etc/environment</code> (for all system users).
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I add a new directory to my PATH without breaking existing commands?</h4>
+        <p>
+          Always include the existing $PATH in your assignment: <code>export PATH="$PATH:/opt/custom/bin"</code>. Never run <code>export PATH="/opt/custom/bin"</code> alone, as this will overwrite system directories and break basic commands like <code>ls</code>, <code>sudo</code>, and <code>clear</code>.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="copyright">&copy; 2026 SSH Desktop. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../security.html">Security</a>
+          <a href="../changelog.html">Changelog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

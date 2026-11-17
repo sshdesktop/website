@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Configure Logwatch for Daily Linux Email Reports (2026 Guide)</title>
+  <meta name="description" content="Automate server log auditing with Logwatch on Linux. Configure daily email digests for SSH logins, failed sudo attempts, disk alerts, and firewall events.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Configure Logwatch for Daily Linux Email Reports (2026 Guide)">
+  <meta property="og:description" content="Automate server log auditing with Logwatch on Linux. Configure daily email digests for SSH logins, failed sudo attempts, disk alerts, and firewall events.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Configure Logwatch for Daily Linux Email Reports (2026 Guide)">
+  <meta name="twitter:description" content="Automate server log auditing with Logwatch on Linux. Configure daily email digests for SSH logins, failed sudo attempts, disk alerts, and firewall events.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html",
+        "url": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html",
+        "name": "How to Configure Logwatch for Daily Linux Email Reports (2026 Guide)",
+        "description": "Automate server log auditing with Logwatch on Linux. Configure daily email digests for SSH logins, failed sudo attempts, disk alerts, and firewall events."
+      },
+      "headline": "How to Configure Logwatch for Daily Linux Email Reports: 2026 Guide",
+      "description": "Automate server log auditing with Logwatch on Linux. Configure daily email digests for SSH logins, failed sudo attempts, disk alerts, and firewall events.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Configure Logwatch for Daily Linux Email Reports (2026 Guide)",
+          "item": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Logwatch and how does it differ from real-time log monitors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Logwatch is a modular log parsing utility that analyzes system logs over a 24-hour window and compiles a categorized, high-level executive summary. Unlike real-time streaming tools that trigger alert fatigue, Logwatch sends an organized daily digest highlighting security anomalies, failed logins, and disk warnings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Logwatch send email notifications from a server without an SMTP server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Logwatch utilizes the local system mail transfer agent (MTA) such as Postfix or lightweight relay clients like msmtp or ssmtp configured with third-party SMTP services (e.g., SendGrid, AWS SES, or Gmail)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I customize Logwatch detail levels and specific services to monitor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Detail levels range from Low (0) to High (10). You can monitor all services or restrict reports to specific critical daemons such as sshd, sudo, ufw, and fail2ban by editing /etc/logwatch/conf/logwatch.conf."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Configure Logwatch for Daily Linux Email Reports (2026 Guide)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Monitoring & Logs</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>10 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Configure Logwatch for Daily Linux Email Reports: 2026 Guide</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Reviewing raw server logs across gigabytes of journal entries every morning is impractical for system administrators. However, ignoring logs leaves brute-force SSH attacks, kernel disk warnings, and unauthorized sudo attempts undetected. <strong>Logwatch</strong> is an open-source log analyzer that parses your server logs and generates an organized, human-readable daily email digest. Learn how to configure Logwatch on Linux in 2026.
+      </p>
+
+      <h2>What Logwatch Summarizes Every Morning</h2>
+      <ul>
+        <li><strong>SSH Authentication:</strong> Successful root logins, accepted public keys, and top IP addresses attempting brute-force logins.</li>
+        <li><strong>Sudo &amp; PAM Activity:</strong> Every user executing administrative commands and any failed privilege escalation attempts.</li>
+        <li><strong>Firewall &amp; Fail2ban:</strong> Number of blocked connection attempts, banned IP addresses, and dropped port scans.</li>
+        <li><strong>Disk Space &amp; Storage:</strong> Partitions exceeding capacity thresholds and filesystem errors.</li>
+        <li><strong>Package Updates:</strong> Software packages installed, upgraded, or removed.</li>
+      </ul>
+
+      <h2>Step 1: Install Logwatch and Mail Utilities</h2>
+      <p>Install Logwatch on Ubuntu / Debian:</p>
+      <pre><code>sudo apt update
+sudo apt install -y logwatch mailutils</code></pre>
+      <p>On RHEL / AlmaLinux / Rocky Linux:</p>
+      <pre><code>sudo dnf install -y epel-release
+sudo dnf install -y logwatch mailx</code></pre>
+
+      <h2>Step 2: Configure Logwatch Settings</h2>
+      <p>
+        The default configuration resides in <code>/usr/share/logwatch/default.conf/logwatch.conf</code>. Never edit this default file directly; instead, create a local override at <code>/etc/logwatch/conf/logwatch.conf</code>:
+      </p>
+      <pre><code>sudo nano /etc/logwatch/conf/logwatch.conf</code></pre>
+      <p>Insert your customized monitoring configuration:</p>
+      <pre><code># Email recipient for reports
+MailTo = admin@example.com
+
+# Sender email address
+MailFrom = server01-logwatch@example.com
+
+# Format: text or html
+Format = html
+
+# Report detail level: Low (0), Medium (5), High (10)
+Detail = High
+
+# Timeframe to analyze: Yesterday or Today
+Range = yesterday
+
+# Services to monitor: 'All' or specific services like sshd, sudo, ufw
+Service = All</code></pre>
+
+      <h2>Step 3: Test Logwatch Execution Manually</h2>
+      <p>Generate a test report to verify configuration and output:</p>
+      <pre><code># Output summary directly to the terminal
+sudo logwatch --detail High --range yesterday --output stdout
+
+# Send a test email digest immediately
+sudo logwatch --mailto admin@example.com --range yesterday</code></pre>
+
+      <h2>Step 4: Configure Postfix or msmtp Relay</h2>
+      <p>
+        If your server does not have an external MX record, install <code>msmtp</code> to relay emails through an authenticated SMTP provider:
+      </p>
+      <pre><code>sudo apt install -y msmtp msmtp-mta</code></pre>
+      <p>Configure <code>/etc/msmtprc</code>:</p>
+      <pre><code>defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        /var/log/msmtp.log
+
+account        default
+host           smtp.sendgrid.net
+port           587
+from           alerts@yourdomain.com
+user           apikey
+password       YOUR_SENDGRID_API_KEY</code></pre>
+
+      <h2>Step 5: Verify the Automated Daily Cron Schedule</h2>
+      <p>
+        Upon installation, Logwatch automatically registers a daily cron script in <code>/etc/cron.daily/00logwatch</code>. Verify that the script exists and is executable:
+      </p>
+      <pre><code>ls -la /etc/cron.daily/00logwatch</code></pre>
+      <p>
+        Every morning at your server's standard cron hour (typically 06:25 AM), Logwatch will parse the previous day's events and deliver an actionable summary directly to your inbox.
+      </p>
+
+      <h2>Remote Log Analysis &amp; Inspection with SSH Desktop</h2>
+      <p>
+        While daily email digests provide excellent high-level summaries, investigating active incidents requires interactive, real-time log inspection. <strong>SSH Desktop</strong> makes log analysis seamless:
+      </p>
+      <ul>
+        <li><strong>Remote Log Analysis Grep:</strong> Search, filter, and tail <code>journalctl</code> and application logs across multiple servers simultaneously.</li>
+        <li><strong>Crontab GUI Manager:</strong> View, test, and schedule recurring maintenance tasks and reporting jobs without terminal syntax errors.</li>
+        <li><strong>System Monitoring Telemetry:</strong> Keep visual tabs on CPU spikes, memory leaks, and disk write surges in real time.</li>
+      </ul>
+      <p>
+        Explore our <a href="../log-analysis-grep.html">Remote Log Analyzer</a> and <a href="../crontab-gui.html">Crontab GUI Manager</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">What is Logwatch and how does it differ from real-time log monitors?</h3>
+          <p class="faq-answer">Logwatch is a modular log parsing utility that analyzes system logs over a 24-hour window and compiles a categorized, high-level executive summary. Unlike real-time streaming tools that trigger alert fatigue, Logwatch sends an organized daily digest highlighting security anomalies, failed logins, and disk warnings.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How does Logwatch send email notifications from a server without an SMTP server?</h3>
+          <p class="faq-answer">Logwatch utilizes the local system mail transfer agent (MTA) such as Postfix or lightweight relay clients like msmtp or ssmtp configured with third-party SMTP services (e.g., SendGrid, AWS SES, or Gmail).</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can I customize Logwatch detail levels and specific services to monitor?</h3>
+          <p class="faq-answer">Yes. Detail levels range from Low (0) to High (10). You can monitor all services or restrict reports to specific critical daemons such as sshd, sudo, ufw, and fail2ban by editing /etc/logwatch/conf/logwatch.conf.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

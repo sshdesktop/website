@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Install & Secure Redis on Ubuntu (24.04 & 22.04 LTS): 2026 Guide</title>
+  <meta name="description" content="Install, configure, and secure Redis on Ubuntu 24.04 and 22.04 LTS. Learn memory tuning, password auth, systemd supervision, and remote SSH tunneling.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Install & Secure Redis on Ubuntu (24.04 & 22.04 LTS): 2026 Guide">
+  <meta property="og:description" content="Install, configure, and secure Redis on Ubuntu 24.04 and 22.04 LTS. Learn memory tuning, password auth, systemd supervision, and remote SSH tunneling.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Install & Secure Redis on Ubuntu (24.04 & 22.04 LTS): 2026 Guide">
+  <meta name="twitter:description" content="Install, configure, and secure Redis on Ubuntu 24.04 and 22.04 LTS. Learn memory tuning, password auth, systemd supervision, and remote SSH tunneling.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html",
+        "name": "How to Install & Secure Redis on Ubuntu (24.04 & 22.04 LTS): 2026 Guide",
+        "description": "Install, configure, and secure Redis on Ubuntu 24.04 and 22.04 LTS. Learn memory tuning, password auth, systemd supervision, and remote SSH tunneling."
+      },
+      "headline": "How to Install & Secure Redis Server on Ubuntu (2026 Guide)",
+      "description": "Install, configure, and secure Redis on Ubuntu 24.04 and 22.04 LTS. Learn memory tuning, password auth, systemd supervision, and remote SSH tunneling.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Install & Secure Redis on Ubuntu (24.04 & 22.04 LTS): 2026 Guide",
+          "item": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why should I never expose Redis directly to the public internet on port 6379?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Redis is designed for maximum speed and lacks defensive hardening against brute-force attacks or network fuzzing. An exposed Redis instance with weak or no authentication allows attackers to write arbitrary SSH keys to /root/.ssh/authorized_keys or overwrite system files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I securely connect to a remote Redis server from my local machine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keep Redis bound to 127.0.0.1 on the remote server and create an encrypted SSH tunnel: ssh -N -L 6379:localhost:6379 user@remote-server-ip. Your local Redis GUI (like SSH Desktop Database Explorer) can then connect to localhost:6379 safely."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the recommended maxmemory-policy for Redis caching?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For caching workloads, allkeys-lru (Least Recently Used) or volatile-lru is recommended. When RAM hits maxmemory, Redis automatically evicts older cached keys instead of throwing Out of Memory (OOM) write errors."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Install & Secure Redis on Ubuntu (24.04 & 22.04 LTS): 2026 Guide</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Database & Caching</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>10 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Install & Secure Redis Server on Ubuntu (2026 Guide)</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Redis is the industry standard for high-performance in-memory caching, pub/sub messaging, and session storage. However, default out-of-the-box installations often lack basic authentication and memory limits, making them vulnerable to memory exhaustion and cryptojacking attacks. Learn how to install, harden, and optimize Redis on Ubuntu 24.04 and 22.04 LTS in 2026.
+      </p>
+
+      <h2>Step 1: Install Official Redis Packages</h2>
+      <p>Install the latest stable Redis release from the official repository:</p>
+      <pre><code># Install prerequisites
+sudo apt update
+sudo apt install -y lsb-release curl gpg
+
+# Add official Redis GPG key and APT repository
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+# Update and install
+sudo apt update
+sudo apt install -y redis</code></pre>
+
+      <h2>Step 2: Configure Systemd Supervision &amp; Memory Allocation</h2>
+      <p>Edit the main Redis configuration file:</p>
+      <pre><code>sudo nano /etc/redis/redis.conf</code></pre>
+      <p>1. Enable systemd supervision:</p>
+      <pre><code># Change supervised no to systemd
+supervised systemd</code></pre>
+      <p>2. Set memory ceiling and eviction policy (e.g., 2GB on an 8GB server):</p>
+      <pre><code>maxmemory 2gb
+maxmemory-policy allkeys-lru</code></pre>
+
+      <h2>Step 3: Enforce Network Isolation &amp; Password Authentication</h2>
+      <p>
+        Security is paramount. Never change the bind address to <code>0.0.0.0</code> without strict firewall rules:
+      </p>
+      <pre><code># Ensure Redis binds only to localhost
+bind 127.0.0.1 -::1
+
+# Set a strong, cryptographically generated password
+requirepass "SuperSecureRandom64CharPassphrase"</code></pre>
+      <p>Save changes and restart Redis:</p>
+      <pre><code>sudo systemctl restart redis-server
+sudo systemctl enable redis-server</code></pre>
+
+      <h2>Step 4: Verify Redis Operation</h2>
+      <p>Test the installation with <code>redis-cli</code>:</p>
+      <pre><code>redis-cli
+127.0.0.1:6379> ping
+(error) NOAUTH Authentication required.
+127.0.0.1:6379> auth "SuperSecureRandom64CharPassphrase"
+OK
+127.0.0.1:6379> ping
+PONG</code></pre>
+
+      <h2>Step 5: Linux Kernel Tuning for Redis</h2>
+      <p>
+        Redis requires two critical kernel optimizations to prevent memory overcommit errors and latency spikes:
+      </p>
+      <pre><code># Add overcommit_memory and somaxconn to sysctl.conf
+echo "vm.overcommit_memory = 1" | sudo tee -a /etc/sysctl.conf
+echo "net.core.somaxconn = 65535" | sudo tee -a /etc/sysctl.conf
+
+# Apply immediately
+sudo sysctl -p
+
+# Disable Transparent Huge Pages (THP)
+echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled</code></pre>
+
+      <h2>Manage Redis Remotely &amp; Securely with SSH Desktop</h2>
+      <p>
+        Connecting to production Redis instances over the public internet is dangerous. With <strong>SSH Desktop</strong>, you get:
+      </p>
+      <ul>
+        <li><strong>Automatic SSH Tunneling:</strong> Connect to remote Redis instances bound to localhost via encrypted SSH tunnels with zero public port exposure.</li>
+        <li><strong>Visual Key-Value Explorer:</strong> Browse, filter, and edit Redis strings, hashes, sets, and lists in an intuitive UI.</li>
+        <li><strong>Memory &amp; Client Telemetry:</strong> Track memory consumption, connected clients, and cache hit ratios in real time.</li>
+      </ul>
+      <p>
+        Explore our visual <a href="../database-gui-ssh-tunnel.html">Database GUI &amp; SSH Tunnel</a> and <a href="../system-monitor.html">System Monitor</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Why should I never expose Redis directly to the public internet on port 6379?</h3>
+          <p class="faq-answer">Redis is designed for maximum speed and lacks defensive hardening against brute-force attacks or network fuzzing. An exposed Redis instance with weak or no authentication allows attackers to write arbitrary SSH keys to /root/.ssh/authorized_keys or overwrite system files.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I securely connect to a remote Redis server from my local machine?</h3>
+          <p class="faq-answer">Keep Redis bound to 127.0.0.1 on the remote server and create an encrypted SSH tunnel: ssh -N -L 6379:localhost:6379 user@remote-server-ip. Your local Redis GUI (like SSH Desktop Database Explorer) can then connect to localhost:6379 safely.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What is the recommended maxmemory-policy for Redis caching?</h3>
+          <p class="faq-answer">For caching workloads, allkeys-lru (Least Recently Used) or volatile-lru is recommended. When RAM hits maxmemory, Redis automatically evicts older cached keys instead of throwing Out of Memory (OOM) write errors.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

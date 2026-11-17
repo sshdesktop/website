@@ -1,0 +1,876 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Linux Server Administration &amp; SSH Troubleshooting Knowledge Base | SSH Desktop</title>
+  <meta name="title" content="Linux Server &amp; SSH Troubleshooting Knowledge Base | SSH Desktop">
+  <meta name="description" content="Authoritative solutions for the top searched Linux server queries: how to manage Linux with macOS UI, connect to Postgres over SSH tunnel, visual UFW firewall, extract zip on server, Docker web GUI, and systemd logs.">
+  <meta name="keywords" content="linux server troubleshooting, ssh knowledge base, remote desktop over ssh, rdp over ssh, ssh port forwarding guide, manage linux without vnc">
+  <meta name="author" content="SSH Desktop Research Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="revisit-after" content="2 days">
+  <meta name="language" content="English">
+  <meta name="distribution" content="Global">
+  <meta name="rating" content="General">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://sshdesktop.com/knowledge-base.html">
+
+  <link rel="dns-prefetch" href="https://sshdesktop.com/">
+  <link rel="preconnect" href="https://sshdesktop.com">
+
+  <!-- Mobile & Application Meta -->
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0284c7" media="(prefers-color-scheme: light)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Knowledge Base">
+  <meta name="application-name" content="SSH Desktop Knowledge Base">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="browserconfig.xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/knowledge-base.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="Linux Server &amp; SSH Troubleshooting Knowledge Base | SSH Desktop">
+  <meta property="og:description" content="Comprehensive DevOps and sysadmin knowledge base: remote desktop over SSH, AWS EC2 access, Docker container monitoring, database tunnels, and SFTP workflows.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="SSH Desktop Top Search Queries Encyclopedia">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@SSHDesktop">
+  <meta name="twitter:creator" content="@SSHDesktop">
+  <meta name="twitter:title" content="Linux Server &amp; SSH Troubleshooting Knowledge Base | SSH Desktop">
+  <meta name="twitter:description" content="Authoritative solutions for the top searched Linux server administration queries.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta name="twitter:image:alt" content="Top Search Queries Encyclopedia Preview">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="assets/css/style.min.css">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Docs", "item": "https://sshdesktop.com/docs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Knowledge Base",
+            "item": "https://sshdesktop.com/knowledge-base.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "headline": "Master Encyclopedia of High-Intent Linux Server &amp; SSH Search Queries",
+        "description": "Exhaustive technical guide providing step-by-step solutions to the most common Linux DevOps queries, from headless server GUIs to database tunnels.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Research Team",
+          "url": "https://sshdesktop.com"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How to manage Linux server with macOS style interface?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Install SSH Desktop on Windows, macOS, or Linux, or run 'curl -fsSL https://sshdesktop.com/install.sh | sudo bash' on your server. SSH Desktop renders an authentic Apple macOS Sonoma frosted glass desktop with Mission Control, keyboard window switcher, floating dock, and multi-server tabs locally on your client machine using WebGL, without requiring X11, Wayland, or heavy VNC packages on your Linux server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Connect to remote PostgreSQL database through SSH tunnel without exposing port?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open App 6 (Universal Database Studio) inside SSH Desktop. Enter host '127.0.0.1' and port 5432. SSH Desktop automatically establishes an ephemeral, AES-256 encrypted local SSH tunnel through your active SSH connection. Your PostgreSQL database never exposes port 5432 to the public internet, protecting it completely from brute force attacks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Visual UFW and iptables firewall manager for Ubuntu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SSH Desktop includes App 8 (Visual Firewall Manager). It automatically detects whether your Ubuntu system uses UFW, Iptables, or Nftables. You can visually open ports (SSH 22, HTTP 80, HTTPS 443), restrict incoming connections to specific source subnets (e.g. 192.168.1.0/24), configure rate limiting, and benefit from built-in SSH lockout protection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Lightweight remote desktop for headless Linux VPS without VNC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Unlike VNC or RDP which require full desktop environments (GNOME/XFCE) consuming 1-2GB of server RAM and streaming bandwidth-heavy video frames, SSH Desktop executes natively over SSH2 and SFTP. The GUI runs locally on your client machine, consuming 0% idle server RAM and providing zero-lag interaction even over 3G/4G cellular connections."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How to view Linux systemd logs in real time with GUI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open App 7 (Systemd Services & Daemons Manager) in SSH Desktop. Click on any unit name (e.g. nginx, docker, postgresql, ufw) to stream live journalctl logs directly in your browser with zero buffer lag, ANSI color syntax, and keyword filtering."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Extract zip and tar.gz on remote Linux server without downloading?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use App 3 (Dual-Pane SFTP Manager). Right-click any remote archive (.zip, .tar.gz, .tar.bz2) and select 'Extract Here' or 'Extract to Subfolder'. The server uncompresses the files locally in milliseconds without downloading the archive to your PC."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Best free Termius alternative without subscription?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SSH Desktop is the leading $0 free alternative to Termius. Unlike Termius which charges $120 to $240 per year for SFTP, port forwarding, and background sessions, SSH Desktop provides unlimited tabs, dual-pane SFTP, in-place Monaco editor, Docker management, and database studio completely free with zero cloud dependencies."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Best modern PuTTY replacement for Windows 11?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SSH Desktop is engineered specifically as a modern PuTTY replacement for Windows 11 and 10. It features native multi-tab organization, split horizontal and vertical panes, GPU-accelerated rendering, an integrated SFTP file manager, and a 1-click PuTTY migration wizard that automatically converts registry sessions and .ppk keys."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header (Apple-Style Clean) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="assets/images/logo.svg" alt="SSH Desktop" width="180" height="38">
+      </a>
+
+      <!-- Navigation Links (Clean & Focused) -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="docs/">Docs</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions CTA -->
+      <div class="header-actions">
+        <!-- Compact Search Icon Trigger -->
+        <button class="header-search-icon-btn" id="headerSearchTrigger" aria-label="Quick Search" title="Search apps and docs (Ctrl + K)">
+          <span class="search-icon">&#128269;</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+
+        <!-- GitHub Star Badge -->
+        <a href="https://github.com/sshdesktop/sshdesktop" class="header-github-btn" target="_blank" rel="noopener" aria-label="Star on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-star-label">Star</span>
+          <span class="gh-counter" id="navGhStars">1</span>
+        </a>
+
+        <!-- Download CTA -->
+        <a href="download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Command Palette Modal (Ctrl + K) -->
+  <div class="command-palette-overlay" id="commandPaletteOverlay" role="dialog" aria-modal="true" aria-label="Command search" style="display: none;">
+    <div class="command-palette-card">
+            <div class="command-palette-header">
+        <span class="command-search-icon">&#128269;</span>
+        <input type="text" id="commandPaletteInput" class="command-palette-input" placeholder="Type a command, app, or guide... (e.g. Docker, SFTP, UFW, Nginx)" autocomplete="off" spellcheck="false">
+        <div class="command-palette-header-actions">
+          <kbd class="command-esc-badge" id="commandEscBadge" title="Press Escape to close">ESC</kbd>
+          <button type="button" class="command-palette-close-btn" id="commandPaletteClose" aria-label="Close search (ESC)">&times;</button>
+        </div>
+      </div>
+      <div class="command-palette-results" id="commandPaletteResults">
+        <!-- Live dynamic search items -->
+      </div>
+      <div class="command-palette-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate</span>
+        <span><kbd>&crarr;</kbd> to open</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Breadcrumb Bar -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="docs/">Docs</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li aria-current="page">Knowledge Base</li>
+      </ol>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero text-center" style="padding-top: 20px;">
+      <div class="container">
+        <div class="hero-pill">
+          <span class="badge badge-purple">&#128218; Linux Sysadmin &amp; DevOps Knowledge Base</span>
+        </div>
+        <h1 class="hero-title">Linux Server Administration &amp; SSH <span>Solutions Knowledge Base</span></h1>
+        <p class="hero-lead">Definitive guides, step-by-step solutions, and best practices for remote Linux administration, encrypted SSH tunnels, container management, and server performance.</p>
+      </div>
+    </section>
+
+    <!-- Query Categories Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="query-encyclopedia-grid">
+          <!-- Query - Raspberry Pi Remote Desktop & SSH -->
+          <article class="query-card" style="border: 2px solid #e11d48; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(225, 29, 72, 0.15); color: #e11d48; font-weight: 700;">Topic: Raspberry Pi Remote Desktop &amp; Remote SSH</div>
+            <h2 class="query-title">How to log into Raspberry Pi remotely from Windows 10/11 with desktop view</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="raspberry-pi-ssh-remote-desktop.html">SSH Desktop for Raspberry Pi</a>. Connect directly to your Raspberry Pi 5, 4, or Zero 2 W over standard SSH port 22. Get a complete desktop view with hardware PTY terminal, dual-pane SFTP, and Monaco code editor rendered client-side with 0 MB extra RAM overhead on your Pi.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 0 MB Extra Server RAM on Pi</span>
+                <span>&#10003; Connect via Port 22 (No VNC Needed)</span>
+                <span>&#10003; Native Windows 10 &amp; 11 Client</span>
+                <a href="raspberry-pi-ssh-remote-desktop.html" class="query-link">Explore Raspberry Pi Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - Chrome Remote Desktop & TeamViewer vs SSH -->
+          <article class="query-card" style="border: 2px solid #0284c7; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7; font-weight: 700;">Topic: Chrome Remote Desktop &amp; TeamViewer Alternatives</div>
+            <h2 class="query-title">How to run remote desktop over SSH without Chrome Remote Desktop or TeamViewer</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Avoid complex Xvfb configurations for <strong>chrome remote desktop via ssh</strong> or commercial licensing locks when attempting to <strong>start teamviewer from ssh</strong>. Deploy <a href="ssh-remote-desktop.html">SSH Remote Desktop</a> or tunnel <a href="rdp-over-ssh.html">XRDP over SSH</a> with 1 click in SSH Desktop.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Zero Cloud Middlemen</span>
+                <span>&#10003; 100% Free &amp; Open Source</span>
+                <span>&#10003; 25 Built-in Admin Apps</span>
+                <a href="ssh-remote-desktop.html" class="query-link">Explore SSH Desktop View &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - RDP over SSH -->
+          <article class="query-card" style="border: 2px solid #2563eb; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(37, 99, 235, 0.15); color: #2563eb; font-weight: 700;">Topic: RDP over SSH Tunnel &amp; Port 3389 Encryption</div>
+            <h2 class="query-title">How to run RDP over SSH tunnel on Windows 10, Windows 11, and Ubuntu Linux</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Keep port 3389 closed to public scanner botnets by tunneling Windows Remote Desktop (RDP) through an encrypted SSH tunnel (port 22). With SSH Desktop, utilize App 20 (SSH Port Forwarding &amp; Tunnels) or run <code>ssh -L 33890:127.0.0.1:3389 user@host</code> and connect your RDP client to <code>localhost:33890</code>. Learn more on our dedicated <a href="rdp-over-ssh.html">RDP over SSH Tunnel Guide</a>.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Keep Port 3389 Closed to Internet</span>
+                <span>&#10003; 1-Click Automated Port Forwarding</span>
+                <span>&#10003; Supports Windows 10/11 &amp; Linux XRDP</span>
+                <a href="rdp-over-ssh.html" class="query-link">Explore RDP over SSH &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - SSH Remote Desktop (Desktop View) -->
+          <article class="query-card" style="border: 2px solid #059669; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(5, 150, 105, 0.15); color: #059669; font-weight: 700;">Topic: SSH Remote Desktop &amp; Linux GUI over Pure Port 22</div>
+            <h2 class="query-title">How to get a remote desktop view using SSH without installing VNC or XRDP</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="ssh-remote-desktop.html">SSH Remote Desktop</a>. Unlike VNC or XRDP which consume 1GB+ RAM on your remote Linux host and stream heavy pixel buffers, SSH Desktop renders an authentic Apple macOS Sonoma shell locally on your client machine with 25 native server apps (Process Explorer, Dual-Pane SFTP, Docker Hub, Service Inspector) over pure SSH port 22 with 0 MB server RAM overhead.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 0 MB Idle Server RAM Overhead</span>
+                <span>&#10003; Pure SSH Port 22 (Zero VNC Ports)</span>
+                <span>&#10003; 60 FPS Client-Side WebGL Rendering</span>
+                <a href="ssh-remote-desktop.html" class="query-link">Explore SSH Remote Desktop &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - RDP and SSH Manager -->
+          <article class="query-card" style="border: 2px solid #7c3aed; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(124, 58, 237, 0.15); color: #7c3aed; font-weight: 700;">Topic: Free RDP &amp; SSH Connection Manager</div>
+            <h2 class="query-title">Best free alternative to Devolutions Remote Desktop Manager for managing RDP and SSH connections</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Switch to SSH Desktop's unified <a href="rdp-over-ssh.html">RDP and SSH Connection Manager</a>. Organize your cloud fleet (AWS, Hetzner, GCP), bare-metal servers, Windows workstations, and Linux containers in one clean client-side interface with credential vaulting, native terminal hardware acceleration, and zero licensing fees.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Unified RDP, SSH &amp; SFTP Manager</span>
+                <span>&#10003; 100% Free &amp; Open Source</span>
+                <span>&#10003; No $249/yr Devolutions Subscription</span>
+                <a href="alternatives/remote-desktop-manager-alternative.html" class="query-link">Compare vs Devolutions RDM &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Query - Web Mode: Run in Browser -->
+          <article class="query-card" style="border: 2px solid #06b6d4; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(6, 182, 212, 0.15); color: #0891b2; font-weight: 700;">Topic: Run SSH Desktop in Web Mode (Browser Cloud Desktop)</div>
+            <h2 class="query-title">How to run SSH Desktop in Web Mode &amp; access from Google Chrome, Safari, or Firefox</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Run the SSH Desktop server daemon on your Linux server using <code>curl -fsSL https://sshdesktop.com/install.sh | bash</code> or launch with <code>sshdesktop --server --frontend-port 2222 --backend-port 2020</code>. View your initial admin credentials via <code>sudo cat /var/lib/sshdesktop/initial-admin-credentials.txt</code> and navigate to <strong><code>http://&lt;your-server-ip&gt;:2222</code></strong> in any web browser. You get the complete macOS Sonoma Cloud Desktop GUI, terminal, dual-pane SFTP, Docker Hub, and database studio running natively in your browser tabs with zero client installation.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 100% Client-Free Browser Access</span>
+                <span>&#10003; 1 Service File: Frontend 2222 &bull; Backend 2020</span>
+                <span>&#10003; Compatible with Chromebooks, iPads &amp; Workstations</span>
+                <a href="docs.html#web-mode" class="query-link">Read Web Mode Setup Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 0: SSH Desktop Brand & Remote Desktop Query Intent -->
+          <article class="query-card" style="border: 2px solid var(--accent-cyan); background: #ffffff;">
+            <div class="query-badge" style="background: rgba(14, 165, 233, 0.15); color: var(--accent-cyan); font-weight: 700;">Topic: SSH Desktop &amp; Remote GUI over SSH</div>
+            <h2 class="query-title">SSH Desktop - What is SSH Desktop &amp; How to Run a Graphical Desktop over SSH</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> If you are searching for an <strong>SSH Desktop</strong>, you are either looking for the official <strong>SSH Desktop</strong> software (<a href="/">sshdesktop.com</a>) or seeking a way to access a full graphical desktop environment over a secure SSH connection without installing heavy VNC, RDP, or X11 forwarding servers. SSH Desktop solves both needs: it is a 100% free, client-side application that gives any headless Linux server an authentic macOS Sonoma graphical desktop over pure SSH port 22, with zero server memory overhead and 25 built-in administration apps.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Exact Search Match: "SSH Desktop"</span>
+                <span>&#10003; 0 MB Extra Server RAM</span>
+                <span>&#10003; Windows, macOS, Linux Desktop &amp; CLI</span>
+                <a href="download.html" class="query-link">Download SSH Desktop &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - Enterprise: Zero-Trust & Air-Gapped Production -->
+          <article class="query-card" style="border: 2px solid #8b5cf6; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6; font-weight: 700;">Topic: Enterprise SSH &amp; Zero-Trust Production Management</div>
+            <h2 class="query-title">Best enterprise SSH client for air-gapped production Linux servers without cloud sync</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Deploy <a href="enterprise.html">SSH Desktop Enterprise Infrastructure Suite</a>. Designed specifically for regulated financial, defense, and healthcare enclaves, SSH Desktop stores 100% of keys in local operating system DPAPI/Keychain keystores, requires zero internet connectivity to function, generates zero telemetry or analytics beacons, and natively supports FIDO2/YubiKey hardware tokens and multi-hop ProxyJump bastions.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 100% Air-Gapped &amp; Offline Ready</span>
+                <span>&#10003; Zero Cloud Telemetry (SOC 2 Aligned)</span>
+                <span>&#10003; Silent MSI / Intune / GPO Fleet Deployment</span>
+                <a href="enterprise.html" class="query-link">Explore Enterprise Solutions &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - DevOps: Parallel Fleet Broadcast & Incident Triage -->
+          <article class="query-card" style="border: 2px solid #059669; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(5, 150, 105, 0.15); color: #059669; font-weight: 700;">Topic: DevOps Automation &amp; SRE Incident Response</div>
+            <h2 class="query-title">How to broadcast terminal commands across multiple remote Linux servers simultaneously</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Utilize <a href="devops.html">SSH Desktop DevOps &amp; SRE Suite</a> with <a href="multi-server-automation.html">Multi-Server Broadcast (App 25)</a>. Group target nodes by environment (Production, Staging, EU-West) and broadcast hotfix scripts or diagnostic commands across dozens of nodes with synchronized keyboard execution, alongside visual Docker Hub management, tunneled database diagnostics, and live systemd log aggregation.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Synchronized Parallel Terminal Broadcast</span>
+                <span>&#10003; Visual Docker &amp; Compose Control</span>
+                <span>&#10003; 12+ Database Tunnel Engines</span>
+                <a href="devops.html" class="query-link">Explore DevOps Suite &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - Multi-Cloud: AWS, Hetzner, GCP & Bare Metal -->
+          <article class="query-card" style="border: 2px solid #0284c7; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7; font-weight: 700;">Topic: Multi-Cloud Linux VPS Control GUI</div>
+            <h2 class="query-title">Unified desktop GUI to manage AWS EC2, Hetzner, and GCP compute instances without browser consoles</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Unify your servers with <a href="cloud.html">SSH Desktop Multi-Cloud VPS Manager</a>. Eliminate sluggish cloud provider web consoles and manage Amazon EC2, Hetzner Cloud, Google Cloud Compute, Azure VMs, and on-premise Proxmox bare-metal servers side-by-side in one client with zero open daemon ports and 0 MB idle server memory overhead.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Direct Peer-to-Peer SSH (Port 22 Only)</span>
+                <span>&#10003; AWS VPC &amp; Azure vNet Bastion Support</span>
+                <span>&#10003; Zero Cloud Vendor Lock-in</span>
+                <a href="cloud.html" class="query-link">Explore Multi-Cloud Control &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - Web SSH Client -->
+          <article class="query-card" style="border: 2px solid #06b6d4; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(6, 182, 212, 0.15); color: #0891b2; font-weight: 700;">Topic: Web SSH Client &amp; In-Browser Linux Terminal</div>
+            <h2 class="query-title">Best self-hosted Web SSH client to access Linux terminal from Chrome or Safari</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Deploy <a href="web-ssh-client.html">SSH Desktop Web Mode</a>. It runs a single background systemd service orchestrating frontend web UI on port <strong>2222</strong> and backend API daemon on port <strong>2020</strong>. Access the authentic macOS Sonoma desktop shell, Xterm.js hardware terminal, dual-pane SFTP, and Docker management straight from any modern browser with zero client-side installation.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Access via http://&lt;server-ip&gt;:2222</span>
+                <span>&#10003; 1 Systemd Service: /etc/systemd/system/sshdesktop.service</span>
+                <span>&#10003; Works on Chromebooks, iPads &amp; Workstations</span>
+                <a href="web-ssh-client.html" class="query-link">Explore Web SSH Client &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - SecureCRT Alternative -->
+          <article class="query-card" style="border: 2px solid #8b5cf6; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6; font-weight: 700;">Topic: VanDyke SecureCRT Free Alternative</div>
+            <h2 class="query-title">Free modern alternative to VanDyke SecureCRT with tabbed sessions and SFTP</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Switch to <a href="alternatives/securecrt-alternative.html">SSH Desktop (Free SecureCRT Alternative)</a>. VanDyke charges $149+/user/year with paid upgrades, while SSH Desktop is 100% free under Apache 2.0 / MIT. Enjoy tabbed hardware-accelerated PTY sessions, native OS credential vaults (DPAPI, Keychain), multi-server batch command broadcast, and a built-in dual-pane SFTP manager.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Save $149+/user with Apache 2.0 License</span>
+                <span>&#10003; Built-in Dual-Pane SFTP (No paid SecureFX needed)</span>
+                <span>&#10003; Windows 11, macOS Apple Silicon &amp; Linux</span>
+                <a href="alternatives/securecrt-alternative.html" class="query-link">Compare SecureCRT vs SSH Desktop &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - Windows 11 SSH Client -->
+          <article class="query-card" style="border: 2px solid #0284c7; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7; font-weight: 700;">Topic: Best Windows 11 SSH Client GUI</div>
+            <h2 class="query-title">What is the best modern tabbed SSH client for Windows 11 with SFTP</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Download <a href="ssh-client-windows-11.html">SSH Desktop for Windows 11</a>. Engineered specifically for Windows 11 Fluent UI, it integrates with native OpenSSH and Windows DPAPI encryption. Includes tabbed hardware PTY terminals, 1-click PuTTY session import, dual-pane SFTP file management, and enterprise MSI packages for Intune and SCCM.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Windows 11 x64 &amp; Snapdragon ARM64</span>
+                <span>&#10003; Windows DPAPI Hardware Keystore</span>
+                <span>&#10003; Instant PuTTY Registry &amp; .ppk Import</span>
+                <a href="ssh-client-windows-11.html" class="query-link">Explore Windows 11 Features &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - AWS EC2 SSH Client -->
+          <article class="query-card" style="border: 2px solid #f59e0b; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706; font-weight: 700;">Topic: AWS EC2 SSH Client &amp; .pem Key GUI</div>
+            <h2 class="query-title">How to connect to AWS EC2 Linux instance with .pem key and visual desktop GUI</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="aws-ec2-ssh-client.html">SSH Desktop for AWS EC2</a>. Simply drag-and-drop your downloaded AWS <code>.pem</code> key pair to connect. Use native <code>ProxyJump</code> bastion configuration to reach private VPC subnet instances without public IPs or NAT gateway costs, while managing Docker containers and SFTP with 0 MB server RAM overhead.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Native .pem &amp; Ed25519 Key Drag-and-Drop</span>
+                <span>&#10003; Private VPC ProxyJump Bastion Routing</span>
+                <span>&#10003; Zero Server Agent Installation (Port 22 Only)</span>
+                <a href="aws-ec2-ssh-client.html" class="query-link">Explore AWS EC2 Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - WinSCP for Mac -->
+          <article class="query-card" style="border: 2px solid #0284c7; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7; font-weight: 700;">Topic: WinSCP for Mac &amp; Linux Alternative</div>
+            <h2 class="query-title">Is there a WinSCP for Mac? Best dual-pane SFTP client for macOS and Linux</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> WinSCP is Windows-only, but <a href="alternatives/winscp-alternative.html">SSH Desktop brings the full dual-pane SFTP experience to macOS and Linux</a>. Enjoy side-by-side local and remote directory trees, live in-place remote editing with VS Code's Monaco editor, multi-stream file transfers, and an integrated hardware PTY terminal sidecar with 0% extra server RAM.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Native Apple Silicon M1-M4 &amp; Linux</span>
+                <span>&#10003; Dual-Pane Finder Layout with Monaco IDE</span>
+                <span>&#10003; 100% Free / Apache 2.0 &amp; MIT</span>
+                <a href="alternatives/winscp-alternative.html" class="query-link">Explore WinSCP Alternative &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - Warp Without Login -->
+          <article class="query-card" style="border: 2px solid #10b981; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(16, 185, 129, 0.15); color: #059669; font-weight: 700;">Topic: Warp Terminal Alternative Without Telemetry</div>
+            <h2 class="query-title">Warp terminal alternative without mandatory account login and cloud telemetry</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Switch to <a href="alternatives/warp-terminal-alternative.html">SSH Desktop (Privacy-First Warp Alternative)</a>. Operates 100% offline with zero telemetry, zero usage tracking, and no required GitHub/Google sign-in. Delivers hardware-accelerated PTY rendering, local credential vaults, dual-pane SFTP, and 25 integrated server tools.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Zero Telemetry &bull; Air-Gapped Ready</span>
+                <span>&#10003; No Account / Login Required</span>
+                <span>&#10003; 25 Built-in Linux Administration Apps</span>
+                <a href="alternatives/warp-terminal-alternative.html" class="query-link">Explore Warp Alternative &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query - iTerm2 for Windows -->
+          <article class="query-card" style="border: 2px solid #8b5cf6; background: #ffffff;">
+            <div class="query-badge" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6; font-weight: 700;">Topic: iTerm2 Alternative for Windows 11 &amp; Linux</div>
+            <h2 class="query-title">Can I get iTerm2 on Windows 11? Best cross-platform tabbed terminal with split panes</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Download <a href="alternatives/iterm2-alternative.html">SSH Desktop for Windows 11</a>. While iTerm2 is macOS-only, SSH Desktop brings Apple-grade frosted glass aesthetics, horizontal and vertical split panes, TrueColor themes, session vaults, and integrated dual-pane SFTP directly to Windows 11 and Linux.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Windows 11 Fluent UI &amp; Linux Support</span>
+                <span>&#10003; Split Panes &amp; Command Broadcast</span>
+                <span>&#10003; Integrated Dual-Pane SFTP Sidecar</span>
+                <a href="alternatives/iterm2-alternative.html" class="query-link">Explore iTerm2 Alternative &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 1 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Remote Linux GUI</div>
+            <h2 class="query-title">How to manage Linux server with macOS style interface</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use SSH Desktop's <a href="apps.html#app-1">App 1: macOS Sonoma Cloud Desktop Shell</a>. It connects to any headless Ubuntu, Debian, RHEL, or Arch server over SSH2 and renders a native frosted glass desktop with dynamic 4K official wallpapers, Mission Control (<kbd>Ctrl+F3</kbd>), and an auto-hiding dock.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 0% idle server RAM</span>
+                <span>&#10003; No X11 or VNC required</span>
+                <a href="docs.html#app-1" class="query-link">Read Step-by-Step Tutorial &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 2 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Database GUI with SSH Tunnel</div>
+            <h2 class="query-title">Connect to remote PostgreSQL database through SSH tunnel without exposing port</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="apps.html#app-6">App 6: Universal Multi-Engine Database Studio</a>. Point the connection to <code>127.0.0.1:5432</code>. SSH Desktop automatically establishes an ephemeral encrypted tunnel over port 22, letting you query tables and edit rows visually while keeping the database port completely blocked from the public internet.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Works with Postgres, MySQL, Redis, Mongo</span>
+                <span>&#10003; Zero firewall changes</span>
+                <a href="docs.html#app-6" class="query-link">Read Database Tutorial &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 3 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Visual UFW Firewall</div>
+            <h2 class="query-title">Visual UFW and iptables firewall manager for Ubuntu</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="apps.html#app-8">App 8: Visual Firewall Manager</a>. Build rules for incoming and outgoing traffic with visual port presets (SSH, HTTP, HTTPS, DB), rate-limiting against brute force attacks, subnet restriction (e.g. <code>192.168.1.0/24</code>), and automated SSH lockout protection.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Detects UFW, iptables &amp; nftables</span>
+                <span>&#10003; Lockout safety checks</span>
+                <a href="docs.html#app-8" class="query-link">Read Firewall Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 4 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Headless Linux VPS Desktop</div>
+            <h2 class="query-title">Lightweight remote desktop for headless Linux VPS without VNC or RDP</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Traditional remote desktops require installing X11 and GNOME, consuming 1.5GB of RAM and massive network bandwidth. SSH Desktop runs as a 12MB native client or static binary, executing pure SSH/SFTP calls in microseconds with zero lag.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Bandwidth efficient</span>
+                <span>&#10003; Works over 3G/4G cellular</span>
+                <a href="download.html" class="query-link">Download Free Client &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 5 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Systemd Logs GUI</div>
+            <h2 class="query-title">How to view Linux systemd logs in real time with GUI</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="apps.html#app-7">App 7: Systemd Services &amp; Daemons Manager</a>. Click any system service (e.g., <code>nginx.service</code> or <code>docker.service</code>) to stream real-time <code>journalctl -f</code> logs directly inside your workspace with zero buffer delay and keyword regex search.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; ANSI color syntax</span>
+                <span>&#10003; Boot enablement toggles</span>
+                <a href="docs.html#app-7" class="query-link">Read Systemd Tutorial &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 6 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: SFTP Archive Extractor</div>
+            <h2 class="query-title">Extract zip and tar.gz on remote Linux server without downloading</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="sftp-client.html">Dual-Pane SFTP Manager (App 3)</a>. Right-click any remote <code>.zip</code>, <code>.tar.gz</code>, or <code>.tar.bz2</code> file and select <em>Extract Here</em>. The server executes the extraction locally in milliseconds, saving you hours of downloading and re-uploading.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; In-place compression</span>
+                <span>&#10003; Visual chmod/chown</span>
+                <a href="sftp-client.html" class="query-link">Explore SFTP Client &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 7 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Docker Remote Management GUI</div>
+            <h2 class="query-title">Docker web GUI alternative to Portainer with live exec shell</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="apps.html#app-5">App 5: Docker Container Hub</a>. It talks directly to <code>/var/run/docker.sock</code> without requiring any open web ports or heavy background Docker container agents. Stream logs, inspect image volumes, and click <em>Exec</em> to spawn an instant interactive terminal.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; 0MB agent overhead</span>
+                <span>&#10003; One-click image pruning</span>
+                <a href="docs.html#app-5" class="query-link">Read Docker Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 8 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Termius Free Alternative</div>
+            <h2 class="query-title">Best free Termius alternative without subscription or cloud sync</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Switch to SSH Desktop. While Termius costs $120–$240/year per seat, SSH Desktop gives you full multi-tab terminal, SFTP with Monaco code editor, port forwarding, and 25 built-in server administration apps for <strong>$0 Free</strong> with 100% private, local key storage.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; $0 forever</span>
+                <span>&#10003; Zero cloud key relays</span>
+                <a href="alternatives/termius-alternative.html" class="query-link">Compare Termius vs SSH Desktop &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 9 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: PuTTY Alternative Windows 11</div>
+            <h2 class="query-title">Best modern PuTTY replacement with tabs for Windows 11</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Upgrade from PuTTY's 1999 single-window interface to SSH Desktop. Built for Windows 11/10 with GPU acceleration, split panes, Catppuccin color schemes, and an automatic registry wizard that imports all PuTTY sessions and converts <code>.ppk</code> keys in 1 click.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Winget package available</span>
+                <span>&#10003; Windows Credential Manager</span>
+                <a href="alternatives/putty-alternative.html" class="query-link">View PuTTY Migration Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 10 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Visual Port Forwarding</div>
+            <h2 class="query-title">SSH port forwarding tunnel canvas for Local, Remote, and SOCKS5 proxies</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="ssh-port-forwarding.html">SSH Port Forwarding Canvas (App 17)</a>. Visually map Local (<code>-L</code>), Remote (<code>-R</code>), and Dynamic SOCKS5 (<code>-D</code>) tunnels with live topology graphs, throughput speedometers, and automatic reconnect on network drops.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Visual data-flow arrows</span>
+                <span>&#10003; ProxyJump support</span>
+                <a href="ssh-port-forwarding.html" class="query-link">View Tunnel Canvas &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 11 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Webmin &amp; Cockpit Replacement</div>
+            <h2 class="query-title">Self-hosted Linux server control panel without open web daemon ports</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Traditional panels like Webmin and Cockpit require exposing ports 10000 or 9090 to the internet. SSH Desktop operates over standard SSH port 22 with Ed25519 authentication, giving you 22 complete management apps with zero additional attack surface.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Apache 2.0 / MIT Open Source</span>
+                <span>&#10003; No Perl or Node runtime required</span>
+                <a href="alternatives/webmin-alternative.html" class="query-link">Compare Webmin &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Query 12 -->
+          <article class="query-card">
+            <div class="query-badge">Search Intent: Multi-Server Scripting</div>
+            <h2 class="query-title">Run bash commands across multiple servers simultaneously</h2>
+            <div class="query-solution">
+              <p><strong>Direct Solution:</strong> Use <a href="apps.html#app-21">App 21: Multi-Server Snippets &amp; Command Automator</a>. Select your production cluster (10+ servers) and execute system upgrades, Docker restarts, or health checks with unified live output aggregation.</p>
+              <div class="query-meta-bar">
+                <span>&#10003; Reusable snippet library</span>
+                <span>&#10003; Variable interpolation</span>
+                <a href="docs.html#app-21" class="query-link">Read Snippets Guide &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 1-Line Server Quickstart -->
+    <section class="cli-quickstart-section">
+      <div class="container">
+        <div class="cli-banner-card">
+          <div class="cli-banner-badge">Official 1-Line Server Installation</div>
+          <h2 class="cli-banner-title">Try All 25 Apps on Your Linux Server in 30 Seconds</h2>
+          <p class="cli-banner-text">Run our audited installation command on any Ubuntu, Debian, RHEL, AlmaLinux, Arch, or Alpine host to start managing your server visually:</p>
+          <div class="code-block-wrapper">
+            <pre><code><span class="prompt">$</span> curl -fsSL https://sshdesktop.com/install.sh | sudo bash</code></pre>
+            <button class="copy-btn" data-clipboard="curl -fsSL https://sshdesktop.com/install.sh | sudo bash" aria-label="Copy server install command">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Bar -->
+    <section class="cta-section py-16 text-center">
+      <div class="container">
+        <h2 class="text-3xl font-extrabold mb-4">Start Managing Your Linux Servers Visually Today</h2>
+        <p class="text-xl text-muted max-w-2xl mx-auto mb-8">
+          Download the free desktop application for Windows, macOS, or Linux, or explore the 25-app encyclopedia.
+        </p>
+        <div class="btn-group justify-center">
+          <a href="download.html" class="btn btn-primary btn-lg">Download Free</a>
+          <a href="apps.html" class="btn btn-secondary btn-lg">Explore 25-App Suite</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer with SEO Keyword Directory -->
+    <!-- Modernized Application Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Pre-Footer Call to Action Card -->
+      <div class="footer-cta-card">
+        <div class="footer-cta-content">
+          <div class="footer-cta-badge"><span class="status-pulse-dot"></span> Next-Gen Linux Administration</div>
+          <h3 class="footer-cta-title">Manage Your Entire Linux Fleet with macOS Elegance</h3>
+          <p class="footer-cta-desc">Agentless, client-side macOS Sonoma desktop shell with 25 built-in server administration tools. Connect directly over pure, encrypted SSH &mdash; zero open web ports and zero idle server RAM.</p>
+          <div class="footer-cta-tags">
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 0% Idle Server RAM</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 256-Bit AES SSH Encryption</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> Windows &bull; macOS &bull; Linux</span>
+            <span class="cta-tag"><span class="cta-tag-check">&#10003;</span> 100% Free &amp; Open Source</span>
+          </div>
+        </div>
+        <div class="footer-cta-actions">
+          <a href="download.html" class="footer-download-btn">
+            <span>&#128230; Download Free</span>
+            <small>v2.4.2 &bull; All Operating Systems</small>
+          </a>
+          <a href="https://github.com/sshdesktop/sshdesktop" class="footer-github-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Star on GitHub</span>
+            <span class="gh-counter">14.2k</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main 5-Column Navigation Grid -->
+      <div class="footer-grid">
+        <!-- Brand & Mission Column -->
+        <div class="footer-brand-col">
+          <a href="/" class="footer-brand-logo" aria-label="SSH Desktop Homepage">
+            <img src="assets/images/logo.svg" alt="SSH Desktop" width="180" height="38">
+            <span class="footer-version-tag">v2.4.2</span>
+          </a>
+          <p class="footer-mission-text">
+            The open-source, client-side macOS Sonoma desktop shell for Linux servers. Manage 10+ remote servers with full PTY terminal, dual-pane SFTP, Monaco editor, Docker GUI, and 12+ database engines over pure SSH.
+          </p>
+
+          <div class="footer-status-badge">
+            <span class="status-pulse-dot"></span>
+            <span>Client Engine: <strong>All Systems Operational</strong></span>
+          </div>
+
+          <div class="footer-distro-chips">
+            <span class="distro-chip">Ubuntu</span>
+            <span class="distro-chip">Debian</span>
+            <span class="distro-chip">RHEL</span>
+            <span class="distro-chip">CentOS</span>
+            <span class="distro-chip">Fedora</span>
+            <span class="distro-chip">Rocky</span>
+            <span class="distro-chip">Arch</span>
+            <span class="distro-chip">Alpine</span>
+            <span class="distro-chip">macOS</span>
+            <span class="distro-chip">Windows 11</span>
+          </div>
+        </div>
+
+        <!-- Col 2: 25-App Suite (Core) -->
+        <div class="footer-col">
+          <h4>25-App Suite (Core)</h4>
+          <ul>
+            <li><a href="features.html">PTY Terminal (Xterm.js)</a></li>
+            <li><a href="sftp-client.html">Dual-Pane SFTP Manager</a></li>
+            <li><a href="monaco-code-editor.html">Monaco Code Editor</a></li>
+            <li><a href="docker-web-gui.html">Docker Container Hub</a></li>
+            <li><a href="database-gui-ssh-tunnel.html">Database Studio (12+ DBs)</a></li>
+            <li><a href="systemd-gui.html">Systemd Services &amp; Logs</a></li>
+            <li><a href="linux-firewall-gui.html">Visual Firewall (UFW)</a></li>
+            <li><a href="system-monitor.html">Hardware Telemetry &amp; CPU</a></li>
+            <li><a href="linux-process-manager.html">Process Manager (htop GUI)</a></li>
+            <li><a href="apps.html" class="footer-highlight-link">Explore All 25 Apps &rarr;</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: DevOps & Automation -->
+        <div class="footer-col">
+          <h4>DevOps &amp; Cloud</h4>
+          <ul>
+            <li><a href="linux-package-manager.html">Universal Package Manager</a></li>
+            <li><a href="linux-user-manager.html">User &amp; Sudo Administrator</a></li>
+            <li><a href="network-port-auditor.html">Network &amp; Port Auditor</a></li>
+            <li><a href="linux-disk-manager.html">Disk &amp; S.M.A.R.T. Manager</a></li>
+            <li><a href="crontab-gui.html">Visual Crontab Scheduler</a></li>
+            <li><a href="log-analysis-grep.html">Log Analysis &amp; Grep</a></li>
+            <li><a href="ssl-certificate-manager.html">SSL Cert Manager (Certbot)</a></li>
+            <li><a href="backup-disaster-recovery.html">Backup &amp; Disaster Recovery</a></li>
+            <li><a href="ssh-port-forwarding.html">SSH Port Forwarding Canvas</a></li>
+            <li><a href="webhook-server.html">Webhook CI/CD Deployments</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Comparison & Alternatives -->
+        <div class="footer-col">
+          <h4>Enterprise &amp; Solutions</h4>
+          <ul>
+            <li><a href="enterprise.html">Enterprise Infrastructure</a></li>
+            <li><a href="devops.html">DevOps &amp; SRE Suite</a></li>
+            <li><a href="cloud.html">Multi-Cloud VPS Control</a></li>
+            <li><a href="alternatives/webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="alternatives/cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="alternatives/putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="alternatives/termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="alternatives/mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="alternatives/filezilla-alternative.html">FileZilla Alternative</a></li>
+            <li><a href="alternatives/portainer-alternative.html">Portainer Alternative</a></li>
+            <li><a href="knowledge-base.html">Knowledge Base</a></li>
+            <li><a href="security.html">Zero-Knowledge Security</a></li>
+            <li><a href="pricing.html">Open-Source License</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Downloads & Resources -->
+        <div class="footer-col">
+          <h4>Downloads &amp; Docs</h4>
+          <ul>
+            <li><a href="download.html">Download Center (All OS)</a></li>
+            <li><a href="download-windows.html">Windows 11 / 10 Installer</a></li>
+            <li><a href="download-mac.html">macOS Universal DMG</a></li>
+            <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
+            <li><a href="download-linux-cli.html">Linux Headless CLI Daemon</a></li>
+            <li><a href="docs/">Documentation &amp; Tutorials</a></li>
+            <li><a href="api-studio.html">API Studio (Postman Alt)</a></li>
+            <li><a href="env-variables-manager.html">Environment Variables</a></li>
+            <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
+            <li><a href="faq.html">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+      </div>
+  </footer>
+
+  <script src="assets/js/core.min.js"></script>
+</body>
+</html>

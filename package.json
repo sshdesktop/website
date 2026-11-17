@@ -1,0 +1,24 @@
+{
+  "name": "sshdesktop-website",
+  "version": "2.4.2",
+  "description": "Official website for SSH Desktop - Free GUI SSH Client & Linux Remote Desktop",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:dist": "node scripts/build.js && node scripts/build_dist.js",
+    "minify": "node scripts/split_assets.js && node scripts/split_css_modular.js",
+    "minify:html": "node scripts/minify_html.js",
+    "test": "node scripts/audit_site.js",
+    "verify": "node scripts/audit_site.js",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "ssh",
+    "ssh-client",
+    "sftp",
+    "docker",
+    "gui-ssh",
+    "linux-remote-desktop"
+  ],
+  "author": "SSH Desktop Engineering Team",
+  "license": "Apache-2.0"
+}

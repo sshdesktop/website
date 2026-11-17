@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>OpenSSH Server Hardening: 10 Critical Security Steps (2026 Checklist)</title>
+  <meta name="title" content="OpenSSH Server Hardening: 10 Critical Security Steps (2026 Checklist)">
+  <meta name="description" content="Harden your Linux OpenSSH server against brute-force attacks and zero-days. Disable passwords, disable root, restrict cipher suites, and verify syntax.">
+  <meta name="keywords" content="ssh hardening guide, secure ssh server ubuntu, sshd_config best practices, disable root login ssh, openssh security checklist, visual ssh client security">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="OpenSSH Server Hardening: 10 Critical Security Steps (2026)">
+  <meta property="og:description" content="Production-ready checklist: disable root login, enforce Ed25519 keys, configure idle timeouts, and lock down sshd_config safely.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Security &amp; Hardening">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html">
+  <meta name="twitter:title" content="OpenSSH Server Hardening Checklist (2026)">
+  <meta name="twitter:description" content="Protect your Linux servers from brute-force botnets and unauthorized intrusions with this complete sshd_config hardening checklist.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#0a0c10">
+
+  <!-- Modular Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- Structured Data: TechArticle & BreadcrumbList & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html#article",
+        "headline": "OpenSSH Server Hardening: 10 Critical Security Steps (2026 Checklist)",
+        "description": "Harden your Linux OpenSSH server against brute-force attacks and zero-days. Disable passwords, disable root, restrict cipher suites, and verify syntax.",
+        "url": "https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html",
+        "inLanguage": "en-US",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html",
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sshdesktop.com/assets/images/favicon-512x512.png"
+          }
+        },
+        "image": "https://sshdesktop.com/assets/images/og-image.png",
+        "articleSection": "Security & Hardening",
+        "keywords": "ssh hardening checklist, sshd_config best practices, disable root login ssh, secure openssh server, ssh ciphers hardening"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "OpenSSH Hardening Guide",
+            "item": "https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sshdesktop.com/blog/openssh-server-hardening-security-guide.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I safely test my sshd_config changes without locking myself out?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Before reloading the SSH daemon, run 'sudo sshd -t' to validate configuration syntax. Then reload with 'sudo systemctl reload ssh'. Crucially, KEEP YOUR CURRENT SSH SESSION OPEN and open a new terminal window to test logging in. If the new connection fails, you can immediately fix the configuration from your active session."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is PasswordAuthentication no better than PermitEmptyPasswords no?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Setting 'PasswordAuthentication no' completely turns off interactive password logins across the server, forcing every connection to authenticate via cryptographic keys (such as Ed25519). This neutralizes all automated dictionary and brute-force botnets instantly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which cryptographic key type should I standardize on in 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Standardize on Ed25519 (ssh-keygen -t ed25519). It provides superior security margins compared to RSA, is immune to timing attacks, and features compact 68-character public keys that are fast to compute."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .blog-article-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .blog-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted, #8b949e);
+      margin-bottom: 24px;
+    }
+    .blog-breadcrumb a {
+      color: var(--accent, #58a6ff);
+      text-decoration: none;
+    }
+    .blog-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .blog-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color, #30363d);
+      padding-bottom: 28px;
+    }
+    .blog-post-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #f0f6fc;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: #8b949e;
+      flex-wrap: wrap;
+    }
+    .blog-meta-tag {
+      background: rgba(56, 139, 253, 0.15);
+      color: #58a6ff;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 139, 253, 0.3);
+    }
+    .blog-content {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #c9d1d9;
+    }
+    .blog-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin: 44px 0 18px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+    }
+    .blog-content h3 {
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin: 30px 0 14px;
+    }
+    .blog-content p {
+      margin-bottom: 20px;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-bottom: 22px;
+      padding-left: 28px;
+    }
+    .blog-content li {
+      margin-bottom: 8px;
+    }
+    .blog-content pre {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      color: #e6edf3;
+      margin: 22px 0 24px;
+      line-height: 1.55;
+    }
+    .blog-content code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(110, 118, 129, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #58a6ff;
+    }
+    .blog-content pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .callout-box {
+      background: rgba(56, 139, 253, 0.08);
+      border-left: 4px solid #58a6ff;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 26px 0;
+      color: #c9d1d9;
+    }
+    .callout-box.tip {
+      background: rgba(46, 160, 67, 0.1);
+      border-left-color: #2ea043;
+    }
+    .callout-box.danger {
+      background: rgba(248, 81, 73, 0.1);
+      border-left-color: #f85149;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 26px 0;
+      font-size: 0.94rem;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #30363d;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background: #161b22;
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: #0d1117;
+    }
+    .gui-banner {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.12) 0%, rgba(137, 87, 229, 0.12) 100%);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 36px 0;
+      text-align: center;
+    }
+    .gui-banner h3 {
+      font-size: 1.35rem;
+      color: #f0f6fc;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .gui-banner p {
+      color: #8b949e;
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+    }
+    .gui-banner a.cta-btn {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .gui-banner a.cta-btn:hover {
+      background: #2ea043;
+    }
+    .faq-item {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .faq-item h4 {
+      margin: 0 0 10px;
+      color: #f0f6fc;
+      font-size: 1.08rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body class="bg-dark text-light">
+  <!-- Top Global Navigation Bar -->
+  <header>
+    <nav class="nav-container" aria-label="Main Navigation">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo" aria-label="SSH Desktop Home">
+          <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="nav-logo-img">
+          <span class="nav-logo-text">SSH Desktop</span>
+        </a>
+        <div class="nav-links">
+          <a href="../features.html" class="nav-link">Features</a>
+          <a href="../alternatives/index.html" class="nav-link">Alternatives</a>
+          <a href="../docs/" class="nav-link">Documentation</a>
+          <a href="index.html" class="nav-link active">Blog</a>
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="../download.html" class="btn-primary nav-download-btn">Download</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb Navigation -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumbs">
+      <a href="../index.html">Home</a>
+      <span>&rsaquo;</span>
+      <a href="index.html">Blog</a>
+      <span>&rsaquo;</span>
+      <span>OpenSSH Hardening Guide</span>
+    </nav>
+
+    <header class="blog-header">
+      <h1 class="blog-post-title">OpenSSH Server Hardening: 10 Critical Security Steps (2026 Checklist)</h1>
+      <div class="blog-meta">
+        <span class="blog-meta-tag">Server Hardening</span>
+        <span>By SSH Desktop Engineering Team</span>
+        <span>&bull;</span>
+        <span>Updated November 2026</span>
+        <span>&bull;</span>
+        <span>10 min read</span>
+      </div>
+    </header>
+
+    <article class="blog-content">
+      <p>
+        OpenSSH is the most widely used remote management daemon on earth. However, out-of-the-box default configurations on many Linux distributions still permit password authentication, allow root login attempts, and accept legacy cryptographic algorithms. Securing your SSH daemon is the foundation of Linux server security.
+      </p>
+
+      <div class="callout-box">
+        <h4>Executive Summary</h4>
+        <p>
+          Hardening OpenSSH takes less than 10 minutes. By applying strict rules in <code>/etc/ssh/sshd_config</code>, you can eliminate password brute-force vulnerabilities, enforce modern Ed25519 keys, and close unused forwarding channels without compromising administrator workflow.
+        </p>
+      </div>
+
+      <h2>1. The 10-Step OpenSSH Hardening Checklist</h2>
+
+      <h3>Step 1: Disable Root Login</h3>
+      <p>
+        Direct root login is the prime target for dictionary bots. Force administrators to log in as an unprivileged user and escalate with <code>sudo</code>:
+      </p>
+      <pre><code>PermitRootLogin no</code></pre>
+
+      <h3>Step 2: Disable Password Authentication Completely</h3>
+      <p>
+        Require public key authentication exclusively:
+      </p>
+      <pre><code>PasswordAuthentication no
+PubkeyAuthentication yes
+PermitEmptyPasswords no</code></pre>
+
+      <h3>Step 3: Restrict Permitted Users &amp; Groups</h3>
+      <p>
+        Explicitly define which accounts are allowed to establish SSH sessions:
+      </p>
+      <pre><code>AllowUsers deploy adminuser
+# or restrict by group:
+# AllowGroups sshusers</code></pre>
+
+      <h3>Step 4: Configure Session Idle Timeouts</h3>
+      <p>
+        Disconnect inactive SSH terminal sessions automatically after 15 minutes:
+      </p>
+      <pre><code>ClientAliveInterval 300
+ClientAliveCountMax 3</code></pre>
+
+      <h3>Step 5: Limit Authentication Retries</h3>
+      <pre><code>MaxAuthTries 3</code></pre>
+
+      <h3>Step 6: Enforce Modern Ciphers &amp; Key Exchange Algorithms</h3>
+      <p>
+        Deprecate older SHA-1, CBC, and 3DES algorithms by declaring modern cryptographic suites:
+      </p>
+      <pre><code>KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
+MACs hmac-sha2-512-etm@openssh.com</code></pre>
+
+      <h3>Step 7: Disable X11 Forwarding If Not Needed</h3>
+      <pre><code>X11Forwarding no</code></pre>
+
+      <h3>Step 8: Disable Host-Based Authentication</h3>
+      <pre><code>HostbasedAuthentication no
+IgnoreRhosts yes</code></pre>
+
+      <h3>Step 9: Change the Default Port (Optional Security Through Obscurity)</h3>
+      <p>
+        While not a substitute for key-based auth, changing port 22 to a high port (e.g. <code>2222</code> or <code>49152</code>) cuts background bot scanner log noise by 95%:
+      </p>
+      <pre><code>Port 2222</code></pre>
+
+      <h3>Step 10: Display a Legal Login Banner</h3>
+      <pre><code>Banner /etc/issue.net</code></pre>
+
+      <h2>2. Safe Deployment: How to Verify &amp; Reload Without Lockout</h2>
+      <div class="callout-box danger">
+        <h4>Golden Rule of SSH Configuration</h4>
+        <p>
+          Never close your active SSH terminal connection until you have tested your new configuration in a second, independent session!
+        </p>
+      </div>
+
+      <pre><code># Step 1: Validate sshd_config syntax (must output zero errors)
+sudo sshd -t
+
+# Step 2: Reload the SSH daemon gracefully (does NOT terminate active connections)
+sudo systemctl reload ssh   # On Ubuntu/Debian
+sudo systemctl reload sshd  # On RHEL/CentOS
+
+# Step 3: Open a second terminal and verify you can log in with your SSH key!</code></pre>
+
+      <!-- Visual GUI Banner Callout -->
+      <div class="gui-banner">
+        <h3>Secure Multi-Server SSH Access with SSH Desktop</h3>
+        <p>
+          Manage keys, servers, and tunnels without messy config files. <a href="../security.html" style="color: #58a6ff; font-weight: 600;">SSH Desktop</a> stores credentials in your operating system's native encrypted keychain (Windows Credential Locker, macOS Keychain) with zero cloud telemetry.
+        </p>
+        <a href="../download.html" class="cta-btn">Download SSH Desktop &rarr;</a>
+      </div>
+
+      <h2>3. Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>How do I safely test my sshd_config changes without locking myself out?</h4>
+        <p>
+          Before reloading the SSH daemon, run <code>sudo sshd -t</code> to validate configuration syntax. Then reload with <code>sudo systemctl reload ssh</code>. Crucially, KEEP YOUR CURRENT SSH SESSION OPEN and open a new terminal window to test logging in. If the new connection fails, you can immediately fix the configuration from your active session.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>Why is PasswordAuthentication no better than PermitEmptyPasswords no?</h4>
+        <p>
+          Setting <code>PasswordAuthentication no</code> completely turns off interactive password logins across the server, forcing every connection to authenticate via cryptographic keys (such as Ed25519). This neutralizes all automated dictionary and brute-force botnets instantly.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>Which cryptographic key type should I standardize on in 2026?</h4>
+        <p>
+          Standardize on Ed25519 (<code>ssh-keygen -t ed25519</code>). It provides superior security margins compared to RSA, is immune to timing attacks, and features compact 68-character public keys that are fast to compute.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="copyright">&copy; 2026 SSH Desktop. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../security.html">Security</a>
+          <a href="../changelog.html">Changelog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

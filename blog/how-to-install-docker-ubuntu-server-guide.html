@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Install & Secure Docker on Ubuntu (24.04 & 22.04 LTS): 2026 Guide</title>
+  <meta name="description" content="Install, harden, and optimize Docker Engine on Ubuntu 24.04 and 22.04 LTS. Learn non-root user permissions, daemon.json limits, and visual container management.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Install & Secure Docker on Ubuntu (24.04 & 22.04 LTS): 2026 Guide">
+  <meta property="og:description" content="Install, harden, and optimize Docker Engine on Ubuntu 24.04 and 22.04 LTS. Learn non-root user permissions, daemon.json limits, and visual container management.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Install & Secure Docker on Ubuntu (24.04 & 22.04 LTS): 2026 Guide">
+  <meta name="twitter:description" content="Install, harden, and optimize Docker Engine on Ubuntu 24.04 and 22.04 LTS. Learn non-root user permissions, daemon.json limits, and visual container management.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html",
+        "name": "How to Install & Secure Docker on Ubuntu (24.04 & 22.04 LTS): 2026 Guide",
+        "description": "Install, harden, and optimize Docker Engine on Ubuntu 24.04 and 22.04 LTS. Learn non-root user permissions, daemon.json limits, and visual container management."
+      },
+      "headline": "How to Install & Secure Docker on Ubuntu (2026 Guide)",
+      "description": "Install, harden, and optimize Docker Engine on Ubuntu 24.04 and 22.04 LTS. Learn non-root user permissions, daemon.json limits, and visual container management.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Install & Secure Docker on Ubuntu (24.04 & 22.04 LTS): 2026 Guide",
+          "item": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why should I install Docker from the official Docker repository instead of Ubuntu apt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The docker.io package in default Ubuntu repositories is frequently outdated and lacks modern security patches, BuildKit enhancements, and the Docker Compose v2 plugin. The official Docker repository provides the latest verified Docker Engine (CE) releases."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is adding a user to the docker group a security risk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The docker group grants root-equivalent privileges because anyone with access to the Docker socket can mount the root filesystem (docker run -v /:/host) and escalate privileges. For high-security environments, evaluate Rootless Docker or enforce strict SSH user permissions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I prevent Docker container logs from filling up the entire server disk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Configure the json-file logging driver with max-size and max-file parameters inside /etc/docker/daemon.json. For example: {\"log-driver\": \"json-file\", \"log-opts\": {\"max-size\": \"50m\", \"max-file\": \"3\"}}."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Install & Secure Docker on Ubuntu (24.04 & 22.04 LTS): 2026 Guide</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Containers & DevOps</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>11 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Install & Secure Docker on Ubuntu (2026 Guide)</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Containerization is the backbone of modern cloud deployments. However, installing Docker with default settings often exposes servers to security vulnerabilities, root-equivalent socket exploits, and unconstrained container log growth that crashes host filesystems. Learn how to install, harden, and tune Docker Engine on Ubuntu 24.04 and 22.04 LTS in 2026.
+      </p>
+
+      <h2>Step 1: Remove Old Docker Versions</h2>
+      <p>Clean out conflicting unofficial packages before installing the latest engine:</p>
+      <pre><code>sudo apt remove -y docker docker-engine docker.io containerd runc</code></pre>
+
+      <h2>Step 2: Add the Official Docker GPG Key &amp; Repository</h2>
+      <p>Install prerequisites and set up the official APT source:</p>
+      <pre><code># Install dependencies
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+
+# Add official Docker GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add repository to APT sources
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update index
+sudo apt update</code></pre>
+
+      <h2>Step 3: Install Docker Engine and Compose Plugin</h2>
+      <p>Install the core runtime, containerd, and CLI plugins:</p>
+      <pre><code>sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></pre>
+      <p>Verify that the service is running:</p>
+      <pre><code>sudo systemctl status docker</code></pre>
+
+      <h2>Step 4: Non-Root Execution &amp; Daemon Hardening</h2>
+      <p>Allow your standard Linux user to manage containers without <code>sudo</code>:</p>
+      <pre><code>sudo usermod -aG docker $USER
+# Activate group changes immediately
+newgrp docker</code></pre>
+
+      <h2>Step 5: Configure Production Logging Limits in daemon.json</h2>
+      <p>
+        By default, Docker container logs grow indefinitely until disk space is exhausted. Enforce strict log rotation limits across all containers by creating <code>/etc/docker/daemon.json</code>:
+      </p>
+      <pre><code>sudo nano /etc/docker/daemon.json</code></pre>
+      <p>Paste the following production configuration:</p>
+      <pre><code>{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "50m",
+    "max-file": "3"
+  },
+  "live-restore": true,
+  "no-new-privileges": true
+}</code></pre>
+      <ul>
+        <li><code>live-restore</code>: Keeps containers running even if the Docker daemon restarts or upgrades.</li>
+        <li><code>no-new-privileges</code>: Prevents containers from acquiring additional privileges via setuid/setgid binaries.</li>
+        <li><code>max-size / max-file</code>: Caps log files per container to 150MB total.</li>
+      </ul>
+      <p>Apply changes:</p>
+      <pre><code>sudo systemctl restart docker</code></pre>
+
+      <h2>Manage Remote Docker Fleets Visually with SSH Desktop</h2>
+      <p>
+        Running <code>docker ps</code>, reading container logs with <code>docker logs -f</code>, and inspecting resource metrics in small terminals can be overwhelming across multi-server environments. <strong>SSH Desktop</strong> includes:
+      </p>
+      <ul>
+        <li><strong>Visual Docker Web GUI:</strong> Inspect running containers, CPU/RAM utilization, and port mappings over a secure SSH connection.</li>
+        <li><strong>One-Click Log Streamer:</strong> Search and tail container outputs across multiple servers simultaneously.</li>
+        <li><strong>Volume &amp; Image Pruning:</strong> Reclaim gigabytes of unused dangling images and stopped containers safely.</li>
+      </ul>
+      <p>
+        Check out our visual <a href="../docker-web-gui.html">Docker Web GUI</a> and <a href="../multi-server-automation.html">Multi-Server Automation</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Why should I install Docker from the official Docker repository instead of Ubuntu apt?</h3>
+          <p class="faq-answer">The docker.io package in default Ubuntu repositories is frequently outdated and lacks modern security patches, BuildKit enhancements, and the Docker Compose v2 plugin. The official Docker repository provides the latest verified Docker Engine (CE) releases.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Is adding a user to the docker group a security risk?</h3>
+          <p class="faq-answer">Yes. The docker group grants root-equivalent privileges because anyone with access to the Docker socket can mount the root filesystem (docker run -v /:/host) and escalate privileges. For high-security environments, evaluate Rootless Docker or enforce strict SSH user permissions.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I prevent Docker container logs from filling up the entire server disk?</h3>
+          <p class="faq-answer">Configure the json-file logging driver with max-size and max-file parameters inside /etc/docker/daemon.json. For example: {"log-driver": "json-file", "log-opts": {"max-size": "50m", "max-file": "3"}}.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

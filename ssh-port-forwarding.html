@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -27,7 +27,7 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="canonical" href="https://sshdesktop.com/ssh-port-forwarding.html">
 
-  <link rel="dns-prefetch" href="//sshdesktop.com">
+  <link rel="dns-prefetch" href="https://sshdesktop.com/">
   <link rel="preconnect" href="https://sshdesktop.com">
 
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
@@ -45,7 +45,7 @@
   <meta property="og:site_name" content="SSH Desktop">
   <meta property="og:title" content="Visual SSH Port Forwarding & Tunnel Manager">
   <meta property="og:description" content="Easily route database connections, local webhooks, and private microservices through visual encrypted SSH tunnels.">
-  <meta property="og:image" content="https://sshdesktop.com/assets/images/screenshots/screenshot-tunnels.webp">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/screenshots/screenshot-tunnels.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Visual SSH Port Forwarding Diagrams">
@@ -57,13 +57,14 @@
   <meta name="twitter:url" content="https://sshdesktop.com/ssh-port-forwarding.html">
   <meta name="twitter:title" content="Visual SSH Port Forwarding & Tunnel Manager - SSH Desktop">
   <meta name="twitter:description" content="Manage Local, Remote, and SOCKS5 tunnels with automatic reconnects and visual status indicators.">
-  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/screenshots/screenshot-tunnels.webp">
-
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/screenshots/screenshot-tunnels.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.min.css">
 
   <script type="application/ld+json">
   {
@@ -89,7 +90,7 @@
       {
         "@type": "Product",
         "name": "SSH Desktop Visual Tunnel Manager",
-        "image": "https://sshdesktop.com/assets/images/og-image.svg",
+        "image": "https://sshdesktop.com/assets/images/og-image.png",
         "description": "Visual SSH Port Forwarding GUI for Local, Remote, and Dynamic SOCKS5 tunneling with automatic reconnection and live traffic meters.",
         "brand": {
           "@type": "Brand",
@@ -146,7 +147,7 @@
         <ul class="nav-links" id="navLinks">
           <li><a href="apps.html">Apps</a></li>
           <li><a href="features.html">Features</a></li>
-          <li><a href="docs.html">Docs</a></li>
+          <li><a href="docs/">Docs</a></li>
           <li><a href="pricing.html">Pricing</a></li>
         </ul>
       </nav>
@@ -244,7 +245,8 @@
         <div class="screenshot-showcase-card">
           <picture>
             <source srcset="assets/images/screenshots/screenshot-tunnels.webp" type="image/webp">
-            <img src="assets/images/screenshots/screenshot-tunnels.webp" alt="Visual SSH Port Forwarding and Tunnel Manager Screenshot" class="showcase-img" width="1366" height="767" loading="eager" fetchpriority="high" decoding="async">
+            <source srcset="assets/images/screenshots/screenshot-tunnels.jpg" type="image/jpeg">
+            <img src="assets/images/screenshots/screenshot-tunnels.jpg" alt="Visual SSH Port Forwarding and Tunnel Manager Screenshot" class="showcase-img" width="1366" height="767" loading="eager" fetchpriority="high" decoding="async">
           </picture>
           <div class="showcase-caption">
             <strong>Figure 1:</strong> SSH Desktop Visual Port Forwarding & Tunnels — Interactive Local (-L), Remote Reverse (-R), and Dynamic SOCKS5 (-D) proxy manager with active connection telemetry.
@@ -277,6 +279,131 @@
         </div>
       </div>
     </section>
+  
+    <!-- Comprehensive Tunneling Deep-Dive: Architecture, Syntax & Real Scenarios -->
+    <section class="section" style="padding-top: 40px;">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Mastering SSH Port Forwarding: The Complete Visual Architecture</h2>
+          <p class="section-desc">Understand exactly how local, remote, and dynamic SOCKS5 SSH tunnels work under the hood.</p>
+        </div>
+
+        <!-- 3 Tunnel Architectures Explained -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
+          <div class="card" style="background: #ffffff; border: 1px solid var(--border);">
+            <span class="badge badge-cyan" style="margin-bottom: 12px; font-weight: 700;">Local Tunnel (-L)</span>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Local Port Forwarding</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+              Opens a listening socket on your local client machine (e.g., <code>127.0.0.1:5432</code>) and encrypts all incoming packets over your SSH connection, instructing the remote SSH server to forward the traffic to a target destination (e.g., a private PostgreSQL RDS instance at <code>10.0.2.14:5432</code>).
+            </p>
+            <pre style="background: #0f172a; color: #38bdf8; padding: 10px 14px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; overflow-x: auto;">ssh -L 5432:10.0.2.14:5432 user@bastion</pre>
+          </div>
+
+          <div class="card" style="background: #ffffff; border: 1px solid var(--border);">
+            <span class="badge badge-emerald" style="margin-bottom: 12px; font-weight: 700;">Remote Reverse (-R)</span>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Remote Reverse Forwarding</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+              Opens a listening socket on the remote cloud server (e.g., <code>server:8080</code>) and routes incoming requests backward through the encrypted SSH tunnel to a local port on your laptop (e.g., <code>localhost:3000</code>). Ideal for testing webhooks from Stripe, GitHub, or Shopify without paying for Ngrok.
+            </p>
+            <pre style="background: #0f172a; color: #4ade80; padding: 10px 14px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; overflow-x: auto;">ssh -R 8080:localhost:3000 user@cloud-vps</pre>
+          </div>
+
+          <div class="card" style="background: #ffffff; border: 1px solid var(--border);">
+            <span class="badge badge-purple" style="margin-bottom: 12px; font-weight: 700;">Dynamic Proxy (-D)</span>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Dynamic SOCKS5 Proxy</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+              Allocates a local SOCKS5 proxy socket (e.g. <code>localhost:1080</code>). When configured in Firefox, Chrome, or cURL, your application dynamically routes any arbitrary web protocol (HTTP, HTTPS, SMTP) through the remote server, disguising your client IP with complete AES-256 encryption.
+            </p>
+            <pre style="background: #0f172a; color: #c084fc; padding: 10px 14px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; overflow-x: auto;">ssh -D 1080 -N -C user@remote-proxy</pre>
+          </div>
+        </div>
+
+        <!-- Visual GUI vs Complex CLI Syntax Comparison -->
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Visual Tunnel Manager vs Fragile Terminal Commands</h3>
+        <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">
+          Command-line SSH tunnels terminate when your terminal tab closes or when your laptop sleeps. SSH Desktop maintains persistent, self-healing tunnels with live socket telemetry.
+        </p>
+
+        <div style="overflow-x: auto; margin-bottom: 40px;">
+          <table class="comparison-summary-table" style="width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid var(--border); border-radius: 8px;">
+            <thead>
+              <tr style="background: #f8fafc;">
+                <th style="padding: 12px 16px; border-bottom: 1px solid var(--border);">Feature</th>
+                <th style="padding: 12px 16px; border-bottom: 1px solid var(--border); color: #0071e3;">SSH Desktop Visual Tunnels</th>
+                <th style="padding: 12px 16px; border-bottom: 1px solid var(--border);">Standard Terminal CLI (OpenSSH)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><strong>Auto-Reconnect on Wi-Fi Drop</strong></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 700; color: #059669;"><span class="table-badge-yes">Yes (Self-Healing KeepAlive)</span></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><span class="table-badge-no">No (Requires AutoSSH scripts)</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><strong>Port Conflict Detection</strong></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 700; color: #059669;"><span class="table-badge-yes">Yes (Warns &amp; reassigns port)</span></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><span class="table-badge-no">No (Fails with "Address already in use")</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><strong>Active Socket &amp; Bandwidth Telemetry</strong></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 700; color: #059669;"><span class="table-badge-yes">Live throughput &amp; socket counts</span></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><span class="table-badge-no">No (Requires netstat / ss inspection)</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><strong>1-Click Saved Tunnel Profiles</strong></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 700; color: #059669;"><span class="table-badge-yes">Yes (Saved per server profile)</span></td>
+                <td style="padding: 12px 16px; border-bottom: 1px solid var(--border);"><span class="table-badge-no">Manual ~/.ssh/config aliases</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3 Real-World Tutorials -->
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;">3 Real-World Enterprise Tunneling Scenarios</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px;">
+          <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 20px;">
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Scenario 1: Private AWS RDS Access via Bastion</h4>
+            <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+              Your production PostgreSQL database is locked inside an isolated AWS VPC private subnet with no public IP. In SSH Desktop, click "New Local Tunnel", set Source Port to <code>5432</code>, Destination Host to your RDS endpoint (<code>mydb.c123.rds.amazonaws.com:5432</code>), and select your EC2 Bastion host. You can now connect DBeaver, pgAdmin, or your local backend directly to <code>localhost:5432</code>.
+            </p>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 20px;">
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Scenario 2: Testing Stripe &amp; GitHub Webhooks Locally</h4>
+            <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+              When testing webhooks, external payment processors need a public HTTPS URL. Create a "Remote Reverse Tunnel" forwarding remote port <code>8443</code> to your local dev server at <code>localhost:3000</code>. Point Stripe's webhook URL to your cloud domain: incoming webhooks pass straight into your local IDE debugger with zero third-party relay limits.
+            </p>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 20px;">
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Scenario 3: Secure SOCKS5 Proxy at Coffee Shops</h4>
+            <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+              Working from public airport or hotel Wi-Fi? Launch a Dynamic SOCKS5 Tunnel on port <code>1080</code> to your home or office server. Configure your browser to use SOCKS5 on <code>127.0.0.1:1080</code> with DNS proxy enabled. All your web traffic is encrypted through your private SSH pipe, preventing local packet sniffing and DNS poisoning.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tunnel FAQ -->
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;">SSH Port Forwarding FAQ</h3>
+        <div style="border-top: 1px solid var(--border);">
+          <div style="padding: 20px 0; border-bottom: 1px solid var(--border);">
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Does SSH Desktop require root or administrative privileges to forward ports?</h4>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+              For unprivileged ports (port numbers 1024 through 65535, such as 3000, 5432, 8080), standard user privileges are sufficient. If you wish to bind a local privileged port (such as port 80 or 443), your OS may prompt for administrator permissions.
+            </p>
+          </div>
+
+          <div style="padding: 20px 0; border-bottom: 1px solid var(--border);">
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Can other people on my local network access my forwarded port?</h4>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+              By default, SSH Desktop binds local sockets strictly to the loopback interface (<code>127.0.0.1</code>), ensuring that only applications running on your machine can connect. If you intentionally want local LAN peers to access the tunnel, you can toggle "Bind to All Interfaces (0.0.0.0)" in the tunnel settings.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
     <!-- Modernized Application Footer -->
@@ -384,26 +511,26 @@
             <li><a href="ssh-remote-desktop.html">SSH Remote Desktop (GUI)</a></li>
 <li><a href="raspberry-pi-ssh-remote-desktop.html">Raspberry Pi Remote Desktop</a></li>
             <li><a href="web-ssh-client.html">Web SSH Client (Port 2222)</a></li>
-            <li><a href="securecrt-alternative.html">SecureCRT Alternative</a></li>
+            <li><a href="alternatives/securecrt-alternative.html">SecureCRT Alternative</a></li>
             <li><a href="ssh-client-windows-11.html">Windows 11 SSH Client</a></li>
             <li><a href="aws-ec2-ssh-client.html">AWS EC2 SSH Client</a></li>
-            <li><a href="winscp-alternative.html">WinSCP Alternative</a></li>
-            <li><a href="warp-terminal-alternative.html">Warp Alternative</a></li>
-            <li><a href="cyberduck-alternative.html">Cyberduck Alternative</a></li>
-            <li><a href="royal-tsx-alternative.html">Royal TSX Alternative</a></li>
-            <li><a href="tabby-alternative.html">Tabby Alternative</a></li>
-            <li><a href="iterm2-alternative.html">iTerm2 Alternative</a></li>
-            <li><a href="dbeaver-alternative.html">DBeaver Alternative</a></li>
-            <li><a href="guacamole-alternative.html">Guacamole Alternative</a></li>
-            <li><a href="cpanel-alternative.html">cPanel Alternative</a></li>
-            <li><a href="webmin-alternative.html">Webmin Alternative</a></li>
-            <li><a href="cockpit-alternative.html">Cockpit Alternative</a></li>
-            <li><a href="putty-alternative.html">PuTTY Alternative</a></li>
-            <li><a href="termius-alternative.html">Termius Alternative</a></li>
-            <li><a href="mobaxterm-alternative.html">MobaXterm Alternative</a></li>
-            <li><a href="filezilla-alternative.html">FileZilla Alternative</a></li>
-            <li><a href="portainer-alternative.html">Portainer Alternative</a></li>
-            <li><a href="search-queries.html">Search Topics Encyclopedia</a></li>
+            <li><a href="alternatives/winscp-alternative.html">WinSCP Alternative</a></li>
+            <li><a href="alternatives/warp-terminal-alternative.html">Warp Alternative</a></li>
+            <li><a href="alternatives/cyberduck-alternative.html">Cyberduck Alternative</a></li>
+            <li><a href="alternatives/royal-tsx-alternative.html">Royal TSX Alternative</a></li>
+            <li><a href="alternatives/tabby-alternative.html">Tabby Alternative</a></li>
+            <li><a href="alternatives/iterm2-alternative.html">iTerm2 Alternative</a></li>
+            <li><a href="alternatives/dbeaver-alternative.html">DBeaver Alternative</a></li>
+            <li><a href="alternatives/guacamole-alternative.html">Guacamole Alternative</a></li>
+            <li><a href="alternatives/cpanel-alternative.html">cPanel Alternative</a></li>
+            <li><a href="alternatives/webmin-alternative.html">Webmin Alternative</a></li>
+            <li><a href="alternatives/cockpit-alternative.html">Cockpit Alternative</a></li>
+            <li><a href="alternatives/putty-alternative.html">PuTTY Alternative</a></li>
+            <li><a href="alternatives/termius-alternative.html">Termius Alternative</a></li>
+            <li><a href="alternatives/mobaxterm-alternative.html">MobaXterm Alternative</a></li>
+            <li><a href="alternatives/filezilla-alternative.html">FileZilla Alternative</a></li>
+            <li><a href="alternatives/portainer-alternative.html">Portainer Alternative</a></li>
+            <li><a href="knowledge-base.html">Knowledge Base</a></li>
             <li><a href="security.html">Zero-Knowledge Security</a></li>
             <li><a href="pricing.html">Open-Source License</a></li>
           </ul>
@@ -418,7 +545,7 @@
             <li><a href="download-mac.html">macOS Universal DMG</a></li>
             <li><a href="download-linux-desktop.html">Linux Desktop (.deb, .rpm)</a></li>
             <li><a href="download-linux-cli.html">Linux Headless CLI Daemon</a></li>
-            <li><a href="docs.html">Documentation &amp; Tutorials</a></li>
+            <li><a href="docs/">Documentation &amp; Tutorials</a></li>
             <li><a href="api-studio.html">API Studio (Postman Alt)</a></li>
             <li><a href="env-variables-manager.html">Environment Variables</a></li>
             <li><a href="privacy.html">Privacy &amp; Security Policy</a></li>
@@ -426,106 +553,8 @@
           </ul>
         </div>
       </div>
-
-      <!-- Semantic SEO Keywords Cloud -->
-      <div class="footer-seo-cloud">
-        <div class="footer-seo-header">
-          <span class="seo-cloud-title">Popular Linux Server Administration &amp; SSH Searches:</span>
-          <span class="seo-cloud-badge">SEO Index</span>
-        </div>
-        <div class="footer-seo-tags">
-          <a href="raspberry-pi-ssh-remote-desktop.html" class="seo-tag">raspberry pi remote desktop ssh</a>
-          <a href="raspberry-pi-ssh-remote-desktop.html" class="seo-tag">login to raspberry pi remotely</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">xrdp over ssh</a>
-          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm remote desktop</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">rdp over ssh</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">rdp ssh manager</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">windows rdp ssh</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">rdp over ssh windows 10</a>
-          <a href="rdp-over-ssh.html" class="seo-tag">rdp and ssh manager</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">ssh remote desktop</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">linux remote desktop over ssh</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">linux remote desktop ssh</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">remote desktop over ssh ubuntu</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">ssh with desktop view</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">remote desktop using ssh</a>
-          <a href="ssh-remote-desktop.html" class="seo-tag">ssh connection remote desktop</a>
-          <a href="winscp-alternative.html" class="seo-tag">winscp for mac</a>
-          <a href="warp-terminal-alternative.html" class="seo-tag">warp terminal alternative</a>
-          <a href="cyberduck-alternative.html" class="seo-tag">cyberduck alternative</a>
-          <a href="royal-tsx-alternative.html" class="seo-tag">royal tsx alternative</a>
-          <a href="tabby-alternative.html" class="seo-tag">tabby alternative</a>
-          <a href="iterm2-alternative.html" class="seo-tag">iterm2 alternative windows</a>
-          <a href="dbeaver-alternative.html" class="seo-tag">dbeaver alternative</a>
-          <a href="web-ssh-client.html" class="seo-tag">web ssh client</a>
-          <a href="web-ssh-client.html" class="seo-tag">browser based ssh client</a>
-          <a href="securecrt-alternative.html" class="seo-tag">securecrt alternative</a>
-          <a href="ssh-client-windows-11.html" class="seo-tag">best ssh client for windows 11</a>
-          <a href="aws-ec2-ssh-client.html" class="seo-tag">aws ec2 ssh client</a>
-          <a href="enterprise.html" class="seo-tag">enterprise ssh client</a>
-          <a href="enterprise.html" class="seo-tag">production server management</a>
-          <a href="devops.html" class="seo-tag">devops server automation</a>
-          <a href="devops.html" class="seo-tag">sre incident response terminal</a>
-          <a href="cloud.html" class="seo-tag">aws ec2 ssh gui</a>
-          <a href="cloud.html" class="seo-tag">multi-cloud linux management</a>
-          <a href="cloud.html" class="seo-tag">hetzner cloud server desktop</a>
-          <a href="search-queries.html" class="seo-tag">remote linux gui</a>
-          <a href="search-queries.html" class="seo-tag">web based ssh client</a>
-          <a href="docker-web-gui.html" class="seo-tag">docker web gui</a>
-          <a href="database-gui-ssh-tunnel.html" class="seo-tag">database gui with ssh tunnel</a>
-          <a href="webmin-alternative.html" class="seo-tag">linux server control panel</a>
-          <a href="webmin-alternative.html" class="seo-tag">gui for ubuntu server</a>
-          <a href="webmin-alternative.html" class="seo-tag">webmin alternative</a>
-          <a href="cockpit-alternative.html" class="seo-tag">cockpit alternative</a>
-          <a href="termius-alternative.html" class="seo-tag">free termius alternative</a>
-          <a href="putty-alternative.html" class="seo-tag">putty alternative windows 11</a>
-          <a href="mobaxterm-alternative.html" class="seo-tag">mobaxterm alternative mac</a>
-          <a href="filezilla-alternative.html" class="seo-tag">filezilla sftp client</a>
-          <a href="portainer-alternative.html" class="seo-tag">portainer alternative</a>
-          <a href="systemd-gui.html" class="seo-tag">linux systemd gui</a>
-          <a href="sftp-client.html" class="seo-tag">sftp client with text editor</a>
-          <a href="linux-firewall-gui.html" class="seo-tag">visual ufw and iptables</a>
-          <a href="system-monitor.html" class="seo-tag">linux hardware telemetry</a>
-          <a href="linux-process-manager.html" class="seo-tag">htop web interface</a>
-          <a href="crontab-gui.html" class="seo-tag">visual crontab editor</a>
-          <a href="ssh-port-forwarding.html" class="seo-tag">ssh port forwarding visual</a>
-          <a href="monaco-code-editor.html" class="seo-tag">vs code over ssh</a>
-          <a href="ssl-certificate-manager.html" class="seo-tag">certbot ssl manager gui</a>
-          <a href="backup-disaster-recovery.html" class="seo-tag">restic sftp backup</a>
-        </div>
-      </div>
-
-      <!-- Footer Bottom Bar -->
-      <div class="footer-bottom-bar">
-        <div class="footer-bottom-left">
-          <p>&copy; 2026 SSH Desktop Inc. Built for DevOps, sysadmins, and Linux developers worldwide. Licensed under Apache 2.0 / MIT.</p>
-          <div class="footer-trust-pills">
-            <span class="trust-pill">&#128274; 256-Bit AES SSH Encryption</span>
-            <span class="trust-pill">&#9889; 0% Idle Server RAM</span>
-            <span class="trust-pill">&#128640; Zero Cloud Telemetry</span>
-          </div>
-        </div>
-
-        <div class="footer-bottom-right">
-          <nav class="footer-legal-nav" aria-label="Footer Legal and Meta">
-            <a href="privacy.html">Privacy</a>
-            <a href="security.html">Security</a>
-            <a href="security.txt">Security.txt</a>
-            <a href="humans.txt">Humans.txt</a>
-            <a href="robots.txt">Robots.txt</a>
-            <a href="sitemap.xml">Sitemap.xml</a>
-            <a href="llms.txt">llms.txt</a>
-            <a href="ai.txt">ai.txt</a>
-          </nav>
-          <button class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
-            <span>Back to top</span>
-            <span class="back-to-top-arrow">&uarr;</span>
-          </button>
-        </div>
-      </div>
-    </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/core.min.js"></script>
 </body>
 </html>

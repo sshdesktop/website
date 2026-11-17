@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- SSH Desktop Canonical Sitemap - Updated 2026-11-07 -->
@@ -8,17 +8,97 @@
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>SSH Desktop - Free GUI SSH Client for Windows, macOS and Linux</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/aapanel-alternative.html</loc>
+    <loc>https://sshdesktop.com/blog/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>SSH Desktop Blog – Linux Server Tutorials &amp; DevOps Guides</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/alternatives/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>Best SSH Client Alternatives – 2026 Comparison Matrix</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-ssh-into-ubuntu-server-from-windows-11.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>How to SSH into Ubuntu Server from Windows 11 &amp; 10</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/ssh-port-forwarding-local-remote-dynamic-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>SSH Port Forwarding Explained: Local, Remote &amp; Dynamic SOCKS5</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-manage-docker-containers-remotely-over-ssh.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>How to Manage Remote Docker Containers over SSH</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/ssh-key-vs-password-authentication-security-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>SSH Key vs Password Authentication Security Guide</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/raspberry-pi-remote-desktop-ssh-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>Raspberry Pi Remote Desktop Complete Guide</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/changelog.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
+      <image:title>SSH Desktop Release Notes &amp; Changelog</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/alternatives/aapanel-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Secure aaPanel Alternative</image:title>
     </image:image>
   </url>
@@ -28,7 +108,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>About Us &amp;amp; Open Source Mission</image:title>
     </image:image>
   </url>
@@ -38,7 +118,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Integrated API Studio &amp;amp; REST Client GUI (Postman Alternative over SSH)</image:title>
     </image:image>
   </url>
@@ -48,7 +128,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>25 Built</image:title>
     </image:image>
   </url>
@@ -58,7 +138,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>AWS EC2 SSH Client &amp;amp; Linux VPS GUI</image:title>
     </image:image>
   </url>
@@ -68,17 +148,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Backup &amp;amp; Disaster Recovery Orchestrator GUI (Rsync, Restic)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/bitvise-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/bitvise-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Bitvise SSH Alternative for Mac &amp; Linux</image:title>
     </image:image>
   </url>
@@ -88,7 +168,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>macOS Sonoma Cloud Desktop Shell for Headless Linux Servers</image:title>
     </image:image>
   </url>
@@ -98,27 +178,27 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Multi</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/cockpit-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/cockpit-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best Cockpit Alternative (2026)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/cpanel-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/cpanel-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free cPanel Alternative for VPS &amp; Cloud</image:title>
     </image:image>
   </url>
@@ -128,17 +208,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Visual Crontab &amp;amp; Scheduled Tasks Manager GUI</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/cyberduck-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/cyberduck-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free Cyberduck Alternative</image:title>
     </image:image>
   </url>
@@ -148,17 +228,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Database GUI with Automatic SSH Tunnel (PostgreSQL, MySQL, Redis, MongoDB)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/dbeaver-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/dbeaver-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Lightweight DBeaver Alternative</image:title>
     </image:image>
   </url>
@@ -168,7 +248,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>DevOps &amp;amp; SRE Server Management Suite</image:title>
     </image:image>
   </url>
@@ -178,18 +258,8 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Docker Web GUI &amp;amp; Remote Container Management Interface</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sshdesktop.com/docs.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
-    <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
-      <image:title>SSH Desktop Documentation</image:title>
     </image:image>
   </url>
   <url>
@@ -198,7 +268,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Download SSH Desktop CLI</image:title>
     </image:image>
   </url>
@@ -208,7 +278,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Download SSH Desktop GUI for Linux</image:title>
     </image:image>
   </url>
@@ -218,7 +288,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Download SSH Desktop for Mac</image:title>
     </image:image>
   </url>
@@ -228,7 +298,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Download SSH Desktop for Windows 11 &amp; 10 (64</image:title>
     </image:image>
   </url>
@@ -238,7 +308,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Download SSH Desktop</image:title>
     </image:image>
   </url>
@@ -248,7 +318,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Enterprise Linux Server Management &amp;amp; Zero</image:title>
     </image:image>
   </url>
@@ -258,7 +328,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Environment Variables Manager GUI (.env &amp;amp; /etc/environment)</image:title>
     </image:image>
   </url>
@@ -268,7 +338,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Frequently Asked Questions (FAQ) &amp;amp; Knowledge Base</image:title>
     </image:image>
   </url>
@@ -278,37 +348,37 @@
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>SSH Desktop Features</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/filezilla-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/filezilla-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best FileZilla Alternative (2026)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/guacamole-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/guacamole-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Lightweight Apache Guacamole Alternative</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/iterm2-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/iterm2-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>iTerm2 Alternative for Windows 11 &amp; Linux</image:title>
     </image:image>
   </url>
@@ -318,7 +388,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Disk Manager, S.M.A.R.T. Health &amp;amp; Storage GUI</image:title>
     </image:image>
   </url>
@@ -328,7 +398,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Visual UFW &amp;amp; Iptables Firewall Manager for Ubuntu &amp;amp; Linux</image:title>
     </image:image>
   </url>
@@ -338,7 +408,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Package Manager GUI (APT, DNF, Pacman, APK)</image:title>
     </image:image>
   </url>
@@ -348,7 +418,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Process Manager &amp;amp; Task Manager GUI (htop Alternative)</image:title>
     </image:image>
   </url>
@@ -358,7 +428,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Security Auditor &amp;amp; Server Hardening Inspector GUI</image:title>
     </image:image>
   </url>
@@ -368,7 +438,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux User &amp;amp; Group Accounts Manager GUI (Sudoers Admin)</image:title>
     </image:image>
   </url>
@@ -378,17 +448,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Log Analysis &amp;amp; Grep Studio GUI (journalctl &amp;amp; /var/log)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/mobaxterm-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/mobaxterm-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best MobaXterm Alternative for Mac, Windows &amp;amp; Linux (2026)</image:title>
     </image:image>
   </url>
@@ -398,7 +468,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Remote Code Editor over SSH (VS Code Monaco Engine)</image:title>
     </image:image>
   </url>
@@ -408,7 +478,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Multi</image:title>
     </image:image>
   </url>
@@ -418,17 +488,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Network &amp;amp; Listening Port Auditor GUI (ss, netstat)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/portainer-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/portainer-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best Portainer Alternative (2026)</image:title>
     </image:image>
   </url>
@@ -438,7 +508,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Pricing &amp;amp; Licensing</image:title>
     </image:image>
   </url>
@@ -448,17 +518,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Privacy Policy</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/putty-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/putty-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best PuTTY Alternative for Windows 11 &amp; 10 (2026)</image:title>
     </image:image>
   </url>
@@ -468,17 +538,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>RDP over SSH Tunnel &amp;amp; RDP/SSH Connection Manager</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/remote-desktop-manager-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/remote-desktop-manager-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free Devolutions Remote Desktop Manager Alternative</image:title>
     </image:image>
   </url>
@@ -488,37 +558,37 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Embedded Web Browser &amp;amp; Reverse Proxy GUI (View Localhost over SSH)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/royal-tsx-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/royal-tsx-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free Royal TSX Alternative for Mac &amp; Windows</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/search-queries.html</loc>
+    <loc>https://sshdesktop.com/knowledge-base.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Top Linux Server &amp;amp; SSH Search Queries</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/securecrt-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/securecrt-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free SecureCRT Alternative for Windows, macOS &amp;amp; Linux</image:title>
     </image:image>
   </url>
@@ -528,7 +598,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Security Architecture &amp;amp; Zero</image:title>
     </image:image>
   </url>
@@ -538,7 +608,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Modern SFTP &amp; SCP Client GUI for Windows, Mac &amp; Linux</image:title>
     </image:image>
   </url>
@@ -548,7 +618,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best SSH Client for Windows 11 &amp;amp; 10</image:title>
     </image:image>
   </url>
@@ -558,7 +628,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Visual SSH Port Forwarding &amp; Tunnel Manager (Local, Remote, SOCKS5)</image:title>
     </image:image>
   </url>
@@ -568,7 +638,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>SSH Remote Desktop</image:title>
     </image:image>
   </url>
@@ -578,7 +648,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>SSL/TLS Certificate Manager GUI (Let's Encrypt &amp;amp; Certbot)</image:title>
     </image:image>
   </url>
@@ -588,17 +658,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Desktop Sticky Notes &amp;amp; Sysadmin Scratchpad (Server Synced)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/superputty-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/superputty-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>SuperPuTTY &amp; KiTTY Alternative for Windows 11</image:title>
     </image:image>
   </url>
@@ -608,7 +678,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Real</image:title>
     </image:image>
   </url>
@@ -618,17 +688,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Linux Systemd GUI &amp;amp; Visual Service Manager (systemctl &amp;amp; journalctl)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/tabby-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/tabby-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Tabby Alternative</image:title>
     </image:image>
   </url>
@@ -638,27 +708,27 @@
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Interactive PTY Terminal with Xterm.js &amp;amp; GPU Acceleration</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/termius-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/termius-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free Termius Alternative (2026)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/warp-terminal-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/warp-terminal-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Warp Terminal Alternative</image:title>
     </image:image>
   </url>
@@ -668,47 +738,37 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Web SSH Client &amp;amp; In</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/webhook-server.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.88</priority>
-    <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
-      <image:title>Webhook &amp;amp; CI/CD Automated Deployment Server</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sshdesktop.com/webmin-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/webmin-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Best Webmin Alternative (2026)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/winscp-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/winscp-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>WinSCP Alternative for Mac &amp; Linux</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://sshdesktop.com/xshell-alternative.html</loc>
+    <loc>https://sshdesktop.com/alternatives/xshell-alternative.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Free NetSarang Xshell Alternative for Mac &amp; Windows</image:title>
     </image:image>
   </url>
@@ -718,8 +778,536 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.png</image:loc>
       <image:title>Raspberry Pi Remote Desktop &amp; SSH Client</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/linux-sysctl-tuning-high-traffic-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/nginx-security-headers-hardening-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-unattended-upgrades-ubuntu-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-fix-no-space-left-on-device-linux-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-ssh-2fa-google-authenticator-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-logrotate-linux-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-install-redis-ubuntu-server-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-nginx-fastcgi-cache-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-install-docker-ubuntu-server-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-centralized-logging-rsyslog-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-monitor-linux-disk-io-bottlenecks.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-zero-downtime-deployments-nginx-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-tls-1-3-http2-nginx-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-letsencrypt-wildcard-ssl-certbot-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-enable-tcp-bbr-linux-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-ssh-agent-forwarding-safely-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-webhook-server-linux-deployments-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-fix-504-gateway-timeout-nginx-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-monit-linux-automatic-service-recovery.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-chroot-sftp-jail-linux-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-nginx-brotli-compression-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-fix-too-many-open-files-linux-ulimit-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-automate-server-patching-ansible-ssh-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-ssh-certificates-ca-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-fix-kernel-panic-unable-to-mount-root-fs.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-borgbackup-over-ssh-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-nginx-http3-quic-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-audit-sudo-commands-user-activity-auditd.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-configure-logwatch-daily-reports-linux.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-limit-process-cpu-memory-systemd-cgroups-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-fix-ssh-connection-reset-by-peer.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-configure-lynis-security-auditing-linux.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/blog/how-to-setup-nginx-websocket-reverse-proxy-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/api-studio.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/architecture.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/backup-disaster-recovery.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/cloud-desktop.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/crontab-scheduler.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/database-studio.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/disk-smart-manager.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/docker-management.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/firewall-ufw.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/getting-started.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/hardware-telemetry.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/log-analysis-grep.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/monaco-code-editor.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/multi-server-snippets.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/network-port-auditor.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/package-manager.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/reverse-proxy-browser.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/security-audit-lynis.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/sftp-file-manager.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/ssh-tunneling.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/ssl-certificates.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/systemd-services.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/terminal.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/user-sudoers-admin.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/web-mode.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/sticky-notes.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/process-manager.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/env-variables-manager.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/installation.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/connection-manager.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/settings-preferences.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/faq.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/keyboard-shortcuts.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/raspberry-pi-desktop.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/troubleshooting.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/rdp-over-ssh.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/aws-ec2-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/cloud-vps-guide.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/installation.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/tutorials.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/quickstart.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/cheat-sheet.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/tutorials.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/quickstart.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/cheat-sheet.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/docs/security-model.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/terms.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sshdesktop.com/contact.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
 </urlset>
