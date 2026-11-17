@@ -477,6 +477,7 @@ function initCommandPalette() {
     { title: "aaPanel Alternative", desc: "Secure server management over standard SSH port 22 with zero open web attack surfaces", tag: "Comparison", icon: "🔄", url: "aapanel-alternative.html" },
     { title: "SuperPuTTY Alternative", desc: "Rock-solid tabbed terminal with modern fonts and 1-click PuTTY session import on Windows 11", tag: "Comparison", icon: "🔄", url: "superputty-alternative.html" },
     { title: "RDP over SSH Tunnel Manager", desc: "Tunnel Windows Remote Desktop (port 3389) over encrypted SSH (port 22) with 1-click port forwarding and unified RDP/SSH manager", tag: "Tunneling", icon: "🔒", url: "rdp-over-ssh.html" },
+    { title: "Raspberry Pi Remote Desktop & SSH Client", desc: "Log into Raspberry Pi remotely from Windows or Mac with desktop view, zero VNC lag, and hardware terminal", tag: "Hardware", icon: "🍓", url: "raspberry-pi-ssh-remote-desktop.html" },
     { title: "SSH Remote Desktop (Desktop View)", desc: "Linux GUI and authentic macOS desktop view over pure SSH port 22 with 0 MB server RAM and zero VNC lag", tag: "Remote Desktop", icon: "🖥️", url: "ssh-remote-desktop.html" }
   ];
 

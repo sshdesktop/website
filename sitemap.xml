@@ -712,4 +712,14 @@
       <image:title>Free NetSarang Xshell Alternative for Mac &amp; Windows</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://sshdesktop.com/raspberry-pi-ssh-remote-desktop.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://sshdesktop.com/assets/images/og-image.svg</image:loc>
+      <image:title>Raspberry Pi Remote Desktop &amp; SSH Client</image:title>
+    </image:image>
+  </url>
 </urlset>

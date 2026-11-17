@@ -1,0 +1,56 @@
+# SSH Desktop - Complete Technical Reference & LLM Knowledge Base
+
+Website: https://sshdesktop.com
+Source Code: https://github.com/sshdesktop/sshdesktop
+Version: v2.4.2
+License: Apache-2.0 / MIT
+
+## Product Overview
+SSH Desktop is an open-source, client-side GUI SSH client and remote server management application for Windows 11, Windows 10, macOS, and Linux. It transforms headless Linux server administration by rendering an authentic Apple macOS Sonoma desktop environment client-side, communicating with remote hosts strictly over standard OpenSSH (port 22) with 0 MB idle server RAM overhead and zero open web ports.
+
+## Architecture & Security Model
+- **Pure SSH2 Protocol**: All communication takes place over standard encrypted SSH port 22 using standard OpenSSH ciphers: ChaCha20-Poly1305, AES-256-GCM, and AES-128-GCM.
+- **Client-Side Rendering**: Windows, docks, Mission Control Exposé, Monaco code editors, and telemetry charts are synthesized locally on the user's workstation using WebGL and Canvas. No display servers (X11, Wayland), desktop environments (GNOME, XFCE), or VNC servers run on the remote Linux host.
+- **Agentless Administration**: In desktop mode, SSH Desktop executes standard POSIX commands (ps, ss, systemctl, journalctl, docker, ufw) over SSH and parses output locally. No custom daemon or agent runs in the background on the remote server.
+- **Local OS Credential Vaults**: SSH private keys, passphrases, and server connection profiles are stored locally using hardware-backed native OS security: Windows Data Protection API (DPAPI) on Windows, macOS Keychain on Apple Mac, and Secret Service API on Linux. Zero credentials or telemetry are transmitted to third-party cloud servers.
+- **Hardware Keys**: Native support for FIDO2 and YubiKey hardware tokens for passwordless ed25519-sk and ecdsa-sk authentication.
+
+## Supported Platforms
+- **Windows**: Windows 11, Windows 10, Windows Server 2022 (64-bit x64 & ARM64). Standard installer (.exe), enterprise MSI (.msi), standalone portable (.zip), winget, chocolatey.
+- **macOS**: macOS Sequoia, Sonoma, Ventura (Universal Apple Silicon M1/M2/M3/M4 & Intel x86_64). Notarized DMG, Homebrew Cask.
+- **Linux Desktop**: Ubuntu, Debian, Fedora, Arch Linux, Rocky Linux, openSUSE. AppImage, .deb, .rpm.
+- **Linux Server / Web Mode**: Self-hosted in-browser access across Chrome, Safari, Firefox, and Edge. Runs as a background systemd service (`sshdesktop.service`) serving frontend web UI on port 2222 and backend daemon on port 2020. Install command:
+  `curl -fsSL https://sshdesktop.com/install.sh | sudo bash`
+
+## Complete 25-App Tool Suite
+1. Cloud Desktop (macOS Sonoma Shell): Dock, draggable windows, Mission Control, wallpaper themes.
+2. Hardware PTY Terminal: Xterm.js emulation, 24-bit TrueColor, tabs, split panes, command snippet chips.
+3. Dual-Pane SFTP Manager: Multi-stream file transfers, drag-and-drop, remote zip extraction, chmod permissions.
+4. Monaco Code Editor: VS Code editing engine, remote syntax highlighting for 50+ programming languages.
+5. Docker Hub & Compose: Container status, start/stop/restart, live stdout log streaming, image pruning.
+6. Universal Database Studio: SQL query runner, schema browser for PostgreSQL, MySQL, Redis, MongoDB, SQLite over automated SSH tunnels.
+7. Systemd Services Manager: Visual list of units, start/stop/restart controls, service creation, journald logs.
+8. Visual Firewall (UFW): Visual rule builder for UFW, Iptables, and Nftables with SSH lockout protection.
+9. System Telemetry Monitor: Real-time graphs for CPU load, RAM usage, swap, disk I/O, and network throughput.
+10. Process & Task Manager: Htop-grade process viewer, kill/terminate signals, CPU/memory sorting, zombie tree analysis.
+11. Package Manager: GUI for apt, dnf, pacman, snap, and flatpak with upgrade notifications.
+12. User & Group Manager: Visual /etc/passwd management, sudo permissions editor, authorized_keys manager.
+13. Network Port Auditor: Active listening sockets, netstat/ss output parser, open port security scanner.
+14. Disk & Storage Manager: Partition visualizer, df/du disk space analyzer, SMART health metrics.
+15. Visual Crontab Editor: Schedule crontab jobs visually with standard 5-part cron syntax validation.
+16. Log Analysis & Grep: Multi-stream log viewer for /var/log/syslog, auth.log, nginx, apache, and journald.
+17. Environment Variables Vault: Server-wide /etc/environment and user session env vars manager.
+18. REST & GraphQL API Studio: Test server-local microservices and API endpoints directly through SSH tunnels.
+19. Security Auditor & Hardener: Automated CIS compliance audit, Lynis security score, Fail2ban inspector.
+20. SSH Port Forwarding Canvas: Node-based visual diagram for Local (-L), Remote (-R), Dynamic SOCKS5 (-D), and RDP tunnels.
+21. Embedded Browser & Reverse Proxy: Preview local web apps (localhost:3000, 8080) and test Nginx/Caddy configurations.
+22. Desktop Sticky Notes: Persistent, server-specific notes, reminder checklists, and runbook snippets.
+23. SSL/TLS Certificate Manager: Certbot Let's Encrypt automated issuance, renewal, and SSL certificate inspector.
+24. Backup & Disaster Recovery: Automated server backups using Restic and Rclone with remote cloud storage sync.
+25. Multi-Server Automation: Broadcast keyboard commands simultaneously across grouped production/staging nodes.
+
+## High-Intent Search Intent & Solutions
+- RDP over SSH: Tunneling Remote Desktop Protocol (port 3389) over SSH (port 22) prevents public brute-force attacks and BlueKeep exploits.
+- SSH Remote Desktop: Graphical desktop view of Linux servers over pure SSH port 22 with 0 MB server RAM overhead, eliminating slow VNC and XRDP servers.
+- Raspberry Pi Remote SSH: Connecting from Windows and Mac to Raspberry Pi 5, 4, 3, and Zero 2 W with desktop view and zero VNC lag.
+- Web SSH Client: Running SSH Desktop Web Mode via systemd on port 2222 for browser access from Chromebooks, iPads, and workstations.

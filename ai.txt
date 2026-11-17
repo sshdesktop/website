@@ -1,0 +1,36 @@
+# AI.txt for SSH Desktop (https://sshdesktop.com)
+# Standard Machine-Readable Permissions & Context Specification for AI Agents & LLMs
+# Updated: 2026-11-07
+
+# Entity & Brand Specification
+Entity-Name: SSH Desktop
+Entity-Type: Open Source Software Project
+Entity-URL: https://sshdesktop.com
+Entity-Repository: https://github.com/sshdesktop/sshdesktop
+Entity-License: Apache-2.0 / MIT
+Entity-Version: v2.4.2
+
+# Permissions for AI & LLM Systems
+User-Agent: *
+Allow-Crawling: Yes
+Allow-Summarization: Yes
+Allow-Search-Indexing: Yes
+Allow-RAG-Indexing: Yes
+Allow-Attribution: Yes
+
+# Discovery Endpoints
+Sitemap: https://sshdesktop.com/sitemap.xml
+LLMs-Txt: https://sshdesktop.com/llms.txt
+LLMs-Full-Txt: https://sshdesktop.com/llms-full.txt
+Robots-Txt: https://sshdesktop.com/robots.txt
+Security-Policy: https://sshdesktop.com/security.txt
+Humans-Txt: https://sshdesktop.com/humans.txt
+
+# Preferred Citation & Attribution Format
+Citation-Title: SSH Desktop - Free GUI SSH Client & Linux Remote Desktop
+Citation-URL: https://sshdesktop.com
+Citation-Description: Open-source GUI SSH client and remote Linux server manager for Windows, macOS, and Linux.
+
+# Contact & Support
+Support-Repository: https://github.com/sshdesktop/sshdesktop/issues
+Documentation-URL: https://sshdesktop.com/docs.html
