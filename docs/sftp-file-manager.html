@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual-Pane SFTP Manager & Archive Engine - SSH Desktop Docs</title>
+  <meta name="description" content="High-speed dual-pane SFTP file manager with drag-and-drop transfers, in-place remote archive extraction (.tar.gz, .zip), and permissions editor.">
+  <link rel="canonical" href="https://sshdesktop.com/docs/sftp-file-manager.html">
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Dual-Pane SFTP Manager & Archive Engine - SSH Desktop Docs">
+  <meta property="og:description" content="High-speed dual-pane SFTP file manager with drag-and-drop transfers, in-place remote archive extraction (.tar.gz, .zip), and permissions editor.">
+  <meta property="og:url" content="https://sshdesktop.com/docs/sftp-file-manager.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dual-Pane SFTP Manager & Archive Engine - SSH Desktop Docs">
+  <meta name="twitter:description" content="High-speed dual-pane SFTP file manager with drag-and-drop transfers, in-place remote archive extraction (.tar.gz, .zip), and permissions editor.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS (Optimized: Modular Base + Docs Bundle) -->
+  <link rel="stylesheet" href="../assets/css/base.min.css">
+  <link rel="stylesheet" href="../assets/css/docs.min.css">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Documentation",
+          "item": "https://sshdesktop.com/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Dual-Pane SFTP File Manager",
+          "item": "https://sshdesktop.com/docs/sftp-file-manager.html"
+        }
+      ]
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/docs/sftp-file-manager.html#article",
+      "headline": "Dual-Pane SFTP File Manager - SSH Desktop Documentation",
+      "description": "High-speed dual-pane SFTP file manager with drag-and-drop transfers, in-place remote archive extraction (.tar.gz, .zip), and permissions editor.",
+      "inLanguage": "en-US",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Documentation Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38">
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="index.html" class="active">Docs</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="https://github.com/sshdesktop/sshdesktop" class="header-github-btn" target="_blank" rel="noopener" aria-label="Star on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-star-label">Star</span>
+        </a>
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Docs Layout -->
+  <main class="container docs-layout">
+    <!-- Sticky Mobile Navigation Bar -->
+    <div class="docs-mobile-header" id="docsMobileHeader">
+      <button type="button" class="docs-mobile-btn" id="docsMobileToggle" aria-expanded="false" aria-controls="docsSidebar" aria-label="Open documentation navigation">
+        <span style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.1rem;">☰</span>
+          <span>Documentation Menu (43 Guides)</span>
+        </span>
+        <span style="font-size: 0.8rem; opacity: 0.7;">▼</span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="docs-sidebar-backdrop" id="docsSidebarBackdrop"></div>
+
+    <aside class="docs-sidebar" id="docsSidebar" aria-label="Documentation Table of Contents">
+
+    <div class="docs-sidebar-header">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <a href="index.html" class="docs-back-link">
+          <span>&larr; Docs Overview</span>
+        </a>
+        <button type="button" class="docs-sidebar-close" id="docsSidebarClose" aria-label="Close navigation drawer">&times;</button>
+      </div>
+      <div class="docs-sidebar-filter-wrap">
+        <span class="docs-sidebar-filter-icon">&#128269;</span>
+        <input type="text" class="docs-sidebar-filter" id="docsSidebarFilter" placeholder="Filter 43 topics..." aria-label="Filter documentation topics">
+      </div>
+    </div>
+    <nav class="docs-sidebar-nav" aria-label="Documentation chapters"><div class="docs-nav-group-title">Getting Started & Core</div><ul class="docs-nav-list"><li><a href="getting-started.html">🚀 Getting Started & SSH Keys</a></li><li><a href="architecture.html">🏗️ Architecture & Security Model</a></li><li><a href="web-mode.html">🌐 Web Mode & Headless Daemon</a></li><li><a href="installation.html">💿 Installation & Platform Support</a></li><li><a href="connection-manager.html">🔑 Connection Manager & SSH Keys</a></li><li><a href="settings-preferences.html">⚙️ Settings, Themes & Preferences</a></li><li><a href="quickstart.html">⚡ 3-Minute Quickstart Guide</a></li><li><a href="security-model.html">🛡️ Security Model & Zero-Agent Trust</a></li></ul><div class="docs-nav-group-title">25 Native Apps: Desktop & Terminal</div><ul class="docs-nav-list"><li><a href="cloud-desktop.html">🖥️ macOS Sonoma Desktop Shell</a></li><li><a href="terminal.html">⌨️ Interactive PTY Terminal (Xterm.js)</a></li><li><a href="sftp-file-manager.html" class="active">📁 Dual-Pane SFTP File Manager</a></li><li><a href="monaco-code-editor.html">📝 Monaco Code Editor & Diff Viewer</a></li><li><a href="sticky-notes.html">📌 Desktop Sticky Notes & Scratchpad</a></li></ul><div class="docs-nav-group-title">25 Native Apps: Containers & Databases</div><ul class="docs-nav-list"><li><a href="docker-management.html">🐳 Docker Container Management Hub</a></li><li><a href="database-studio.html">🗄️ Multi-Engine Database Studio</a></li><li><a href="ssh-tunneling.html">🔀 SSH Port Forwarding & Tunnels</a></li></ul><div class="docs-nav-group-title">25 Native Apps: System Administration</div><ul class="docs-nav-list"><li><a href="systemd-services.html">⚙️ Systemd Services & Timers</a></li><li><a href="hardware-telemetry.html">📊 Hardware Telemetry & Monitor</a></li><li><a href="process-manager.html">⚡ Process Manager (htop Alternative)</a></li><li><a href="package-manager.html">📦 Multi-Distro Package Manager</a></li><li><a href="user-sudoers-admin.html">👥 User & Sudoers Administration</a></li><li><a href="disk-smart-manager.html">💾 Disk, LVM & S.M.A.R.T. Manager</a></li><li><a href="crontab-scheduler.html">⏰ Visual Crontab Scheduler</a></li></ul><div class="docs-nav-group-title">25 Native Apps: Security & Networking</div><ul class="docs-nav-list"><li><a href="firewall-ufw.html">🛡️ Visual Firewall (UFW & Iptables)</a></li><li><a href="network-port-auditor.html">🔍 Network & Port Auditor</a></li><li><a href="ssl-certificates.html">🔒 SSL/TLS Certificates (Certbot)</a></li><li><a href="security-audit-lynis.html">🚨 Security & Lynis Auditor</a></li></ul><div class="docs-nav-group-title">25 Native Apps: Automation & Tools</div><ul class="docs-nav-list"><li><a href="env-variables-manager.html">🔑 Environment Variables & Secrets</a></li><li><a href="backup-disaster-recovery.html">💾 Backup & Disaster Recovery</a></li><li><a href="multi-server-snippets.html">🌐 Multi-Server Automation</a></li><li><a href="log-analysis-grep.html">📜 Remote Log Analysis & Grep</a></li><li><a href="reverse-proxy-browser.html">🔄 Reverse Proxy Browser (Nginx)</a></li><li><a href="api-studio.html">🔌 API Studio (REST/GraphQL/WS)</a></li></ul><div class="docs-nav-group-title">Guides, Tutorials & Homelab</div><ul class="docs-nav-list"><li><a href="faq.html">❓ Frequently Asked Questions (FAQ)</a></li><li><a href="keyboard-shortcuts.html">⌨️ Master Keyboard Shortcuts</a></li><li><a href="raspberry-pi-desktop.html">🍓 Raspberry Pi Remote Desktop & Homelab</a></li><li><a href="troubleshooting.html">🛠️ Troubleshooting & Connection Fixes</a></li><li><a href="rdp-over-ssh.html">🔒 RDP Over SSH Tunneling Guide</a></li><li><a href="aws-ec2-guide.html">☁️ AWS EC2 SSH Connection Guide</a></li><li><a href="cloud-vps-guide.html">🌐 Multi-Cloud VPS Management Guide</a></li><li><a href="tutorials.html">📚 Server Management Tutorials</a></li><li><a href="cheat-sheet.html">📋 Linux Server & SSH Cheat Sheet</a></li></ul></nav>
+    </aside>
+
+    <div class="docs-content">
+      <!-- Breadcrumb -->
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="margin-bottom: 16px;">
+        <ol style="display: flex; gap: 8px; list-style: none; padding: 0; font-size: 0.88rem; color: var(--text-dim); flex-wrap: wrap;">
+          <li><a href="../index.html" style="color: var(--text-dim);">Home</a></li>
+          <li>/</li>
+          <li><a href="index.html" style="color: var(--text-dim);">Docs</a></li>
+          <li>/</li>
+          <li aria-current="page" style="color: var(--accent-cyan); font-weight: 600;">Dual-Pane SFTP File Manager</li>
+        </ol>
+      </nav>
+
+      <!-- App Meta Pill -->
+      <div class="code-ref-pill" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: #1e293b; border: 1px solid #334155; border-radius: 20px; font-size: 0.82rem; margin-bottom: 18px; color: #cbd5e1;">
+        <span style="color: var(--accent-cyan); font-weight: 700;">Category:</span>
+        <span>25 Native Apps: Desktop & Terminal</span>
+        <span style="color: #64748b;">•</span>
+        <span style="color: #10b981; font-weight: 600;">100% Agentless GUI</span>
+        <span style="color: #64748b;">•</span>
+        <span>Zero Server Footprint</span>
+      </div>
+
+      <!-- Chapter Header -->
+      <div style="margin-bottom: 24px;">
+        <span class="chapter-badge">25 Native Apps: Desktop & Terminal</span>
+        <h1 class="docs-article-title">📁 Dual-Pane SFTP File Manager</h1>
+        <p class="docs-lead">High-speed dual-pane SFTP file manager with drag-and-drop transfers, in-place remote archive extraction (.tar.gz, .zip), permissions editor, and recursive file search.</p>
+      </div>
+
+      <!-- App Screenshot -->
+      <div class="doc-screenshot-frame" style="margin-bottom: 32px;">
+        <picture>
+          <source srcset="../assets/images/screenshots/screenshot-sftp.webp" type="image/webp">
+          <img src="../assets/images/screenshots/screenshot-sftp.jpg" alt="Dual-Pane SFTP File Manager Interface Screenshot" width="1366" height="767" loading="lazy" decoding="async">
+        </picture>
+        <div class="screenshot-caption">Figure: Real-time visual interface of Dual-Pane SFTP File Manager in SSH Desktop.</div>
+      </div>
+
+      <div class="docs-body" style="font-size: 1rem; line-height: 1.7; color: var(--text-main);">
+        <!-- What Is It & Problem Solved -->
+        <section style="margin-bottom: 32px;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin-bottom: 12px; border-bottom: 2px solid #334155; padding-bottom: 8px;">
+            What is this Application &amp; Why Do You Need It?
+          </h2>
+          <p>The Dual-Pane SFTP File Manager is an advanced visual file browser tailored for remote server administration. It provides a split-view interface (Local <-> Remote or Remote <-> Remote) with drag-and-drop uploads, instant directory navigation, remote file editing, and direct server-side archive extraction.</p>
+          <p>Using CLI commands (<code>scp</code>, <code>rsync</code>, <code>tar</code>, <code>chmod</code>) for routine file management is slow and prone to typographical errors. External FTP clients like FileZilla lack server-side archive extraction and don't integrate with your SSH keys or Monaco editor. SSH Desktop combines everything into a single zero-overhead tool.</p>
+          <div style="background: #1e293b; border-left: 4px solid #38bdf8; padding: 12px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.92rem;">
+            <strong>Legacy Tools Replaced:</strong> FileZilla, WinSCP, Cyberduck, Transmit
+          </div>
+        </section>
+
+        <!-- Interface Overview & Visual Controls -->
+        
+        <section style="margin-bottom: 32px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 22px;">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #f8fafc; margin-top: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>🖥️</span> Interface Overview &amp; Visual Controls
+          </h2>
+          <div style="font-size: 0.94rem; color: #cbd5e1; line-height: 1.7;">
+            The <strong>SFTP File Manager</strong> features a dual-pane layout for effortless local-to-remote and remote-to-remote file management. The top toolbar provides <strong>Back / Forward</strong>, <strong>Breadcrumb Path Navigation</strong>, <strong>Search Filter</strong>, <strong>New Folder</strong>, <strong>Upload</strong>, <strong>Download</strong>, and <strong>View Switcher</strong> (Icons, Details List, Columns). Right-clicking any file opens a contextual menu with options to Edit in Monaco, Compress (.tar.gz / .zip), Extract Archive, Change Permissions (Chmod), and View Properties.
+          </div>
+        </section>
+
+        <!-- Key Features -->
+        <section style="margin-bottom: 32px;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin-bottom: 12px; border-bottom: 2px solid #334155; padding-bottom: 8px;">
+            Key Capabilities &amp; Features
+          </h2>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li style="margin-bottom: 8px;"><strong>Multiple View Modes:</strong> macOS Finder-style Columns view (<code>ColumnsView.tsx</code>), Icons view, List view, and Gallery view.</li>
+            <li style="margin-bottom: 8px;"><strong>In-Place Remote Archive Engine:</strong> Extract `.tar.gz`, `.tar.bz2`, `.tar.xz`, `.zip`, and `.7z` archives directly on the server without downloading them!</li>
+            <li style="margin-bottom: 8px;"><strong>Spacebar Quick Look:</strong> Press Spacebar to instantly preview images, text files, and JSON payloads.</li>
+            <li style="margin-bottom: 8px;"><strong>Letter Jump Navigation:</strong> Type letters on your keyboard to instantly jump to matching files.</li>
+            <li style="margin-bottom: 8px;"><strong>Visual Permissions Editor:</strong> Modify octal file permissions (<code>chmod 755/644</code>) and ownership (<code>chown user:group</code>) with simple checkboxes.</li>
+          </ul>
+        </section>
+
+        <!-- Prerequisites & Requirements -->
+        <section style="margin-bottom: 32px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 22px;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-top: 0; margin-bottom: 12px;">
+            📋 Prerequisites &amp; Remote Host Requirements
+          </h3>
+          <ul style="padding-left: 20px; margin: 0; font-size: 0.92rem; color: #cbd5e1; line-height: 1.7;">
+            <li>SFTP subsystem enabled on the remote server (standard in almost all OpenSSH installations).</li>
+            <li>Read/write permissions for directories you wish to modify.</li>
+          </ul>
+        </section>
+
+        <!-- Step-by-Step How-To Tutorial -->
+        <section style="margin-bottom: 36px;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin-bottom: 16px; border-bottom: 2px solid #334155; padding-bottom: 8px;">
+            Step-by-Step How-To Tutorial
+          </h2>
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px; margin-bottom: 18px;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-top: 0; margin-bottom: 10px;">
+              1. Navigating Directories with Quick Look & Letter Jump
+            </h3>
+            <div style="font-size: 0.94rem; color: #cbd5e1; line-height: 1.7;">
+              Open the SFTP File Manager. Type any path in the address bar (<kbd>Cmd+L</kbd>) or double-click folders. Press <kbd>Space</kbd> on any file to open the instant Quick Look preview. Type letters to immediately jump to files matching that letter.
+            </div>
+          </div>
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px; margin-bottom: 18px;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-top: 0; margin-bottom: 10px;">
+              2. Drag-and-Drop Uploads and Downloads
+            </h3>
+            <div style="font-size: 0.94rem; color: #cbd5e1; line-height: 1.7;">
+              Drag files directly from your computer's native desktop or file explorer into the remote directory pane. The transfer drawer tracks active progress, transfer speed (MB/s), and estimated completion time.
+            </div>
+          </div>
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px; margin-bottom: 18px;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-top: 0; margin-bottom: 10px;">
+              3. In-Place Archive Extraction (.tar.gz / .zip)
+            </h3>
+            <div style="font-size: 0.94rem; color: #cbd5e1; line-height: 1.7;">
+              Right-click any <code>.tar.gz</code>, <code>.tgz</code>, or <code>.zip</code> file and choose <strong>Extract Here</strong> or <strong>Extract to Folder...</strong>. The server unpacks the archive directly on disk in seconds without consuming client network bandwidth.
+            </div>
+          </div>
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px; margin-bottom: 18px;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-top: 0; margin-bottom: 10px;">
+              4. Editing Permissions & Ownership (chmod / chown)
+            </h3>
+            <div style="font-size: 0.94rem; color: #cbd5e1; line-height: 1.7;">
+              Right-click any file and select <strong>Permissions &amp; Properties</strong>. Toggle Read, Write, and Execute checkboxes for Owner, Group, and Others. Check "Apply recursively to subdirectories" to batch update permissions.
+            </div>
+          </div>
+        </section>
+
+        <!-- Pro-Tips & Best Practices -->
+        
+        <section style="margin-bottom: 32px; background: #0f172a; border-left: 4px solid #10b981; border-top: 1px solid #334155; border-right: 1px solid #334155; border-bottom: 1px solid #334155; border-radius: 0 10px 10px 0; padding: 20px 24px;">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #f8fafc; margin-top: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>💡</span> Pro-Tips &amp; Best Practices
+          </h2>
+          <ul style="padding-left: 20px; margin: 0; font-size: 0.93rem; color: #cbd5e1; line-height: 1.8;">
+            <li style="margin-bottom: 6px;"><strong>In-Place Remote Extraction:</strong> Right-click any <code>.tar.gz</code>, <code>.tar.bz2</code>, or <code>.zip</code> file and click "Extract Here" to unpack it instantly on the server without downloading.</li>
+            <li style="margin-bottom: 6px;"><strong>Visual Chmod Editor:</strong> Right-click a file or folder and select "Permissions" to set read, write, and execute permissions with visual checkboxes or octal notation (e.g. <code>755</code>, <code>644</code>).</li>
+            <li style="margin-bottom: 6px;"><strong>Drag-and-Drop Transfers:</strong> Drag files directly from your local desktop file explorer into the SFTP file manager to initiate instant background uploads.</li>
+            <li style="margin-bottom: 6px;"><strong>Hidden Files Toggle (<kbd>Cmd/Ctrl + H</kbd>):</strong> Quickly show or hide dotfiles (like <code>.env</code>, <code>.htaccess</code>, <code>.git/</code>) with a single shortcut.</li>
+          </ul>
+        </section>
+
+        <!-- Under The Hood -->
+        <section style="margin-bottom: 32px;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin-bottom: 12px; border-bottom: 2px solid #334155; padding-bottom: 8px;">
+            Under the Hood: Linux Commands &amp; Architecture
+          </h2>
+          <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.7;">
+            Transfers execute over OpenSSH dedicated SFTP subsystem channel (v3). Server-side archive operations execute optimized native POSIX utilities (<code>tar -xzf</code>, <code>unzip -q</code>) on the host.
+          </p>
+          <div style="background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 14px 18px; margin-top: 14px;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 6px;">
+              Primary Commands / Virtual Files Executed Over SSH:
+            </div>
+            <code style="font-size: 0.88rem; color: #38bdf8; font-family: var(--font-mono);">
+              sftp subsystem, tar -xzf, unzip, chmod, chown, stat
+            </code>
+          </div>
+        </section>
+
+        <!-- Keyboard Shortcuts Table -->
+        <section style="margin-bottom: 36px;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin-bottom: 12px; border-bottom: 2px solid #334155; padding-bottom: 8px;">
+            ⌨️ Keyboard Shortcuts &amp; Productivity Tips
+          </h2>
+          <table class="shortcut-table">
+            <thead>
+              <tr>
+                <th style="width: 35%;">Action / Function</th>
+                <th style="width: 65%;">Shortcut / Key Sequence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 600; color: #f8fafc;">Focus Address Bar</td>
+                <td><kbd style="background: #334155; padding: 3px 8px; border-radius: 4px; font-size: 0.82rem; font-family: var(--font-mono); color: #38bdf8;">Cmd/Ctrl + L</kbd></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600; color: #f8fafc;">Toggle Quick Look Preview</td>
+                <td><kbd style="background: #334155; padding: 3px 8px; border-radius: 4px; font-size: 0.82rem; font-family: var(--font-mono); color: #38bdf8;">Space</kbd></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600; color: #f8fafc;">Refresh Current Directory</td>
+                <td><kbd style="background: #334155; padding: 3px 8px; border-radius: 4px; font-size: 0.82rem; font-family: var(--font-mono); color: #38bdf8;">F5</kbd></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600; color: #f8fafc;">Toggle Hidden Dotfiles</td>
+                <td><kbd style="background: #334155; padding: 3px 8px; border-radius: 4px; font-size: 0.82rem; font-family: var(--font-mono); color: #38bdf8;">Cmd/Ctrl + H</kbd></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600; color: #f8fafc;">Delete Selected Files</td>
+                <td><kbd style="background: #334155; padding: 3px 8px; border-radius: 4px; font-size: 0.82rem; font-family: var(--font-mono); color: #38bdf8;">Delete</kbd></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Troubleshooting & Common FAQs -->
+        
+        <section style="margin-bottom: 36px;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #f8fafc; margin-bottom: 16px; border-bottom: 2px solid #334155; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+            <span>❓</span> Troubleshooting &amp; Frequently Asked Questions
+          </h2>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px 20px;">
+              <h3 style="font-size: 1rem; font-weight: 700; color: #38bdf8; margin: 0 0 8px;">Permission denied when uploading to /var/www or /etc</h3>
+              <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.6;">Non-root users cannot write to root-owned directories. Use the "Sudo SFTP Mode" toggle in connection settings or upload to your home folder first and move with <code>sudo mv</code>.</p>
+            </div>
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px 20px;">
+              <h3 style="font-size: 1rem; font-weight: 700; color: #38bdf8; margin: 0 0 8px;">Archive extraction fails on remote server</h3>
+              <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.6;">Ensure <code>tar</code>, <code>gzip</code>, or <code>unzip</code> packages are installed on the remote Linux host (<code>sudo apt install tar unzip</code>).</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Chapter Pager (Previous / Next) -->
+      <nav class="chapter-pager" aria-label="Documentation Chapter Navigation">
+        
+        <a href="terminal.html" class="pager-card">
+          <span class="pager-direction">&larr; Previous Chapter</span>
+          <span class="pager-title">⌨️ Interactive PTY Terminal (Xterm.js)</span>
+        </a>
+        
+        <a href="monaco-code-editor.html" class="pager-card" style="text-align: right; margin-left: auto;">
+          <span class="pager-direction">Next Chapter &rarr;</span>
+          <span class="pager-title">📝 Monaco Code Editor & Diff Viewer</span>
+        </a>
+      </nav>
+
+      <!-- Conversion CTA -->
+      <div class="blog-cta-box" style="margin-top: 36px;">
+        <h3>Try SSH Desktop Free</h3>
+        <p>Experience the macOS-inspired visual desktop for Linux servers. Hardware-accelerated terminal, dual-pane SFTP, Docker GUI, and background tunnels — 100% agentless.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="../download.html" class="blog-cta-button">Download App &rarr;</a>
+          <a href="https://github.com/sshdesktop/sshdesktop" target="_blank" rel="noopener" class="btn btn-secondary" style="border-radius: 8px;">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-top: 1px solid var(--border); font-size: 0.88rem; color: var(--text-dim);">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Open source and privacy focused.</p>
+      <div style="display: flex; gap: 20px;">
+        <a href="../privacy.html">Privacy</a>
+        <a href="index.html">Documentation Hub</a>
+        <a href="https://github.com/sshdesktop/sshdesktop" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sidebar & Navigation JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Drawer Toggle
+      const mobileToggle = document.getElementById('docsMobileToggle');
+      const sidebar = document.getElementById('docsSidebar');
+      const backdrop = document.getElementById('docsSidebarBackdrop');
+      const closeBtn = document.getElementById('docsSidebarClose');
+
+      function openSidebar() {
+        if (sidebar && backdrop) {
+          sidebar.classList.add('open');
+          backdrop.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeSidebar() {
+        if (sidebar && backdrop) {
+          sidebar.classList.remove('open');
+          backdrop.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      }
+
+      if (mobileToggle) mobileToggle.addEventListener('click', openSidebar);
+      if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+      if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+      // Close mobile drawer on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+
+      // 2. Auto-scroll active chapter into view inside the sticky sidebar
+      const activeLink = document.querySelector('.docs-nav-list a.active');
+      if (sidebar && activeLink) {
+        setTimeout(() => {
+          const sidebarRect = sidebar.getBoundingClientRect();
+          const activeRect = activeLink.getBoundingClientRect();
+          if (activeRect.top < sidebarRect.top || activeRect.bottom > sidebarRect.bottom) {
+            sidebar.scrollTop = activeLink.offsetTop - sidebar.offsetTop - (sidebar.clientHeight / 2) + 20;
+          }
+        }, 80);
+      }
+
+      // 3. Instant Search Filter in Sidebar
+      const filterInput = document.getElementById('docsSidebarFilter');
+      if (filterInput && sidebar) {
+        filterInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          const groups = sidebar.querySelectorAll('.docs-nav-group-title');
+          const lists = sidebar.querySelectorAll('.docs-nav-list');
+
+          lists.forEach((list, idx) => {
+            let hasVisible = false;
+            const items = list.querySelectorAll('li');
+            items.forEach(li => {
+              const text = li.textContent.toLowerCase();
+              if (!query || text.includes(query)) {
+                li.style.display = '';
+                hasVisible = true;
+              } else {
+                li.style.display = 'none';
+              }
+            });
+            if (groups[idx]) {
+              groups[idx].style.display = hasVisible ? '' : 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

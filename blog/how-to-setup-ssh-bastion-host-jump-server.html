@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Set Up an SSH Bastion Host (Jump Server): Complete Architecture Guide (2026)</title>
+  <meta name="title" content="How to Set Up an SSH Bastion Host (Jump Server): Complete Architecture Guide (2026)">
+  <meta name="description" content="Complete architecture and setup guide for SSH Bastion Hosts and Jump Servers. Secure private VPC subnets, configure ProxyJump (-J), harden bastion security, and eliminate Agent Forwarding risks.">
+  <meta name="keywords" content="ssh bastion host, ssh jump server setup, bastion host aws vpc architecture, ssh proxyjump tutorial, harden ssh bastion server, ssh jump host config, secure private subnet ssh">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-ssh-bastion-host-jump-server.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-ssh-bastion-host-jump-server.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Set Up an SSH Bastion Host (Jump Server): Complete Guide">
+  <meta property="og:description" content="Master cloud bastion architecture. Learn how to configure jump hosts with ProxyJump, harden access, and manage private VPC servers.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Cloud Architecture &amp; Security">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-setup-ssh-bastion-host-jump-server.html">
+  <meta name="twitter:title" content="How to Set Up an SSH Bastion Host (2026 Guide)">
+  <meta name="twitter:description" content="Secure your private cloud VPC with an SSH bastion jump host. Learn ProxyJump, hardening, and multi-hop routing.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "SSH Bastion Host & Jump Server Architecture",
+            "item": "https://sshdesktop.com/blog/how-to-setup-ssh-bastion-host-jump-server.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-ssh-bastion-host-jump-server.html#article",
+        "headline": "How to Set Up an SSH Bastion Host (Jump Server): Complete Architecture Guide (2026)",
+        "description": "Comprehensive engineering guide to SSH Bastion Hosts and Jump Servers. Secure private VPC subnets in AWS and GCP, configure ProxyJump, and harden bastion security.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-ssh-bastion-host-jump-server.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is an SSH Bastion Host?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An SSH Bastion Host (also called a Jump Server or Jump Box) is a single, heavily hardened gateway server located in a public subnet. It acts as the sole authorized entry point for sysadmins and developers to reach private, internal cloud servers that have no public IP addresses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is ProxyJump safer than SSH Agent Forwarding (ssh -A)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SSH Agent Forwarding (ssh -A) forwards access to your local ssh-agent socket onto the remote bastion. If root on the bastion is compromised, an attacker can hijack your forwarded socket to authenticate to other servers. 'ProxyJump' (-J) uses TCP tunneling instead; the bastion only forwards raw encrypted ciphertext and never has access to your private keys or agent socket."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the CLI flag for jumping through a bastion host?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the '-J' flag: 'ssh -J user@bastion-ip user@internal-private-ip'. OpenSSH handles the multi-hop handshake transparently."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How should I harden a cloud bastion host?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Disable password authentication ('PasswordAuthentication no'), disable root login ('PermitRootLogin no'), enforce MFA with Google Authenticator or hardware security keys (FIDO2/U2F), restrict inbound security group access to corporate VPN IP ranges, and install fail2ban."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">SSH Bastion Host Architecture</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">Cloud Architecture &amp; Enterprise Security</span>
+        <h1 class="article-title">How to Set Up an SSH Bastion Host (Jump Server): Complete Architecture Guide (2026)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>11 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          In modern cloud infrastructure (Amazon Web Services, Google Cloud, Azure, and private OpenStack clouds), placing every server on a public IPv4 address is an architectural anti-pattern.
+        </p>
+        <p>
+          Instead, enterprise security models place databases, application workers, and caching layers in isolated <strong>Private Subnets</strong> with internal IP addresses (e.g. <code>10.0.x.x</code>). To administer these private machines, engineers route their traffic through a dedicated, heavily audited gateway known as a <strong>Bastion Host</strong> or <strong>Jump Server</strong>.
+        </p>
+        <p>
+          In this guide, you will learn the security mechanics of bastion hosts, how to configure multi-hop routing using modern <code>ProxyJump</code>, why legacy SSH agent forwarding is dangerous, and how to harden a bastion server against intrusion.
+        </p>
+
+        <h2>Cloud Network Topology: Public Subnet vs Private Subnet</h2>
+        <p>
+          A well-architected cloud VPC (Virtual Private Cloud) separates exposure into two zones:
+        </p>
+        <ul>
+          <li><strong>Public Subnet (Internet-Facing):</strong> Contains the Internet Gateway, load balancers, and a single, locked-down <strong>Bastion Host</strong>. The bastion has a public IP address and accepts inbound SSH strictly from authorized administrator IPs.</li>
+          <li><strong>Private Subnet (Zero Internet Inbound):</strong> Contains production database clusters (PostgreSQL, MySQL), internal microservices, and Kubernetes worker nodes. These nodes have NO public IPs and reject all inbound traffic except connections originating from the Bastion's internal IP.</li>
+        </ul>
+
+        <h2>Step 1: Connecting via CLI (The Modern ProxyJump Syntax)</h2>
+        <p>
+          In older tutorials, developers were taught to SSH into the bastion, wait for a prompt, and then run a second SSH command from the bastion to the target. This required storing private keys on the bastion — a critical security hazard!
+        </p>
+        <p>
+          With modern OpenSSH, you use the <strong><code>-J</code> (ProxyJump)</strong> flag:
+        </p>
+
+        <div class="code-block">
+          <code>ssh -J ec2-user@bastion.example.com ubuntu@10.0.2.45</code>
+        </div>
+
+        <p>
+          If the bastion uses a custom port or key:
+        </p>
+        <div class="code-block">
+          <code>ssh -J ec2-user@bastion.example.com:2222 -i ~/.ssh/internal_key.pem ubuntu@10.0.2.45</code>
+        </div>
+
+        <h3>Why ProxyJump Is Better Than SSH Agent Forwarding (ssh -A):</h3>
+        <div class="callout-box warn">
+          <strong>Security Warning:</strong> Never use <code>ssh -A</code> (Agent Forwarding) on untrusted jump servers. When agent forwarding is active, a malicious user or attacker with root privileges on the bastion can access your local agent's UNIX socket (<code>$SSH_AUTH_SOCK</code>) and authenticate to your other servers using your private keys.
+        </div>
+        <p>
+          <strong><code>ProxyJump</code> does NOT forward keys.</strong> Instead, it commands the bastion to act as a raw TCP proxy via <code>nc</code> or <code>sshd -W</code>. The SSH handshake occurs directly between your local laptop and the internal target. The bastion only ever sees encrypted ciphertext.
+        </p>
+
+        <h2>Step 2: Permanent ~/.ssh/config Configuration</h2>
+        <p>
+          Typing <code>-J</code> on every command is repetitive. Add both entries to your local <code>~/.ssh/config</code>:
+        </p>
+
+        <div class="code-block">
+          <code># 1. The Bastion Gateway<br>
+Host bastion<br>
+    HostName 198.51.100.10<br>
+    User ec2-user<br>
+    IdentityFile ~/.ssh/bastion_key.pem<br><br>
+# 2. Private App Server in VPC<br>
+Host app-server<br>
+    HostName 10.0.2.45<br>
+    User ubuntu<br>
+    IdentityFile ~/.ssh/internal_key.pem<br>
+    ProxyJump bastion<br><br>
+# 3. Wildcard for ALL 10.0.* Internal Nodes<br>
+Host 10.0.*<br>
+    User ubuntu<br>
+    IdentityFile ~/.ssh/internal_key.pem<br>
+    ProxyJump bastion</code>
+        </div>
+
+        <p>
+          Now, you can connect directly with:
+        </p>
+        <div class="code-block">
+          <code>ssh app-server<br>
+# Or connect directly to any private IP:<br>
+ssh 10.0.2.78</code>
+        </div>
+
+        <h2>Step 3: Transferring Files Through the Bastion (SFTP &amp; SCP)</h2>
+        <p>
+          Because OpenSSH handles <code>ProxyJump</code> at the transport layer, file transfers work seamlessly over the bastion:
+        </p>
+
+        <div class="code-block">
+          <code># SCP through bastion:<br>
+scp -J ec2-user@bastion.example.com ./app.tar.gz ubuntu@10.0.2.45:/opt/apps/<br><br>
+# Or using the config alias:<br>
+scp ./app.tar.gz app-server:/opt/apps/</code>
+        </div>
+
+        <h2>Step 4: Hardening the Bastion Server (Production Checklist)</h2>
+        <p>
+          Because the Bastion is the sole gatekeeper to your private network, it must be hardened ruthlessly:
+        </p>
+
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Security Control</th>
+                <th>Implementation Directive</th>
+                <th>Benefit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Disable Passwords</strong></td>
+                <td><code>PasswordAuthentication no</code></td>
+                <td>Renders brute-force attacks impossible</td>
+              </tr>
+              <tr>
+                <td><strong>Disable Root Login</strong></td>
+                <td><code>PermitRootLogin no</code></td>
+                <td>Forces individual named user accounts for audits</td>
+              </tr>
+              <tr>
+                <td><strong>IP Allowlisting</strong></td>
+                <td>Security Group: allow port 22 only from Office VPN IP</td>
+                <td>Blocks 100% of unauthorized public traffic</td>
+              </tr>
+              <tr>
+                <td><strong>Multi-Factor Authentication</strong></td>
+                <td>Google Authenticator PAM module / FIDO2</td>
+                <td>Guarantees second-factor cryptographic challenge</td>
+              </tr>
+              <tr>
+                <td><strong>Automated Ban Rules</strong></td>
+                <td>Install <code>fail2ban</code></td>
+                <td>Bans scanning IPs automatically after 3 bad tries</td>
+              </tr>
+              <tr>
+                <td><strong>Session Auditing</strong></td>
+                <td>Enable <code>teleport</code> or systemd auditd</td>
+                <td>Logs every keystroke typed on internal infrastructure</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>The Visual Solution: SSH Desktop Bastion Manager</h2>
+        <p>
+          Writing nested jump proxies and configuring complex multi-hop tunnels across dev, staging, and production VPCs can be confusing.
+        </p>
+        <p>
+          <a href="../">SSH Desktop</a> simplifies bastion architectures:
+        </p>
+        <ul>
+          <li><strong>Visual Jump Host Dropdown:</strong> Select any saved server as a "Jump Host" in a simple dropdown menu. SSH Desktop handles multi-hop keys, tunnels, and port forwarding automatically.</li>
+          <li><strong>Zero-Leak Security:</strong> Keys remain encrypted on your local machine; credentials are never cached or exposed on the jump host.</li>
+          <li><strong>Simultaneous Dual-Pane SFTP:</strong> Browse files on internal VPC servers visually through the bastion with full drag-and-drop support.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Manage Private Cloud Servers with Ease</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            Navigate VPC bastions and private cloud subnets effortlessly. Download SSH Desktop — the 100% free GUI client for Windows 11, macOS, and Linux.
+          </p>
+          <a href="../aws-ec2-ssh-client.html" class="btn btn-primary btn-lg">
+            Explore AWS &amp; Cloud Workflows &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>

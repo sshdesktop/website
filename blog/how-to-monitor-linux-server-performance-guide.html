@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Monitor Linux Server Performance: CPU, RAM, Disk &amp; I/O (2026 Guide)</title>
+  <meta name="title" content="How to Monitor Linux Server Performance: CPU, RAM, Disk &amp; I/O (2026 Guide)">
+  <meta name="description" content="Complete guide to monitoring Linux server performance. Learn htop, vmstat, iostat, free, and df commands, diagnose high load averages, find memory leaks, and use real-time visual dashboards.">
+  <meta name="keywords" content="linux server performance monitoring, top vs htop linux, check cpu ram usage linux, linux load average explained, vmstat iostat disk io, visual linux system monitor gui">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-monitor-linux-server-performance-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-monitor-linux-server-performance-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Monitor Linux Server Performance: CPU, RAM, Disk &amp; I/O">
+  <meta property="og:description" content="Step-by-step tutorial: diagnose CPU spikes, analyze RAM usage, check disk I/O bottlenecks, and monitor Linux servers visually.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Performance &amp; Monitoring">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-monitor-linux-server-performance-guide.html">
+  <meta name="twitter:title" content="How to Monitor Linux Server Performance (2026 Guide)">
+  <meta name="twitter:description" content="Master Linux server health: diagnose CPU, RAM, Disk I/O bottlenecks, load averages, and visual system monitoring.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Monitor Linux Server Performance",
+            "item": "https://sshdesktop.com/blog/how-to-monitor-linux-server-performance-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-monitor-linux-server-performance-guide.html#article",
+        "headline": "How to Monitor Linux Server Performance: CPU, RAM, Disk & I/O (2026 Guide)",
+        "description": "Comprehensive tutorial on Linux server performance monitoring. Master CLI tools (htop, vmstat, iostat, free), understand load averages, and use real-time visual dashboards.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-monitor-linux-server-performance-guide.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does Linux Load Average actually mean?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The three numbers in Linux load average represent the average number of processes in a runnable or uninterruptible sleep state (waiting for CPU or Disk I/O) over the last 1, 5, and 15 minutes. On a server with 4 CPU cores, a load average of 4.0 means 100% capacity utilization. A load above 4.0 means processes are queuing up and waiting for resources."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does free -m show almost zero free memory on Linux?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Linux uses all spare RAM for disk caching and buffers ('buff/cache') to maximize read/write performance. This memory is instantly reclaimed by the kernel whenever applications need it. Always check the 'available' column in 'free -m' rather than 'free' to see true usable memory."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I check which process is consuming the most disk I/O?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Install and run 'sudo iotop -o'. The '-o' flag filters only processes actively performing disk reads or writes in real time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between top and htop?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "'top' is the basic pre-installed command-line task monitor. 'htop' provides an interactive, color-coded visual interface with per-core CPU meters, mouse support, process tree views, and instant process filtering and killing."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Monitor Linux Server Performance</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">System Health &amp; Performance</span>
+        <h1 class="article-title">How to Monitor Linux Server Performance: CPU, RAM, Disk &amp; I/O (2026 Guide)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>10 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          When web requests start lagging, API response times degrade, or SSH prompts become unresponsive, your server is experiencing a bottleneck in one of four core subsystems: <strong>CPU</strong>, <strong>Memory (RAM)</strong>, <strong>Disk Storage / I/O</strong>, or <strong>Network</strong>.
+        </p>
+        <p>
+          Diagnosing the exact bottleneck quickly is the hallmark of an effective DevOps engineer or system administrator.
+        </p>
+        <p>
+          In this comprehensive guide, we dissect the essential Linux monitoring toolkit — <code>htop</code>, <code>vmstat</code>, <code>iostat</code>, <code>free</code>, and <code>df</code> — explain how to interpret Linux load averages, and show how to monitor all metrics visually in real time.
+        </p>
+
+        <h2>1. CPU &amp; Load Average: Understanding the Numbers</h2>
+        <p>
+          Run <code>uptime</code> or <code>htop</code>:
+        </p>
+        <div class="code-block">
+          <code>$ uptime<br>
+ 14:22:05 up 42 days,  3:18,  2 users,  load average: 0.85, 1.42, 2.10</code>
+        </div>
+
+        <h3>How to Read Load Averages (1, 5, 15 Minutes):</h3>
+        <p>
+          Load average does NOT represent CPU percentage; it measures the <strong>number of tasks in the run queue</strong> (actively running on CPU or waiting in uninterruptible sleep for disk I/O).
+        </p>
+        <ul>
+          <li>First, check your total CPU cores with <code>nproc</code> (e.g. <code>4</code> cores).</li>
+          <li><strong>Load = 4.0 on a 4-core machine:</strong> The system is at exactly 100% capacity. Every CPU core is busy, but nothing is delayed.</li>
+          <li><strong>Load = 8.0 on a 4-core machine:</strong> The system is overloaded by 200%. For every process running, another process is forced to wait in line.</li>
+          <li><strong>Load &lt; 2.8 (under 70% of cores):</strong> The system is healthy with adequate headroom.</li>
+        </ul>
+
+        <h2>2. Memory (RAM): Understanding Linux Cache</h2>
+        <p>
+          Check memory usage with the human-readable <code>free -m</code> or <code>free -h</code> command:
+        </p>
+        <div class="code-block">
+          <code>$ free -h<br>
+               total        used        free      shared  buff/cache   available<br>
+Mem:           15Gi       3.2Gi       1.1Gi       210Mi        11Gi        12Gi<br>
+Swap:         2.0Gi       120Mi       1.9Gi</code>
+        </div>
+
+        <div class="callout-box tip">
+          <strong>Don't Panic About "Low Free Memory":</strong> In the example above, <code>free</code> is only 1.1 GiB, but the server is completely fine! Linux intentionally borrows unused RAM for <code>buff/cache</code> to accelerate disk reads. The true metric to watch is <strong><code>available</code> (12 GiB)</strong>.
+        </div>
+
+        <h2>3. Disk Space &amp; Inodes: df &amp; du</h2>
+        <p>
+          Running out of disk space halts databases and freezes application writes:
+        </p>
+        <div class="code-block">
+          <code># Check disk space in human-readable format:<br>
+df -h<br><br>
+# Check Inode utilization (files count limit):<br>
+df -i</code>
+        </div>
+        <p>
+          If a partition reaches 100%, find the largest space hogs in <code>/var/log</code> or <code>/home</code>:
+        </p>
+        <div class="code-block">
+          <code># Find the 10 largest directories:<br>
+sudo du -ahx /var | sort -rh | head -n 10</code>
+        </div>
+
+        <h2>4. Disk I/O Bottlenecks: iostat &amp; iotop</h2>
+        <p>
+          Often a server has 90% idle CPU and plenty of free RAM, but feels completely frozen. The culprit is usually <strong>Disk I/O Wait (<code>%iowait</code>)</strong>, where CPUs are forced to idle waiting for slow storage reads/writes.
+        </p>
+
+        <div class="code-block">
+          <code># Install sysstat utilities:<br>
+sudo apt install sysstat # or dnf install sysstat<br><br>
+# Monitor real-time disk I/O every 2 seconds:<br>
+iostat -xz 2</code>
+        </div>
+        <p>
+          Look at the <strong><code>%util</code></strong> column. If <code>%util</code> stays near 100%, your SSD or cloud EBS volume is saturated!
+        </p>
+        <p>
+          Find which process is thrashing the disk using <code>iotop</code>:
+        </p>
+        <div class="code-block">
+          <code>sudo iotop -o</code>
+        </div>
+
+        <h2>Summary of Core Performance Diagnostics</h2>
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Subsystem</th>
+                <th>CLI Utility</th>
+                <th>Key Metric to Watch</th>
+                <th>Warning Threshold</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>CPU</strong></td>
+                <td><code>htop</code>, <code>uptime</code></td>
+                <td>Load Average / <code>%cpu</code></td>
+                <td>Load > total CPU cores</td>
+              </tr>
+              <tr>
+                <td><strong>Memory</strong></td>
+                <td><code>free -h</code>, <code>vmstat</code></td>
+                <td><code>available</code> RAM &amp; Swap <code>si/so</code></td>
+                <td>Available &lt; 10% / active swap thrashing</td>
+              </tr>
+              <tr>
+                <td><strong>Disk I/O</strong></td>
+                <td><code>iostat -xz 1</code>, <code>iotop</code></td>
+                <td><code>%util</code>, <code>await</code></td>
+                <td><code>%util</code> > 95% / high await latency</td>
+              </tr>
+              <tr>
+                <td><strong>Storage</strong></td>
+                <td><code>df -h</code>, <code>df -i</code></td>
+                <td><code>Use%</code>, <code>IUse%</code></td>
+                <td>Capacity > 90%</td>
+              </tr>
+              <tr>
+                <td><strong>Network</strong></td>
+                <td><code>iftop</code>, <code>nload</code></td>
+                <td>Bandwidth saturation</td>
+                <td>Saturated pipe / packet drops</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Visual Real-Time Monitoring with SSH Desktop</h2>
+        <p>
+          Running five different terminal commands (<code>top</code>, <code>free</code>, <code>iostat</code>, <code>iotop</code>, <code>df</code>) simultaneously clutters your screen.
+        </p>
+        <p>
+          <a href="../system-monitor.html">SSH Desktop System Monitor</a> aggregates all subsystems into a single real-time visual dashboard:
+        </p>
+        <ul>
+          <li><strong>Real-Time Gauge Meters:</strong> Instant visual feedback on per-core CPU usage, RAM breakdown, disk utilization, and network throughput.</li>
+          <li><strong>Interactive Process Table:</strong> Sort processes by CPU or RAM with 1 click, view parent/child hierarchies, and terminate runaway processes without typing PIDs.</li>
+          <li><strong>Visual Disk Inspector:</strong> Interactive pie chart of storage mount points and automated threshold alerts.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Monitor Server Performance Visually</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            Ditch messy terminal metrics. Download SSH Desktop — the 100% free GUI client with built-in Real-Time System Monitor for Windows 11, macOS, and Linux.
+          </p>
+          <a href="../system-monitor.html" class="btn btn-primary btn-lg">
+            Explore System Monitor Features &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>

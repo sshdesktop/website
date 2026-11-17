@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Manage Linux Packages: APT, DNF, Pacman &amp; Snap (2026 Admin Guide)</title>
+  <meta name="title" content="How to Manage Linux Packages: APT, DNF, Pacman &amp; Snap (2026 Admin Guide)">
+  <meta name="description" content="Master Linux package management on Ubuntu, Debian, RHEL, Fedora, and Arch. Learn update vs upgrade, fix broken dependencies, hold packages, and manage repositories visually.">
+  <meta name="keywords" content="linux package manager guide, apt vs dnf vs pacman, update upgrade packages ubuntu rhel, apt autoremove clean, fix broken dependencies apt, visual linux package manager">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Manage Linux Packages: APT, DNF &amp; Pacman (2026 Guide)">
+  <meta property="og:description" content="Complete administrator reference: APT update vs upgrade, DNF history rollback, handling GPG keys, cleaning cached debs, and managing packages visually.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Package Management &amp; Sysadmin">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html">
+  <meta name="twitter:title" content="How to Manage Linux Packages: APT, DNF &amp; Pacman (2026 Guide)">
+  <meta name="twitter:description" content="Comprehensive cheat sheet and guide for installing, updating, and troubleshooting Linux packages across major distributions.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#0a0c10">
+
+  <!-- Modular Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- Structured Data: TechArticle & BreadcrumbList & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html#article",
+        "headline": "How to Manage Linux Packages: APT, DNF, Pacman & Snap (2026 Admin Guide)",
+        "description": "Master Linux package management on Ubuntu, Debian, RHEL, Fedora, and Arch. Learn update vs upgrade, fix broken dependencies, hold packages, and manage repositories visually.",
+        "url": "https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html",
+        "inLanguage": "en-US",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html",
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sshdesktop.com/assets/images/favicon-512x512.png"
+          }
+        },
+        "image": "https://sshdesktop.com/assets/images/og-image.png",
+        "articleSection": "Package Management & Sysadmin",
+        "keywords": "linux package management, apt commands, dnf vs yum, pacman cheat sheet, fix broken apt packages"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Linux Package Management Guide",
+            "item": "https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sshdesktop.com/blog/how-to-manage-linux-packages-apt-dnf-guide.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between apt update and apt upgrade?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "'apt update' refreshes the local package index lists from remote repositories so your system knows what software versions are available. It does not install or upgrade software. 'apt upgrade' actually downloads and installs the newer package versions based on that refreshed index."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I prevent a specific package from being upgraded in Ubuntu or Debian?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can lock a package at its current version using 'sudo apt-mark hold <package_name>'. This prevents unattended upgrades or manual 'apt upgrade' runs from altering it. To unlock it later, run 'sudo apt-mark unhold <package_name>'."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I fix unmet dependencies or broken packages in APT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run 'sudo apt update --fix-missing' followed by 'sudo apt --fix-broken install'. If issues persist, clean cached packages with 'sudo apt clean' and check for half-installed state using 'sudo dpkg --configure -a'."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .blog-article-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .blog-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted, #8b949e);
+      margin-bottom: 24px;
+    }
+    .blog-breadcrumb a {
+      color: var(--accent, #58a6ff);
+      text-decoration: none;
+    }
+    .blog-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .blog-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color, #30363d);
+      padding-bottom: 28px;
+    }
+    .blog-post-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #f0f6fc;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: #8b949e;
+      flex-wrap: wrap;
+    }
+    .blog-meta-tag {
+      background: rgba(56, 139, 253, 0.15);
+      color: #58a6ff;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 139, 253, 0.3);
+    }
+    .blog-content {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #c9d1d9;
+    }
+    .blog-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin: 44px 0 18px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+    }
+    .blog-content h3 {
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin: 30px 0 14px;
+    }
+    .blog-content p {
+      margin-bottom: 20px;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-bottom: 22px;
+      padding-left: 28px;
+    }
+    .blog-content li {
+      margin-bottom: 8px;
+    }
+    .blog-content pre {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      color: #e6edf3;
+      margin: 22px 0 24px;
+      line-height: 1.55;
+    }
+    .blog-content code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(110, 118, 129, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #58a6ff;
+    }
+    .blog-content pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .callout-box {
+      background: rgba(56, 139, 253, 0.08);
+      border-left: 4px solid #58a6ff;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 26px 0;
+      color: #c9d1d9;
+    }
+    .callout-box.warning {
+      background: rgba(210, 153, 34, 0.1);
+      border-left-color: #d29922;
+    }
+    .callout-box.tip {
+      background: rgba(46, 160, 67, 0.1);
+      border-left-color: #2ea043;
+    }
+    .callout-box h4 {
+      margin: 0 0 8px;
+      color: #f0f6fc;
+      font-size: 1.05rem;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 26px 0;
+      font-size: 0.94rem;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #30363d;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background: #161b22;
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: #0d1117;
+    }
+    .gui-banner {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.12) 0%, rgba(137, 87, 229, 0.12) 100%);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 36px 0;
+      text-align: center;
+    }
+    .gui-banner h3 {
+      font-size: 1.35rem;
+      color: #f0f6fc;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .gui-banner p {
+      color: #8b949e;
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+    }
+    .gui-banner a.cta-btn {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .gui-banner a.cta-btn:hover {
+      background: #2ea043;
+    }
+    .faq-item {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .faq-item h4 {
+      margin: 0 0 10px;
+      color: #f0f6fc;
+      font-size: 1.08rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body class="bg-dark text-light">
+  <!-- Top Global Navigation Bar -->
+  <header>
+    <nav class="nav-container" aria-label="Main Navigation">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo" aria-label="SSH Desktop Home">
+          <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="nav-logo-img">
+          <span class="nav-logo-text">SSH Desktop</span>
+        </a>
+        <div class="nav-links">
+          <a href="../features.html" class="nav-link">Features</a>
+          <a href="../alternatives/index.html" class="nav-link">Alternatives</a>
+          <a href="../docs/" class="nav-link">Documentation</a>
+          <a href="index.html" class="nav-link active">Blog</a>
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="../download.html" class="btn-primary nav-download-btn">Download</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb Navigation -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumbs">
+      <a href="../index.html">Home</a>
+      <span>&rsaquo;</span>
+      <a href="index.html">Blog</a>
+      <span>&rsaquo;</span>
+      <span>Linux Package Management</span>
+    </nav>
+
+    <header class="blog-header">
+      <h1 class="blog-post-title">How to Manage Linux Packages: APT, DNF, Pacman &amp; Snap (2026 Admin Guide)</h1>
+      <div class="blog-meta">
+        <span class="blog-meta-tag">Package Management</span>
+        <span>By SSH Desktop Engineering Team</span>
+        <span>&bull;</span>
+        <span>Updated November 2026</span>
+        <span>&bull;</span>
+        <span>10 min read</span>
+      </div>
+    </header>
+
+    <article class="blog-content">
+      <p>
+        Package managers are the backbone of Linux systems administration. Whether maintaining production web servers on Ubuntu or managing enterprise cloud instances on Rocky Linux, knowing how to install, update, lock, and troubleshoot packages without breaking system libraries is an essential skill.
+      </p>
+
+      <div class="callout-box">
+        <h4>Executive Summary</h4>
+        <p>
+          Debian and Ubuntu rely on <code>apt</code> and <code>dpkg</code> (.deb packages), RHEL and Fedora utilize <code>dnf</code> and <code>rpm</code> (.rpm packages), and Arch Linux uses <code>pacman</code>. In this comprehensive guide, we cover the exact syntax for each family, repository management, version pinning, dependency troubleshooting, and visual package inspection with <a href="../linux-package-manager.html">SSH Desktop Package Manager</a>.
+        </p>
+      </div>
+
+      <h2>1. The Linux Package Management Landscape</h2>
+      <p>
+        Linux distributions package precompiled software along with metadata such as dependencies, configuration templates, and cryptographic signatures. Here is how modern package formats and managers correspond across major Linux operating systems:
+      </p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Distribution Family</th>
+            <th>Low-Level Tool</th>
+            <th>High-Level CLI Manager</th>
+            <th>Package Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu / Debian / Mint</strong></td>
+            <td><code>dpkg</code></td>
+            <td><code>apt</code> / <code>apt-get</code></td>
+            <td><code>.deb</code></td>
+          </tr>
+          <tr>
+            <td><strong>RHEL / CentOS / Rocky / Fedora</strong></td>
+            <td><code>rpm</code></td>
+            <td><code>dnf</code> (formerly <code>yum</code>)</td>
+            <td><code>.rpm</code></td>
+          </tr>
+          <tr>
+            <td><strong>Arch Linux / Manjaro</strong></td>
+            <td><code>pacman</code></td>
+            <td><code>pacman</code></td>
+            <td><code>.pkg.tar.zst</code></td>
+          </tr>
+          <tr>
+            <td><strong>openSUSE / SLES</strong></td>
+            <td><code>rpm</code></td>
+            <td><code>zypper</code></td>
+            <td><code>.rpm</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. APT Mastery for Ubuntu &amp; Debian Systems</h2>
+      <p>
+        Modern Debian-based systems use <code>apt</code> as the recommended CLI interface, replacing older scripts like <code>apt-get</code> and <code>apt-cache</code> for everyday interactive terminal usage.
+      </p>
+
+      <h3>Updating Package Indexes vs Upgrading Software</h3>
+      <p>
+        One of the most frequent beginner misconceptions is confusing <code>update</code> with <code>upgrade</code>:
+      </p>
+      <pre><code># Step 1: Refresh the repository catalog lists (does NOT install anything)
+sudo apt update
+
+# Step 2: Upgrade all installed packages to their latest versions
+sudo apt upgrade -y
+
+# Optional: Upgrade packages that require changing dependencies or removing obsolete packages
+sudo apt full-upgrade -y</code></pre>
+
+      <h3>Searching and Inspecting Packages</h3>
+      <pre><code># Search for a package in the remote repositories
+apt search nginx
+
+# Show detailed metadata, dependencies, and installed version
+apt show nginx
+
+# List all installed packages on the server
+apt list --installed | grep nginx</code></pre>
+
+      <h3>Removing Packages and Cleaning Cache</h3>
+      <p>
+        When you remove software with standard <code>apt remove</code>, configuration files in <code>/etc/</code> are retained. To completely wipe all residual configs and reclaim server disk space:
+      </p>
+      <pre><code># Remove package but keep configuration files
+sudo apt remove nginx
+
+# Remove package AND delete its configuration files
+sudo apt purge nginx
+
+# Remove orphaned dependencies that are no longer needed by any installed package
+sudo apt autoremove --purge
+
+# Clean out downloaded .deb installer files in /var/cache/apt/archives/
+sudo apt clean</code></pre>
+
+      <div class="callout-box tip">
+        <h4>Pro-Tip: Locking Package Versions (apt-mark hold)</h4>
+        <p>
+          If your production web app requires an exact minor version of PHP or Node.js, prevent automated updates from upgrading it with <code>apt-mark</code>:
+        </p>
+        <pre><code>sudo apt-mark hold nodejs
+# To unhold later:
+sudo apt-mark unhold nodejs
+# View currently pinned packages:
+apt-mark showhold</code></pre>
+      </div>
+
+      <h2>3. DNF &amp; RPM Commands for RHEL, Rocky Linux &amp; Fedora</h2>
+      <p>
+        Enterprise Red Hat derivatives use <code>dnf</code> (Dandified YUM) to manage <code>.rpm</code> packages. DNF offers superior dependency resolution, parallel downloads, and full transaction history rollback.
+      </p>
+
+      <pre><code># Check for available package updates without installing
+sudo dnf check-update
+
+# Upgrade all packages
+sudo dnf upgrade -y
+
+# Install a package
+sudo dnf install -y nginx
+
+# View transaction history
+sudo dnf history
+
+# Undo an erroneous upgrade or installation transaction (e.g., transaction #14)
+sudo dnf history undo 14</code></pre>
+
+      <h2>4. Resolving Broken Dependencies &amp; Corrupted Locks</h2>
+      <p>
+        Interrupted terminal sessions or conflicting third-party repositories can leave package databases in an inconsistent or locked state. Here is the diagnostic playbook:
+      </p>
+
+      <h3>Fixing "Could not get lock /var/lib/dpkg/lock-frontend"</h3>
+      <p>
+        This error occurs when an unattended upgrade or another background process is holding the database lock:
+      </p>
+      <pre><code># Check which process is holding the lock
+sudo lsof /var/lib/dpkg/lock-frontend
+
+# If an unattended-upgrade is running, wait a minute for it to finish.
+# If a crashed terminal process is holding it, kill the PID:
+sudo kill -9 &lt;PID&gt;
+
+# Reconfigure interrupted package installations
+sudo dpkg --configure -a</code></pre>
+
+      <h3>Fixing Unmet Dependencies in APT</h3>
+      <pre><code># Force APT to repair broken dependency trees
+sudo apt update --fix-missing
+sudo apt --fix-broken install</code></pre>
+
+      <!-- Visual GUI Banner Callout -->
+      <div class="gui-banner">
+        <h3>Tired of Command-Line Package Clashes?</h3>
+        <p>
+          SSH Desktop includes an integrated, visual <a href="../linux-package-manager.html" style="color: #58a6ff; font-weight: 600;">Linux Package Manager</a>. Browse repositories, view package dependencies, lock versions with one click, and batch upgrade systems without terminal syntax errors.
+        </p>
+        <a href="../linux-package-manager.html" class="cta-btn">Explore Visual Package Manager &rarr;</a>
+      </div>
+
+      <h2>5. Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>What is the difference between apt update and apt upgrade?</h4>
+        <p>
+          <code>apt update</code> fetches the latest package lists from all configured software repositories, refreshing local catalog indexes. It modifies zero software on disk. <code>apt upgrade</code> analyzes the updated lists and downloads and installs newer packages.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I prevent a specific package from being upgraded in Ubuntu or Debian?</h4>
+        <p>
+          You can lock a package at its current version using <code>sudo apt-mark hold &lt;package_name&gt;</code>. This prevents unattended security upgrades or manual <code>apt upgrade</code> runs from changing it. To unlock it later, run <code>sudo apt-mark unhold &lt;package_name&gt;</code>.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I fix unmet dependencies or broken packages in APT?</h4>
+        <p>
+          Run <code>sudo apt update --fix-missing</code> followed by <code>sudo apt --fix-broken install</code>. If issues persist, clean cached packages with <code>sudo apt clean</code> and check for half-installed states using <code>sudo dpkg --configure -a</code>.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="copyright">&copy; 2026 SSH Desktop. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../security.html">Security</a>
+          <a href="../changelog.html">Changelog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

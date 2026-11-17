@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up PM2 for Node.js in Production on Linux (2026 Guide)</title>
+  <meta name="description" content="Master PM2 on Ubuntu and Debian for Node.js production. Learn cluster mode, zero-downtime hot reloads, systemd startup persistence, and visual monitoring.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Set Up PM2 for Node.js in Production on Linux (2026 Guide)">
+  <meta property="og:description" content="Master PM2 on Ubuntu and Debian for Node.js production. Learn cluster mode, zero-downtime hot reloads, systemd startup persistence, and visual monitoring.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Set Up PM2 for Node.js in Production on Linux (2026 Guide)">
+  <meta name="twitter:description" content="Master PM2 on Ubuntu and Debian for Node.js production. Learn cluster mode, zero-downtime hot reloads, systemd startup persistence, and visual monitoring.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html",
+        "name": "How to Set Up PM2 for Node.js in Production on Linux (2026 Guide)",
+        "description": "Master PM2 on Ubuntu and Debian for Node.js production. Learn cluster mode, zero-downtime hot reloads, systemd startup persistence, and visual monitoring."
+      },
+      "headline": "How to Set Up PM2 for Node.js in Production on Linux: 2026 Guide",
+      "description": "Master PM2 on Ubuntu and Debian for Node.js production. Learn cluster mode, zero-downtime hot reloads, systemd startup persistence, and visual monitoring.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Set Up PM2 for Node.js in Production on Linux (2026 Guide)",
+          "item": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-pm2-nodejs-production-linux-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why should I run Node.js with PM2 in Cluster Mode instead of Fork Mode?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Node.js runs on a single thread by default. On a 4-core or 8-core CPU, Fork mode only utilizes 1 core, wasting 75%–87% of server compute capacity. PM2 Cluster mode (pm2 start app.js -i max) spawns worker processes across all available CPU cores, sharing the network port and multiplying request throughput."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between pm2 restart and pm2 reload?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "pm2 restart terminates all worker processes simultaneously and restarts them, causing brief downtime. pm2 reload performs a rolling zero-downtime reload: it spawns a new worker, waits for it to listen, and then shuts down the old worker sequentially."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I ensure PM2 restarts all Node.js applications after a server reboot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run pm2 startup to generate and configure a systemd service unit. Then run pm2 save to freeze your current active process list into ~/.pm2/dump.pm2. Upon system reboot, systemd automatically resurrects your entire process tree."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Set Up PM2 for Node.js in Production on Linux (2026 Guide)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Node.js & DevOps</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>11 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Set Up PM2 for Node.js in Production on Linux: 2026 Guide</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Node.js is blazingly fast for asynchronous I/O, but by default it runs as a single-threaded process. If an unhandled exception triggers a crash or if heavy CPU work blocks the event loop, your entire application goes down. <strong>PM2</strong> is the production process manager of choice for Node.js, providing built-in clustering across CPU cores, zero-downtime hot reloads, automatic systemd resurrection, and log rotation. Learn how to configure PM2 on Linux in 2026.
+      </p>
+
+      <h2>Step 1: Install PM2 Globally via npm</h2>
+      <p>Ensure Node.js and npm are installed, then install PM2 globally:</p>
+      <pre><code>sudo npm install -g pm2
+
+# Verify version
+pm2 -v</code></pre>
+
+      <h2>Step 2: Start Application in Cluster Mode</h2>
+      <p>
+        Instead of running in single-threaded fork mode, launch your application utilizing all available CPU cores:
+      </p>
+      <pre><code># Start application using all CPU cores with automatic load balancing
+pm2 start server.js --name "api-backend" -i max</code></pre>
+      <p>Or create a declarative production configuration file (<code>ecosystem.config.js</code>):</p>
+      <pre><code>module.exports = {
+  apps: [{
+    name: 'api-backend',
+    script: './dist/index.js',
+    instances: 'max',
+    exec_mode: 'cluster',
+    max_memory_restart: '1G',
+    env_production: {
+      NODE_ENV: 'production',
+      PORT: 3000
+    }
+  }]
+};</code></pre>
+      <p>Start using the ecosystem file:</p>
+      <pre><code>pm2 start ecosystem.config.js --env production</code></pre>
+
+      <h2>Step 3: Enable Zero-Downtime Hot Reloads</h2>
+      <p>
+        When deploying new code releases, never use <code>pm2 restart</code> which drops connections. Use rolling reloads:
+      </p>
+      <pre><code># Rolling reload: zero dropped HTTP packets
+pm2 reload api-backend</code></pre>
+
+      <h2>Step 4: Configure Automatic Reboot Persistence with Systemd</h2>
+      <p>
+        To ensure PM2 resurrects your Node.js processes automatically after server reboots or kernel upgrades:
+      </p>
+      <pre><code># Generate and install systemd startup hook
+pm2 startup systemd
+
+# (Copy and execute the sudo command PM2 outputs, for example:)
+# sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u youruser --hp /home/youruser
+
+# Save current active process list
+pm2 save</code></pre>
+
+      <h2>Step 5: Production Log Rotation</h2>
+      <p>
+        PM2 writes application stdout and stderr logs to <code>~/.pm2/logs/</code>. Install the official logrotate module to prevent disk exhaustion:
+      </p>
+      <pre><code>pm2 install pm2-logrotate
+pm2 set pm2-logrotate:max_size 50M
+pm2 set pm2-logrotate:retain 10
+pm2 set pm2-logrotate:compress true</code></pre>
+
+      <h2>Step 6: Real-Time Process Monitoring</h2>
+      <p>View CPU and memory metrics per worker in real time:</p>
+      <pre><code>pm2 monit</code></pre>
+
+      <h2>Manage Node.js Fleets Visually with SSH Desktop</h2>
+      <p>
+        Managing dozens of microservices across staging and production clusters via terminal screens can be cumbersome. <strong>SSH Desktop</strong> makes Node.js operations simple:
+      </p>
+      <ul>
+        <li><strong>Interactive Process Manager:</strong> Inspect CPU, memory, uptime, and worker counts for PM2 and systemd services visually.</li>
+        <li><strong>Multi-Server Log Streamer:</strong> Stream aggregated logs from PM2 worker instances across multiple servers simultaneously.</li>
+        <li><strong>Automated Deployment Pipelines:</strong> Trigger <code>pm2 reload</code> via built-in Webhook servers and Multi-Server scripts.</li>
+      </ul>
+      <p>
+        Explore our visual <a href="../linux-process-manager.html">Linux Process Manager</a> and <a href="../multi-server-automation.html">Multi-Server Automation</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Why should I run Node.js with PM2 in Cluster Mode instead of Fork Mode?</h3>
+          <p class="faq-answer">Node.js runs on a single thread by default. On a 4-core or 8-core CPU, Fork mode only utilizes 1 core, wasting 75%–87% of server compute capacity. PM2 Cluster mode (pm2 start app.js -i max) spawns worker processes across all available CPU cores, sharing the network port and multiplying request throughput.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What is the difference between pm2 restart and pm2 reload?</h3>
+          <p class="faq-answer">pm2 restart terminates all worker processes simultaneously and restarts them, causing brief downtime. pm2 reload performs a rolling zero-downtime reload: it spawns a new worker, waits for it to listen, and then shuts down the old worker sequentially.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I ensure PM2 restarts all Node.js applications after a server reboot?</h3>
+          <p class="faq-answer">Run pm2 startup to generate and configure a systemd service unit. Then run pm2 save to freeze your current active process list into ~/.pm2/dump.pm2. Upon system reboot, systemd automatically resurrects your entire process tree.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

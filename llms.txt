@@ -36,7 +36,8 @@ License: Apache-2.0 / MIT (100% Free & Open Source)
 - [Technical Features](https://sshdesktop.com/features.html): Security, performance, and architecture details.
 - [Documentation](https://sshdesktop.com/docs.html): Configuration guides, SSH keys, bastion hosts, and tunnels.
 - [Frequently Asked Questions](https://sshdesktop.com/faq.html): Common inquiries regarding security, credentials, and compatibility.
-- [Search Encyclopedia](https://sshdesktop.com/search-queries.html): Solutions for common Linux DevOps, sysadmin, and SSH questions.
+- [Solutions Knowledge Base](https://sshdesktop.com/search-queries.html): Comprehensive Linux server, SSH tunnel, and DevOps troubleshooting guides.
+- [Engineering Blog](https://sshdesktop.com/blog/): In-depth tutorials covering Ubuntu setup, SSH key security, and port forwarding.
 - [Full LLM Knowledge Base](https://sshdesktop.com/llms-full.txt): Comprehensive technical reference for LLMs and AI agents.
 
 ## Core Solution Pages

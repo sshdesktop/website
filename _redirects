@@ -1,0 +1,37 @@
+# Production Redirect Rules for SSH Desktop (Cloudflare Pages / Netlify)
+/docs.html                      /docs/                          301
+/docs/tutorial.html             /docs/tutorials.html            301
+/tutorial.html                  /tutorials.html                 301
+/docs/webhook-server.html       /docs/multi-server-snippets.html 301
+/docs/docker-manager.html       /docs/docker-management.html    301
+/docs/database-hub.html         /docs/database-studio.html      301
+/docs/linux-disk-manager.html   /docs/disk-smart-manager.html   301
+/docs/firewall-manager.html     /docs/firewall-ufw.html         301
+/docs/ssh-tunnel-manager.html   /docs/ssh-tunneling.html        301
+/docs/cron-manager.html         /docs/crontab-scheduler.html    301
+/linux-disk-space-manager.html  /linux-disk-manager.html        301
+
+# Alternative Comparison URL 301 Redirects
+/alternatives.html              /alternatives/                  301
+/aapanel-alternative.html        /alternatives/aapanel-alternative.html 301
+/bitvise-alternative.html        /alternatives/bitvise-alternative.html 301
+/cockpit-alternative.html        /alternatives/cockpit-alternative.html 301
+/cpanel-alternative.html         /alternatives/cpanel-alternative.html 301
+/cyberduck-alternative.html      /alternatives/cyberduck-alternative.html 301
+/dbeaver-alternative.html        /alternatives/dbeaver-alternative.html 301
+/filezilla-alternative.html      /alternatives/filezilla-alternative.html 301
+/guacamole-alternative.html      /alternatives/guacamole-alternative.html 301
+/iterm2-alternative.html         /alternatives/iterm2-alternative.html 301
+/mobaxterm-alternative.html      /alternatives/mobaxterm-alternative.html 301
+/portainer-alternative.html      /alternatives/portainer-alternative.html 301
+/putty-alternative.html          /alternatives/putty-alternative.html 301
+/remote-desktop-manager-alternative.html  /alternatives/remote-desktop-manager-alternative.html 301
+/royal-tsx-alternative.html      /alternatives/royal-tsx-alternative.html 301
+/securecrt-alternative.html      /alternatives/securecrt-alternative.html 301
+/superputty-alternative.html     /alternatives/superputty-alternative.html 301
+/tabby-alternative.html          /alternatives/tabby-alternative.html 301
+/termius-alternative.html        /alternatives/termius-alternative.html 301
+/warp-terminal-alternative.html  /alternatives/warp-terminal-alternative.html 301
+/webmin-alternative.html         /alternatives/webmin-alternative.html 301
+/winscp-alternative.html         /alternatives/winscp-alternative.html 301
+/xshell-alternative.html         /alternatives/xshell-alternative.html 301

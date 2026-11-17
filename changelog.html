@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Release Notes &amp; Changelog – SSH Desktop</title>
+  <meta name="title" content="Release Notes &amp; Changelog – SSH Desktop">
+  <meta name="description" content="Official release notes and changelog for SSH Desktop. Explore version history, new features, performance updates, and security patches for Windows, macOS and Linux.">
+  <meta name="keywords" content="ssh desktop changelog, ssh desktop release notes, ssh desktop updates, version history, gui ssh client updates">
+  <meta name="author" content="SSH Desktop Development Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/changelog.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sshdesktop.com/changelog.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="Release Notes &amp; Changelog – SSH Desktop">
+  <meta property="og:description" content="Official release notes and changelog for SSH Desktop: new features, performance improvements, and security patches.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/changelog.html">
+  <meta name="twitter:title" content="Release Notes &amp; Changelog – SSH Desktop">
+  <meta name="twitter:description" content="Official release notes and changelog for SSH Desktop.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.min.css">
+
+  <style>
+    .changelog-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .changelog-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .version-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .version-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .version-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .version-badge {
+      background: rgba(0, 113, 227, 0.1);
+      color: var(--accent-cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+    .version-badge.latest {
+      background: rgba(34, 197, 94, 0.15);
+      color: #16a34a;
+    }
+    .version-date {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .changelog-section {
+      margin-bottom: 18px;
+    }
+    .changelog-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .changelog-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .changelog-list li {
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.6;
+    }
+    .changelog-list li::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Changelog",
+            "item": "https://sshdesktop.com/changelog.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="docs/">Docs</a></li>
+          <li><a href="blog/">Blog</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Changelog</li>
+      </ol>
+    </div>
+
+    <div class="changelog-wrap">
+      <header class="changelog-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">Release History</span>
+        <h1 class="hero-title" style="font-size: 2.75rem; margin-bottom: 12px;">SSH Desktop <span>Changelog</span></h1>
+        <p class="hero-lead" style="font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+          Follow every new release, performance enhancement, and security upgrade in SSH Desktop.
+        </p>
+      </header>
+
+      <!-- v2.4.2 -->
+      <article class="version-card">
+        <div class="version-header">
+          <div class="version-title">
+            <span>v2.4.2</span>
+            <span class="version-badge latest">Latest Stable</span>
+          </div>
+          <span class="version-date">November 2026</span>
+        </div>
+
+        <div class="changelog-section">
+          <h2 class="changelog-section-title">✨ Highlights &amp; Improvements</h2>
+          <ul class="changelog-list">
+            <li><strong>Optimized Memory Footprint:</strong> Reduced client-side baseline RAM usage by 24% during high-throughput split-pane terminal sessions.</li>
+            <li><strong>Monaco Code Editor Update:</strong> Upgraded remote SFTP code editing engine with updated syntax highlighters for YAML, Rust, Go, Python, and TypeScript.</li>
+            <li><strong>Enhanced Docker Log Streaming:</strong> Live stdout/stderr log inspection now includes ANSI 24-bit TrueColor parsing with regex keyword highlight matching.</li>
+            <li><strong>macOS Sonoma Glass Shell:</strong> WebGL window blur shaders now run at 60 FPS on integrated Intel and Snapdragon ARM64 graphics.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- v2.4.0 -->
+      <article class="version-card">
+        <div class="version-header">
+          <div class="version-title">
+            <span>v2.4.0</span>
+            <span class="version-badge">Feature Release</span>
+          </div>
+          <span class="version-date">October 2026</span>
+        </div>
+
+        <div class="changelog-section">
+          <h2 class="changelog-section-title">🚀 New Features</h2>
+          <ul class="changelog-list">
+            <li><strong>Self-Hosted Web Mode:</strong> Run SSH Desktop as a headless systemd service accessible from Chrome, Safari, and Firefox on frontend port 2222 and backend port 2020.</li>
+            <li><strong>Universal Database Studio (App 6):</strong> Native visual query builder with automated ephemeral SSH tunneling for PostgreSQL, MySQL, Redis, and SQLite.</li>
+            <li><strong>Hardware-Accelerated PTY:</strong> Added horizontal and vertical split panes with independent session multiplexing.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- v2.3.0 -->
+      <article class="version-card">
+        <div class="version-header">
+          <div class="version-title">
+            <span>v2.3.0</span>
+            <span class="version-badge">Feature Release</span>
+          </div>
+          <span class="version-date">September 2026</span>
+        </div>
+
+        <div class="changelog-section">
+          <h2 class="changelog-section-title">🔒 Security &amp; SFTP</h2>
+          <ul class="changelog-list">
+            <li><strong>Native Credential Vaults:</strong> Secure key storage backed by Windows DPAPI and Apple macOS Keychain.</li>
+            <li><strong>Dual-Pane SFTP Manager:</strong> Drag-and-drop file transfers with in-place remote <code>.zip</code>, <code>.tar.gz</code>, and <code>.tar.bz2</code> extraction.</li>
+            <li><strong>Visual UFW &amp; Iptables Manager:</strong> One-click port rules and source subnet access restrictions with SSH lockout protection.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- v2.2.0 -->
+      <article class="version-card">
+        <div class="version-header">
+          <div class="version-title">
+            <span>v2.2.0</span>
+            <span class="version-badge">Infrastructure</span>
+          </div>
+          <span class="version-date">August 2026</span>
+        </div>
+
+        <div class="changelog-section">
+          <h2 class="changelog-section-title">⚙️ System Administration Suite</h2>
+          <ul class="changelog-list">
+            <li><strong>Systemd Services Manager:</strong> Graphical start, stop, restart, enable, disable, and live journalctl log inspector for systemd units.</li>
+            <li><strong>Linux Process Explorer:</strong> Htop-style visual process table with CPU%, Memory%, kill signals, and tree views.</li>
+            <li><strong>RDP over SSH Tunnel Manager:</strong> Encrypted tunneling for Windows Remote Desktop (port 3389) and Linux XRDP.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="/">Home</a>
+            <a href="apps.html">Apps</a>
+            <a href="docs/">Docs</a>
+            <a href="download.html">Download</a>
+            <a href="blog/">Blog</a>
+            <a href="sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/core.min.js" defer></script>
+</body>
+</html>

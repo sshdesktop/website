@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Fix 502 Bad Gateway &amp; 504 Gateway Timeout in Nginx (2026 Guide)</title>
+  <meta name="title" content="How to Fix 502 Bad Gateway &amp; 504 Gateway Timeout in Nginx (2026 Guide)">
+  <meta name="description" content="Step-by-step diagnostic guide to resolving Nginx 502 Bad Gateway and 504 Gateway Timeout errors. Inspect upstream sockets, fix permissions, and view logs visually.">
+  <meta name="keywords" content="how to fix 502 bad gateway nginx, nginx 504 gateway timeout fix, upstream prematurely closed connection, troubleshoot 502 error linux, visual log analysis">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Fix 502 Bad Gateway in Nginx (2026 Guide)">
+  <meta property="og:description" content="Diagnose and eliminate Nginx 502 and 504 errors. Troubleshoot crashed PHP-FPM, Node.js, and Python backend daemons.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Web Servers &amp; Troubleshooting">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html">
+  <meta name="twitter:title" content="Fix 502 Bad Gateway in Nginx (2026)">
+  <meta name="twitter:description" content="Step-by-step troubleshooting playbook for Nginx 502 and 504 errors on Linux web servers.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#0a0c10">
+
+  <!-- Modular Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- Structured Data: TechArticle & BreadcrumbList & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html#article",
+        "headline": "How to Fix 502 Bad Gateway & 504 Gateway Timeout in Nginx (2026 Guide)",
+        "description": "Step-by-step diagnostic guide to resolving Nginx 502 Bad Gateway and 504 Gateway Timeout errors. Inspect upstream sockets, fix permissions, and view logs visually.",
+        "url": "https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html",
+        "inLanguage": "en-US",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html",
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sshdesktop.com/assets/images/favicon-512x512.png"
+          }
+        },
+        "image": "https://sshdesktop.com/assets/images/og-image.png",
+        "articleSection": "Web Servers & Troubleshooting",
+        "keywords": "fix 502 bad gateway nginx, 504 gateway timeout, connect to upstream failed, php-fpm unix socket permission denied, visual log analysis"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Fix 502 Bad Gateway Guide",
+            "item": "https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sshdesktop.com/blog/how-to-fix-502-bad-gateway-nginx-guide.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between 502 Bad Gateway and 504 Gateway Timeout?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A 502 Bad Gateway indicates that Nginx attempted to connect to the upstream backend (such as Node.js or PHP-FPM) and received an immediate invalid response, connection refused, or connection reset (the backend service is crashed, stopped, or not listening). A 504 Gateway Timeout means Nginx connected successfully, but the upstream application took longer to respond than the configured 'proxy_read_timeout' (the backend is alive but frozen or bogged down by slow queries)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I check Nginx error logs in real time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Execute 'sudo tail -f /var/log/nginx/error.log' in your terminal or use SSH Desktop's visual Log Streamer. Look for lines containing 'connect() failed (111: Connection refused)' or 'upstream prematurely closed connection'."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I increase the gateway timeout limit in Nginx?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Inside your location or http block, increase timeout limits: 'proxy_connect_timeout 300s;', 'proxy_send_timeout 300s;', and 'proxy_read_timeout 300s;'. Then reload Nginx with 'sudo systemctl reload nginx'."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .blog-article-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .blog-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted, #8b949e);
+      margin-bottom: 24px;
+    }
+    .blog-breadcrumb a {
+      color: var(--accent, #58a6ff);
+      text-decoration: none;
+    }
+    .blog-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .blog-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color, #30363d);
+      padding-bottom: 28px;
+    }
+    .blog-post-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #f0f6fc;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: #8b949e;
+      flex-wrap: wrap;
+    }
+    .blog-meta-tag {
+      background: rgba(56, 139, 253, 0.15);
+      color: #58a6ff;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 139, 253, 0.3);
+    }
+    .blog-content {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #c9d1d9;
+    }
+    .blog-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin: 44px 0 18px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+    }
+    .blog-content h3 {
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin: 30px 0 14px;
+    }
+    .blog-content p {
+      margin-bottom: 20px;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-bottom: 22px;
+      padding-left: 28px;
+    }
+    .blog-content li {
+      margin-bottom: 8px;
+    }
+    .blog-content pre {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      color: #e6edf3;
+      margin: 22px 0 24px;
+      line-height: 1.55;
+    }
+    .blog-content code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: rgba(110, 118, 129, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #58a6ff;
+    }
+    .blog-content pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .callout-box {
+      background: rgba(56, 139, 253, 0.08);
+      border-left: 4px solid #58a6ff;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 26px 0;
+      color: #c9d1d9;
+    }
+    .callout-box.tip {
+      background: rgba(46, 160, 67, 0.1);
+      border-left-color: #2ea043;
+    }
+    .callout-box.danger {
+      background: rgba(248, 81, 73, 0.1);
+      border-left-color: #f85149;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 26px 0;
+      font-size: 0.94rem;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #30363d;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background: #161b22;
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: #0d1117;
+    }
+    .gui-banner {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.12) 0%, rgba(137, 87, 229, 0.12) 100%);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 36px 0;
+      text-align: center;
+    }
+    .gui-banner h3 {
+      font-size: 1.35rem;
+      color: #f0f6fc;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .gui-banner p {
+      color: #8b949e;
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+    }
+    .gui-banner a.cta-btn {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .gui-banner a.cta-btn:hover {
+      background: #2ea043;
+    }
+    .faq-item {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .faq-item h4 {
+      margin: 0 0 10px;
+      color: #f0f6fc;
+      font-size: 1.08rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body class="bg-dark text-light">
+  <!-- Top Global Navigation Bar -->
+  <header>
+    <nav class="nav-container" aria-label="Main Navigation">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo" aria-label="SSH Desktop Home">
+          <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="nav-logo-img">
+          <span class="nav-logo-text">SSH Desktop</span>
+        </a>
+        <div class="nav-links">
+          <a href="../features.html" class="nav-link">Features</a>
+          <a href="../alternatives/index.html" class="nav-link">Alternatives</a>
+          <a href="../docs/" class="nav-link">Documentation</a>
+          <a href="index.html" class="nav-link active">Blog</a>
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="../download.html" class="btn-primary nav-download-btn">Download</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb Navigation -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumbs">
+      <a href="../index.html">Home</a>
+      <span>&rsaquo;</span>
+      <a href="index.html">Blog</a>
+      <span>&rsaquo;</span>
+      <span>Fix 502 Bad Gateway Guide</span>
+    </nav>
+
+    <header class="blog-header">
+      <h1 class="blog-post-title">How to Fix 502 Bad Gateway &amp; 504 Gateway Timeout in Nginx (2026 Guide)</h1>
+      <div class="blog-meta">
+        <span class="blog-meta-tag">Troubleshooting</span>
+        <span>By SSH Desktop Engineering Team</span>
+        <span>&bull;</span>
+        <span>Updated November 2026</span>
+        <span>&bull;</span>
+        <span>10 min read</span>
+      </div>
+    </header>
+
+    <article class="blog-content">
+      <p>
+        Few HTTP error codes cause more developer panic than <strong>502 Bad Gateway</strong>. Unlike a 500 Internal Server Error, which originates within your application code, a 502 error means that Nginx—acting as your edge reverse proxy—attempted to communicate with your backend application (Node.js, Python Gunicorn, PHP-FPM, or Docker container) and received an invalid response, connection refusal, or abrupt socket closure.
+      </p>
+
+      <div class="callout-box">
+        <h4>Executive Summary</h4>
+        <p>
+          Diagnosing a 502 error requires checking three points of failure: (1) Is the upstream application process alive? (2) Is Nginx pointing to the exact listening port or UNIX socket? (3) Are there file permission mismatches on socket files? In this guide, we provide a step-by-step diagnostic playbook and visual troubleshooting via <a href="../log-analysis-grep.html">SSH Desktop Log Analysis</a> and <a href="../linux-process-manager.html">Process Manager</a>.
+        </p>
+      </div>
+
+      <h2>1. The 4 Most Common Causes of 502 Bad Gateway</h2>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Error Log Message</th>
+            <th>Underlying Root Cause</th>
+            <th>Resolution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>connect() failed (111: Connection refused)</code></td>
+            <td>Upstream service (Node.js/Python/Go) is stopped or crashed</td>
+            <td>Restart backend service with <code>systemctl</code> or <code>pm2</code></td>
+          </tr>
+          <tr>
+            <td><code>connect() failed (13: Permission denied)</code></td>
+            <td>Nginx (www-data) cannot read the PHP-FPM/Gunicorn UNIX socket file</td>
+            <td>Fix socket ownership with <code>chown www-data:www-data</code></td>
+          </tr>
+          <tr>
+            <td><code>upstream prematurely closed connection</code></td>
+            <td>Backend process ran out of memory (OOM) or crashed mid-request</td>
+            <td>Inspect app crash logs and increase worker memory limits</td>
+          </tr>
+          <tr>
+            <td><code>no live upstreams while connecting to upstream</code></td>
+            <td>All servers in an <code>upstream</code> load balancing pool failed health checks</td>
+            <td>Verify backend server addresses and network firewalls</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Step-by-Step Diagnostic Playbook</h2>
+
+      <h3>Step 1: Inspect the Nginx Error Log</h3>
+      <p>
+        The error log reveals the exact reason Nginx failed to reach the upstream:
+      </p>
+      <pre><code>sudo tail -n 50 /var/log/nginx/error.log</code></pre>
+
+      <h3>Step 2: Check If the Upstream Application is Alive</h3>
+      <pre><code># Check systemd service status:
+sudo systemctl status myapp.service
+# Or if using PHP-FPM:
+sudo systemctl status php8.3-fpm
+
+# Verify the application is listening on the expected port (e.g. 3000):
+sudo ss -tulpn | grep 3000</code></pre>
+
+      <h3>Step 3: Test Upstream Directly on Localhost</h3>
+      <p>
+        Bypass Nginx completely by issuing a direct curl request to your application:
+      </p>
+      <pre><code>curl -I http://127.0.0.1:3000/
+# If curl outputs "Connection refused", your app is not running!</code></pre>
+
+      <h3>Step 4: Fixing UNIX Socket Permission Denied</h3>
+      <p>
+        If your Nginx error log reports <em>"Permission denied"</em> while reading a UNIX domain socket (e.g. <code>/run/php/php8.3-fpm.sock</code>):
+      </p>
+      <pre><code># Check socket owner:
+ls -l /run/php/php8.3-fpm.sock
+
+# Ensure Nginx user (www-data or nginx) owns the socket:
+sudo chown www-data:www-data /run/php/php8.3-fpm.sock
+sudo chmod 660 /run/php/php8.3-fpm.sock</code></pre>
+
+      <h2>3. How to Fix 504 Gateway Timeout</h2>
+      <p>
+        A 504 error means your backend accepted the connection, but took longer than Nginx's 60-second default timeout to return HTTP response headers (e.g., long-running database reports, slow API imports).
+      </p>
+
+      <pre><code>location / {
+    proxy_pass http://127.0.0.1:3000;
+    
+    # Increase proxy timeout thresholds to 300 seconds:
+    proxy_connect_timeout 300s;
+    proxy_send_timeout 300s;
+    proxy_read_timeout 300s;
+}</code></pre>
+
+      <!-- Visual GUI Banner Callout -->
+      <div class="gui-banner">
+        <h3>Diagnose Nginx &amp; App Errors in Real Time</h3>
+        <p>
+          Troubleshoot 502 errors in seconds. SSH Desktop combines an interactive <a href="../log-analysis-grep.html" style="color: #58a6ff; font-weight: 600;">Log Analysis Tool</a> with a live <a href="../linux-process-manager.html" style="color: #58a6ff; font-weight: 600;">Process Manager</a>. Stream error logs, monitor dead workers, and restart crashed services with 1 click.
+        </p>
+        <a href="../log-analysis-grep.html" class="cta-btn">Explore Visual Log Analysis &rarr;</a>
+      </div>
+
+      <h2>4. Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>What is the difference between 502 Bad Gateway and 504 Gateway Timeout?</h4>
+        <p>
+          A 502 Bad Gateway indicates that Nginx attempted to connect to the upstream backend (such as Node.js or PHP-FPM) and received an immediate invalid response, connection refused, or connection reset (the backend service is crashed, stopped, or not listening). A 504 Gateway Timeout means Nginx connected successfully, but the upstream application took longer to respond than the configured <code>proxy_read_timeout</code> (the backend is alive but frozen or bogged down by slow queries).
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I check Nginx error logs in real time?</h4>
+        <p>
+          Execute <code>sudo tail -f /var/log/nginx/error.log</code> in your terminal or use SSH Desktop's visual Log Streamer. Look for lines containing <code>connect() failed (111: Connection refused)</code> or <code>upstream prematurely closed connection</code>.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I increase the gateway timeout limit in Nginx?</h4>
+        <p>
+          Inside your location or http block, increase timeout limits: <code>proxy_connect_timeout 300s;</code>, <code>proxy_send_timeout 300s;</code>, and <code>proxy_read_timeout 300s;</code>. Then reload Nginx with <code>sudo systemctl reload nginx</code>.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="copyright">&copy; 2026 SSH Desktop. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../security.html">Security</a>
+          <a href="../changelog.html">Changelog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

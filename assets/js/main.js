@@ -439,43 +439,43 @@ function initCommandPalette() {
     { title: "Download for macOS (Universal)", desc: "Native macOS app (.dmg) for Apple Silicon (M1/M2/M3/M4) and Intel", tag: "Download", icon: "🍏", url: "download-mac.html" },
     { title: "Download for Linux Desktop GUI", desc: "Packages for Ubuntu/Debian (.deb), Fedora/RHEL (.rpm), and AppImage", tag: "Download", icon: "🐧", url: "download-linux-desktop.html" },
     { title: "Download Linux Server & Web Mode Daemon", desc: "Single-binary daemon with Web Mode (Frontend: 2222, Backend: 2020): curl -fsSL https://sshdesktop.com/install.sh", tag: "Download", icon: "⚡", url: "download-linux-cli.html" },
-    { title: "Run in Web Mode (Browser Cloud Desktop)", desc: "Host on Linux server and access full macOS Sonoma desktop GUI via web browser on frontend port 2222 (backend port 2020)", tag: "Guide", icon: "🌐", url: "docs.html#web-mode" },
+    { title: "Run in Web Mode (Browser Cloud Desktop)", desc: "Host on Linux server and access full macOS Sonoma desktop GUI via web browser on frontend port 2222 (backend port 2020)", tag: "Guide", icon: "🌐", url: "docs/#web-mode" },
     { title: "Download Center", desc: "All platforms, checksums, GPG signatures, and release notes", tag: "Download", icon: "📥", url: "download.html" },
     // Core Pages & Guides
     { title: "25 Built-in Apps & Feature Suite", desc: "Complete encyclopedia of all 25 SSH Desktop server management apps", tag: "Suite", icon: "🧭", url: "apps.html" },
     { title: "Features & Architecture", desc: "Zero-latency pipeline, client-side rendering, and security overview", tag: "Guide", icon: "✨", url: "features.html" },
-    { title: "Documentation Hub", desc: "Getting started, SSH keys, ProxyJump, tunneling, and troubleshooting", tag: "Docs", icon: "📚", url: "docs.html" },
+    { title: "Documentation Hub", desc: "Getting started, SSH keys, ProxyJump, tunneling, and troubleshooting", tag: "Docs", icon: "📚", url: "docs/" },
     { title: "Pricing & Community Edition", desc: "100% Free Apache 2.0 Core vs SSH Desktop Pro & Team features", tag: "Pricing", icon: "🏷️", url: "pricing.html" },
-    { title: "PuTTY Alternative", desc: "Why modern engineers are replacing legacy PuTTY with SSH Desktop", tag: "Comparison", icon: "🔄", url: "putty-alternative.html" },
-    { title: "Termius Alternative", desc: "Self-hosted, zero subscription, privacy-first alternative to Termius", tag: "Comparison", icon: "🔄", url: "termius-alternative.html" },
-    { title: "MobaXterm Alternative", desc: "Cross-platform Mac, Windows, Linux alternative to MobaXterm", tag: "Comparison", icon: "🔄", url: "mobaxterm-alternative.html" },
-    { title: "FileZilla Alternative", desc: "Integrated dual-pane SFTP + Monaco IDE + terminal vs standalone FileZilla", tag: "Comparison", icon: "🔄", url: "filezilla-alternative.html" },
-    { title: "Portainer Alternative", desc: "Zero open daemon ports Docker manager vs heavy web panels", tag: "Comparison", icon: "🔄", url: "portainer-alternative.html" },
-    { title: "Cockpit Alternative", desc: "Pure client-side SSH UI vs Cockpit web server", tag: "Comparison", icon: "🔄", url: "cockpit-alternative.html" },
-    { title: "Webmin Alternative", desc: "Zero Perl / Apache overhead server management vs legacy Webmin", tag: "Comparison", icon: "🔄", url: "webmin-alternative.html" },
+    { title: "PuTTY Alternative", desc: "Why modern engineers are replacing legacy PuTTY with SSH Desktop", tag: "Comparison", icon: "🔄", url: "alternatives/putty-alternative.html" },
+    { title: "Termius Alternative", desc: "Self-hosted, zero subscription, privacy-first alternative to Termius", tag: "Comparison", icon: "🔄", url: "alternatives/termius-alternative.html" },
+    { title: "MobaXterm Alternative", desc: "Cross-platform Mac, Windows, Linux alternative to MobaXterm", tag: "Comparison", icon: "🔄", url: "alternatives/mobaxterm-alternative.html" },
+    { title: "FileZilla Alternative", desc: "Integrated dual-pane SFTP + Monaco IDE + terminal vs standalone FileZilla", tag: "Comparison", icon: "🔄", url: "alternatives/filezilla-alternative.html" },
+    { title: "Portainer Alternative", desc: "Zero open daemon ports Docker manager vs heavy web panels", tag: "Comparison", icon: "🔄", url: "alternatives/portainer-alternative.html" },
+    { title: "Cockpit Alternative", desc: "Pure client-side SSH UI vs Cockpit web server", tag: "Comparison", icon: "🔄", url: "alternatives/cockpit-alternative.html" },
+    { title: "Webmin Alternative", desc: "Zero Perl / Apache overhead server management vs legacy Webmin", tag: "Comparison", icon: "🔄", url: "alternatives/webmin-alternative.html" },
     // Enterprise, DevOps & Cloud Solutions
     { title: "Enterprise & Production Infrastructure", desc: "Air-gapped security, zero cloud telemetry, FIDO2/YubiKey, Intune GPO MSI, and SOC 2 compliance", tag: "Enterprise", icon: "🏢", url: "enterprise.html" },
     { title: "DevOps & SRE Server Suite", desc: "Multi-server parallel broadcast, Docker hub, database SSH tunnels, and live journald triage", tag: "DevOps", icon: "🛠️", url: "devops.html" },
     { title: "Multi-Cloud VPS Control Center", desc: "Unified Linux GUI for AWS EC2, Hetzner, GCP Compute, Azure VMs, and bare-metal servers", tag: "Cloud", icon: "☁️", url: "cloud.html" },
     // Additional Solutions & Competitor Alternatives
     { title: "Web SSH Client & In-Browser Terminal", desc: "Self-hosted web terminal and cloud desktop on frontend port 2222 and backend port 2020", tag: "Web Mode", icon: "🌐", url: "web-ssh-client.html" },
-    { title: "SecureCRT Free Alternative", desc: "VanDyke SecureCRT alternative: tabbed hardware PTY, multi-broadcast, and local DPAPI vaults without $149 license", tag: "Comparison", icon: "🔄", url: "securecrt-alternative.html" },
+    { title: "SecureCRT Free Alternative", desc: "VanDyke SecureCRT alternative: tabbed hardware PTY, multi-broadcast, and local DPAPI vaults without $149 license", tag: "Comparison", icon: "🔄", url: "alternatives/securecrt-alternative.html" },
     { title: "Best SSH Client for Windows 11", desc: "Native OpenSSH, Windows DPAPI encryption, PuTTY session import, and MSI silent deployment", tag: "Windows", icon: "🪟", url: "ssh-client-windows-11.html" },
     { title: "AWS EC2 SSH Client & GUI", desc: "Manage Amazon EC2 and Lightsail instances with native .pem keys and VPC Bastion ProxyJump", tag: "AWS", icon: "☁️", url: "aws-ec2-ssh-client.html" },
-    { title: "WinSCP Alternative (Mac & Linux)", desc: "Dual-pane SFTP file manager with Monaco editor and PTY terminal for macOS and Linux", tag: "Comparison", icon: "🔄", url: "winscp-alternative.html" },
-    { title: "Warp Terminal Alternative", desc: "Privacy-first, zero telemetry, offline SSH terminal with no mandatory login", tag: "Comparison", icon: "🔄", url: "warp-terminal-alternative.html" },
-    { title: "Cyberduck Alternative", desc: "Integrated dual-pane SFTP + Monaco editor + hardware PTY terminal in one window", tag: "Comparison", icon: "🔄", url: "cyberduck-alternative.html" },
-    { title: "Royal TSX Alternative", desc: "100% free server connection manager with unlimited connections and macOS design", tag: "Comparison", icon: "🔄", url: "royal-tsx-alternative.html" },
-    { title: "Tabby Terminal Alternative", desc: "Lightweight, instant-launch terminal and 25-app server suite without Electron RAM bloat", tag: "Comparison", icon: "🔄", url: "tabby-alternative.html" },
-    { title: "iTerm2 Alternative for Windows", desc: "Apple-grade split panes, custom themes, and hardware PTY for Windows 11 and Linux", tag: "Comparison", icon: "🔄", url: "iterm2-alternative.html" },
-    { title: "Devolutions RDM Alternative", desc: "Free, client-side SSH/SFTP connection vault without $249/year enterprise fees", tag: "Comparison", icon: "🔄", url: "remote-desktop-manager-alternative.html" },
-    { title: "Bitvise SSH Alternative", desc: "Visual port forwarding canvas and dual-pane SFTP natively on Mac, Linux, and Windows", tag: "Comparison", icon: "🔄", url: "bitvise-alternative.html" },
-    { title: "NetSarang Xshell Alternative", desc: "Free tabbed terminal sessions, multi-server broadcast, and SFTP across Mac and Windows", tag: "Comparison", icon: "🔄", url: "xshell-alternative.html" },
-    { title: "Apache Guacamole Alternative", desc: "Single 1-line binary Web Mode on ports 2222/2020 without Tomcat/guacd complexity", tag: "Comparison", icon: "🔄", url: "guacamole-alternative.html" },
-    { title: "DBeaver Alternative", desc: "Lightweight SQL & NoSQL studio with automatic point-to-point SSH tunnels", tag: "Comparison", icon: "🔄", url: "dbeaver-alternative.html" },
-    { title: "cPanel Free Alternative", desc: "0 MB server RAM overhead and $0 licensing to manage Linux VPS servers", tag: "Comparison", icon: "🔄", url: "cpanel-alternative.html" },
-    { title: "aaPanel Alternative", desc: "Secure server management over standard SSH port 22 with zero open web attack surfaces", tag: "Comparison", icon: "🔄", url: "aapanel-alternative.html" },
-    { title: "SuperPuTTY Alternative", desc: "Rock-solid tabbed terminal with modern fonts and 1-click PuTTY session import on Windows 11", tag: "Comparison", icon: "🔄", url: "superputty-alternative.html" },
+    { title: "WinSCP Alternative (Mac & Linux)", desc: "Dual-pane SFTP file manager with Monaco editor and PTY terminal for macOS and Linux", tag: "Comparison", icon: "🔄", url: "alternatives/winscp-alternative.html" },
+    { title: "Warp Terminal Alternative", desc: "Privacy-first, zero telemetry, offline SSH terminal with no mandatory login", tag: "Comparison", icon: "🔄", url: "alternatives/warp-terminal-alternative.html" },
+    { title: "Cyberduck Alternative", desc: "Integrated dual-pane SFTP + Monaco editor + hardware PTY terminal in one window", tag: "Comparison", icon: "🔄", url: "alternatives/cyberduck-alternative.html" },
+    { title: "Royal TSX Alternative", desc: "100% free server connection manager with unlimited connections and macOS design", tag: "Comparison", icon: "🔄", url: "alternatives/royal-tsx-alternative.html" },
+    { title: "Tabby Terminal Alternative", desc: "Lightweight, instant-launch terminal and 25-app server suite without Electron RAM bloat", tag: "Comparison", icon: "🔄", url: "alternatives/tabby-alternative.html" },
+    { title: "iTerm2 Alternative for Windows", desc: "Apple-grade split panes, custom themes, and hardware PTY for Windows 11 and Linux", tag: "Comparison", icon: "🔄", url: "alternatives/iterm2-alternative.html" },
+    { title: "Devolutions RDM Alternative", desc: "Free, client-side SSH/SFTP connection vault without $249/year enterprise fees", tag: "Comparison", icon: "🔄", url: "alternatives/remote-desktop-manager-alternative.html" },
+    { title: "Bitvise SSH Alternative", desc: "Visual port forwarding canvas and dual-pane SFTP natively on Mac, Linux, and Windows", tag: "Comparison", icon: "🔄", url: "alternatives/bitvise-alternative.html" },
+    { title: "NetSarang Xshell Alternative", desc: "Free tabbed terminal sessions, multi-server broadcast, and SFTP across Mac and Windows", tag: "Comparison", icon: "🔄", url: "alternatives/xshell-alternative.html" },
+    { title: "Apache Guacamole Alternative", desc: "Single 1-line binary Web Mode on ports 2222/2020 without Tomcat/guacd complexity", tag: "Comparison", icon: "🔄", url: "alternatives/guacamole-alternative.html" },
+    { title: "DBeaver Alternative", desc: "Lightweight SQL & NoSQL studio with automatic point-to-point SSH tunnels", tag: "Comparison", icon: "🔄", url: "alternatives/dbeaver-alternative.html" },
+    { title: "cPanel Free Alternative", desc: "0 MB server RAM overhead and $0 licensing to manage Linux VPS servers", tag: "Comparison", icon: "🔄", url: "alternatives/cpanel-alternative.html" },
+    { title: "aaPanel Alternative", desc: "Secure server management over standard SSH port 22 with zero open web attack surfaces", tag: "Comparison", icon: "🔄", url: "alternatives/aapanel-alternative.html" },
+    { title: "SuperPuTTY Alternative", desc: "Rock-solid tabbed terminal with modern fonts and 1-click PuTTY session import on Windows 11", tag: "Comparison", icon: "🔄", url: "alternatives/superputty-alternative.html" },
     { title: "RDP over SSH Tunnel Manager", desc: "Tunnel Windows Remote Desktop (port 3389) over encrypted SSH (port 22) with 1-click port forwarding and unified RDP/SSH manager", tag: "Tunneling", icon: "🔒", url: "rdp-over-ssh.html" },
     { title: "Raspberry Pi Remote Desktop & SSH Client", desc: "Log into Raspberry Pi remotely from Windows or Mac with desktop view, zero VNC lag, and hardware terminal", tag: "Hardware", icon: "🍓", url: "raspberry-pi-ssh-remote-desktop.html" },
     { title: "SSH Remote Desktop (Desktop View)", desc: "Linux GUI and authentic macOS desktop view over pure SSH port 22 with 0 MB server RAM and zero VNC lag", tag: "Remote Desktop", icon: "🖥️", url: "ssh-remote-desktop.html" }
@@ -1049,8 +1049,11 @@ function initSonomaAppSlider() {
       mainImg.classList.add('anim-fade');
       const webpSource = document.getElementById('sliderMainWebp');
       if (webpSource) webpSource.srcset = app.img;
+      const jpgSource = document.getElementById('sliderMainJpg');
+      const jpgPath = app.img.replace('.webp', '.jpg');
+      if (jpgSource) jpgSource.srcset = jpgPath;
       setTimeout(() => {
-        mainImg.src = app.img;
+        mainImg.src = jpgPath;
         mainImg.alt = `${app.title} Screenshot`;
         mainImg.onload = () => mainImg.classList.remove('anim-fade');
         setTimeout(() => mainImg.classList.remove('anim-fade'), 200);

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up SSH Port Knocking with knockd (2026 Security Guide)</title>
+  <meta name="description" content="Hide OpenSSH port 22 from Shodan and automated port scanners using knockd port knocking. Learn iptables sequences, timeout windows, and visual port auditing.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Set Up SSH Port Knocking with knockd (2026 Security Guide)">
+  <meta property="og:description" content="Hide OpenSSH port 22 from Shodan and automated port scanners using knockd port knocking. Learn iptables sequences, timeout windows, and visual port auditing.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Set Up SSH Port Knocking with knockd (2026 Security Guide)">
+  <meta name="twitter:description" content="Hide OpenSSH port 22 from Shodan and automated port scanners using knockd port knocking. Learn iptables sequences, timeout windows, and visual port auditing.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html",
+        "name": "How to Set Up SSH Port Knocking with knockd (2026 Security Guide)",
+        "description": "Hide OpenSSH port 22 from Shodan and automated port scanners using knockd port knocking. Learn iptables sequences, timeout windows, and visual port auditing."
+      },
+      "headline": "How to Set Up SSH Port Knocking with knockd: 2026 Security Guide",
+      "description": "Hide OpenSSH port 22 from Shodan and automated port scanners using knockd port knocking. Learn iptables sequences, timeout windows, and visual port auditing.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Set Up SSH Port Knocking with knockd (2026 Security Guide)",
+          "item": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-ssh-port-knocking-knockd-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is SSH port knocking, and how does it protect Linux servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Port knocking keeps SSH port 22 completely closed and filtered in the firewall by default. A background daemon (knockd) listens on network interfaces for a secret sequence of connection attempts to closed ports (e.g., TCP 7000, 8000, 9000). Upon receiving the valid knock sequence, the firewall opens port 22 dynamically only for the sender's IP address."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can automated bots or Shodan scan and discover knocked ports?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. To port scanners, all ports appear closed or filtered. The odds of a random scanner guessing a 3-port sequence with exact protocol flags within a 5-second window is less than 1 in 280 trillion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I send a knock sequence from Windows, Mac, or Linux?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On Linux/macOS, use the knock utility: knock server-ip 7000:tcp 8000:tcp 9000:tcp. On Windows, use PowerShell with Test-NetConnection or dedicated SSH clients with pre-connection knock triggers."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Set Up SSH Port Knocking with knockd (2026 Security Guide)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Stealth Security</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>11 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Set Up SSH Port Knocking with knockd: 2026 Security Guide</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Leaving OpenSSH port 22 open to the world invites tens of thousands of automated credential-stuffing bot scans every day, cluttering <code>/var/log/auth.log</code> and indexing your server on search engines like Shodan and Censys. <strong>Port Knocking</strong> provides stealth security by keeping port 22 completely closed until a secret sequence of network knocks opens it dynamically for your IP. Learn how to configure <code>knockd</code> and <code>iptables</code> in 2026.
+      </p>
+
+      <h2>How knockd Operates via Packet Sniffing</h2>
+      <p>
+        Unlike web services that bind to open sockets, <code>knockd</code> uses <code>libpcap</code> to inspect raw network packet headers on your interface. Because the ports it monitors are closed at the firewall level, port scanners receive no response. Only when the exact sequence of SYN packets arrives does <code>knockd</code> execute an <code>iptables</code> rule allowing your IP through.
+      </p>
+
+      <h2>Step 1: Install knockd and iptables-persistent</h2>
+      <p>Install the daemon on Ubuntu or Debian:</p>
+      <pre><code>sudo apt update
+sudo apt install -y knockd iptables-persistent</code></pre>
+
+      <h2>Step 2: Configure the knockd Daemon</h2>
+      <p>Edit the configuration file at <code>/etc/knockd.conf</code>:</p>
+      <pre><code>sudo nano /etc/knockd.conf</code></pre>
+      <p>Configure open and close knock sequences:</p>
+      <pre><code>[options]
+    UseSyslog
+    Interface = eth0   # Change to your public interface (check with: ip route)
+
+[openSSH]
+    sequence    = 7000:tcp,8000:tcp,9000:tcp
+    seq_timeout = 5
+    command     = /sbin/iptables -I INPUT -s %IP% -p tcp --dport 22 -j ACCEPT
+    tcpflags    = syn
+
+[closeSSH]
+    sequence    = 9000:tcp,8000:tcp,7000:tcp
+    seq_timeout = 5
+    command     = /sbin/iptables -D INPUT -s %IP% -p tcp --dport 22 -j ACCEPT
+    tcpflags    = syn</code></pre>
+      <p>Enable the daemon in <code>/etc/default/knockd</code>:</p>
+      <pre><code># Set START_KNOCKD=1
+START_KNOCKD=1</code></pre>
+
+      <h2>Step 3: Lock Down the Firewall</h2>
+      <div class="blog-tip-box">
+        <strong>Warning:</strong> Keep your current SSH terminal session open while testing firewall rules to prevent locking yourself out!
+      </div>
+      <p>Allow existing connections, then block all new unsolicited connections to port 22:</p>
+      <pre><code># Allow established connections so you do not get disconnected
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Allow loopback
+sudo iptables -A INPUT -i lo -j ACCEPT
+
+# Drop all standard port 22 attempts
+sudo iptables -A INPUT -p tcp --dport 22 -j DROP
+
+# Save iptables rules
+sudo netfilter-persistent save</code></pre>
+
+      <h2>Step 4: Start knockd and Test Connection</h2>
+      <p>Start and enable the service:</p>
+      <pre><code>sudo systemctl enable --now knockd</code></pre>
+      <p>From your local machine, try connecting to SSH (it will hang or time out):</p>
+      <pre><code>ssh user@your-server-ip   # Connection hangs!</code></pre>
+      <p>Send the secret knock sequence:</p>
+      <pre><code>knock your-server-ip 7000:tcp 8000:tcp 9000:tcp</code></pre>
+      <p>Immediately connect via SSH:</p>
+      <pre><code>ssh user@your-server-ip   # Connected successfully!</code></pre>
+
+      <h2>Audit Server Ports Visually with SSH Desktop</h2>
+      <p>
+        Verifying which ports are open, closed, or listening across a multi-server fleet is critical for cloud security. <strong>SSH Desktop</strong> provides:
+      </p>
+      <ul>
+        <li><strong>Visual Network Port Auditor:</strong> Scan remote servers to verify whether port 22, 80, 443, or database ports are properly firewalled.</li>
+        <li><strong>Pre-Connection Command Triggers:</strong> Automatically fire knock sequences before launching SSH or SFTP sessions.</li>
+        <li><strong>Firewall Manager:</strong> Inspect, edit, and flush iptables or UFW rules without syntax errors.</li>
+      </ul>
+      <p>
+        Check out our <a href="../network-port-auditor.html">Network Port Auditor</a> and <a href="../linux-firewall-gui.html">Linux Firewall GUI</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">What is SSH port knocking, and how does it protect Linux servers?</h3>
+          <p class="faq-answer">Port knocking keeps SSH port 22 completely closed and filtered in the firewall by default. A background daemon (knockd) listens on network interfaces for a secret sequence of connection attempts to closed ports (e.g., TCP 7000, 8000, 9000). Upon receiving the valid knock sequence, the firewall opens port 22 dynamically only for the sender's IP address.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Can automated bots or Shodan scan and discover knocked ports?</h3>
+          <p class="faq-answer">No. To port scanners, all ports appear closed or filtered. The odds of a random scanner guessing a 3-port sequence with exact protocol flags within a 5-second window is less than 1 in 280 trillion.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I send a knock sequence from Windows, Mac, or Linux?</h3>
+          <p class="faq-answer">On Linux/macOS, use the knock utility: knock server-ip 7000:tcp 8000:tcp 9000:tcp. On Windows, use PowerShell with Test-NetConnection or dedicated SSH clients with pre-connection knock triggers.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

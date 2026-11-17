@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Automate Database Backups Over SSH (Postgres & MySQL 2026)</title>
+  <meta name="description" content="Automate offsite database backups over SSH for PostgreSQL and MySQL. Learn streamed pipe dumps, gzip compression, retention pruning, and visual backup recovery.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Automate Database Backups Over SSH (Postgres & MySQL 2026)">
+  <meta property="og:description" content="Automate offsite database backups over SSH for PostgreSQL and MySQL. Learn streamed pipe dumps, gzip compression, retention pruning, and visual backup recovery.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Automate Database Backups Over SSH (Postgres & MySQL 2026)">
+  <meta name="twitter:description" content="Automate offsite database backups over SSH for PostgreSQL and MySQL. Learn streamed pipe dumps, gzip compression, retention pruning, and visual backup recovery.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html",
+        "url": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html",
+        "name": "How to Automate Database Backups Over SSH (Postgres & MySQL 2026)",
+        "description": "Automate offsite database backups over SSH for PostgreSQL and MySQL. Learn streamed pipe dumps, gzip compression, retention pruning, and visual backup recovery."
+      },
+      "headline": "How to Automate Database Backups Over SSH (PostgreSQL & MySQL 2026 Guide)",
+      "description": "Automate offsite database backups over SSH for PostgreSQL and MySQL. Learn streamed pipe dumps, gzip compression, retention pruning, and visual backup recovery.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Automate Database Backups Over SSH (Postgres & MySQL 2026)",
+          "item": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-automate-database-backups-over-ssh.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I stream a database backup directly across SSH without saving it to local disk first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Pipelining pg_dump or mysqldump directly through gzip and ssh streams raw database blocks over the network without consuming temporary storage on the database host. For example: pg_dump dbname | gzip -c | ssh backup_user@offsite \"cat > backup.sql.gz\"."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I handle database locks during production MySQL backups?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Always pass --single-transaction --quick to mysqldump on InnoDB tables. This creates a point-in-time snapshot within an ACID transaction without acquiring table read locks or freezing production web write traffic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I automatically prune older database backup archives?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Incorporate a find command into your backup script on the storage target: find /backups -type f -name \"*.sql.gz\" -mtime +30 -delete. This automatically removes archives older than 30 days."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Automate Database Backups Over SSH (Postgres & MySQL 2026)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Database & Backups</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>11 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Automate Database Backups Over SSH (PostgreSQL & MySQL 2026 Guide)</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Relying on local database dumps stored on the same physical server or VPS instance is a catastrophic disaster recovery risk. If a disk corrupts, a filesystem panics, or a cloud provider region suffers an outage, both your production database and your backups vanish. Learn how to stream compressed PostgreSQL and MySQL dumps securely over SSH directly to offsite storage in 2026.
+      </p>
+
+      <h2>The Power of Streamed SSH Pipe Backups</h2>
+      <p>
+        Traditional backup scripts write a 50GB <code>.sql</code> file to <code>/tmp</code>, compress it, copy it over SFTP, and then delete the local file. This requires at least 100GB of available free disk space on the database server.
+      </p>
+      <p>
+        By utilizing standard UNIX pipelines, output from the database dump utility is compressed on the fly and written directly through an encrypted SSH tunnel into offsite disk storage, requiring <strong>0MB of temporary local storage</strong>.
+      </p>
+
+      <h2>Automating PostgreSQL Backups Over SSH</h2>
+      <p>
+        Create a backup user and configure an automated backup script at <code>/usr/local/bin/backup-postgres-offsite.sh</code>:
+      </p>
+      <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+DB_NAME="production_db"
+DB_USER="postgres"
+BACKUP_HOST="backup-server.internal"
+BACKUP_USER="backup_agent"
+BACKUP_DIR="/mnt/secure-backups/postgres"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+FILENAME="pg_${DB_NAME}_${TIMESTAMP}.sql.gz"
+
+echo "Starting streamed PostgreSQL backup at $(date)..."
+
+# Stream dump -> gzip -> SSH -> remote file
+pg_dump -U "${DB_USER}" -d "${DB_NAME}" -F c -Z 6 \
+  | ssh -i /root/.ssh/id_backup -o StrictHostKeyChecking=accept-new "${BACKUP_USER}@${BACKUP_HOST}" \
+  "cat > ${BACKUP_DIR}/${FILENAME}"
+
+# Prune backups older than 30 days on remote host
+ssh -i /root/.ssh/id_backup "${BACKUP_USER}@${BACKUP_HOST}" \
+  "find ${BACKUP_DIR} -name 'pg_*.sql.gz' -mtime +30 -delete"
+
+echo "Backup complete: ${FILENAME}"</code></pre>
+
+      <h2>Automating MySQL &amp; MariaDB Backups Over SSH</h2>
+      <p>
+        For MySQL/MariaDB with InnoDB storage engines, ensure non-locking transactions:
+      </p>
+      <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+DB_NAME="ecommerce_db"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+
+mysqldump --single-transaction --quick --routines --triggers "${DB_NAME}" \
+  | gzip -9 \
+  | ssh -i /root/.ssh/id_backup backup_agent@backup-server.internal \
+  "cat > /mnt/secure-backups/mysql/mysql_${DB_NAME}_${TIMESTAMP}.sql.gz"</code></pre>
+
+      <h2>Scheduling Backups with Systemd Timer (or Cron)</h2>
+      <p>Schedule the backup to execute nightly at 02:00 AM via crontab:</p>
+      <pre><code># Open root crontab
+sudo crontab -e
+
+# Run every night at 2:00 AM
+0 2 * * * /usr/local/bin/backup-postgres-offsite.sh >> /var/log/db_backup.log 2>&1</code></pre>
+
+      <h2>Manage Disaster Recovery Visually with SSH Desktop</h2>
+      <p>
+        Verifying backups and restoring corrupted databases during an incident requires speed. <strong>SSH Desktop</strong> makes database operations effortless:
+      </p>
+      <ul>
+        <li><strong>One-Click Database GUI:</strong> Connect to remote PostgreSQL and MySQL instances over automated SSH tunnels without exposing port 5432 or 3306.</li>
+        <li><strong>Visual Backup Verification:</strong> Inspect remote dump archives, check file sizes, and verify checksums in a native file browser.</li>
+        <li><strong>Crontab Visualizer:</strong> Schedule, pause, and inspect cron jobs across entire server fleets without syntax errors.</li>
+      </ul>
+      <p>
+        Discover our <a href="../backup-disaster-recovery.html">Backup &amp; Disaster Recovery</a> and <a href="../database-gui-ssh-tunnel.html">Database GUI &amp; SSH Tunnel</a>.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">Can I stream a database backup directly across SSH without saving it to local disk first?</h3>
+          <p class="faq-answer">Yes! Pipelining pg_dump or mysqldump directly through gzip and ssh streams raw database blocks over the network without consuming temporary storage on the database host. For example: pg_dump dbname | gzip -c | ssh backup_user@offsite "cat > backup.sql.gz".</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I handle database locks during production MySQL backups?</h3>
+          <p class="faq-answer">Always pass --single-transaction --quick to mysqldump on InnoDB tables. This creates a point-in-time snapshot within an ACID transaction without acquiring table read locks or freezing production web write traffic.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How do I automatically prune older database backup archives?</h3>
+          <p class="faq-answer">Incorporate a find command into your backup script on the storage target: find /backups -type f -name "*.sql.gz" -mtime +30 -delete. This automatically removes archives older than 30 days.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

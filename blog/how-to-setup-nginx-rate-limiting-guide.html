@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force (2026)</title>
+  <meta name="description" content="Protect your web applications from DDoS and login brute-force attacks with Nginx rate limiting. Master limit_req_zone, burst, nodelay, and visual reverse proxy monitoring.">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html">
+  
+  <!-- OpenGraph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force (2026)">
+  <meta property="og:description" content="Protect your web applications from DDoS and login brute-force attacks with Nginx rate limiting. Master limit_req_zone, burst, nodelay, and visual reverse proxy monitoring.">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="article:published_time" content="2026-11-16T08:00:00+00:00">
+  <meta property="article:modified_time" content="2026-11-16T08:00:00+00:00">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force (2026)">
+  <meta name="twitter:description" content="Protect your web applications from DDoS and login brute-force attacks with Nginx rate limiting. Master limit_req_zone, burst, nodelay, and visual reverse proxy monitoring.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html",
+        "url": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html",
+        "name": "How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force (2026)",
+        "description": "Protect your web applications from DDoS and login brute-force attacks with Nginx rate limiting. Master limit_req_zone, burst, nodelay, and visual reverse proxy monitoring."
+      },
+      "headline": "How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force Attacks (2026)",
+      "description": "Protect your web applications from DDoS and login brute-force attacks with Nginx rate limiting. Master limit_req_zone, burst, nodelay, and visual reverse proxy monitoring.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-11-16T08:00:00+00:00",
+      "dateModified": "2026-11-16T08:00:00+00:00",
+      "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SSH Desktop Team",
+        "url": "https://sshdesktop.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SSH Desktop",
+        "url": "https://sshdesktop.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sshdesktop.com/assets/images/favicon.svg"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://sshdesktop.com/assets/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sshdesktop.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sshdesktop.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force (2026)",
+          "item": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://sshdesktop.com/blog/how-to-setup-nginx-rate-limiting-guide.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between limit_req and limit_conn in Nginx?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "limit_req limits the frequency or rate of HTTP requests per second/minute (leaky bucket algorithm). limit_conn limits the number of concurrent active TCP connections opened by a single client IP address."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the nodelay parameter do in Nginx rate limiting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The burst parameter creates a queue for temporary traffic spikes. By default, queued requests are delayed to match the rate limit. Adding nodelay processes burst requests immediately while still rejecting any requests that exceed the burst ceiling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Nginx rate limiting work behind Cloudflare or a load balancer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If Nginx sits behind a CDN or proxy, using $binary_remote_addr will rate limit the proxy IP instead of the visitor. Configure real_ip_header CF-Connecting-IP (or X-Forwarded-For) with set_real_ip_from directives so Nginx evaluates true visitor IPs."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+  <!-- Navigation Header -->
+  <header class="blog-nav-header">
+    <div class="blog-nav-container">
+      <a href="../index.html" class="blog-nav-logo">
+        <img src="../assets/images/favicon.svg" alt="SSH Desktop Logo" width="32" height="32" class="blog-logo-img">
+        <span>SSH Desktop</span>
+      </a>
+      <nav class="blog-nav-links">
+        <a href="../features.html">Features</a>
+        <a href="../docs/">Docs</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../download.html" class="blog-btn-cta">Download App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <main class="blog-article-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li aria-current="page">How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force (2026)</li>
+      </ol>
+    </nav>
+
+    <article class="blog-post-content">
+      <header class="blog-post-header">
+        <div class="blog-post-meta">
+          <span class="blog-post-tag">Web Security</span>
+          <time datetime="2026-11-16">2026-11-16</time>
+          <span>&bull;</span>
+          <span>10 min read</span>
+        </div>
+        <h1 class="blog-post-h1">How to Configure Nginx Rate Limiting to Stop DDoS & Brute-Force Attacks (2026)</h1>
+      </header>
+
+      <div class="blog-post-body">
+        
+      <p class="blog-lead">
+        Web scrapers, credential-stuffing bots, and volumetric HTTP floods can quickly overwhelm application servers and exhaust database connection pools. Nginx provides a powerful, built-in rate-limiting module based on the leaky bucket algorithm. Learn how to configure granular rate limits for APIs, login endpoints, and static assets in 2026.
+      </p>
+
+      <h2>How Nginx Rate Limiting Works (Leaky Bucket)</h2>
+      <p>
+        The leaky bucket algorithm visualizes requests as drops entering a bucket with a fixed drain rate. If incoming requests arrive faster than the drain rate, the bucket fills up. Once the bucket overflows, excess requests are rejected immediately with an <code>HTTP 503 (Service Temporarily Unavailable)</code> or <code>HTTP 429 (Too Many Requests)</code> status code.
+      </p>
+
+      <h2>Step 1: Define the Shared Memory Zone in nginx.conf</h2>
+      <p>Rate-limiting zones must be declared within the <code>http { ... }</code> context, typically in <code>/etc/nginx/nginx.conf</code>:</p>
+      <pre><code>http {
+    # Allocate 10MB memory zone 'login_limit' allowing 5 requests per minute per IP
+    limit_req_zone $binary_remote_addr zone=login_limit:10m rate=5r/m;
+
+    # Allocate 10MB memory zone 'api_limit' allowing 30 requests per second per IP
+    limit_req_zone $binary_remote_addr zone=api_limit:10m rate=30r/s;
+
+    # Change default 503 status to standard 429 Too Many Requests
+    limit_req_status 429;
+}</code></pre>
+      <p>
+        Using <code>$binary_remote_addr</code> uses only 4 bytes (IPv4) or 16 bytes (IPv6) per client IP, allowing a 10MB zone to store approximately 160,000 distinct IP addresses.
+      </p>
+
+      <h2>Step 2: Apply Rate Limits to Specific Location Blocks</h2>
+      <p>In your virtual host configuration (e.g., <code>/etc/nginx/sites-available/example.com</code>), apply the defined zones to sensitive URIs:</p>
+      <pre><code>server {
+    server_name api.example.com;
+
+    # Protect login and authentication routes against brute-force attacks
+    location /api/v1/auth/login {
+        # Burst of 3 requests allowed, processed without delay
+        limit_req zone=login_limit burst=3 nodelay;
+        
+        proxy_pass http://backend_upstream;
+        include proxy_params;
+    }
+
+    # General API rate limiting with smooth burst buffering
+    location /api/ {
+        limit_req zone=api_limit burst=20 nodelay;
+        
+        proxy_pass http://backend_upstream;
+        include proxy_params;
+    }
+}</code></pre>
+
+      <h2>Step 3: Handling Rate Limits Behind Cloudflare or Proxies</h2>
+      <p>
+        If your server sits behind Cloudflare, AWS ALB, or a reverse proxy, you must restore the visitor's real IP address before applying rate limits. Otherwise, all visitors will share the proxy IP and trigger premature 429 errors:
+      </p>
+      <pre><code># In http { ... } or server { ... } block
+set_real_ip_from 173.245.48.0/20;
+set_real_ip_from 103.21.244.0/22;
+# (Add all Cloudflare IP ranges)
+
+real_ip_header CF-Connecting-IP;</code></pre>
+
+      <h2>Step 4: Test and Monitor Rate Limiting</h2>
+      <p>Test your rate-limiting rules using <code>curl</code> in a quick bash loop:</p>
+      <pre><code>for i in {1..10}; do curl -s -o /dev/null -w "%{http_code}\n" https://api.example.com/api/v1/auth/login; done</code></pre>
+      <p>You should see initial <code>200</code> responses followed immediately by <code>429</code> responses as the burst ceiling is exceeded.</p>
+
+      <h2>Visual Reverse Proxy Tuning with SSH Desktop</h2>
+      <p>
+        Tuning rate limits requires balancing bot mitigation with legitimate user spikes. <strong>SSH Desktop</strong> makes managing Nginx simple:
+      </p>
+      <ul>
+        <li><strong>Nginx Visual Editor:</strong> Validate config files and preview rate limit zones before reloading.</li>
+        <li><strong>Live Access Log Streamer:</strong> Filter 429 responses in real time to spot banned offending IPs.</li>
+        <li><strong>Server Health Telemetry:</strong> Track CPU and open file handles during traffic surges.</li>
+      </ul>
+      <p>
+        Check out our <a href="../reverse-proxy-browser.html">Reverse Proxy Browser</a> and <a href="../log-analysis-grep.html">Remote Log Analyzer</a> tools.
+      </p>
+    
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          
+        <div class="faq-item">
+          <h3 class="faq-question">What is the difference between limit_req and limit_conn in Nginx?</h3>
+          <p class="faq-answer">limit_req limits the frequency or rate of HTTP requests per second/minute (leaky bucket algorithm). limit_conn limits the number of concurrent active TCP connections opened by a single client IP address.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What does the nodelay parameter do in Nginx rate limiting?</h3>
+          <p class="faq-answer">The burst parameter creates a queue for temporary traffic spikes. By default, queued requests are delayed to match the rate limit. Adding nodelay processes burst requests immediately while still rejecting any requests that exceed the burst ceiling.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How does Nginx rate limiting work behind Cloudflare or a load balancer?</h3>
+          <p class="faq-answer">If Nginx sits behind a CDN or proxy, using $binary_remote_addr will rate limit the proxy IP instead of the visitor. Configure real_ip_header CF-Connecting-IP (or X-Forwarded-For) with set_real_ip_from directives so Nginx evaluates true visitor IPs.</p>
+        </div>
+        </div>
+
+        <!-- Conversion Card -->
+        <div class="blog-cta-box">
+          <h3>Manage Linux Servers with Visual Simplicity</h3>
+          <p>
+            Tired of juggling terminal windows and typing repetitive commands? SSH Desktop combines an ultra-fast terminal with native SFTP, background tunnels, visual reverse proxy management, and real-time system monitoring.
+          </p>
+          <a href="../download.html" class="blog-cta-button">Download SSH Desktop Free &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-container">
+      <p>&copy; 2026 SSH Desktop. All rights reserved. Free, open, and privacy-focused Linux management.</p>
+      <div class="blog-footer-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

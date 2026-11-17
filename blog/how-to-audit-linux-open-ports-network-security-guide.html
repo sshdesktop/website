@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Check Open Ports on Linux: ss, lsof &amp; nmap (2026 Security Guide)</title>
+  <meta name="title" content="How to Check Open Ports on Linux: ss, lsof &amp; nmap (2026 Security Guide)">
+  <meta name="description" content="Complete guide to auditing open ports on Linux. Master ss -tulpn, lsof -i, and nmap commands, identify listening processes, close unauthorized ports, and monitor network security visually.">
+  <meta name="keywords" content="check open ports linux, ss vs netstat linux, lsof -i check port process, find listening ports ubuntu, nmap scan open ports linux, visual network port auditor">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-audit-linux-open-ports-network-security-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-audit-linux-open-ports-network-security-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Check Open Ports on Linux: ss, lsof &amp; nmap (2026)">
+  <meta property="og:description" content="Step-by-step security guide: inspect active TCP/UDP listening ports with ss, find rogue processes with lsof, and audit security visually.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Security &amp; Networking">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-audit-linux-open-ports-network-security-guide.html">
+  <meta name="twitter:title" content="How to Check Open Ports on Linux: ss, lsof &amp; nmap">
+  <meta name="twitter:description" content="Audit Linux network security: check listening ports with ss, find PIDs with lsof, and monitor open sockets.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Audit Linux Open Ports & Network Security",
+            "item": "https://sshdesktop.com/blog/how-to-audit-linux-open-ports-network-security-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-audit-linux-open-ports-network-security-guide.html#article",
+        "headline": "How to Check Open Ports on Linux: ss, lsof & nmap (2026 Security Guide)",
+        "description": "Master Linux open port auditing. Learn ss -tulpn syntax, find which process is listening with lsof -i, identify unauthorized listeners, and audit network security visually.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-audit-linux-open-ports-network-security-guide.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is ss preferred over netstat on modern Linux?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "'netstat' is part of the obsolete net-tools package deprecated since 2011. It reads from '/proc/net/tcp', which is slow on busy servers with thousands of sockets. 'ss' (Socket Statistics) is part of the modern iproute2 suite and queries kernel socket data structures directly via Netlink, making it 10x to 100x faster."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does ss -tulpn stand for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The flags decode to: '-t' (TCP sockets), '-u' (UDP sockets), '-l' (listening sockets only), '-p' (show process name and PID), and '-n' (numeric port numbers instead of resolving service names)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I find out what is running on a specific port like 8080?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run 'sudo lsof -i :8080' or 'sudo ss -tulpn | grep :8080'. The output displays the exact process name, PID, and user executing the listening daemon."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between 0.0.0.0:PORT and 127.0.0.1:PORT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "'0.0.0.0' binds to all network interfaces, meaning the service can be reached from the public internet (subject to firewall rules). '127.0.0.1' binds strictly to the local loopback interface, meaning only processes running locally on the server can connect."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Audit Linux Open Ports</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">Network Security &amp; Auditing</span>
+        <h1 class="article-title">How to Check Open Ports on Linux: ss, lsof &amp; nmap (2026 Security Guide)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>9 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          In cybersecurity, every open network port is an entry point into your server. If a developer accidentally binds a test database to <code>0.0.0.0:3306</code> or a forgotten Node.js debug server is listening on port <code>9229</code>, your server is vulnerable to remote compromise.
+        </p>
+        <p>
+          Regularly auditing open TCP and UDP listening ports is a foundational practice in server hardening.
+        </p>
+        <p>
+          In this guide, you will learn how to inspect active listening sockets using modern <code>ss</code>, find the exact process ID with <code>lsof</code>, verify public exposure with <code>nmap</code>, and audit network ports visually with SSH Desktop.
+        </p>
+
+        <h2>1. The Gold Standard: ss -tulpn</h2>
+        <p>
+          Legacy tutorials frequently instruct users to run <code>netstat</code>. However, <code>netstat</code> was officially deprecated over a decade ago. The modern, high-speed replacement is <strong><code>ss</code> (Socket Statistics)</strong>:
+        </p>
+
+        <div class="code-block">
+          <code>sudo ss -tulpn</code>
+        </div>
+
+        <h3>Flags Breakdown:</h3>
+        <ul>
+          <li><strong><code>-t</code>:</strong> Display TCP sockets.</li>
+          <li><strong><code>-u</code>:</strong> Display UDP sockets.</li>
+          <li><strong><code>-l</code>:</strong> Show <em>listening</em> sockets only (ignores established client connections).</li>
+          <li><strong><code>-p</code>:</strong> Show the process name and PID.</li>
+          <li><strong><code>-n</code>:</strong> Show numeric port numbers (e.g. <code>22</code> instead of translating to <code>ssh</code>).</li>
+        </ul>
+
+        <h3>Reading the Output:</h3>
+        <div class="code-block">
+          <code>Netid State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess<br>
+tcp   LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=912,fd=3))<br>
+tcp   LISTEN 0      511        127.0.0.1:3306       0.0.0.0:*    users:(("mysqld",pid=1420,fd=21))<br>
+tcp   LISTEN 0      511          0.0.0.0:80         0.0.0.0:*    users:(("nginx",pid=1102,fd=6))</code>
+        </div>
+
+        <div class="callout-box tip">
+          <strong>Crucial Security Audit Tip:</strong> Look at the <strong>Local Address</strong> column:
+          <ul>
+            <li><code>127.0.0.1:3306</code>: Safe! Bound to loopback; only accessible from inside the server.</li>
+            <li><code>0.0.0.0:80</code> or <code>:::80</code>: Accessible from the outside world on all network interfaces.</li>
+          </ul>
+        </div>
+
+        <h2>2. Find Which Process Owns a Specific Port: lsof -i</h2>
+        <p>
+          If you encounter an "Address already in use" error when starting a service, find the blocking PID with <code>lsof</code>:
+        </p>
+        <div class="code-block">
+          <code>sudo lsof -i :8080</code>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="code-block">
+          <code>COMMAND   PID   USER   FD   TYPE DEVICE SIZE/OFF NODE NAME<br>
+node    19284 ubuntu   23u  IPv4  89210      0t0  TCP *:8080 (LISTEN)</code>
+        </div>
+        <p>
+          Kill the rogue or hung process cleanly:
+        </p>
+        <div class="code-block">
+          <code>sudo kill -15 19284  # Graceful SIGTERM<br>
+# Or force kill if unresponsive:<br>
+sudo kill -9 19284</code>
+        </div>
+
+        <h2>3. External Audit with nmap (View What the Internet Sees)</h2>
+        <p>
+          Just because a port is listening on <code>0.0.0.0</code> does not mean it is reachable from the public internet. External cloud security groups (AWS, GCP) and host firewalls (UFW) may be filtering packets.
+        </p>
+        <p>
+          From your <em>local laptop</em>, scan your server's public IP using <code>nmap</code>:
+        </p>
+        <div class="code-block">
+          <code>nmap -sT -p 1-10000 198.51.100.42</code>
+        </div>
+        <p>
+          Look for:
+        </p>
+        <ul>
+          <li><strong><code>open</code>:</strong> Service is accessible to the public internet (ensure only 22, 80, 443 are open!).</li>
+          <li><strong><code>filtered</code>:</strong> Packets are dropped by a firewall (secure).</li>
+          <li><strong><code>closed</code>:</strong> No service is listening.</li>
+        </ul>
+
+        <h2>Visual Network Port Auditing with SSH Desktop</h2>
+        <p>
+          Parsing long text outputs from <code>ss -tulpn</code> and verifying IP bindings across multiple servers is time-consuming.
+        </p>
+        <p>
+          <a href="../network-port-auditor.html">SSH Desktop Network Port Auditor</a> provides visual socket inspection:
+        </p>
+        <ul>
+          <li><strong>Interactive Port Roster:</strong> View all listening TCP and UDP sockets with clear badges distinguishing Public (<code>0.0.0.0</code>) vs Private (<code>127.0.0.1</code>) bindings.</li>
+          <li><strong>1-Click Process Termination:</strong> Kill rogue or dangling background processes holding ports directly from the GUI.</li>
+          <li><strong>Security Warning Flags:</strong> Automatically highlights unencrypted database listeners (MySQL, Redis, MongoDB) exposed to public interfaces.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Audit Server Ports Visually</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            Find and close unauthorized open ports in seconds. Download SSH Desktop — the 100% free GUI client with visual Network Port Auditor.
+          </p>
+          <a href="../network-port-auditor.html" class="btn btn-primary btn-lg">
+            Explore Network Auditor Features &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>

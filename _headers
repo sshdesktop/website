@@ -1,0 +1,43 @@
+# Production HTTP Security & Cache Headers for SSH Desktop (sshdesktop.com)
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+# Cache static assets (CSS, JS, Fonts, Images) for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages - revalidate to deliver updates immediately
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/docs/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/blog/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/alternatives/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400

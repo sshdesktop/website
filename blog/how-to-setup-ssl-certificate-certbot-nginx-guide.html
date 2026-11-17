@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLYDWV9PH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BLYDWV9PH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>How to Set Up Free Let's Encrypt SSL with Certbot &amp; Nginx (2026 Guide)</title>
+  <meta name="title" content="How to Set Up Free Let's Encrypt SSL with Certbot &amp; Nginx (2026 Guide)">
+  <meta name="description" content="Step-by-step tutorial: install Certbot, obtain free Let's Encrypt SSL certificates for Nginx, configure automatic HTTPS redirection, test auto-renewal, and manage certificates visually.">
+  <meta name="keywords" content="certbot nginx, setup free ssl certbot, letsencrypt ssl certificate nginx, certbot renew auto renewal, nginx http to https redirect, visual ssl manager linux">
+  <meta name="author" content="SSH Desktop Engineering Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://sshdesktop.com/blog/how-to-setup-ssl-certificate-certbot-nginx-guide.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sshdesktop.com/blog/how-to-setup-ssl-certificate-certbot-nginx-guide.html">
+  <meta property="og:site_name" content="SSH Desktop">
+  <meta property="og:title" content="How to Set Up Free Let's Encrypt SSL with Certbot &amp; Nginx">
+  <meta property="og:description" content="Step-by-step guide to installing Certbot, obtaining free Let's Encrypt SSL certificates, configuring Nginx, and testing auto-renewal.">
+  <meta property="og:image" content="https://sshdesktop.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:modified_time" content="2026-11-16T12:00:00Z">
+  <meta property="article:section" content="Web Servers &amp; Security">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sshdesktop.com/blog/how-to-setup-ssl-certificate-certbot-nginx-guide.html">
+  <meta name="twitter:title" content="How to Set Up Free SSL with Certbot &amp; Nginx (2026)">
+  <meta name="twitter:description" content="Complete guide to securing your website with free Let's Encrypt SSL certificates and Nginx.">
+  <meta name="twitter:image" content="https://sshdesktop.com/assets/images/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+
+  <style>
+    .article-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .article-header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .article-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #1e293b;
+    }
+    .article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .article-content p {
+      margin-bottom: 20px;
+    }
+    .article-content ul, .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .code-block code {
+      color: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .callout-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-size: 0.98rem;
+    }
+    .callout-box.tip {
+      background: #eff6ff;
+      border-left-color: #2563eb;
+    }
+    .callout-box.warn {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .comparison-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+    .article-cta {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .breadcrumb-nav {
+      padding: 14px 0 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Structured Data: BlogPosting & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sshdesktop.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://sshdesktop.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Set Up Free SSL with Certbot & Nginx",
+            "item": "https://sshdesktop.com/blog/how-to-setup-ssl-certificate-certbot-nginx-guide.html"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://sshdesktop.com/blog/how-to-setup-ssl-certificate-certbot-nginx-guide.html#article",
+        "headline": "How to Set Up Free Let's Encrypt SSL with Certbot & Nginx (2026 Guide)",
+        "description": "Step-by-step tutorial on securing Nginx websites with free Let's Encrypt SSL certificates using Certbot. Includes automated HTTPS redirects, renewal testing, and visual SSL tools.",
+        "author": {
+          "@type": "Organization",
+          "name": "SSH Desktop Engineering Team",
+          "url": "https://sshdesktop.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SSH Desktop",
+          "url": "https://sshdesktop.com",
+          "logo": "https://sshdesktop.com/assets/images/logo.svg"
+        },
+        "datePublished": "2026-11-16T12:00:00Z",
+        "dateModified": "2026-11-16T12:00:00Z",
+        "mainEntityOfPage": "https://sshdesktop.com/blog/how-to-setup-ssl-certificate-certbot-nginx-guide.html",
+        "image": "https://sshdesktop.com/assets/images/og-image.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are Let's Encrypt SSL certificates completely free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Let's Encrypt is a non-profit Certificate Authority that provides free, automated X.509 certificates recognized by all modern web browsers, mobile operating systems, and root stores worldwide."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long do Let's Encrypt SSL certificates last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Let's Encrypt certificates are valid for 90 days. Certbot automatically installs a systemd timer or cron job that checks twice daily and renews certificates within 30 days of expiration."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the command to obtain and configure an SSL certificate with Certbot for Nginx?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run 'sudo certbot --nginx -d example.com -d www.example.com'. Certbot verifies domain ownership via an ACME challenge, provisions the certificate, and updates your Nginx configuration blocks automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I test if Certbot auto-renewal is working?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Execute 'sudo certbot renew --dry-run'. This performs a full simulation of the ACME renewal challenge without actually saving new certificate files."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../" class="brand" aria-label="SSH Desktop Homepage">
+        <img src="../assets/images/logo.svg" alt="SSH Desktop" width="180" height="38" decoding="async">
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../apps.html">Apps</a></li>
+          <li><a href="../features.html">Features</a></li>
+          <li><a href="../docs/">Docs</a></li>
+          <li><a href="./" style="color: var(--accent-cyan); font-weight: 700;">Blog</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="../download.html" class="btn btn-primary btn-sm header-cta-btn">
+          <span>Download Free</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb-nav">
+      <ol class="breadcrumb-list">
+        <li><a href="../">Home</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li><a href="./">Blog</a></li>
+        <li style="color: var(--text-dim);">&bull;</li>
+        <li aria-current="page">Set Up Free SSL with Certbot &amp; Nginx</li>
+      </ol>
+    </div>
+
+    <article class="article-wrap">
+      <header class="article-header">
+        <span class="badge badge-sunset-pill" style="margin-bottom: 12px; display: inline-block;">Web Security &amp; Certificates</span>
+        <h1 class="article-title">How to Set Up Free Let's Encrypt SSL with Certbot &amp; Nginx (2026 Guide)</h1>
+        <div class="article-meta">
+          <span>Published: November 2026</span>
+          <span>&bull;</span>
+          <span>10 min read</span>
+          <span>&bull;</span>
+          <span>By SSH Desktop Engineering Team</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>
+          Running an unencrypted HTTP website in 2026 is no longer an option. Google Chrome and Safari flag plain HTTP sites as "Not Secure", modern APIs require HTTPS, and search engines penalize unencrypted websites in search rankings.
+        </p>
+        <p>
+          Fortunately, the days of paying hundreds of dollars for commercial SSL/TLS certificates are long gone. Thanks to the Electronic Frontier Foundation's <strong>Let's Encrypt</strong> Certificate Authority and <strong>Certbot</strong>, you can obtain and automate trusted SSL certificates in under two minutes for free.
+        </p>
+        <p>
+          In this guide, you will learn the exact steps to install Certbot on Ubuntu/Debian, provision an SSL certificate for Nginx, configure automatic HTTP-to-HTTPS redirects, and manage SSL certificates visually.
+        </p>
+
+        <h2>Prerequisites</h2>
+        <ol>
+          <li>A registered domain name (e.g. <code>example.com</code>).</li>
+          <li>DNS <code>A</code> records for <code>example.com</code> and <code>www.example.com</code> pointing to your server's public IP address.</li>
+          <li>Nginx installed with port 80 (HTTP) and port 443 (HTTPS) open in your firewall (e.g. <code>sudo ufw allow 'Nginx Full'</code>).</li>
+        </ol>
+
+        <h2>Step 1: Verify Nginx Server Block</h2>
+        <p>
+          Before running Certbot, verify that your Nginx configuration contains a valid <code>server_name</code> directive:
+        </p>
+        <div class="code-block">
+          <code>sudo nano /etc/nginx/sites-available/example.com</code>
+        </div>
+        <div class="code-block">
+          <code>server {<br>
+    listen 80;<br>
+    listen [::]:80;<br>
+    server_name example.com www.example.com;<br>
+    root /var/www/example.com/html;<br>
+    index index.html index.htm index.nginx-debian.html;<br>
+}</code>
+        </div>
+        <p>
+          Test Nginx syntax and reload:
+        </p>
+        <div class="code-block">
+          <code>sudo nginx -t &amp;&amp; sudo systemctl reload nginx</code>
+        </div>
+
+        <h2>Step 2: Install Certbot and the Nginx Plugin</h2>
+        <p>
+          Install Certbot and the official Nginx integration package:
+        </p>
+        <div class="code-block">
+          <code># Ubuntu / Debian:<br>
+sudo apt update<br>
+sudo apt install -y certbot python3-certbot-nginx<br><br>
+# CentOS / RHEL / AlmaLinux:<br>
+sudo dnf install -y certbot python3-certbot-nginx</code>
+        </div>
+
+        <h2>Step 3: Obtain and Install the SSL Certificate</h2>
+        <p>
+          Run Certbot with the <code>--nginx</code> flag. Certbot automatically inspects your Nginx server blocks, handles the ACME cryptographic challenge, downloads your certificates, and reconfigures Nginx to use them:
+        </p>
+        <div class="code-block">
+          <code>sudo certbot --nginx -d example.com -d www.example.com</code>
+        </div>
+
+        <h3>Interactive Prompts:</h3>
+        <ol>
+          <li><strong>Enter email address:</strong> Enter your admin email for urgent renewal notices and security advisories.</li>
+          <li><strong>Terms of Service:</strong> Type <code>Y</code> and press Enter.</li>
+          <li><strong>Share Email with EFF:</strong> Choose <code>Y</code> or <code>N</code>.</li>
+          <li><strong>HTTPS Redirection:</strong> Choose whether to automatically redirect all HTTP traffic to HTTPS (Option 2: <em>Redirect - Make all requests redirect to secure HTTPS access</em> is recommended!).</li>
+        </ol>
+
+        <p>
+          Certbot updates your Nginx configuration automatically:
+        </p>
+        <div class="code-block">
+          <code>Successfully received certificate.<br>
+Certificate is saved at: /etc/letsencrypt/live/example.com/fullchain.pem<br>
+Key is saved at:         /etc/letsencrypt/live/example.com/privkey.pem<br>
+Congratulations! You have successfully enabled HTTPS on https://example.com</code>
+        </div>
+
+        <h2>Step 4: Test Automatic Certificate Renewal</h2>
+        <p>
+          Let's Encrypt certificates expire after 90 days. Certbot installs a systemd timer (<code>certbot.timer</code>) that runs twice daily and automatically renews certificates that are within 30 days of expiration.
+        </p>
+        <p>
+          Test the automated renewal mechanism with a dry run:
+        </p>
+        <div class="code-block">
+          <code>sudo certbot renew --dry-run</code>
+        </div>
+        <p>
+          If it concludes with <em>"Congratulations, all simulated renewals succeeded"</em>, your website will stay secured with SSL indefinitely without any manual intervention!
+        </p>
+
+        <h2>Visual SSL Management with SSH Desktop</h2>
+        <p>
+          Tracking expiration dates across dozens of subdomains and virtual hosts via command-line files can be tedious.
+        </p>
+        <p>
+          <a href="../ssl-certificate-manager.html">SSH Desktop SSL Manager</a> provides visual certificate control:
+        </p>
+        <ul>
+          <li><strong>Visual Expiration Radar:</strong> View days remaining for all installed SSL certificates with color-coded warning badges (Green > 30d, Yellow &lt; 30d, Red &lt; 7d).</li>
+          <li><strong>1-Click Let's Encrypt Wizard:</strong> Issue new certificates directly from the GUI without remembering CLI arguments.</li>
+          <li><strong>Nginx / Apache Sync:</strong> Automatically links newly generated certificates to web server virtual hosts.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3 style="margin-top: 0; font-size: 1.5rem; margin-bottom: 8px;">Automate SSL Management Visually</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+            Never let an SSL certificate expire. Download SSH Desktop — the 100% free GUI client with visual SSL Certificate Manager for Windows 11, macOS, and Linux.
+          </p>
+          <a href="../ssl-certificate-manager.html" class="btn btn-primary btn-lg">
+            Explore SSL Certificate Features &rarr;
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 SSH Desktop Inc. Licensed under Apache 2.0 / MIT.</p>
+        </div>
+        <div class="footer-bottom-right">
+          <nav class="footer-legal-nav" aria-label="Footer Navigation">
+            <a href="../">Home</a>
+            <a href="../apps.html">Apps</a>
+            <a href="../docs/">Docs</a>
+            <a href="../download.html">Download</a>
+            <a href="./">Blog</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.min.js" defer></script>
+</body>
+</html>
